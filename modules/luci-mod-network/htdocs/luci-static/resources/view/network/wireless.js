@@ -948,6 +948,8 @@ return view.extend({
 
 					o = ss.taboption('general', form.Flag, 'vendor_vht', _('Allow VHT on 2g'), _('Enables QAM-256 in 2.4GHz 802.11n, in HE mode enables VHT fallback'));
 					o.depends({'_freq': '2g', '!contains': true});
+					
+					o = ss.taboption('general', form.Flag, 'itxbfen', _('Enable iBF'), _('Enables MediaTek’s proprietary beamforming'));
 
 					o = ss.taboption('general', form.Flag, 'legacy_rates', _('Allow legacy 802.11b rates'), _('Legacy or badly behaving devices may require legacy 802.11b rates to interoperate. Airtime efficiency may be significantly reduced where these are used. It is recommended to not allow 802.11b rates where possible.'));
 					o.depends({'_freq': '2g', '!contains': true});
