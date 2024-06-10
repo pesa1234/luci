@@ -991,6 +991,8 @@ return view.extend({
 					o.datatype = 'range(15,65535)';
 					o.placeholder = 100;
 					o.rmempty = true;
+					
+					o = ss.taboption('advanced', form.Flag, 'he_twt_responder', _('Enable twt responder'), _('Enables Target Wake Time (TWT) - Disabled by default (use for test)'));
 				}
 
 
