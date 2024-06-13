@@ -5,6 +5,7 @@
 'require form';
 'require network';
 'require firewall';
+'require fs';
 'require tools.firewall as fwtool';
 'require tools.widgets as widgets';
 
@@ -18,10 +19,11 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			this.callConntrackHelpers(),
-			firewall.getDefaults()
+			firewall.getDefaults(),
+			fs.trimmed('/etc/modules.d/mt7915e')
 		]);
 	},
-
+	
 	render: function(data) {
 		if (fwtool.checkLegacySNAT())
 			return fwtool.renderMigration();
@@ -30,6 +32,7 @@ return view.extend({
 	},
 
 	renderZones: function(data) {
+		var wed_state  = data[2];
 		var ctHelpers = data[0],
 		    fwDefaults = data[1],
 		    m, s, o, inp, out;
@@ -78,7 +81,44 @@ return view.extend({
 
 			s.anonymous = true;
 			s.addremove = false;
-
+			
+			var wedisenabled;
+			
+			if ( wed_state == "mt7915e wed_enable=1"){
+				wedisenabled=true;
+			}
+			else{
+			wedisenabled=false;
+			}
+			
+			o = s.option(form.TextValue, 'WED state', _('It shows WED state'));
+			o.readonly=true;
+			o.cfgvalue = function (section_id) {
+			//return fs.trimmed('/proc/sys/kernel/hostname');
+			return fs.trimmed('/etc/modules.d/mt7915e');
+		};
+		if (wedisenabled==false){
+		o.write = function(section_id) {
+			return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
+		};
+		}
+		else{
+			o.write = function(section_id) {
+			return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=0');
+		};
+		}
+			// o.write = function(section_id, formvalue) {
+			// return fs.write('/etc/modules.d/mt7915e', formvalue);
+		// };
+		
+			o = s.option(form.Flag, 'wed_enable',
+				_('WED - Reboot is required'),
+				_('Wireless Ethernet Dispatch (WED) is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
+			o.default=wedisenabled;
+			// o.write = function(section_id, wed_enable) {
+			// return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable='+wed_enable);
+		// };
+	
 			o = s.option(form.Flag, 'flow_offloading',
 				_('Software flow offloading'),
 				_('Software based offloading for routing/NAT'));
