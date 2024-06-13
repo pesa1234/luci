@@ -81,23 +81,22 @@ return view.extend({
 
 			s.anonymous = true;
 			s.addremove = false;
-			
+
 			var wedisenabled;
-			
+
 			if ( wed_state == "mt7915e wed_enable=1"){
-				wedisenabled=true;
+				wedisenabled = true;
 			}
-			else{
-			wedisenabled=false;
+			else {
+				wedisenabled = false;
 			}
-			
-			o = s.option(form.TextValue, 'WED state', _('It shows WED state'));
-			o.readonly=true;
+
+			o = s.option(form.TextValue, 'WED state', _('WED state: contents of the file (/etc/modules.d/mt7915e). If contents is (mt7915e wed_enable=1) WED is enabled otherwise is disabled.'));
+			o.readonly = true;
 			o.cfgvalue = function (section_id) {
-			//return fs.trimmed('/proc/sys/kernel/hostname');
 			return fs.trimmed('/etc/modules.d/mt7915e');
 		};
-		if (wedisenabled==false){
+		if (wedisenabled == false){
 		o.write = function(section_id) {
 			return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
 		};
@@ -107,18 +106,12 @@ return view.extend({
 			return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=0');
 		};
 		}
-			// o.write = function(section_id, formvalue) {
-			// return fs.write('/etc/modules.d/mt7915e', formvalue);
-		// };
-		
+
 			o = s.option(form.Flag, 'wed_enable',
-				_('WED - Reboot is required'),
-				_('Wireless Ethernet Dispatch (WED) is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
-			o.default=wedisenabled;
-			// o.write = function(section_id, wed_enable) {
-			// return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable='+wed_enable);
-		// };
-	
+				_('Enable WED'),
+				_('Wireless Ethernet Dispatch (WED) - disabled by default. It is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
+			o.default = wedisenabled;
+
 			o = s.option(form.Flag, 'flow_offloading',
 				_('Software flow offloading'),
 				_('Software based offloading for routing/NAT'));
