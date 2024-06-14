@@ -91,7 +91,7 @@ return view.extend({
 				wedisenabled = false;
 			}
 
-			o = s.option(form.TextValue, 'WED state', _('WED state: contents of the file (/etc/modules.d/mt7915e). If contents is (mt7915e wed_enable=1) WED is enabled otherwise is disabled.'));
+			o = s.option(form.TextValue, 'WED state', _('WED state: contents of the file (/etc/modules.d/mt7915e).'), _('If contents is (mt7915e wed_enable=1) WED is enabled otherwise is disabled.'));
 			o.readonly = true;
 			o.cfgvalue = function (section_id) {
 			return fs.trimmed('/etc/modules.d/mt7915e');
