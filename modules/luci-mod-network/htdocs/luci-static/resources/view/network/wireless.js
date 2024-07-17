@@ -952,6 +952,12 @@ return view.extend({
 					o = ss.taboption('general', form.Flag, 'legacy_rates', _('Allow legacy 802.11b rates'), _('Legacy or badly behaving devices may require legacy 802.11b rates to interoperate. Airtime efficiency may be significantly reduced where these are used. It is recommended to not allow 802.11b rates where possible.'));
 					o.depends({'_freq': '2g', '!contains': true});
 
+					o = ss.taboption('general', form.Flag, 'background_radar', _('Enable hostapd background radar feature'), _('Enabling this allows DFS CAC to run on dedicated radio RF chains while the radio(s) are otherwise running normal AP activities on other channels.'));
+					o.depends({'_freq': '5g', '!contains': true});
+
+					o = ss.taboption('general', form.Value, 'channels', _('Use specific channels'), _('This settings is not necessary when channel is auto. When background radar is enabled this option allows hostapd to scan the provided channels. Channels can be provided as range using hyphen (-) or individual channels can be specified by space ( ) separated values. Example: (36 44 100 104)'));
+					o.depends('background_radar', '1');
+
 					o = ss.taboption('general', CBIWifiTxPowerValue, 'txpower', _('Maximum transmit power'), _('Specifies the maximum transmit power the wireless radio may use. Depending on regulatory requirements and wireless usage, the actual transmit power may be reduced by the driver.'));
 					o.wifiNetwork = radioNet;
 
