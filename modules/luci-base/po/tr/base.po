@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-06-09 07:09+0000\n"
+"PO-Revision-Date: 2024-07-19 08:15+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openwrt/luci/tr/>"
 "\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1118
 msgid "!known (not known)"
@@ -1159,7 +1159,7 @@ msgstr "Kontrolsuz olarak uygula"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4742
 msgid "Apply, reverting in case of connectivity loss"
-msgstr ""
+msgstr "Uygula, bağlantı kaybı durumunda geri dön"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4683
 msgid "Applying configuration changes… %ds"
@@ -1354,10 +1354,6 @@ msgstr "BSS Geçişi"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:149
 msgid "BSSID"
 msgstr "BSSID"
-
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3211
-msgid "Back"
-msgstr "Geri"
 
 #: modules/luci-compat/luasrc/view/cbi/footer.htm:14
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:48
@@ -1768,6 +1764,10 @@ msgid ""
 "inhibit access to this device. Any IP change requires <strong>connecting to "
 "the new IP</strong> within %d seconds to retain the changes."
 msgstr ""
+"\"%h\" ile geçerli bağlantıda değişiklikler yapıldı. Bu, bu aygıta erişimi "
+"engelleyebilir. Herhangi bir IP adresi değişikliği, değişiklikleri korumak "
+"için %d saniye içinde <strong>yeni IP adresine bağlanmayı</strong> "
+"gerektirir."
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4808
 msgid "Changes have been reverted."
@@ -2712,6 +2712,7 @@ msgstr "Disk alanı"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:611
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2978
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3211
 #: modules/luci-base/htdocs/luci-static/resources/form.js:3225
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3750
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4602
@@ -3808,7 +3809,7 @@ msgstr "CCMP (AES)'i zorla"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1241
 msgid "Force CCMP-256 (AES)"
-msgstr ""
+msgstr "CCMP-256 (AES)'i zorla"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:731
 msgid "Force DHCP on this network even if another server is detected."
@@ -3816,11 +3817,11 @@ msgstr "Başka bir sunucu algılansa bile bu ağda DHCP'yi zorlayın."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1242
 msgid "Force GCMP (AES)"
-msgstr ""
+msgstr "GCMP (AES)'i zorla"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1243
 msgid "Force GCMP-256 (AES)"
-msgstr ""
+msgstr "GCMP-256 (AES)'i zorla"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:749
 msgid "Force IGMP version"
@@ -12527,6 +12528,9 @@ msgstr "{example_nx}, {nxdomain} değerini döndürür."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Geri"
+
+#~ msgid "Back"
+#~ msgstr "Geri"
 
 #~ msgid "\"%h\" interface changes could inhibit access to this device."
 #~ msgstr "\"%h\" arayüzü değişiklikleri bu aygıta erişimi engelleyebilir."

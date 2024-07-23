@@ -4,9 +4,8 @@
 #
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-17 09:21+0000\n"
-"Last-Translator: 大王叫我来巡山 <hamburger2048@users.noreply.hosted.weblate."
-"org>\n"
+"PO-Revision-Date: 2024-07-19 08:15+0000\n"
+"Last-Translator: try496 <pinghejk@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "openwrt/luci/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -1138,7 +1137,7 @@ msgstr "强制应用"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4742
 msgid "Apply, reverting in case of connectivity loss"
-msgstr ""
+msgstr "应用，若出现连接丢失则恢复原状"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4683
 msgid "Applying configuration changes… %ds"
@@ -1323,10 +1322,6 @@ msgstr "BSS 过渡"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:149
 msgid "BSSID"
 msgstr "BSSID"
-
-#: modules/luci-base/htdocs/luci-static/resources/form.js:3211
-msgid "Back"
-msgstr "返回"
 
 #: modules/luci-compat/luasrc/view/cbi/footer.htm:14
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:48
@@ -1720,6 +1715,8 @@ msgid ""
 "inhibit access to this device. Any IP change requires <strong>connecting to "
 "the new IP</strong> within %d seconds to retain the changes."
 msgstr ""
+"已通过 “%h” 对现有连接进行了更改。这可能会阻止访问此设备。任何 IP 更改都需要"
+"在 %d 秒内 <strong>连接到新的IP</strong> 以保留更改。"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4808
 msgid "Changes have been reverted."
@@ -2637,6 +2634,7 @@ msgstr "磁盘空间"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:611
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2978
+#: modules/luci-base/htdocs/luci-static/resources/form.js:3211
 #: modules/luci-base/htdocs/luci-static/resources/form.js:3225
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3750
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4602
@@ -3700,7 +3698,7 @@ msgstr "强制 CCMP（AES）"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1241
 msgid "Force CCMP-256 (AES)"
-msgstr ""
+msgstr "强制使用 CCMP-256 (AES)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:731
 msgid "Force DHCP on this network even if another server is detected."
@@ -3708,11 +3706,11 @@ msgstr "即使检测到另一台服务器，也要强制使用此网络上的 DH
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1242
 msgid "Force GCMP (AES)"
-msgstr ""
+msgstr "强制使用 GCMP (AES)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1243
 msgid "Force GCMP-256 (AES)"
-msgstr ""
+msgstr "强制使用 GCMP-256 (AES)"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:749
 msgid "Force IGMP version"
@@ -12089,6 +12087,9 @@ msgstr "{example_nx} 返回 {nxdomain}。"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« 后退"
+
+#~ msgid "Back"
+#~ msgstr "返回"
 
 #~ msgid "\"%h\" interface changes could inhibit access to this device."
 #~ msgstr "\"%h\" 接口的更改可能会无法访问此设备。"
