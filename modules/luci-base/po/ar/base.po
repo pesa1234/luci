@@ -11,7 +11,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 5.7-dev\n"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1118
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1122
 msgid "!known (not known)"
 msgstr "!معروف (غير معروف)"
 
@@ -161,7 +161,7 @@ msgstr[3] "%d اعلام"
 msgstr[4] "%d اعلام"
 msgstr[5] "%d اعلام"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1091
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1095
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1041
 msgid "12h (12 hours - default)"
 msgstr "12 ساعة (12 ساعة - افتراضي)"
@@ -184,7 +184,7 @@ msgctxt "sstp log level value"
 msgid "3"
 msgstr "3"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1090
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1094
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1040
 msgid "3h (3 hours)"
 msgstr "3 ساعات (3 ساعات)"
@@ -207,7 +207,7 @@ msgstr "464XLAT (CLAT)"
 msgid "5 Minute Load:"
 msgstr "5 دقائق تحميل:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1089
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1093
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1039
 msgid "5m (5 minutes)"
 msgstr "5 د (5 دقائق)"
@@ -216,7 +216,7 @@ msgstr "5 د (5 دقائق)"
 msgid "6-octet identifier as a hex string - no colons"
 msgstr "معرف 6-ثماني ككلمة سداسية عشرية - بدون نقط"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1092
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1096
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1042
 msgid "7d (7 days)"
 msgstr "7 ي(7 أيام)"
@@ -788,7 +788,7 @@ msgctxt "Dnsmasq instance"
 msgid "Add server instance"
 msgstr "إضافة مثيل للخادم"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1139
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1143
 msgid "Add static forward and reverse DNS entries for this host."
 msgstr "إضافة إدخالات DNS ثابتة للأمام والعكس لهذا المضيف."
 
@@ -1006,7 +1006,7 @@ msgstr "اسمح للمستخدم <em>الجذر</em> بتسجيل الدخول 
 msgid "Allowed IPs"
 msgstr "عناوين IP المسموح بها"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:86
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:88
 msgid "Allowed network technology"
 msgstr "تقنية الشبكة المسموح بها"
 
@@ -1162,7 +1162,7 @@ msgid ""
 "Assign a part of given length of every public IPv6-prefix to this interface"
 msgstr "قم بتعيين جزء من الطول المحدد لكل بادئة IPv6 عامة لهذه الواجهة"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1110
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1114
 msgid "Assign new, freeform tags to this entry."
 msgstr "تعيين علامات جديدة حرة لهذا الإدخال."
 
@@ -1172,7 +1172,7 @@ msgid ""
 "Assign prefix parts using this hexadecimal subprefix ID for this interface."
 msgstr "قم بتعيين أجزاء البادئة باستخدام معرف السداسي العشري هذا لهذه الواجهة."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2323
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2344
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:366
 msgid "Associated Stations"
 msgstr "المحطات المرتبطة"
@@ -1327,7 +1327,7 @@ msgstr "BSS الانتقال"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:158
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:182
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1876
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1897
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:427
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:149
 msgid "BSSID"
@@ -1530,7 +1530,7 @@ msgstr "إحضار على التمهيد"
 msgid "Bring up the bridge interface even if no ports are attached"
 msgstr "ارفع واجهة الجسر حتى لو لم يتم توصيل أي منافذ"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1134
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1138
 msgid "Broadcast"
 msgstr "بث"
 
@@ -1607,7 +1607,7 @@ msgstr ""
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:52
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:188
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1258
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2197
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2218
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:128
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:297
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:209
@@ -1752,7 +1752,7 @@ msgstr "يغير كلمة مرور المسؤول للوصول إلى الجها
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:128
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:184
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:504
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1874
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1895
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:424
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:170
 msgid "Channel"
@@ -1771,7 +1771,7 @@ msgstr "عرض القناة"
 msgid "Check filesystems before mount"
 msgstr "افحص أنظمة الملفات قبل التحميل"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2157
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2178
 msgid "Check this option to delete the existing networks from this radio."
 msgstr "حدد هذا الخيار لحذف الشبكات الموجودة من هذا الراديو."
 
@@ -1789,7 +1789,7 @@ msgid "Choose mtdblock"
 msgstr "اختر mtdblock"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:625
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2187
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2208
 msgid ""
 "Choose the firewall zone you want to assign to this interface. Select "
 "<em>unspecified</em> to remove the interface from the associated zone or "
@@ -1862,7 +1862,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:44
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:63
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2321
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2342
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/connections.js:394
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:356
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:359
@@ -1894,7 +1894,7 @@ msgstr "تعليق"
 msgid "Common name or numeric ID of the %s in which this route is found"
 msgstr "الاسم الشائع أو المعرف الرقمي لـ %s الذي يوجد فيه هذا المسار"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1845
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1866
 msgid ""
 "Complicates key reinstallation attacks on the client side by disabling "
 "retransmission of EAPOL-Key frames that are used to install keys. This "
@@ -2107,7 +2107,7 @@ msgid "Coverage cell density"
 msgstr "كثافة خلايا التغطية"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:625
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2187
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2208
 msgid "Create / Assign firewall-zone"
 msgstr "إنشاء / تعيين منطقة جدار الحماية"
 
@@ -2317,7 +2317,7 @@ msgid "DTIM Interval"
 msgstr "فترة DTIM"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:59
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1096
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1100
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:136
 msgid "DUID"
 msgstr "DUID"
@@ -2336,7 +2336,7 @@ msgstr "البيانات المرسلة"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:186
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:197
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:157
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:159
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:346
 msgid "Debug"
 msgstr "تصحيح الأخطاء"
@@ -2618,6 +2618,7 @@ msgstr "تعطيل هذه الشبكة"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1474
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1665
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1813
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1847
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:13
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:65
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:121
@@ -2679,7 +2680,7 @@ msgstr "مساحة القرص"
 #: modules/luci-base/htdocs/luci-static/resources/form.js:3225
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3750
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4602
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1899
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1920
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:360
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:45
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:66
@@ -2702,7 +2703,7 @@ msgstr ""
 msgid "Distributed ARP Table"
 msgstr "جدول ARP الموزع"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1124
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1128
 msgid ""
 "Dnsmasq instance to which this DHCP host section is bound. If unspecified, "
 "the section is valid for all dnsmasq instances."
@@ -3076,7 +3077,7 @@ msgstr "تمكين <abbr title=\"Stateless Address Auto Config\">SLAAC</abbr>"
 msgid "Enable DNS lookups"
 msgstr "تمكين عمليات بحث DNS"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:151
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:153
 msgid "Enable Debugmode"
 msgstr "تمكين وضع التصحيح"
 
@@ -3142,7 +3143,7 @@ msgstr "تمكين تصفية VLAN"
 msgid "Enable VLAN functionality"
 msgstr "قم بتمكين وظائف VLAN"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1849
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1870
 msgid "Enable WPS pushbutton, requires WPA(2)-PSK/WPA3-SAE"
 msgstr "تفعيل زر WPS يتطلب WPA (2) -PSK / WPA3-SAE"
 
@@ -3165,7 +3166,7 @@ msgid ""
 "Enable downstream delegation of IPv6 prefixes available on this interface"
 msgstr "تمكين التفويض النهائي لبادئات IPv6 المتاحة على هذه الواجهة"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1845
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1866
 msgid "Enable key reinstallation (KRACK) countermeasures"
 msgstr "تفعيل الإجراءات المضادة لإعادة تثبيت المفتاح (KRACK)"
 
@@ -3253,6 +3254,7 @@ msgstr "تمكين فيضان البث الأحادي"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1600
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1666
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1848
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:243
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:351
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:65
@@ -3264,6 +3266,10 @@ msgstr "مفعَّل"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1601
 msgid "Enabled (all CPUs)"
 msgstr "تم التمكين (جميع وحدات المعالجة المركزية)"
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1849
+msgid "Enabled (workaround mode)"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:592
 msgid "Enables IGMP snooping on this bridge"
@@ -3300,7 +3306,7 @@ msgstr "وضع التغليف"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:159
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:183
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1198
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1877
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1898
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:150
 msgid "Encryption"
 msgstr "التعمية"
@@ -3360,7 +3366,7 @@ msgstr "محو ..."
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:106
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:107
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:190
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:154
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:156
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:343
 msgid "Error"
 msgstr "خطأ"
@@ -3784,7 +3790,7 @@ msgstr "فرض TKIP"
 msgid "Force TKIP and CCMP (AES)"
 msgstr "فرض TKIP و CCMP (AES)"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1135
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1139
 msgid "Force broadcast DHCP response."
 msgstr "فرض بث استجابة DHCP."
 
@@ -3860,7 +3866,7 @@ msgstr "إعادة توجيه حزم البث المتعدد كحزم أحادي
 msgid "Forward specific domain queries to specific upstream servers."
 msgstr "إعادة توجيه استعلامات المجال المحددة إلى خوادم المنبع المحددة."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1138
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1142
 msgid "Forward/reverse DNS"
 msgstr "للأمام/للخلف DNS"
 
@@ -3939,7 +3945,7 @@ msgstr "منافذ البوابة"
 msgid "Gateway address is invalid"
 msgstr "عنوان البوابة غير صالح"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:149
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:151
 msgid "Gateway metric"
 msgstr "قياس البوابة"
 
@@ -4018,14 +4024,14 @@ msgstr "خيارات الشبكة العالمية"
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:71
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:91
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:67
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:92
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:85
 msgid "Go to firmware upgrade..."
 msgstr "انتقل إلى ترقية البرنامج الثابت..."
 
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:61
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:81
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:57
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:82
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:75
 msgid "Go to password configuration..."
 msgstr "انتقل إلى تكوين كلمة المرور ..."
 
@@ -4080,7 +4086,7 @@ msgstr "منح تسجيل الدخول إلى إجراءات LuCI الأساسي
 msgid "Grant access to crontab configuration"
 msgstr "منح تسجيل الدخول إلى تكوين crontab"
 
-#: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json:70
+#: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json:67
 msgid "Grant access to firewall status"
 msgstr "منح حق تسجيل الدخول إلى حالة جدار الحماية"
 
@@ -4124,7 +4130,7 @@ msgstr "منح حق تسجيل الدخول إلى حالة العملية"
 msgid "Grant access to realtime statistics"
 msgstr "امنح حق الدخول إلى إحصاءات الوقت الفعلي"
 
-#: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json:47
+#: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json:44
 msgid "Grant access to routing status"
 msgstr "منح الوصول إلى حالة التوجيه"
 
@@ -4144,7 +4150,7 @@ msgstr "منح حق الدخول إلى سجلات النظام"
 msgid "Grant access to uHTTPd configuration"
 msgstr "منح الوصول إلى تكوين uHTTPd"
 
-#: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json:61
+#: modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json:58
 msgid "Grant access to wireless channel status"
 msgstr "منح الوصول إلى حالة القناة اللاسلكية"
 
@@ -4219,7 +4225,7 @@ msgid "Hop Penalty"
 msgstr "غرامة القفز"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:57
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2315
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2336
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:134
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:234
 msgid "Host"
@@ -4237,7 +4243,7 @@ msgstr "يطلب المضيف اسم الملف هذا من خادم التمه�
 msgid "Host-Uniq tag content"
 msgstr "محتوى علامة Host-Uniq"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1087
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1091
 msgid ""
 "Host-specific lease time, e.g. <code>5m</code>, <code>3h</code>, <code>7d</"
 "code>."
@@ -4341,7 +4347,7 @@ msgstr "بروتوكول IP"
 msgid "IP Sets"
 msgstr "مجموعات IP"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:136
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:138
 msgid "IP Type"
 msgstr "نوع IP"
 
@@ -4433,7 +4439,7 @@ msgstr "IPv4 المنبع"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:179
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:39
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1052
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1056
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:88
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:167
 msgid "IPv4 address"
@@ -4460,7 +4466,7 @@ msgstr "قناع الشبكة IPv4"
 msgid "IPv4 network in address/netmask notation"
 msgstr "شبكة IPv4 في تدوين العنوان / قناع الشبكة"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:138
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:140
 msgid "IPv4 only"
 msgstr "IPv4 فقط"
 
@@ -4499,7 +4505,7 @@ msgstr "IPv4-in-IPv4 (RFC2003)"
 msgid "IPv4/IPv6"
 msgstr "IPv4/IPv6"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:137
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:139
 msgid "IPv4/IPv6 (both - defaults to IPv4)"
 msgstr "IPv4 / IPv6 (كلاهما - الافتراضيات إلى IPv4)"
 
@@ -4596,7 +4602,7 @@ msgstr "بوابة IPv6"
 msgid "IPv6 network in address/netmask notation"
 msgstr "شبكة IPv6 في تدوين العنوان / قناع الشبكة"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:139
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:141
 msgid "IPv6 only"
 msgstr "IPv6 فقط"
 
@@ -4643,7 +4649,7 @@ msgstr "جدول حركة مرور IPv6 \"%h\""
 msgid "IPv6-PD"
 msgstr "IPv6-PD"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1104
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1108
 msgid "IPv6-Suffix (hex)"
 msgstr "لاحقة IPv6 (ست عشرية)"
 
@@ -4666,7 +4672,7 @@ msgstr "IPv6-over-IPv4 (6to4)"
 msgid "Identity"
 msgstr "هوية"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1116
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1120
 msgid ""
 "If a host matches an entry which cannot be used because it specifies an "
 "address on a different subnet, the tag %s is set."
@@ -4754,7 +4760,7 @@ msgstr ""
 "المبادلة بالبيانات العالية الخاصة بـ <abbr title=\"Random Access "
 "Memory\">RAM</abbr>."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1053
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1057
 msgid "Ignore"
 msgstr "تجاهل"
 
@@ -4762,7 +4768,7 @@ msgstr "تجاهل"
 msgid "Ignore interface"
 msgstr "تجاهل الواجهة"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1115
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1119
 msgid "Ignore requests from unknown machines using %s."
 msgstr "تجاهل الطلبات من أجهزة غير معروفة باستخدام %s."
 
@@ -4840,7 +4846,7 @@ msgstr ""
 "لمنع الدخول غير المصرح به إلى النظام ، تم حظر طلبك. انقر فوق \"متابعة\" "
 "أدناه للعودة إلى الصفحة السابقة."
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:146
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:148
 msgid "In seconds"
 msgstr "في ثوان"
 
@@ -4891,7 +4897,7 @@ msgid "Incoming serialization"
 msgstr "التسلسل الوارد"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:187
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:156
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:158
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:345
 msgid "Info"
 msgstr "معلومات"
@@ -4947,7 +4953,7 @@ msgid "Install protocol extensions..."
 msgstr "تثبيت ملحقات البروتوكول ..."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:828
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1123
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1127
 msgid "Instance"
 msgstr "المثيل"
 
@@ -4965,7 +4971,7 @@ msgstr "المثيل \"%q\""
 msgid "Instance Details"
 msgstr "تفاصيل المثيل"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2183
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2204
 msgid ""
 "Instead of joining any network with a matching SSID, only connect to the "
 "BSSID <code>%h</code>."
@@ -5205,19 +5211,19 @@ msgstr ""
 
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:78
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:98
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:72
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:65
 msgid "JavaScript required!"
 msgstr "مطلوب جافا سكريبت!"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1957
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1978
 msgid "Join Network"
 msgstr "الانضمام إلى الشبكة"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1891
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1912
 msgid "Join Network: Wireless Scan"
 msgstr "الانضمام إلى الشبكة: المسح اللاسلكي"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2191
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2212
 msgid "Joining Network: %q"
 msgstr "الانضمام إلى الشبكة: q%"
 
@@ -5383,7 +5389,7 @@ msgstr "تعلم المسارات"
 msgid "Lease file"
 msgstr "ملف الإيجار"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1086
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1090
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:724
 msgid "Lease time"
 msgstr "مدة الايجار"
@@ -5559,7 +5565,7 @@ msgid "Listening port for inbound DNS queries."
 msgstr "منفذ الاستماع لاستعلامات DNS الواردة."
 
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:130
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:54
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:47
 msgid "Load"
 msgstr "حمولة"
 
@@ -5578,7 +5584,7 @@ msgid "Load configuration…"
 msgstr "تحميل التكوين…"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1286
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2120
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2141
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/view/wireguard/status.js:167
 msgid "Loading data…"
 msgstr "تحميل البيانات…"
@@ -5675,7 +5681,7 @@ msgstr "تحديد تواجد الاستعلامات"
 msgid "Location Area Code"
 msgstr "رمز منطقة الموقع"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2183
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2204
 msgid "Lock to BSSID"
 msgstr "قفل ل BSSID"
 
@@ -5715,7 +5721,7 @@ msgid "Log out"
 msgstr "تسجيل خروج"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:185
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:153
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:155
 msgid "Log output level"
 msgstr "مستوى إخراج السجل"
 
@@ -5782,7 +5788,7 @@ msgstr "MAC VLAN"
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:645
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:40
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1161
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2314
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2335
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:56
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:89
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:233
@@ -5876,7 +5882,7 @@ msgstr "المصنع"
 msgid "Master (VLAN)"
 msgstr "رئيسي (VLAN)"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1113
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1117
 msgid "Match Tag"
 msgstr "طابق العلامة"
 
@@ -6106,7 +6112,7 @@ msgstr "مجال التنقل"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:180
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:486
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:985
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1875
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1896
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:426
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:148
 msgid "Mode"
@@ -6308,13 +6314,13 @@ msgstr "المرشحين لخادم NTP"
 msgid "Name"
 msgstr "اسم"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2160
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2181
 msgid ""
 "Name for OpenWrt network configuration. (No relation to wireless network "
 "name/SSID)"
 msgstr "اسم تكوين شبكة OpenWrt. (لا علاقة لاسم الشبكة اللاسلكية/SSID)"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2159
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2180
 msgid "Name of the new network"
 msgstr "اسم الشبكة الجديدة"
 
@@ -6331,7 +6337,7 @@ msgid "Names not in {etc_hosts} are answered {not_found}."
 msgstr "تمت الإجابة على الأسماء غير الموجودة في {etc_hosts} {not_found}."
 
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:39
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:50
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:43
 msgid "Navigation"
 msgstr "التنقل"
 
@@ -6353,7 +6359,7 @@ msgstr "اسم جدول Netfilter"
 
 #: modules/luci-base/root/usr/share/luci/menu.d/luci-base.json:45
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1018
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2313
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2334
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/connections.js:386
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:63
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:232
@@ -6372,7 +6378,7 @@ msgstr "وضع الشبكة"
 msgid "Network Registration"
 msgstr "تسجيل الشبكات"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2153
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2174
 msgid "Network SSID"
 msgstr "l SSIDلشبكة"
 
@@ -6508,7 +6514,7 @@ msgstr "لم يتم العثور على تكوين الوضع المسموح ب�
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:69
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:89
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:65
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:90
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:83
 msgid ""
 "No changes to settings will be stored and are lost after rebooting. This "
 "mode should only be used to install a firmware upgrade"
@@ -6599,7 +6605,7 @@ msgstr "لم يتم تحميل مجموعة قواعد nftables."
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:58
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:78
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:54
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:79
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:72
 msgid "No password set!"
 msgstr "لم يتم تعيين كلمة مرور!"
 
@@ -6674,8 +6680,8 @@ msgstr "غير البدل"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:159
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:183
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:80
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:83
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:112
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:85
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:114
 msgid "None"
 msgstr "لاشيء"
 
@@ -6728,6 +6734,12 @@ msgid ""
 msgstr ""
 "ملاحظة: بعض برامج تشغيل اللاسلكية لا تدعم 802.11w بشكل كامل. على سبيل المثال "
 "قد تواجه مشاكل mwlwifi"
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1846
+msgid ""
+"Note: Workaround mode allows a STA that claims OCV capability to connect "
+"even if the STA doesn't send OCI or negotiate PMF."
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1608
 msgid ""
@@ -6820,7 +6832,7 @@ msgstr "حالة التأخير"
 msgid "On-link"
 msgstr "طريق على الارتباط"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1060
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1064
 msgid "One of hostname or MAC address must be specified!"
 msgstr "يجب تحديد اسم مضيف أو عنوان mac!"
 
@@ -6903,6 +6915,10 @@ msgid ""
 msgstr ""
 "قم بالتشغيل في <em>وضع الترحيل</em> في حالة وجود بادئة IPv6 صاعدة، وإلا قم "
 "بتعطيل الخدمة."
+
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1846
+msgid "Operating Channel Validation"
+msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:934
 msgid "Operating frequency"
@@ -7137,7 +7153,7 @@ msgstr "تجاوز جدول توجيه IPv6"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:74
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:53
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:128
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:142
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:144
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:193
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:57
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:132
@@ -7232,13 +7248,9 @@ msgstr "PAP"
 msgid "PAP/CHAP"
 msgstr "PAP/CHAP"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:80
-msgid "PAP/CHAP (both)"
-msgstr "PAP / CHAP (كلاهما)"
-
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:111
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:88
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:130
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:132
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:107
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:45
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:90
@@ -7252,7 +7264,7 @@ msgstr "كلمة مرور PAP / CHAP"
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:109
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:83
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:125
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:127
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:105
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:43
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:88
@@ -7649,7 +7661,7 @@ msgstr "UMTS المفضل"
 msgid "Preferred lifetime for a prefix."
 msgstr "العمر المفضل للبادئة."
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:106
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:108
 msgid "Preferred network technology"
 msgstr "تقنية الشبكة المفضلة"
 
@@ -7962,7 +7974,7 @@ msgstr "RX"
 msgid "RX Rate"
 msgstr "معدل RX"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2317
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2338
 msgid "RX Rate / TX Rate"
 msgstr "معدل RX / معدل الإرسال"
 
@@ -8212,7 +8224,7 @@ msgstr "إزالة المثيل #%d"
 msgid "Remove related device settings from the configuration"
 msgstr "إزالة إعدادات الجهاز ذات الصلة من التكوين"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2157
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2178
 msgid "Replace wireless configuration"
 msgstr "استبدل التكوين اللاسلكي"
 
@@ -8635,7 +8647,7 @@ msgstr "مفاتيح SSH"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:156
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:181
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1873
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1894
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:423
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:147
 msgid "SSID"
@@ -8695,13 +8707,13 @@ msgid "Scheduled Tasks"
 msgstr "المهام المجدولة"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:47
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:52
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:51
 msgctxt "scroll to top (the head) of the log file"
 msgid "Scroll to head"
 msgstr "التمرير إلى الرأس"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:38
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:43
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:42
 msgctxt "scroll to bottom (the tail) of the log file"
 msgid "Scroll to tail"
 msgstr "التمرير إلى الذيل"
@@ -8889,11 +8901,11 @@ msgstr "فشل إعداد PLMN"
 msgid "Setting operation mode failed"
 msgstr "فشل تحديد وضع التشغيل"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:87
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:89
 msgid "Setting the allowed network technology."
 msgstr "إعداد تقنية الشبكة المسموح بها."
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:107
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:109
 msgid "Setting the preferred network technology."
 msgstr "إعداد تقنية الشبكة المفضلة."
 
@@ -8938,7 +8950,7 @@ msgstr "اغلاق هذه الواجهة"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:57
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:63
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:186
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1872
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1893
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:42
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:422
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:146
@@ -8948,7 +8960,7 @@ msgstr "اغلاق هذه الواجهة"
 msgid "Signal"
 msgstr "الإشارة"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2316
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2337
 msgid "Signal / Noise"
 msgstr "إشارة / تشويش"
 
@@ -8956,7 +8968,7 @@ msgstr "إشارة / تشويش"
 msgid "Signal Quality"
 msgstr "جودة الإشارة"
 
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:146
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:148
 msgid "Signal Refresh Rate"
 msgstr "معدل تحديث الإشارة"
 
@@ -8987,12 +8999,12 @@ msgid "Skip from backup files that are equal to those in /rom"
 msgstr "تخطي من ملفات النسخ الاحتياطي التي تساوي تلك الموجودة في /rom"
 
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:35
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:46
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:39
 msgid "Skip to content"
 msgstr "تخطى الى المحتوى"
 
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:34
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:45
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:38
 msgid "Skip to navigation"
 msgstr "تخطي إلى التصفح"
 
@@ -9409,7 +9421,7 @@ msgid ""
 "bytes)."
 msgstr "حدد MTU (الحد الأقصى لوحدة الإرسال) بخلاف الافتراضي (1280 بايت)."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2176
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2197
 msgid "Specify the secret encryption key here."
 msgstr "حدد مفتاح التشفير السري هنا."
 
@@ -9442,7 +9454,7 @@ msgstr "ابدأ WPS"
 msgid "Start priority"
 msgstr "أولوية البدء"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1976
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1997
 msgid "Start refresh"
 msgstr "ابدأ التحديث"
 
@@ -9450,7 +9462,7 @@ msgstr "ابدأ التحديث"
 msgid "Starting configuration apply…"
 msgstr "بدء تطبيق التكوين …"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1889
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1910
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:448
 msgid "Starting wireless scan..."
 msgstr "بدء المسح اللاسلكي ..."
@@ -9522,8 +9534,8 @@ msgstr "قف"
 msgid "Stop WPS"
 msgstr "وقف WPS"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1887
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1981
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1908
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2002
 msgid "Stop refresh"
 msgstr "توقف عن التحديث"
 
@@ -9544,7 +9556,7 @@ msgid "Strong"
 msgstr "متين"
 
 #: modules/luci-compat/luasrc/view/cbi/simpleform.htm:61
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2201
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2222
 msgid "Submit"
 msgstr "أرسل"
 
@@ -9624,7 +9636,7 @@ msgstr "بناء الجملة: {code_syntax}."
 msgid "System"
 msgstr "نظام"
 
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:59
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:58
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:63
 #: modules/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json:75
 msgid "System Log"
@@ -9649,7 +9661,7 @@ msgstr "حجم المخزن المؤقت لسجل النظام"
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:68
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:88
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:64
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:89
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:82
 msgid "System running in recovery (initramfs) mode."
 msgstr "تشغيل النظام في وضع الاسترداد (initramfs)."
 
@@ -9708,7 +9720,7 @@ msgstr "جدول"
 msgid "Table IP family"
 msgstr "جدول عائلة IP"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1109
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1113
 msgid "Tag"
 msgstr "الوسوم"
 
@@ -9782,7 +9794,7 @@ msgstr ""
 msgid "The <em>block mount</em> command failed with code %d"
 msgstr "فشل أمر <em> تحميل الكتلة </ em> بالرمز%d"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1097
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1101
 msgid "The DHCPv6-DUID (DHCP unique identifier) of this host."
 msgstr "DHCPv6 - DUID (المعرف الفريد لـ DHCP) لهذا المضيف."
 
@@ -9802,11 +9814,11 @@ msgstr ""
 "تم تغيير تكوين تحديث نقطة نهاية HE.net ، يجب عليك الآن استخدام اسم المستخدم "
 "العادي بدلاً من معرف المستخدم!"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1069
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1073
 msgid "The IP address %h is already used by another static lease"
 msgstr "عنوان IP %h مستخدم بالفعل من قبل عقد إيجار ثابت آخر"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1078
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1082
 msgid "The IP address is outside of any DHCP pool address range"
 msgstr "عنوان IP خارج نطاق أي عنوان تجمع DHCP"
 
@@ -9814,7 +9826,7 @@ msgstr "عنوان IP خارج نطاق أي عنوان تجمع DHCP"
 msgid "The IP address of the boot server"
 msgstr "عنوان IP لخادم التمهيد"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1052
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1056
 msgid ""
 "The IP address to be used for this host, or <em>ignore</em> to ignore any "
 "DHCP request from this host."
@@ -9844,7 +9856,7 @@ msgid ""
 "The IPv6 address or the fully-qualified domain name of the remote tunnel end."
 msgstr "عنوان IPv6 أو اسم المجال المؤهل بالكامل لنهاية النفق البعيد."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1105
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1109
 msgid ""
 "The IPv6 interface identifier (address suffix) as hexadecimal number (max. "
 "16 chars)."
@@ -9901,7 +9913,7 @@ msgstr "العنوان الذي يمكن من خلاله الوصول إلى %s 
 msgid "The algorithm that is used to discover mesh routes"
 msgstr "الخوارزمية المستخدمة لاكتشاف المسارات الشبكية"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2161
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2182
 msgid ""
 "The allowed characters are: <code>A-Z</code>, <code>a-z</code>, <code>0-9</"
 "code> and <code>_</code>"
@@ -9921,7 +9933,7 @@ msgstr ""
 msgid "The configuration file could not be loaded due to the following error:"
 msgstr "تعذر تحميل ملف التكوين بسبب الخطأ التالي:"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2153
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2174
 msgid ""
 "The correct SSID must be manually specified when joining a hidden wireless "
 "network"
@@ -10116,7 +10128,7 @@ msgstr ""
 msgid "The netfilter components below are only regarded when running fw4."
 msgstr "يتم اعتبار مكونات netfilter أدناه فقط عند تشغيل fw4."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2167
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2188
 msgid "The network name is already used"
 msgstr "تم استخدام اسم الشبكة من قبل"
 
@@ -10303,8 +10315,8 @@ msgstr ""
 "هناك قواعد iptables قديمة موجودة على النظام. لا يتم تشجيع قواعد خلط أجهزة "
 "iptables و nftables وقد يؤدي ذلك إلى تصفية غير مكتملة لحركة المرور."
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1179
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1211
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1183
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1215
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:130
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:179
 msgid "There are no active leases"
@@ -10317,7 +10329,7 @@ msgstr "لا توجد تغييرات لتطبيقها"
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:59
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:79
 #: themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020/header.ut:55
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:80
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:73
 msgid ""
 "There is no password set on this router. Please configure a root password to "
 "protect the web interface."
@@ -10723,7 +10735,7 @@ msgid "Unable to dispatch"
 msgstr "غير قادر على الإرسال"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/dmesg.js:15
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:19
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js:18
 msgid "Unable to load log data:"
 msgstr "تعذر تحميل بيانات السجل:"
 
@@ -11319,7 +11331,7 @@ msgstr "نظام WEP المفتوح"
 msgid "WEP Shared Key"
 msgstr "مفتاح WEP المشترك"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2176
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2197
 msgid "WEP passphrase"
 msgstr "عبارة مرور WEP"
 
@@ -11339,7 +11351,7 @@ msgstr "WNM وضع النوم"
 msgid "WNM Sleep Mode Fixes"
 msgstr "إصلاحات وضع السكون WNM"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2176
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2197
 msgid "WPA passphrase"
 msgstr "عبارة مرور WPA"
 
@@ -11365,7 +11377,7 @@ msgstr "حذر"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:189
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:199
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:155
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:157
 msgid "Warning"
 msgstr "تحذير"
 
@@ -11381,7 +11393,7 @@ msgstr "ضعيف"
 msgid "Weight"
 msgstr "الوزن"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1114
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1118
 msgid ""
 "When a host matches an entry then the special tag %s is set. Use %s to match "
 "all known hosts."
@@ -11552,6 +11564,10 @@ msgstr "تم تعطيل الشبكة اللاسلكية"
 msgid "Wireless network is enabled"
 msgstr "تم تمكين الشبكة اللاسلكية"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1859
+msgid "Workaround mode can only be used when acting as an access point."
+msgstr ""
+
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:395
 msgid "Write received DNS queries to syslog."
 msgstr "اكتب طلبات DNS المستلمة إلى سجل النظام."
@@ -11610,7 +11626,7 @@ msgstr "يمكنك إضافة العديد من المرحلات الفريدة 
 
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/header.ut:79
 #: themes/luci-theme-material/ucode/template/themes/material/header.ut:99
-#: themes/luci-theme-openwrt/luasrc/view/themes/openwrt.org/header.htm:73
+#: themes/luci-theme-openwrt/ucode/template/themes/openwrt.org/header.ut:66
 msgid ""
 "You must enable JavaScript in your browser or LuCI will not work properly."
 msgstr "يجب عليك تمكين JavaScript في متصفحك وإلا فلن يعمل LuCI بشكل صحيح."
@@ -11653,7 +11669,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:704
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:153
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:164
-#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:103
+#: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/protocol/modemmanager.js:105
 msgid "any"
 msgstr "أي"
 
@@ -11791,8 +11807,8 @@ msgctxt "WireGuard keep alive interval"
 msgid "every %ds"
 msgstr "كل %ds"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1159
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1189
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1163
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1193
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:101
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:148
 msgid "expired"
@@ -11827,7 +11843,7 @@ msgstr "نصف مزدوج"
 msgid "hexadecimal encoded value"
 msgstr "قيمة مشفرة سداسية عشرية"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1949
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1970
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/channel_analysis.js:333
 msgid "hidden"
 msgstr "مختفي"
@@ -11848,7 +11864,7 @@ msgstr "الوضع الهجين"
 msgid "ignore"
 msgstr "تجاهل"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1093
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1097
 msgid "infinite (lease does not expire)"
 msgstr "غير محدود (لا تنتهي صلاحية عقد الإيجار)"
 
@@ -11870,11 +11886,11 @@ msgstr "مفتاح بين 8 و 63 حرفًا"
 msgid "key with either 5 or 13 characters"
 msgstr "مفتاح مكون من 5 أو 13 حرفًا"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1117
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1121
 msgid "known"
 msgstr "معروف"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1119
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1123
 msgid "known-othernet (on different subnet)"
 msgstr "شبكة أخرى معروفة (على شبكة فرعية مختلفة)"
 
@@ -12066,8 +12082,8 @@ msgstr "غير معروف"
 msgid "unknown version"
 msgstr "إصدار غير معروف"
 
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1157
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1187
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1161
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1191
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:99
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:146
 msgid "unlimited"
@@ -12326,6 +12342,9 @@ msgstr "{example_nx} يعيد {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "إرجع >>"
+
+#~ msgid "PAP/CHAP (both)"
+#~ msgstr "PAP / CHAP (كلاهما)"
 
 #~ msgid "Back"
 #~ msgstr "رجوع"

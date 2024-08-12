@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-21 21:09+0000\n"
+"PO-Revision-Date: 2024-08-07 18:30+0000\n"
 "Last-Translator: Džiugas Januševičius <dziugas1959@hotmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationslldpd/lt/>\n"
@@ -155,7 +155,7 @@ msgstr "Išjungta/Neįgalinta (-s/-i)"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/status.js:687
 msgid "Discovered Neighbors"
-msgstr "Atrasti „kaimynai (protokolas/tinkl.)“"
+msgstr "Atrasti „kaimynai“ (protokolas/tinkl.)"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/status.js:41
 msgid "Discovered chassis"
@@ -283,7 +283,7 @@ msgstr "Suteikti prieigą prie „LLDP“ būklės/būsenos informacijos"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/config.js:203
 msgid "Host location type"
-msgstr "Skleidėjo/P.k – vedėjo vietovės tipas"
+msgstr "Skleidėjo/Vedėjo vietovės tipas"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/status.js:276
 msgid "ID"
@@ -489,7 +489,7 @@ msgstr "Perkeisti/Perrašyti „%s“."
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/config.js:204
 msgid "Override the announced location of the host."
-msgstr "Perkeisti/Perrašyti paskelbto skleidėjo/p.k – vedėjo vietovės."
+msgstr "Perkeisti/Perrašyti paskelbto skleidėjo/vedėjo vietovės."
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/status.js:216
 msgid "Port ID"
@@ -580,7 +580,7 @@ msgstr "Nustatymai"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/config.js:655
 msgid "Specify the behaviour when detecting multiple neighbors"
-msgstr "Nurodyti elgesį, kai aptinkami keli „kaimynai (Protokolas/Tinkl.)“"
+msgstr "Nurodyti elgesį, kai aptinkami keli „kaimynai“ (protokolas/tinkl.)"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/config.js:527
 msgid ""
@@ -629,7 +629,7 @@ msgstr "Sistemos aprašymas"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/config.js:123
 msgid "System hostname"
-msgstr "Sistemos įrenginio (t.y skleidėjo/p.k – vedėjo) pavadinimas"
+msgstr "Sistemos įrenginio (t.y skleidėjo/vedėjo) pavadinimas"
 
 #: applications/luci-app-lldpd/htdocs/luci-static/resources/view/lldpd/config.js:438
 msgid "System management IO"
