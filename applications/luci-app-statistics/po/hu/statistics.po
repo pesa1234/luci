@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2024-08-15 09:45+0000\n"
+"PO-Revision-Date: 2024-08-22 22:09+0000\n"
 "Last-Translator: hmzs <hmzs@1szer1.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsstatistics/hu/>\n"
@@ -647,11 +647,11 @@ msgstr ""
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/graphs.js:30
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/graphs.js:117
 msgid "Loading data…"
-msgstr ""
+msgstr "Adatbetöltés…"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/syslog.js:14
 msgid "Log level"
-msgstr "Naplózási szint"
+msgstr "Naplózás szintje"
 
 #: applications/luci-app-statistics/htdocs/luci-static/resources/view/statistics/plugins/iptables.js:20
 msgid "Match IPv4 iptables rules"
