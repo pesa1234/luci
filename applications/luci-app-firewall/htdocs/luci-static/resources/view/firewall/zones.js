@@ -20,7 +20,7 @@ return view.extend({
 		return Promise.all([
 			this.callConntrackHelpers(),
 			firewall.getDefaults(),
-			fs.trimmed('/etc/modules.d/mt7915e')
+			fs.trimmed('/sys/module/mt7915e/parameters/wed_enable')
 		]);
 	},
 
@@ -72,7 +72,6 @@ return view.extend({
 			p[i].value('DROP', _('drop'));
 			p[i].value('ACCEPT', _('accept'));
 		}
-
 		/* Netfilter flow offload support */
 
 		if (L.hasSystemFeature('offloading')) {
@@ -84,34 +83,32 @@ return view.extend({
 
 			var wedisenabled;
 
-			if ( wed_state == "mt7915e wed_enable=1"){
+			if ( wed_state == "Y"){
 				wedisenabled = true;
 			}
 			else {
 				wedisenabled = false;
 			}
-
-			o = s.option(form.TextValue, 'WED state', _('WED state: contents of the file (/etc/modules.d/mt7915e).'), _('If contents is (mt7915e wed_enable=1) WED is enabled otherwise is disabled.'));
-			o.readonly = true;
-			o.cfgvalue = function (section_id) {
-			return fs.trimmed('/etc/modules.d/mt7915e');
-		};
-		if (wedisenabled == false){
-		o.write = function(section_id) {
-			return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
-		};
-		}
-		else{
-			o.write = function(section_id) {
-			return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=0');
-		};
-		}
-
+			
 			o = s.option(form.Flag, 'wed_enable',
 				_('Enable WED'),
 				_('Wireless Ethernet Dispatch (WED) - disabled by default. It is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
 			o.default = wedisenabled;
-
+			o.cfgvalue = function(section_id) {
+			var val = uci.get('firewall', section_id, 'wed_enable');
+			return (val != null) ? val : uci.get('firewall', section_id, 'wed_enable');
+			};
+			o.write = function(section_id) {
+				uci.set('firewall', section_id, 'wed_enable', 1);
+				alert ("WED setting is changed, please reboot!");
+				return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
+			};
+			o.remove = function(section_id) {
+				uci.unset('firewall', section_id, 'wed_enable');
+				alert ("WED setting is changed, please reboot!");
+				return fs.write('/etc/modules.d/mt7915e', 'mt7915e');
+			};
+			
 			o = s.option(form.Flag, 'flow_offloading',
 				_('Software flow offloading'),
 				_('Software based offloading for routing/NAT'));

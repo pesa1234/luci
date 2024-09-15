@@ -3,7 +3,7 @@
 		"description": "Grant access to firewall configuration",
 		"read": {
 			"file": {
-				"/etc/modules.d/mt7915e": ["read"],
+				"/sys/module/mt7915e/parameters/wed_enable": ["read"],
 				"/etc/firewall.user": [ "read" ]
 			},
 			"ubus": {
