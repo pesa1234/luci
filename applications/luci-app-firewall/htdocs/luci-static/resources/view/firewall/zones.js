@@ -5,7 +5,6 @@
 'require form';
 'require network';
 'require firewall';
-'require fs';
 'require tools.firewall as fwtool';
 'require tools.widgets as widgets';
 
@@ -19,8 +18,7 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			this.callConntrackHelpers(),
-			firewall.getDefaults(),
-			fs.trimmed('/sys/module/mt7915e/parameters/wed_enable')
+			firewall.getDefaults()
 		]);
 	},
 
@@ -32,7 +30,6 @@ return view.extend({
 	},
 
 	renderZones: function(data) {
-		var wed_state  = data[2];
 		var ctHelpers = data[0],
 		    fwDefaults = data[1],
 		    m, s, o, inp, out;
@@ -72,6 +69,7 @@ return view.extend({
 			p[i].value('DROP', _('drop'));
 			p[i].value('ACCEPT', _('accept'));
 		}
+
 		/* Netfilter flow offload support */
 
 		if (L.hasSystemFeature('offloading')) {
@@ -81,34 +79,6 @@ return view.extend({
 			s.anonymous = true;
 			s.addremove = false;
 
-			var wedisenabled;
-
-			if ( wed_state == "Y"){
-				wedisenabled = true;
-			}
-			else {
-				wedisenabled = false;
-			}
-			
-			o = s.option(form.Flag, 'wed_enable',
-				_('Enable WED'),
-				_('Wireless Ethernet Dispatch (WED) - disabled by default. It is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
-			o.default = wedisenabled;
-			o.cfgvalue = function(section_id) {
-			var val = uci.get('firewall', section_id, 'wed_enable');
-			return (val != null) ? val : uci.get('firewall', section_id, 'wed_enable');
-			};
-			o.write = function(section_id) {
-				uci.set('firewall', section_id, 'wed_enable', 1);
-				alert ("WED setting is changed, please reboot!");
-				return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
-			};
-			o.remove = function(section_id) {
-				uci.unset('firewall', section_id, 'wed_enable');
-				alert ("WED setting is changed, please reboot!");
-				return fs.write('/etc/modules.d/mt7915e', 'mt7915e');
-			};
-			
 			o = s.option(form.Flag, 'flow_offloading',
 				_('Software flow offloading'),
 				_('Software based offloading for routing/NAT'));
