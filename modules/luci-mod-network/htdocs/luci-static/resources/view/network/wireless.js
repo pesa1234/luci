@@ -372,7 +372,9 @@ var CBIWifiFrequencyValue = form.Value.extend({
 				'': [ '', '-', { available: true } ],
 				'n': [
 					'HT20', '20 MHz', { available: htmodelist.HT20 },
-					'HT40', '40 MHz', { available: htmodelist.HT40 }
+					'HT40', '40 MHz', { available: htmodelist.HT40 },
+					'VHT20', 'VHT 20 MHz', { available: htmodelist.VHT20 },
+					'VHT40', 'VHT 40 MHz', { available: htmodelist.VHT40 }
 				],
 				'ac': [
 					'VHT20', '20 MHz', { available: htmodelist.VHT20 },
@@ -505,16 +507,26 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		this.setValues(mode, this.modes);
 
 		// Determine mode based on htmode value
-		if (/EHT20|EHT40|EHT80|EHT160|EHT320/.test(htval))
-			mode.value = 'be';		
-		else if (/HE20|HE40|HE80|HE160/.test(htval))
-			mode.value = 'ax';
-		else if (/VHT20|VHT40|VHT80|VHT160/.test(htval))
-			mode.value = 'ac';
-		else if (/HT20|HT40/.test(htval))
-			mode.value = 'n';
+		if (/2g/.test(bandval))
+			if (/EHT20|EHT40|EHT80|EHT160|EHT320/.test(htval))
+				mode.value = 'be';		
+			else if (/HE20|HE40|HE80|HE160/.test(htval))
+				mode.value = 'ax';
+			else if (/HT20|HT40|VHT20|VHT40/.test(htval))
+				mode.value = 'n';
+			else
+				mode.value = '';
 		else
-			mode.value = '';
+			if (/EHT20|EHT40|EHT80|EHT160|EHT320/.test(htval))
+				mode.value = 'be';		
+			else if (/HE20|HE40|HE80|HE160/.test(htval))
+				mode.value = 'ax';
+			else if (/VHT20|VHT40|VHT80|VHT160/.test(htval))
+				mode.value = 'ac';
+			else if (/HT20|HT40/.test(htval))
+				mode.value = 'n';
+			else
+				mode.value = '';
 
 		this.toggleWifiMode(elem);
 
@@ -1002,8 +1014,20 @@ return view.extend({
 				o.ucisection = s.section;
 
 				if (hwtype == 'mac80211') {
+
+					o = ss.taboption('general', form.Flag, 'vendor_vht', _('Allow VHT on 2g'), _('Enables QAM-256 in 2.4GHz 802.11n, in HE mode enables VHT fallback'));
+					o.depends({'_freq': '2g', '!contains': true});
+					
+					o = ss.taboption('general', form.Flag, 'itxbfen', _('Enable iBF'), _('Enables MediaTek’s proprietary beamforming'));
+
 					o = ss.taboption('general', form.Flag, 'legacy_rates', _('Allow legacy 802.11b rates'), _('Legacy or badly behaving devices may require legacy 802.11b rates to interoperate. Airtime efficiency may be significantly reduced where these are used. It is recommended to not allow 802.11b rates where possible.'));
 					o.depends({'_freq': '2g', '!contains': true});
+
+					o = ss.taboption('general', form.Flag, 'background_radar', _('Enable hostapd background radar feature'), _('Enabling this allows DFS CAC to run on dedicated radio RF chains while the radio(s) are otherwise running normal AP activities on other channels.'));
+					o.depends({'_freq': '5g', '!contains': true});
+
+					o = ss.taboption('general', form.Value, 'channels', _('Use specific channels'), _('This settings is not necessary when channel is auto. When background radar is enabled this option allows hostapd to scan the provided channels. Channels can be provided as range using hyphen (-) or individual channels can be specified by space ( ) separated values. Example: (36 44 100 104)'));
+					o.depends('background_radar', '1');
 
 					o = ss.taboption('general', CBIWifiTxPowerValue, 'txpower', _('Maximum transmit power'), _('Specifies the maximum transmit power the wireless radio may use. Depending on regulatory requirements and wireless usage, the actual transmit power may be reduced by the driver.'));
 					o.wifiNetwork = radioNet;
@@ -1036,6 +1060,8 @@ return view.extend({
 					o.datatype = 'range(15,65535)';
 					o.placeholder = 100;
 					o.rmempty = true;
+					
+					o = ss.taboption('advanced', form.Flag, 'he_twt_responder', _('Enable twt responder'), _('Enables Target Wake Time (TWT) - Disabled by default (use for test)'));
 				}
 
 
