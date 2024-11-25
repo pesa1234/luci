@@ -101,12 +101,10 @@ return view.extend({
 			};
 			o.write = function(section_id) {
 				uci.set('firewall', section_id, 'wed_enable', 1);
-				alert ("WED setting is changed, please reboot!");
 				return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
 			};
 			o.remove = function(section_id) {
 				uci.unset('firewall', section_id, 'wed_enable');
-				alert ("WED setting is changed, please reboot!");
 				return fs.write('/etc/modules.d/mt7915e', 'mt7915e');
 			};
 
