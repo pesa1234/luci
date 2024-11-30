@@ -28,7 +28,7 @@ handleDelRule = function(num, ev) {
 };
 
 return baseclass.extend({
-	title: _('Active Port Forwards'),
+	title: _('Active UPnP IGD & PCP/NAT-PMP Port Maps'),
 
 	load: function() {
 		return Promise.all([
@@ -37,28 +37,26 @@ return baseclass.extend({
 	},
 
 	render: function(data) {
-
 		var table = E('table', { 'class': 'table', 'id': 'upnp_status_table' }, [
 			E('tr', { 'class': 'tr table-titles' }, [
-				E('th', { 'class': 'th' }, _('Protocol')),
-				E('th', { 'class': 'th' }, _('External Port')),
+				E('th', { 'class': 'th' }, _('Client Name')),
 				E('th', { 'class': 'th' }, _('Client Address')),
-				E('th', { 'class': 'th' }, _('Host')),
 				E('th', { 'class': 'th' }, _('Client Port')),
+				E('th', { 'class': 'th' }, _('External Port')),
+				E('th', { 'class': 'th' }, _('Protocol')),
 				E('th', { 'class': 'th' }, _('Description')),
 				E('th', { 'class': 'th cbi-section-actions' }, '')
 			])
 		]);
 
 		var rules = Array.isArray(data[0].rules) ? data[0].rules : [];
-
 		var rows = rules.map(function(rule) {
 			return [
-				rule.proto,
-				rule.extport,
-				rule.intaddr,
 				rule.host_hint || _('Unknown'),
+				rule.intaddr,
 				rule.intport,
+				rule.extport,
+				rule.proto,
 				rule.descr,
 				E('button', {
 					'class': 'btn cbi-button-remove',
@@ -66,9 +64,7 @@ return baseclass.extend({
 				}, [ _('Delete') ])
 			];
 		});
-
-		cbi_update_table(table, rows, E('em', _('There are no active port forwards.')));
-
+		cbi_update_table(table, rows, E('em', _('There are no active port maps.')));
 		return table;
 	}
 });
