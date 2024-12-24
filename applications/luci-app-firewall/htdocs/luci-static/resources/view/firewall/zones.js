@@ -96,6 +96,64 @@ return view.extend({
 				uci.set('firewall', section_id, 'flow_offloading_hw', value === '2' ? '1' : null);
 			};
 		}
+		
+		/* Experimental Wireless flow offload support */
+		
+		if (L.hasSystemFeature('wedoffload')) {
+			
+			//var wedisenabled;
+			//if ( wed_state == "Y"){
+				//wedisenabled = true;
+			//}
+			//else {
+				//wedisenabled = false;
+			//}
+			
+			s = m.section(form.TypedSection, 'defaults', _('WED Offloading'),
+				_('Wireless Ethernet Dispatch (WED) - disabled by default. It is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
+			s.anonymous = true;
+			s.addremove = false;
+			o = s.option(form.ListValue, "wed_enable", _("WED"));
+			o.value('0', _("Off"));
+			o.value('1', _("On"));
+			o.optional = false;
+			
+			o.load = async function(section_id) {
+				let ret = await callSetWED().then((enabled) => { return enabled });
+				// console.log('load callSetWED:', ret);
+				if (!ret) return '0';
+				if (ret) return '1';
+			};
+			o.write = async function(section_id, value) {
+				if (value && (value == '1' || value == '0')) {
+					const ret = await callSetWED(value == '1' ? true : false).then((enabled) => {
+						// console.log('write callSetWED:', enabled);
+						return enabled;
+					});
+					// console.log('got callSetWED:', ret);
+					if (!ret) return '0';
+					if (ret) return '1';
+				}
+			};
+			
+			//o = s.option(form.Flag, 'wed_enable',
+				//_('Enable WED'),
+				//_('Wireless Ethernet Dispatch (WED) - disabled by default. It is an extension of hardware flow offloading which can reduce CPU loads/increase routing throughput of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
+			//o.default = wedisenabled;
+			//o.cfgvalue = function(section_id) {
+			//var val = uci.get('firewall', section_id, 'wed_enable');
+			//return (val != null) ? val : uci.get('firewall', section_id, 'wed_enable');
+			//};
+			//o.write = function(section_id) {
+				//uci.set('firewall', section_id, 'wed_enable', 1);
+				//return fs.write('/etc/modules.d/mt7915e', 'mt7915e wed_enable=1');
+			//};
+			//o.remove = function(section_id) {
+				//uci.unset('firewall', section_id, 'wed_enable');
+				//return fs.write('/etc/modules.d/mt7915e', 'mt7915e');
+			//};
+			
+		}
 
 
 		s = m.section(form.GridSection, 'zone', _('Zones'));
