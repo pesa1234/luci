@@ -16,7 +16,8 @@
 				"/etc/firewall.user": [ "write" ]
 			},
 			"ubus": {
-				"file": [ "write", "setWED" ]
+				"file": [ "write" ],
+				"luci": [ "setWED" ]
 			},
 			"uci": [ "firewall" ]
 		}

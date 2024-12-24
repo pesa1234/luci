@@ -99,20 +99,16 @@ return view.extend({
 
 		/* mt7915 specific Wired Ethernet Dispatch (WED) */
 		if (L.hasSystemFeature('wedoffload')) {
-
 			const callSetWED = rpc.declare({
 				object: 'luci',
 				method: 'setWED',
 				params: [ 'enabled' ],
 				expect: { enabled: false }
 			});
-
 			s = m.section(form.TypedSection, 'defaults', _('WED Offloading'),
 				_('Wired Ethernet Dispatch (WED).'));
-
 			s.anonymous = true;
 			s.addremove = false;
-
 			o = s.option(form.ListValue, "wed_enable", _("WED"));
 			o.value('0', _("Off"));
 			o.value('1', _("On"));
