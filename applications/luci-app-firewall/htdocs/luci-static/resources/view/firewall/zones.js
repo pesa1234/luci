@@ -98,40 +98,46 @@ return view.extend({
 		}
 
 		/* mt7915 specific Wired Ethernet Dispatch (WED) */
+		
 		if (L.hasSystemFeature('wedoffload')) {
-
 			const callSetWED = rpc.declare({
 				object: 'luci',
 				method: 'setWED',
 				params: [ 'enabled' ],
 				expect: { enabled: false }
 			});
-
+ 			const callGetWED = rpc.declare({
+				object: 'luci',
+				method: 'getWED',
+				params: [ 'enabled' ],
+				expect: { enabled: false }
+			});
 			s = m.section(form.TypedSection, 'defaults', _('WED Offloading'),
-				_('Wired Ethernet Dispatch (WED).'));
-
+				_('Wireless Ethernet Dispatch (WED). It is an extension of hardware flow offloading it can reduce CPU loads, increase routing throughput and ping of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
 			s.anonymous = true;
 			s.addremove = false;
-
 			o = s.option(form.ListValue, "wed_enable", _("WED"));
 			o.value('0', _("Off"));
 			o.value('1', _("On"));
 			o.optional = false;
 			o.load = async function(section_id) {
-				let ret = await callSetWED().then((enabled) => { return enabled });
-				// console.log('load callSetWED:', ret);
+				let ret = await callGetWED().then((enabled) => { return enabled });
 				if (!ret) return '0';
 				if (ret) return '1';
 			};
 			o.write = async function(section_id, value) {
 				if (value && (value == '1' || value == '0')) {
 					const ret = await callSetWED(value == '1' ? true : false).then((enabled) => {
-						// console.log('write callSetWED:', enabled);
 						return enabled;
 					});
-					// console.log('got callSetWED:', ret);
-					if (!ret) return '0';
-					if (ret) return '1';
+					if (!ret) {
+						uci.unset('firewall', section_id, 'wed_offloading');
+						return '0';
+						}
+					if (ret) {
+						uci.set('firewall', section_id, 'wed_offloading', '1');
+						return '1';
+						}
 				}
 			};
 		}

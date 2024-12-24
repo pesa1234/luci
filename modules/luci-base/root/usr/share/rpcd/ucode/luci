@@ -413,27 +413,36 @@ const methods = {
 		call: function(request) {
 			const wed_path = '/sys/module/mt7915e/parameters/wed_enable';
 			const wed_mod_path = '/etc/modules.d/mt7915e';
-
 			if (access(wed_path) && access(wed_mod_path)){
 				const fw = open(wed_path, 'w');
 				const fm = open(wed_mod_path, 'w');
-
 				if (request?.args?.enabled == true) {
 					fw.write('Y\n');
 					fm.write('mt7915e wed_enable=1\n');
 				} else if (request?.args?.enabled == false) {
 					fw.write('N\n');
-					fm.write('mt7915e wed_enable=0\n');
+					fm.write('mt7915e\n');
 				}
-
 				fw.close();
 				fm.close();
-
 				const fd_content = trim(readfile(wed_path, 4));
-
 				let result = false;
 				if(fd_content === 'Y') result = true;
-
+				return {
+					enabled: result,
+				};
+			}
+		}
+	},
+	
+	getWED: {
+		args: { enabled: false },
+		call: function(request) {
+			const wed_path = '/sys/module/mt7915e/parameters/wed_enable';
+			if (access(wed_path)){
+				const fd_content = trim(readfile(wed_path, 4));
+				let result = false;
+				if(fd_content === 'Y') result = true;
 				return {
 					enabled: result,
 				};
