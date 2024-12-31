@@ -5,6 +5,7 @@
 'require form';
 'require network';
 'require firewall';
+'require fs';
 'require tools.firewall as fwtool';
 'require tools.widgets as widgets';
 
@@ -18,7 +19,8 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			this.callConntrackHelpers(),
-			firewall.getDefaults()
+			firewall.getDefaults(),
+			uci.load('mtkhnat')
 		]);
 	},
 
@@ -96,6 +98,120 @@ return view.extend({
 				uci.set('firewall', section_id, 'flow_offloading_hw', value === '2' ? '1' : null);
 			};
 		}
+		
+		/* HQoS specific Hardware Quality of Service */
+		
+ 		if (L.hasSystemFeature('hqos')) {
+			
+		
+			s = m.section(form.TypedSection, 'defaults', _('HQoS'),
+				_('Hardware QoS - full settings on /etc/config/mtkhnat'));
+			s.anonymous = true;
+			s.addremove = false;
+			o = s.option(form.ListValue, "enable", _("Enable mtkhnat util"));
+			o.value('0', _("Off"));
+			o.value('1', _("On"));
+			o.optional = false;
+			o.default = uci.get('mtkhnat', 'global', 'enable');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'enable',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+		
+			o = s.option(form.ListValue, "hqos", _("Enable HQoS"),_('Enable/Disable Hardware QoS Fature'));
+			o.value('0', _("Off"));
+			o.value('1', _("On"));
+			o.depends('enable', '1');
+			o.optional = false;
+			o.default = uci.get('mtkhnat', 'global', 'hqos');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'hqos',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+			
+			o = s.option(form.ListValue, "txq_num", _("txq_num"),_('16:default'));
+			o.value('16', _("16"));
+			o.value('32', _("32"));
+			o.value('64', _("64"));
+			o.value('128', _("128"));
+			o.depends('enable', '1');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'txq_num');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'txq_num',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+			
+			o = s.option(form.ListValue, "sch_num", _("sch_num"),_('sch_num: 2 or 4'));
+			o.value('2', _("2"));
+			o.value('4', _("4"));
+			o.depends('enable', '1');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'sch_num');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'sch_num',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+			
+			o = s.option(form.ListValue, "scheduling", _("scheduling"),_('scheduling: wrr: weighted round-robin, sp: strict priority'));
+			o.value('wrr', _("wrr"));
+			o.value('sp', _("sp"));
+			o.depends('enable', '1');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'scheduling');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'scheduling',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+			
+			o = s.option(form.Value, "sch0_bw", _("sch0_bw"),_('(unit:Kbps)'));
+			o.value('1000000', _("1000000 for 1gbps"));
+			o.value('2500000', _("2500000 for 2.5gbps"));
+			o.value('10000000', _("10000000 for 10gbps"));
+			o.depends('enable', '1');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'sch0_bw');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'sch0_bw',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+			
+			o = s.option(form.Value, "sch1_bw", _("sch1_bw"),_('(unit:Kbps)'));
+			o.value('1000000', _("1000000 for 1gbps"));
+			o.value('2500000', _("2500000 for 2.5gbps"));
+			o.value('10000000', _("10000000 for 10gbps"));
+			o.depends('enable', '1');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'sch1_bw');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'sch1_bw',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+			
+			o = s.option(form.Value, "sch2_bw", _("sch2_bw"),_('(unit:Kbps)'));
+			o.value('1000000', _("1000000 for 1gbps"));
+			o.value('2500000', _("2500000 for 2.5gbps"));
+			o.value('10000000', _("10000000 for 10gbps"));
+			o.depends('sch_num', '4');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'sch2_bw');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'sch2_bw',value);
+			};
+			
+			o = s.option(form.Value, "sch3_bw", _("sch3_bw"),_('(unit:Kbps)'));
+			o.value('1000000', _("1000000 for 1gbps"));
+			o.value('2500000', _("2500000 for 2.5gbps"));
+			o.value('10000000', _("10000000 for 10gbps"));
+			o.depends('sch_num', '4');
+			o.datatype = 'uinteger';
+			o.default = uci.get('mtkhnat', 'global', 'sch3_bw');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'sch3_bw',value);
+				fs.exec_direct('/sbin/mtkhnat');
+			};
+		}
+ 
 
 		/* mt7915 specific Wired Ethernet Dispatch (WED) */
 		
@@ -141,8 +257,7 @@ return view.extend({
 				}
 			};
 		}
-
-
+		
 		s = m.section(form.GridSection, 'zone', _('Zones'));
 		s.addremove = true;
 		s.anonymous = true;

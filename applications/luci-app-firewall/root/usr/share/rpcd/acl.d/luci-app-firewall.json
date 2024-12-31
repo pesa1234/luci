@@ -9,17 +9,18 @@
 				"file": [ "read" ],
 				"luci": [ "getConntrackHelpers", "getWED" ]
 			},
-			"uci": [ "firewall" ]
+			"uci": [ "firewall", "mtkhnat" ]
 		},
 		"write": {
 			"file": {
-				"/etc/firewall.user": [ "write" ]
+				"/etc/firewall.user": [ "write" ],
+				"/sbin/mtkhnat": [ "exec" ]
 			},
 			"ubus": {
 				"file": [ "write" ],
 				"luci": [ "setWED" ]
 			},
-			"uci": [ "firewall" ]
+			"uci": [ "firewall", "mtkhnat" ]
 		}
 	}
 }
