@@ -115,7 +115,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'enable');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'enable',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 		
 			o = s.option(form.ListValue, "hqos", _("Enable HQoS"),_('Enable/Disable Hardware QoS Fature'));
@@ -129,6 +128,17 @@ return view.extend({
 				fs.exec_direct('/sbin/mtkhnat');
 			};
 			
+			o = s.option(form.ListValue, "hqos_type", _("MTK proprietary HQoS-type"),_('0-Disabled 1-HQos 2-Per-port-per-queue mode'));
+			o.value('0', _("Disabled"));
+			o.value('1', _("HQoS"));
+			o.value('2', _("PPPQ"));
+			o.depends('enable', '1');
+			o.optional = false;
+			o.default = uci.get('mtkhnat', 'global', 'hqos_type');
+			o.write = function(section_id, value) {
+				uci.set('mtkhnat', 'global', 'hqos_type',value);
+			};
+			
 			o = s.option(form.ListValue, "txq_num", _("txq_num"),_('16:default'));
 			o.value('16', _("16"));
 			o.value('32', _("32"));
@@ -139,7 +149,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'txq_num');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'txq_num',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 			
 			o = s.option(form.ListValue, "sch_num", _("sch_num"),_('sch_num: 2 or 4'));
@@ -150,7 +159,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'sch_num');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'sch_num',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 			
 			o = s.option(form.ListValue, "scheduling", _("scheduling"),_('scheduling: wrr: weighted round-robin, sp: strict priority'));
@@ -161,7 +169,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'scheduling');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'scheduling',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 			
 			o = s.option(form.Value, "sch0_bw", _("sch0_bw"),_('(unit:Kbps)'));
@@ -173,7 +180,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'sch0_bw');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'sch0_bw',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 			
 			o = s.option(form.Value, "sch1_bw", _("sch1_bw"),_('(unit:Kbps)'));
@@ -185,7 +191,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'sch1_bw');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'sch1_bw',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 			
 			o = s.option(form.Value, "sch2_bw", _("sch2_bw"),_('(unit:Kbps)'));
@@ -208,7 +213,6 @@ return view.extend({
 			o.default = uci.get('mtkhnat', 'global', 'sch3_bw');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'sch3_bw',value);
-				fs.exec_direct('/sbin/mtkhnat');
 			};
 		}
  
