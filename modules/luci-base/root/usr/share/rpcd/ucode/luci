@@ -199,6 +199,9 @@ const methods = {
 				bonding:    access('/sys/module/bonding'),
 				mii_tool:   access('/usr/sbin/mii-tool'),
 				offloading: access('/sys/module/xt_FLOWOFFLOAD/refcnt') == true || access('/sys/module/nft_flow_offload/refcnt') == true,
+				wedoffload: access('/sys/module/mt7915e') == true,
+				hqos: access('/sbin/mtkhnat') == true,
+				vow: access('/sys/kernel/debug/ieee80211/phy0/mt76') == true,
 				br2684ctl:  access('/usr/sbin/br2684ctl') == true,
 				swconfig:   access('/sbin/swconfig') == true,
 				odhcpd:     access('/usr/sbin/odhcpd') == true,
@@ -404,6 +407,48 @@ const methods = {
 			return {
 				result: system(`(echo ${p}; sleep 1; echo ${p}) | /bin/busybox passwd ${u} >/dev/null 2>&1`) == 0
 			};
+		}
+	},
+	
+	setWED: {
+		args: { enabled: false },
+		call: function(request) {
+			const wed_path = '/sys/module/mt7915e/parameters/wed_enable';
+			const wed_mod_path = '/etc/modules.d/mt7915e';
+			if (access(wed_path) && access(wed_mod_path)){
+				const fw = open(wed_path, 'w');
+				const fm = open(wed_mod_path, 'w');
+				if (request?.args?.enabled == true) {
+					fw.write('Y\n');
+					fm.write('mt7915e wed_enable=1\n');
+				} else if (request?.args?.enabled == false) {
+					fw.write('N\n');
+					fm.write('mt7915e\n');
+				}
+				fw.close();
+				fm.close();
+				const fd_content = trim(readfile(wed_path, 4));
+				let result = false;
+				if(fd_content === 'Y') result = true;
+				return {
+					enabled: result,
+				};
+			}
+		}
+	},
+	
+	getWED: {
+		args: { enabled: false },
+		call: function(request) {
+			const wed_path = '/sys/module/mt7915e/parameters/wed_enable';
+			if (access(wed_path)){
+				const fd_content = trim(readfile(wed_path, 4));
+				let result = false;
+				if(fd_content === 'Y') result = true;
+				return {
+					enabled: result,
+				};
+			}
 		}
 	},
 
