@@ -1,0 +1,27 @@
+{
+  "luci-app-advanced": {
+    "description": "Grant UCI and RPC access to LuCI app advanced",
+	"read": {
+			"file": {
+				"/etc/init.d/advanced_setup start": [ "exec" ],
+				"/sbin/logread -e wifi": [ "exec" ],
+				"/usr/sbin/logread -e wifi": [	"exec" ]
+			},
+			"ubus": {
+				"file": [ "read" ],
+				"luci": [ "getConntrackHelpers", "getWED" ]
+			},
+			"uci": [ "advanced", "mtkhnat" ]
+		},
+		"write": {
+			"file": {
+				"/sbin/mtkhnat": [ "exec" ]
+			},
+			"ubus": {
+				"file": [ "write" ],
+				"luci": [ "setWED" ]
+			},
+			"uci": [ "advanced", "mtkhnat" ]
+		}
+  }
+}

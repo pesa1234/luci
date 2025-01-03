@@ -201,7 +201,7 @@ const methods = {
 				offloading: access('/sys/module/xt_FLOWOFFLOAD/refcnt') == true || access('/sys/module/nft_flow_offload/refcnt') == true,
 				wedoffload: access('/sys/module/mt7915e') == true,
 				hqos: access('/sbin/mtkhnat') == true,
-				vow: access('/sys/kernel/debug/ieee80211/phy0/mt76') == true,
+				vow: access('/sys/kernel/debug/ieee80211/phy0/mt76/vow') == true,
 				br2684ctl:  access('/usr/sbin/br2684ctl') == true,
 				swconfig:   access('/sbin/swconfig') == true,
 				odhcpd:     access('/usr/sbin/odhcpd') == true,

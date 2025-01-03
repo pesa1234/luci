@@ -1,0 +1,41 @@
+{
+  "admin/advanced/": {
+    "title": "Advanced",
+    "order": 60,
+    "action": {
+      "type": "firstchild"
+    },
+    "depends": {
+      "acl": [ "luci-app-advanced" ],
+	  "fs": {
+				"/etc/init.d/advanced_setup": "executable"
+			},
+    }
+  },
+
+  "admin/advanced/network": {
+    "title": "Network",
+    "order": 1,
+    "action": {
+      "type": "view",
+      "path": "advanced/network"
+    }
+  },
+
+  "admin/advanced/usb": {
+    "title": "USB",
+    "order": 2,
+    "action": {
+      "type": "view",
+      "path": "advanced/usb"
+    }
+  },
+  "admin/advanced/logread": {
+		"title": "Log View",
+		"order": 50,
+		"action": {
+			"type": "view",
+			"path": "advanced/logread"
+		}
+	}
+}
