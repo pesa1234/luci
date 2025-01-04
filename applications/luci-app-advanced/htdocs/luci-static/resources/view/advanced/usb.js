@@ -12,7 +12,7 @@ return view.extend({
 		m = new form.Map('advanced');
 
 		s = m.section(form.TypedSection, 'defaults', _('USB setting'),
-			_('This settings force the USB speed to 2.0 in case your device interfere with 2.4 ghz WiFi.'));
+			_('This setting force the USB speed to 2.0 in case your USB 3.0 device interfere with 2.4 ghz WiFi.'));
 		s.anonymous = true;
 		s.addremove = false;
 		o = s.option(form.ListValue, "usb_2", _("Force USB to 2.0 speed"));
