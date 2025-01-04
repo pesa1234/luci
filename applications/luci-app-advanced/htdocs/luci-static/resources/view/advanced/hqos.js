@@ -17,8 +17,10 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			this.callConntrackHelpers(),
-			uci.load('mtkhnat')	
-		]);
+			uci.load('mtkhnat')
+		]).catch(err => {
+			console.error('Error loading resources:', err);
+		});
 	},
 	
 	render: function() {
