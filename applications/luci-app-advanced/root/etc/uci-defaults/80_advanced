@@ -1,7 +1,18 @@
 #!/bin/sh
 
-touch /etc/config/advanced
-uci add advanced defaults
-uci commit
+CONFIG_FILE="/etc/config/advanced"
+
+# Check if the configuration file already exists
+if [ ! -f "$CONFIG_FILE" ]; then
+
+    # Create the file
+    touch "$CONFIG_FILE"
+    
+    # Add the 'defaults' section
+    uci add advanced defaults
+
+    # Save the changes
+    uci commit advanced
+fi
 
 return 0

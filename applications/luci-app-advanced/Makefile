@@ -4,7 +4,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI advanced app for WED HQoS
-LUCI_DEPENDS:=+luci-base
+LUCI_DEPENDS:=+luci-base +mtkhnat_util
 LUCI_PKGARCH:=all
 
 PKG_LICENSE:=GPL-2.0
