@@ -107,24 +107,12 @@ return view.extend({
 			o.remove = function(section_id) {
 				uci.unset('firewall', section_id, 'offload_delay');
 			};
-			
-			o = s.option(form.Value, 'ofd_bytes', _('Offload max bytes'), _('Matches traffic from connections where the total transferred bytes (in either direction) are less than 1,000,000 (default approximately 1MB).'));
-			o.value('1000000', _("1000000"));
-			o.datatype = 'uinteger';
-			o.depends('offload_delay', '1');
-			o.default = ('1000000');
-			o.write = function(section_id, value) {
-				uci.set('firewall', section_id, 'ofd_bytes', value);
-			};
-			o.remove = function(section_id) {
-				uci.unset('firewall', section_id, 'ofd_bytes');
-			};
-			
+					
 			o = s.option(form.Value, 'ofd_packets', _('Offload max packet'), _('Matches traffic from connections that have sent fewer than example 30 packets.'));
-			o.value('30', _("30"));
+			o.value('32', _("32"));
 			o.datatype = 'uinteger';
 			o.depends('offload_delay', '1');
-			o.default = ('30');
+			o.default = ('32');
 			o.write = function(section_id, value) {
 				uci.set('firewall', section_id, 'ofd_packets', value);
 			};
@@ -132,7 +120,7 @@ return view.extend({
 				uci.unset('firewall', section_id, 'ofd_packets');
 			};
 			
-			o = s.option(form.ListValue, 'ofd_proto', _('Offload protocol'), _('Matches packets using the UDP-TCP protocol (Layer 4).'));
+			o = s.option(form.ListValue, 'ofd_proto', _('Offload protocol'), _('Matches packets using the UDP orTCP protocol.'));
 			o.value('{udp}', _("UDP"));
 			o.value('{udp, tcp}', _("UDP -TCP"));
 			o.value('{tcp}', _("TCP"));
@@ -145,20 +133,7 @@ return view.extend({
 				uci.unset('firewall', section_id, 'ofd_proto');
 			};
 			
-			o = s.option(form.Value, 'ofd_mlenght', _('Offload meta lenght'), _('Matches packets whose total length (including headers and payload) is less than example 100 bytes.'));
-			o.value('100', _("100"));
-			o.datatype = 'uinteger';
-			o.depends('offload_delay', '1');
-			o.default = ('100');
-			o.write = function(section_id, value) {
-				uci.set('firewall', section_id, 'ofd_mlenght', value);
-			};
-			o.remove = function(section_id) {
-				uci.unset('firewall', section_id, 'ofd_mlenght');
-			};
-			
 		}
-
 
 		s = m.section(form.GridSection, 'zone', _('Zones'));
 		s.addremove = true;
