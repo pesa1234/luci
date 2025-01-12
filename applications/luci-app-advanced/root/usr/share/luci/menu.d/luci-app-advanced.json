@@ -28,6 +28,11 @@
     "action": {
       "type": "view",
       "path": "advanced/hqos"
+    },
+	"depends": {
+	  "fs": {
+				"/sbin/mtkhnat": "executable"
+			},
     }
   },
 
