@@ -5,6 +5,7 @@
 			"file": {
 				"/etc/init.d/advanced_setup start": [ "exec" ],
 				"/sbin/logread -e wifi": [ "exec" ],
+				"/sbin/wifi": [ "exec" ],
 				"/usr/sbin/logread -e wifi": [	"exec" ]
 			},
 			"ubus": {
