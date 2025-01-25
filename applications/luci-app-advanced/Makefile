@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI app to set-up WED EDCCA USB mode HQoS
 LUCI_DEPENDS:=+luci-base
 LUCI_PKGARCH:=all
-PKG_VERSION:=1.0.2
+PKG_VERSION:=1.0.3
 PKG_RELEASE:=1
 
 PKG_LICENSE:=GPL-2.0

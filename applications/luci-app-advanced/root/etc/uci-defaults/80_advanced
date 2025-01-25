@@ -15,7 +15,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
     uci commit advanced
 fi
 
-if ! uci show advanced.edcca >/dev/null 2>&1; then
+if ! uci show advanced.@edcca[0] >/dev/null 2>&1; then
     # Aggiunge la sezione 'edcca'
     uci add advanced edcca
 
