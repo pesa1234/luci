@@ -28,6 +28,7 @@ return view.extend({
 		};
 		
 		o = s.option(form.Value, "compensation", _("EDCCA Compensation"),_('Default: -6 - Range: -126 to 126'));
+		o.value('-2', _("-2"));
 		o.value('-6', _("-6"));
 		o.value('-10', _("-10"));
 		o.depends('edcca_enable', '1');
@@ -42,6 +43,7 @@ return view.extend({
 		};
 			
 		o = s.option(form.Value, "thres_0", _("EDCCA BW20"),_('Default: -60: dbm - Range: -126 to 0'));
+		o.value('-55', _("-55"));
 		o.value('-60', _("-60"));
 		o.value('-65', _("-65"));
 		o.depends('edcca_enable', '1');
@@ -56,6 +58,7 @@ return view.extend({
 		};
 			
 		o = s.option(form.Value, "thres_1", _("EDCCA BW40"),_('Default: -62: dbm - Range: -126 to 0'));
+		o.value('-57', _("-57"));
 		o.value('-62', _("-62"));
 		o.value('-67', _("-67"));
 		o.depends('edcca_enable', '1');
@@ -70,6 +73,8 @@ return view.extend({
 		};
 			
 		o = s.option(form.Value, "thres_2", _("EDCCA BW80"),_('Default: -59: dbm - Range: -126 to 0'));
+		o.value('-54', _("-54"));
+		o.value('-59', _("-59"));
 		o.value('-64', _("-64"));
 		o.depends('edcca_enable', '1');
 		o.datatype = 'integer';
