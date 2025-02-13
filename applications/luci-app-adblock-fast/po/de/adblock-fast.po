@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-22 17:10+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2025-02-08 00:32+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsadblock-fast/de/>\n"
 "Language: de\n"
@@ -450,7 +450,7 @@ msgstr "Empfohlenes Paket fehlt: '%s '"
 
 #: applications/luci-app-adblock-fast/htdocs/luci-static/resources/view/adblock-fast/overview.js:524
 msgid "Name"
-msgstr "Nome"
+msgstr "Name"
 
 #: applications/luci-app-adblock-fast/htdocs/luci-static/resources/view/adblock-fast/overview.js:515
 msgid "Name/URL"
