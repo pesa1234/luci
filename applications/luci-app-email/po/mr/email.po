@@ -1,56 +1,58 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-02-25 07:43+0000\n"
-"Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/openwrt/"
-"luciapplicationsemail/sv/>\n"
-"Language: sv\n"
+"PO-Revision-Date: 2025-02-24 14:29+0000\n"
+"Last-Translator: Prabhanjan <zetabytes.pp@gmail.com>\n"
+"Language-Team: Marathi <https://hosted.weblate.org/projects/openwrt/"
+"luciapplicationsemail/mr/>\n"
+"Language: mr\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:248
 msgid ""
 "<a %s>DNS Block List (DNSBL)</a> used to block connections from known "
 "spammers."
 msgstr ""
-"<a %s>Blockeringslista för DNS (DNSBL)</a> används för att blockera "
-"anslutningar från kända spammare."
+"<a %s>DNS Block List (DNSBL)</a> वापरून ओळखल्या गेलेल्या स्पॅमर्सच्या कनेक्शनना ब्लॉक केले "
+"जाते."
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:139
 msgid ""
 "<b>Note:</b> The <code>/var/</code> is a small in-memory folder and you'll "
 "lose mail in reboot."
 msgstr ""
-"<b>Notera att:</b> <code>/var/</code> är en liten mapp inuti minnet och du "
-"kommer att förlora post vid omstart."
+"<b>टीप:</b> <code>/var/</code> हे एक लहान इन-मेमरी फोल्डर आहे आणि रिबूट केल्यावर मेल "
+"गमावले जाईल."
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:51
 msgid "<b>You may receive spam so be careful</b>."
-msgstr "<b>Du kan eventuellt få ta emot skräppost så var försiktig</b>"
+msgstr "<b>तुम्हाला स्पॅम मिळू शकतो, त्यामुळे सावध रहा</b>."
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:226
 msgid "A file containing POP accounts and their credentials."
-msgstr "En fil som innehåller POP-konton och dess uppgifter."
+msgstr "POP खात्यांची आणि त्यांचे क्रेडेंशियल्स असलेली फाइल."
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:158
 msgid "A file that contains credentials for SMTP smarthost client."
-msgstr ""
+msgstr "SMTP Smarthost क्लायंटसाठी क्रेडेंशियल्स असलेली फाइल."
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:253
 msgid ""
 "A threshold of zero is useful for testing and means only to log a result "
 "code but allow a connection."
 msgstr ""
+"शून्य फक्त चाचणीसाठी उपयुक्त आहे. ज्याचा अर्थ परिणाम कोडची नोंद केली जाईल पण कनेक्शनला "
+"परवानगी दिली जाईल."
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:262
 msgid "Address verifier"
-msgstr "Adress-bekräftare"
+msgstr "अ‍ॅड्रेस पडताळणी"
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:25
 msgid "Advanced Settings"
-msgstr "Avancerade inställningar"
+msgstr "अधिक सेटिंग्ज"
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:50
 msgid "Allow connections from the public internet."
@@ -62,7 +64,7 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:59
 msgid "Anonymous"
-msgstr "Anonym"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:78
 msgid "Auth file"
@@ -75,7 +77,7 @@ msgstr ""
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:124
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:201
 msgid "CA certificate"
-msgstr "CA-certifikat"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:157
 msgid "Client authorization file"
@@ -87,11 +89,11 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:247
 msgid "DNSBL"
-msgstr "DNSBL"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:67
 msgid "Domain"
-msgstr "Domän"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:11
 msgid "E-MailRelay Server Configuration."
@@ -101,7 +103,7 @@ msgstr ""
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:115
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:251
 msgid "E.g."
-msgstr "T.ex."
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:10
 msgid "Email Server Configuration"
@@ -113,7 +115,7 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:214
 msgid "Enable POP3"
-msgstr "Aktivera POP3"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:170
 msgid "Enable SMTP client TLS"
@@ -129,7 +131,7 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:27
 msgid "Enabled"
-msgstr "Aktiverad"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:281
 msgid "Extra command line options"
@@ -137,11 +139,11 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:272
 msgid "Filter"
-msgstr "Filter"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:12
 msgid "For further information <a %s>check the documentation</a>"
-msgstr "För mer information, <a %s>se dokumentationen</a>"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:252
 msgid ""
@@ -175,7 +177,7 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:30
 msgid "Mode"
-msgstr "Läge"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:237
 msgid ""
@@ -199,7 +201,7 @@ msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:24
 msgid "POP3"
-msgstr "POP3"
+msgstr ""
 
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:114
 #: applications/luci-app-email/htdocs/luci-static/resources/view/email/emailrelay.js:192
