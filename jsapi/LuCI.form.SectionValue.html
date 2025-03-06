@@ -625,6 +625,8 @@
             
             <span class="subtitle">Members</span>
             
+                <li data-name="LuCI.form.DynamicList##allowduplicates"><a href="LuCI.form.DynamicList.html#allowduplicates">allowduplicates</a></li>
+            
                 <li data-name="LuCI.form.DynamicList#datatype"><a href="LuCI.form.DynamicList.html#datatype">datatype</a></li>
             
                 <li data-name="LuCI.form.DynamicList#default"><a href="LuCI.form.DynamicList.html#default">default</a></li>
@@ -1306,6 +1308,8 @@
                 <li data-name="LuCI.form.MultiValue##display_size"><a href="LuCI.form.MultiValue.html#display_size">display_size</a></li>
             
                 <li data-name="LuCI.form.MultiValue##dropdown_size"><a href="LuCI.form.MultiValue.html#dropdown_size">dropdown_size</a></li>
+            
+                <li data-name="LuCI.form.MultiValue#allowduplicates"><a href="LuCI.form.MultiValue.html#allowduplicates">allowduplicates</a></li>
             
                 <li data-name="LuCI.form.MultiValue#datatype"><a href="LuCI.form.MultiValue.html#datatype">datatype</a></li>
             
@@ -2520,6 +2524,8 @@
             
                 <li data-name="LuCI.network.WifiNetwork#getVlanIfnames"><a href="LuCI.network.WifiNetwork.html#getVlanIfnames">getVlanIfnames</a></li>
             
+                <li data-name="LuCI.network.WifiNetwork#getVlans"><a href="LuCI.network.WifiNetwork.html#getVlans">getVlans</a></li>
+            
                 <li data-name="LuCI.network.WifiNetwork#getWifiDevice"><a href="LuCI.network.WifiNetwork.html#getWifiDevice">getWifiDevice</a></li>
             
                 <li data-name="LuCI.network.WifiNetwork#getWifiDeviceName"><a href="LuCI.network.WifiNetwork.html#getWifiDeviceName">getWifiDeviceName</a></li>
@@ -2531,6 +2537,40 @@
                 <li data-name="LuCI.network.WifiNetwork#isUp"><a href="LuCI.network.WifiNetwork.html#isUp">isUp</a></li>
             
                 <li data-name="LuCI.network.WifiNetwork#set"><a href="LuCI.network.WifiNetwork.html#set">set</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="LuCI.network.WifiVlan">
+            <span class="title">
+                <a href="LuCI.network.WifiVlan.html">LuCI.network.WifiVlan</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="LuCI.network.WifiVlan#getI18n"><a href="LuCI.network.WifiVlan.html#getI18n">getI18n</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getIfname"><a href="LuCI.network.WifiVlan.html#getIfname">getIfname</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getName"><a href="LuCI.network.WifiVlan.html#getName">getName</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getNetwork"><a href="LuCI.network.WifiVlan.html#getNetwork">getNetwork</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getVlanId"><a href="LuCI.network.WifiVlan.html#getVlanId">getVlanId</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -3665,7 +3705,7 @@ element container, allowing to nest form sections into other sections.</p></div>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4846">line 4846</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4858">line 4858</a>
         </div>
         
     </div>
@@ -5109,7 +5149,7 @@ within the given specific section.</p>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4958">line 4958</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4970">line 4970</a>
         </div>
         
     </div>
@@ -5505,7 +5545,7 @@ argument, this parameter is ignored.</p></td>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4967">line 4967</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4979">line 4979</a>
         </div>
         
     </div>
@@ -6303,7 +6343,7 @@ returns <code>false</code>.</td>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4907">line 4907</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4919">line 4919</a>
         </div>
         
     </div>
@@ -6486,7 +6526,7 @@ so it may return promises if overridden by user code.</td>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4912">line 4912</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4924">line 4924</a>
         </div>
         
     </div>
@@ -6637,7 +6677,7 @@ validation constraints.</td>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4949">line 4949</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4961">line 4961</a>
         </div>
         
     </div>
@@ -7280,7 +7320,7 @@ was neither a string nor a function.</td>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4933">line 4933</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4945">line 4945</a>
         </div>
         
     </div>
@@ -7426,7 +7466,7 @@ or a plain text string. If omitted, the <code>key</code> value is used as captio
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4941">line 4941</a>
+            <a href="form.js.html">form.js</a>, <a href="form.js.html#line4953">line 4953</a>
         </div>
         
     </div>
@@ -7577,7 +7617,7 @@ its <code>write()</code> implementation is a no-op.</p>
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Dec 23 2024 16:50:02 GMT+0000 (Coordinated Universal Time)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Thu Mar 06 2025 17:23:12 GMT+0000 (Coordinated Universal Time)
         </footer>
     </div>
 </div>

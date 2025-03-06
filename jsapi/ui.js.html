@@ -625,6 +625,8 @@
             
             <span class="subtitle">Members</span>
             
+                <li data-name="LuCI.form.DynamicList##allowduplicates"><a href="LuCI.form.DynamicList.html#allowduplicates">allowduplicates</a></li>
+            
                 <li data-name="LuCI.form.DynamicList#datatype"><a href="LuCI.form.DynamicList.html#datatype">datatype</a></li>
             
                 <li data-name="LuCI.form.DynamicList#default"><a href="LuCI.form.DynamicList.html#default">default</a></li>
@@ -1306,6 +1308,8 @@
                 <li data-name="LuCI.form.MultiValue##display_size"><a href="LuCI.form.MultiValue.html#display_size">display_size</a></li>
             
                 <li data-name="LuCI.form.MultiValue##dropdown_size"><a href="LuCI.form.MultiValue.html#dropdown_size">dropdown_size</a></li>
+            
+                <li data-name="LuCI.form.MultiValue#allowduplicates"><a href="LuCI.form.MultiValue.html#allowduplicates">allowduplicates</a></li>
             
                 <li data-name="LuCI.form.MultiValue#datatype"><a href="LuCI.form.MultiValue.html#datatype">datatype</a></li>
             
@@ -2520,6 +2524,8 @@
             
                 <li data-name="LuCI.network.WifiNetwork#getVlanIfnames"><a href="LuCI.network.WifiNetwork.html#getVlanIfnames">getVlanIfnames</a></li>
             
+                <li data-name="LuCI.network.WifiNetwork#getVlans"><a href="LuCI.network.WifiNetwork.html#getVlans">getVlans</a></li>
+            
                 <li data-name="LuCI.network.WifiNetwork#getWifiDevice"><a href="LuCI.network.WifiNetwork.html#getWifiDevice">getWifiDevice</a></li>
             
                 <li data-name="LuCI.network.WifiNetwork#getWifiDeviceName"><a href="LuCI.network.WifiNetwork.html#getWifiDeviceName">getWifiDeviceName</a></li>
@@ -2531,6 +2537,40 @@
                 <li data-name="LuCI.network.WifiNetwork#isUp"><a href="LuCI.network.WifiNetwork.html#isUp">isUp</a></li>
             
                 <li data-name="LuCI.network.WifiNetwork#set"><a href="LuCI.network.WifiNetwork.html#set">set</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="LuCI.network.WifiVlan">
+            <span class="title">
+                <a href="LuCI.network.WifiVlan.html">LuCI.network.WifiVlan</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="LuCI.network.WifiVlan#getI18n"><a href="LuCI.network.WifiVlan.html#getI18n">getI18n</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getIfname"><a href="LuCI.network.WifiVlan.html#getIfname">getIfname</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getName"><a href="LuCI.network.WifiVlan.html#getName">getName</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getNetwork"><a href="LuCI.network.WifiVlan.html#getNetwork">getNetwork</a></li>
+            
+                <li data-name="LuCI.network.WifiVlan#getVlanId"><a href="LuCI.network.WifiVlan.html#getVlanId">getVlanId</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -5238,7 +5278,7 @@ const UIDropdown = UIElement.extend(/** @lends LuCI.ui.Dropdown.prototype */ {
 		let markup = null;
 
 		if (tpl)
-			markup = (tpl.textContent ?? tpl.innerHTML ?? tpl.firstChild.data).replace(/^&lt;!--|-->$/, '').trim();
+			markup = (tpl.textContent ?? tpl.innerHTML ?? tpl.firstChild.data).replace(/^&lt;!--|--!?>$/g, '').trim();
 		else
 			markup = '&lt;li data-value="{{value}}">&lt;span data-label-placeholder="true" />&lt;/li>';
 
@@ -5960,6 +6000,7 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 			e.target.classList.remove('drag-over');
 			const target = e.target.classList.contains('item') ? e.target : dl.querySelector('.add-item');
 			dl.insertBefore(draggedItem, target);
+			this.dispatchCbiDynlistChange(dl, draggedItem.value);
 		});
 
 		dl.addEventListener('click', (e) => {
@@ -6016,6 +6057,7 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 				dl.insertBefore(draggedItem, placeholder);
 				draggedItem.classList.remove('dragging')
 				placeholder.parentNode.removeChild(placeholder);
+				this.dispatchCbiDynlistChange(dl, draggedItem.value);
 				placeholder = null;
 				draggedItem = null;
 			}
@@ -6062,11 +6104,16 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 				exists = true;
 		});
 
-		if (!exists) {
+		if (this.options.allowduplicates || !exists) {
 			const ai = dl.querySelector('.add-item');
 			ai.parentNode.insertBefore(new_item, ai);
 		}
 
+		this.dispatchCbiDynlistChange(dl,value);
+	},
+
+	/** @private */
+	dispatchCbiDynlistChange(dl,value) {
 		dl.dispatchEvent(new CustomEvent('cbi-dynlist-change', {
 			bubbles: true,
 			detail: {
@@ -6094,15 +6141,7 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 
 		item.parentNode.removeChild(item);
 
-		dl.dispatchEvent(new CustomEvent('cbi-dynlist-change', {
-			bubbles: true,
-			detail: {
-				instance: this,
-				element: dl,
-				value: value,
-				remove: true
-			}
-		}));
+		this.dispatchCbiDynlistChange(dl, value);
 	},
 
 	/** @private */
@@ -6146,7 +6185,8 @@ const UIDynamicList = UIElement.extend(/** @lends LuCI.ui.DynamicList.prototype 
 			return;
 
 		sbIn.setValues(sbEl, null);
-		sbVal.element.setAttribute('unselectable', '');
+		if (!this.options.allowduplicates)
+			sbVal.element.setAttribute('unselectable', '');
 
 		if (sbVal.element.hasAttribute('created')) {
 			sbVal.element.removeAttribute('created');
@@ -6589,7 +6629,7 @@ const UIFileUpload = UIElement.extend(/** @lends LuCI.ui.FileUpload.prototype */
 		ev.preventDefault();
 
 		if (fileStat.type == 'directory')
-			msg = _('Do you really want to recursively delete the directory "%s" ?').format(name);
+			msg = _('Do you really want to delete the "%s" directory recursively?').format(name);
 		else
 			msg = _('Do you really want to delete "%s" ?').format(name);
 
@@ -8279,7 +8319,7 @@ const UI = baseclass.extend(/** @lends LuCI.ui.prototype */ {
 					E('div', { 'class': 'uci-change-legend-label' }, [
 						E('var', {}, E('del', '&amp;#160;')), ' ', _('Option removed') ])]),
 				E('br'), list,
-				E('div', { 'class': 'right' }, [ //button-row?
+				E('div', { 'class': 'button-row' }, [
 					E('button', {
 						'class': 'btn cbi-button',
 						'click': UI.prototype.hideModal
@@ -8395,7 +8435,7 @@ const UI = baseclass.extend(/** @lends LuCI.ui.prototype */ {
 						UI.prototype.changes.displayStatus('warning', [
 							E('h4', _('Configuration changes have been rolled back!')),
 							E('p', _('The device could not be reached within %d seconds after applying the pending changes, which caused the configuration to be rolled back for safety reasons. If you believe that the configuration changes are correct nonetheless, perform an unchecked configuration apply. Alternatively, you can dismiss this warning and edit changes before attempting to apply again, or revert all pending changes to keep the currently working configuration state.').format(L.env.apply_rollback)),
-							E('div', { 'class': 'right' }, [
+							E('div', { 'class': 'button-row' }, [
 								E('button', {
 									'class': 'btn',
 									'click': L.bind(UI.prototype.changes.displayStatus, UI.prototype.changes, false)
@@ -8539,7 +8579,7 @@ const UI = baseclass.extend(/** @lends LuCI.ui.prototype */ {
 							E('button', {
 								'class': 'btn cbi-button-action important',
 								'click': resolveFn.bind(null, true)
-							}, [ _('Apply, reverting in case of connectivity loss') ]), ' ',
+							}, [ _('Apply checked') ]), ' ',
 							E('button', {
 								'class': 'btn cbi-button-negative important',
 								'click': resolveFn.bind(null, false)
@@ -8655,8 +8695,8 @@ const UI = baseclass.extend(/** @lends LuCI.ui.prototype */ {
 	 * default.
 	 *
 	 * @returns {function}
-	 * Returns the compiled validator function which can be used to manually
-	 * trigger field validation or to bind it to further events.
+	 * Returns the compiled validator function which can be used to trigger
+	 * field validation manually or to bind it to further events.
 	 *
 	 * @see LuCI.validation
 	 */
@@ -8797,7 +8837,7 @@ return UI;
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Dec 23 2024 16:50:02 GMT+0000 (Coordinated Universal Time)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Thu Mar 06 2025 17:23:12 GMT+0000 (Coordinated Universal Time)
         </footer>
     </div>
 </div>
