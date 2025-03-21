@@ -368,7 +368,7 @@ const UITextfield = UIElement.extend(/** @lends LuCI.ui.Textfield.prototype */ {
 			'id': this.options.id ? `widget.${this.options.id}` : null,
 			'name': this.options.name,
 			'type': 'text',
-			'class': this.options.password ? 'cbi-input-password' : 'cbi-input-text',
+			'class': `password-input ${this.options.password ? 'cbi-input-password' : 'cbi-input-text'}`,
 			'readonly': this.options.readonly ? '' : null,
 			'disabled': this.options.disabled ? '' : null,
 			'maxlength': this.options.maxlength,
@@ -384,8 +384,15 @@ const UITextfield = UIElement.extend(/** @lends LuCI.ui.Textfield.prototype */ {
 					'title': _('Reveal/hide password'),
 					'aria-label': _('Reveal/hide password'),
 					'click': function(ev) {
-						const e = this.previousElementSibling;
-						e.type = (e.type === 'password') ? 'text' : 'password';
+						// DOM manipulation (e.g. by password managers) may have inserted other
+						// elements between the reveal button and the input. This searches for
+						// the first <input> inside the parent of the <button> to use for toggle.
+						const e = this.parentElement.querySelector('input.password-input')
+						if (e) {
+							e.type = (e.type === 'password') ? 'text' : 'password';
+						} else {
+							console.error('unable to find input corresponding to reveal/hide button');
+						}
 						ev.preventDefault();
 					}
 				}, '∗')
@@ -2877,10 +2884,10 @@ const UIFileUpload = UIElement.extend(/** @lends LuCI.ui.FileUpload.prototype */
 
 	/** @private */
 	canonicalizePath(path) {
-		return path.replace(/\/{2,}/, '/')
-			.replace(/\/\.(\/|$)/g, '/')
-			.replace(/[^\/]+\/\.\.(\/|$)/g, '/')
-			.replace(/\/$/, '');
+	return path.replace(/\/{2,}/g, '/')                // Collapse multiple slashes
+				.replace(/\/\.(\/|$)/g, '/')           // Remove `/.`
+				.replace(/[^\/]+\/\.\.(\/|$)/g, '/')   // Resolve `/..`
+				.replace(/\/$/g, (m, o, s) => s.length > 1 ? '' : '/'); // Remove trailing `/` only if not root
 	},
 
 	/** @private */
@@ -2891,10 +2898,7 @@ const UIFileUpload = UIElement.extend(/** @lends LuCI.ui.FileUpload.prototype */
 		if (cpath.length <= croot.length)
 			return [ croot ];
 
-		if (cpath.charAt(croot.length) != '/')
-			return [ croot ];
-
-		const parts = cpath.substring(croot.length + 1).split(/\//);
+		const parts = cpath.substring(croot.length).split(/\//);
 
 		parts.unshift(croot);
 
@@ -3079,13 +3083,13 @@ const UIFileUpload = UIElement.extend(/** @lends LuCI.ui.FileUpload.prototype */
 		let cur = '';
 
 		for (let i = 0; i < dirs.length; i++) {
-			cur = cur ? `${cur}/${dirs[i]}` : dirs[i];
+			cur += dirs[i];
 			dom.append(breadcrumb, [
 				i ? ' » ' : '',
 				E('a', {
 					'href': '#',
 					'click': UI.prototype.createHandlerFn(this, 'handleSelect', cur ?? '/', null)
-				}, dirs[i] != '' ? '%h'.format(dirs[i]) : E('em', '(root)')),
+				}, dirs[i] !== '/' ? '%h'.format(dirs[i]) : E('em', '(root)')),
 			]);
 		}
 
