@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-18 13:04+0000\n"
+"PO-Revision-Date: 2025-04-25 14:28+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsbanip/cs/>\n"
@@ -28,59 +28,63 @@ msgstr "-- Nastavit výběr --"
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:616
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:803
 msgid "-- default --"
-msgstr ""
+msgstr "-- výchozí --"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:224
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:230
 msgid "<DATE><IPv4><SPACE>"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:225
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:231
 msgid "<IPv4>, csv"
 msgstr "<IPv4>, csv"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:228
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:234
 msgid "<IPv4>, substring"
-msgstr ""
+msgstr "<IPv4>, dílčí řetězec"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:220
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:226
 msgid "<IPv4><END>"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:222
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:228
 msgid "<IPv4><END>, nodups"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:219
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:225
 msgid "<IPv4><SPACE>"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:221
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:227
 msgid "<IPv4><SPACE>, concatinated"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:226
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:232
 msgid "<IPv4><SPACE>NET"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:227
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:233
 msgid "<IPv4><SPACE>YOUR"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:223
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:229
 msgid "<IPv4>[<SPACE>|<HYPHEN>]"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:245
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:252
+msgid "<IPv6>, csv"
+msgstr "<IPv6>, csv"
+
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:251
 msgid "<IPv6><END>"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:244
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:250
 msgid "<IPv6><SPACE>"
 msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:736
 msgid "AFRINIC - serving Africa and the Indian Ocean region"
-msgstr ""
+msgstr "AFRINIC – obsluhuje africkou a indooceánskou oblast"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:737
 msgid "APNIC - serving the Asia Pacific region"
@@ -88,11 +92,11 @@ msgstr "APNIC – obsluhuje azijsko-pacifický region"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:738
 msgid "ARIN - serving Canada and the United States"
-msgstr ""
+msgstr "ARIN – obsluhuje Kanadu a Spojené státy"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:749
 msgid "ASN Selection"
-msgstr ""
+msgstr "Výběr ASN čísla"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:751
 msgid "ASNs"
@@ -132,13 +136,13 @@ msgstr "Umožnit přeposílání VLAN"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:764
 msgid "Allowlist Feed URLs"
-msgstr ""
+msgstr "URL adresy kanálu seznamu povolených"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:827
 msgid "Allowlist Only"
 msgstr "Pouze seznam povolených"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:22
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:45
 msgid ""
 "Allowlist modifications have been saved, reload banIP that changes take "
 "effect."
@@ -164,7 +168,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:793
 msgid "Auto Allowlist"
-msgstr ""
+msgstr "Automatický seznam povolených"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:812
 msgid "Auto Block Subnet"
@@ -214,13 +218,13 @@ msgstr "Blokovat VLAN přeposílání"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:696
 msgid "Blocklist Feed"
-msgstr ""
+msgstr "Kanál seznamu blokovaných"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:817
 msgid "Blocklist Set Expiry"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:22
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:45
 msgid ""
 "Blocklist modifications have been saved, reload banIP that changes take "
 "effect."
@@ -236,13 +240,13 @@ msgstr "Jádra procesoru"
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:249
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:256
 msgid "Chain"
 msgstr "Řetězec"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:389
 msgid "Chain Priority"
-msgstr ""
+msgstr "Priorita řetězce"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:691
 msgid "Changes on this tab needs a banIP service reload to take effect."
@@ -257,7 +261,7 @@ msgstr ""
 msgid "Changes on this tab needs a banIP service restart to take effect."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:314
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:321
 msgid "Clear"
 msgstr "Vyčistit"
 
@@ -282,9 +286,9 @@ msgstr "Země"
 msgid "Country Selection"
 msgstr "Výběr země"
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:52
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:49
 msgid "Custom Feed Editor"
-msgstr "Uživatelsky určený editor kanálů"
+msgstr "Editor uživatelsky určených kanálů"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:377
 msgid ""
@@ -296,7 +300,7 @@ msgstr ""
 msgid "Deduplicate IPs"
 msgstr "Deduplikovat IP adresy"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:255
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:262
 msgid "Description"
 msgstr "Popis"
 
@@ -314,9 +318,9 @@ msgstr "Zakázat"
 msgid "Don't check SSL server certificates during download."
 msgstr "Při stahování nekontrolovat SSL certifikát serveru."
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:287
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:294
 msgid "Download"
-msgstr "Příjem"
+msgstr "Stáhnout"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:308
 msgid "Download Insecure"
@@ -324,7 +328,7 @@ msgstr "Stáhnout nezabezpečeně"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:281
 msgid "Download Parameters"
-msgstr ""
+msgstr "Parametry stahování"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:296
 msgid "Download Retries"
@@ -340,7 +344,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:666
 msgid "E-Mail Notification"
-msgstr ""
+msgstr "Notifikace e-mailem"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:681
 msgid "E-Mail Profile"
@@ -362,11 +366,11 @@ msgstr "Nastavení e-mailu"
 msgid "E-Mail Topic"
 msgstr "Téma e-mailu"
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:36
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:33
 msgid "Edit Allowlist"
-msgstr "Upravit seznam umožněných"
+msgstr "Upravit seznam povolených"
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:44
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:41
 msgid "Edit Blocklist"
 msgstr "Upravit seznam blokovaných"
 
@@ -378,8 +382,8 @@ msgstr "Počet prvků"
 msgid "Elements"
 msgstr "Prvky"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:199
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:259
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:205
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:266
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:648
 msgid "Empty field not allowed"
 msgstr "Prázná kolonka nedovolena"
@@ -404,7 +408,7 @@ msgstr "Zapnout nft čítač pro každý prvek Set."
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:233
 msgid "Enable the banIP service."
-msgstr ""
+msgstr "Zapnout službu banIP."
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:638
 msgid "Enable the cgi interface to receive remote logging events."
@@ -416,7 +420,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:233
 msgid "Enabled"
-msgstr ""
+msgstr "Povoleno"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:242
 msgid "Enables IPv4 support."
@@ -436,11 +440,11 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:761
 msgid "External Allowlist Feeds"
-msgstr ""
+msgstr "Externí kanály seznamu povolených"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:693
 msgid "External Blocklist Feeds"
-msgstr ""
+msgstr "Externí kanály seznamu blokovaných"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:561
 msgid "Feed Complete"
@@ -450,7 +454,7 @@ msgstr ""
 msgid "Feed Flag Reset"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:194
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:200
 msgid "Feed Name"
 msgstr "Název kanálu"
 
@@ -462,25 +466,25 @@ msgstr "Výběr kanálu"
 msgid "Feed/Set Settings"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:305
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:312
 msgid "Fill"
 msgstr "Vyplnit"
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:68
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:65
 msgid "Firewall Log"
 msgstr "Záznamy událostí na bráně firewall"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:264
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:271
 msgid "Flag"
 msgstr "Příznak"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:270
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:277
 msgid "Flag not supported"
 msgstr "Příznak nepodporován"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:217
 msgid "General Settings"
-msgstr ""
+msgstr "Obecná nastavení"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:282
 msgid "GeoIP Map is not enabled!"
@@ -500,7 +504,7 @@ msgstr "Nejvyšší priorita"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:416
 msgid "ICMP-Threshold"
-msgstr ""
+msgstr "Práh ICMP"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:416
 msgid ""
@@ -514,11 +518,11 @@ msgstr "IP"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:12
 msgid "IP Search"
-msgstr ""
+msgstr "Hledat IP"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:310
 msgid "IP Search..."
-msgstr ""
+msgstr "Hledat IP…"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:259
 msgid "IPv4 Network Interfaces"
@@ -536,13 +540,13 @@ msgstr "IPv6 síťová rozhraní"
 msgid "IPv6 Support"
 msgstr "Podpora IPv6"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:250
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:257
 msgid "Inbound"
-msgstr ""
+msgstr "Příchozí"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:252
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:259
 msgid "Inbound & Outbound"
-msgstr ""
+msgstr "Příchozí a odchozí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:541
 msgid "Inbound & Outbound Feed"
@@ -558,7 +562,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:194
 msgid "Inbound&#160;(packets)"
-msgstr ""
+msgstr "Příchozí&#160;(pakety)"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:331
 msgid ""
@@ -570,7 +574,7 @@ msgstr ""
 msgid "Information"
 msgstr "Informace"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:202
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:208
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:651
 msgid "Invalid characters"
 msgstr "Neplatné znaky"
@@ -623,7 +627,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:621
 msgid "Log Count"
-msgstr ""
+msgstr "Zaznamenávat počet"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:598
 msgid "Log Inbound"
@@ -631,7 +635,7 @@ msgstr "Zaznamenávat příchozí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:608
 msgid "Log Limit"
-msgstr ""
+msgstr "Limit záznamu událostí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:601
 msgid "Log Outbound"
@@ -639,15 +643,15 @@ msgstr "Zaznamenávat odchozí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:595
 msgid "Log Prerouting"
-msgstr ""
+msgstr "Zaznamenávat předsměrování"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:221
 msgid "Log Settings"
-msgstr ""
+msgstr "Nastavení zaznamenávání událostí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:626
 msgid "Log Terms"
-msgstr ""
+msgstr "Zaznamenávat podmínky"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:601
 msgid "Log suspicious packets in the LAN-Forward chain."
@@ -663,11 +667,11 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:604
 msgid "Logfile Location"
-msgstr ""
+msgstr "Umístění souboru záznamu událostí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:628
 msgid "LuCI failed login"
-msgstr ""
+msgstr "Přihlášení do LuCI se nezdařilo"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:156
 msgid "Map Reset"
@@ -675,7 +679,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:296
 msgid "Map..."
-msgstr ""
+msgstr "Mapovat…"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:331
 msgid "Max Open Files"
@@ -703,7 +707,7 @@ msgstr "Žádná GeoIP Map data!"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:322
 msgid "Normal Priority"
-msgstr ""
+msgstr "Normální priorita"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:475
 msgid "Number of Set load attempts in case of an error."
@@ -724,9 +728,9 @@ msgstr ""
 msgid "Opt out the feed from the deduplication process."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:251
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:258
 msgid "Outbound"
-msgstr ""
+msgstr "Odchozí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:531
 msgid "Outbound Feed"
@@ -734,7 +738,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:195
 msgid "Outbound&#160;(packets)"
-msgstr ""
+msgstr "Odchozí&#160;(pakety)"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:541
 msgid ""
@@ -766,7 +770,7 @@ msgid ""
 "utility."
 msgstr ""
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:28
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:25
 msgid "Overview"
 msgstr "Přehled"
 
@@ -780,7 +784,7 @@ msgstr ""
 msgid "Port&#160;/&#160;Protocol"
 msgstr "Port&#160;/&#160;Protokol"
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:76
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:73
 msgid "Processing Log"
 msgstr "Zpracovávání záznamu událostí"
 
@@ -788,8 +792,8 @@ msgstr "Zpracovávání záznamu událostí"
 msgid "Profile used by 'msmtp' for banIP notification E-Mails."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:213
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:238
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:219
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:244
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:783
 msgid "Protocol/URL format not supported"
 msgstr "Formát protokolu/URL nepodporován"
@@ -826,7 +830,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:643
 msgid "Remote Token"
-msgstr ""
+msgstr "Vzdálený token"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:369
 msgid "Report Directory"
@@ -841,13 +845,13 @@ msgstr ""
 msgid "Result"
 msgstr "Výsledek"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:218
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:224
 msgid "Rulev4"
-msgstr ""
+msgstr "Pravidlov4"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:243
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:249
 msgid "Rulev6"
-msgstr ""
+msgstr "Pravidlov6"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:197
 msgid "Run Flags"
@@ -855,11 +859,11 @@ msgstr "Běhové příznaky"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:193
 msgid "Run Information"
-msgstr ""
+msgstr "Informace o chodu"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:430
 msgid "SYN-Threshold"
-msgstr ""
+msgstr "Práh SYN"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:430
 msgid ""
@@ -867,17 +871,17 @@ msgid ""
 "this safeguard set it to '0'."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:323
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:330
 msgid "Save"
 msgstr "Uložit"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:846
 msgid "Save & Reload"
-msgstr ""
+msgstr "Uložit a načíst znovu"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:853
 msgid "Save & Restart"
-msgstr ""
+msgstr "Uložit a restartovat"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:57
 msgid "Search IP"
@@ -910,7 +914,7 @@ msgstr "Adresa odesilatele pro e-maily s upozorňováními z banIP."
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:89
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:192
 msgid "Set"
-msgstr ""
+msgstr "Sada"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:85
 msgid "Set Content"
@@ -922,7 +926,7 @@ msgstr "Nastavit obsah…"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:486
 msgid "Set Element Counter"
-msgstr ""
+msgstr "Nastavit čítač prvků"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:475
 msgid "Set Load Retries"
@@ -930,9 +934,9 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:466
 msgid "Set Policy"
-msgstr ""
+msgstr "Nastavit zásadu"
 
-#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:60
+#: applications/luci-app-banip/root/usr/share/luci/menu.d/luci-app-banip.json:57
 msgid "Set Reporting"
 msgstr "Nastavit hlášení"
 
@@ -972,7 +976,7 @@ msgstr ""
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:744
 msgid "Split Country Set"
-msgstr ""
+msgstr "Rozdělit sadu zemí"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:351
 msgid "Split external Set loading after every n members to save RAM."
@@ -996,7 +1000,7 @@ msgstr "Informace o systému"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:219
 msgid "Table/Chain Settings"
-msgstr ""
+msgstr "Nastavení tabulky/řetězce"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:373
 msgid "Target directory for banIP-related error files."
@@ -1010,11 +1014,11 @@ msgstr "Cílová složka pro soubory hlášení související s banIP."
 msgid "Target directory for compressed feed backups."
 msgstr "Cílová složka pro komprimované zálohy kanálu."
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:36
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:25
 msgid "The allowlist is too big, unable to save modifications."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:36
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:25
 msgid "The blocklist is too big, unable to save modifications."
 msgstr ""
 
@@ -1030,7 +1034,7 @@ msgstr "Označené země jsou ukládány v oddělených sadách."
 msgid "The selected priority will be used for banIP background processing."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:39
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:28
 msgid ""
 "This is the local banIP allowlist that will permit certain MAC-, IP-"
 "addresses or domain names.<br /> <em><b>Please note:</b></em> add only "
@@ -1038,7 +1042,7 @@ msgid ""
 "notation and MAC/IP-bindings are allowed."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:39
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:28
 msgid ""
 "This is the local banIP blocklist that will prevent certain MAC-, IP-"
 "addresses or domain names.<br /> <em><b>Please note:</b></em> add only "
@@ -1077,7 +1081,7 @@ msgstr "Prodleva spuštění"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:444
 msgid "UDP-Threshold"
-msgstr ""
+msgstr "Práh UDP"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:444
 msgid ""
@@ -1085,13 +1089,13 @@ msgid ""
 "this safeguard set it to '0'."
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:207
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:213
 msgid "URLv4"
-msgstr ""
+msgstr "URLv4"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:232
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:238
 msgid "URLv6"
-msgstr ""
+msgstr "URLv6"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:725
 msgid "Unable to parse the countries file!"
@@ -1113,12 +1117,12 @@ msgstr "Nepodařilo se zpracovat soubor s hlášením!"
 msgid "Unable to parse the ruleset file!"
 msgstr "Nepodařilo se zpracovat soubor se sadou pravidel!"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:28
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:28
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/allowlist.js:51
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/blocklist.js:51
 msgid "Unable to save modifications: %s"
 msgstr ""
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:296
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:303
 msgid "Upload"
 msgstr "Nahrát"
 
@@ -1136,7 +1140,7 @@ msgstr "Podrobný záznam událostí pro ladění"
 msgid "Version"
 msgstr "Verze"
 
-#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:177
+#: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/feeds.js:183
 msgid ""
 "With this editor you can upload your local custom feed file or fill up an "
 "initial one (a 1:1 copy of the version shipped with the package). The file "
@@ -1151,7 +1155,7 @@ msgstr "výstraha"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:631
 msgid "asterisk invalid account"
-msgstr ""
+msgstr "asterisk – neplatný účet"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/setreport.js:259
 msgid "auto-added IPs to allowlist"
@@ -1199,7 +1203,7 @@ msgstr "zahodit"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:627
 msgid "dropbear failed login"
-msgstr ""
+msgstr "dropbear – nepodařilo se přihlásit"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:581
 msgid "emerg"
@@ -1235,15 +1239,15 @@ msgstr "paměť"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:632
 msgid "nginx suspicious IP"
-msgstr ""
+msgstr "nginx – podezřelá IP"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:586
 msgid "notice"
-msgstr ""
+msgstr "upozornění"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:633
 msgid "openvpn TLS error"
-msgstr ""
+msgstr "openvpn – chyba TLS"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:468
 msgid "performance"
@@ -1255,11 +1259,11 @@ msgstr "odmítnout"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:630
 msgid "sshd closed connection"
-msgstr ""
+msgstr "sshd uzavřel spojení"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:629
 msgid "sshd failed login"
-msgstr ""
+msgstr "sshd nezdařené přihlášení"
 
 #: applications/luci-app-banip/htdocs/luci-static/resources/view/banip/overview.js:585
 msgid "warn"

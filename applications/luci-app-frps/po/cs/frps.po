@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-18 13:04+0000\n"
+"PO-Revision-Date: 2025-04-25 14:28+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsfrps/cs/>\n"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:35
 msgid "Disable log color"
-msgstr ""
+msgstr "Neobarvovat záznam událostí"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:35
 msgid ""
@@ -185,7 +185,7 @@ msgstr "Zaznamenávat nejvýše dnů"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:10
 msgid "Log stderr"
-msgstr ""
+msgstr "Zaznamenávat standardní chybový výstup"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:9
 msgid "Log stdout"
@@ -238,7 +238,7 @@ msgstr ""
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:23
 msgid "Proxy bind address"
-msgstr ""
+msgstr "Adresa na kterou navázat proxy"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:23
 msgid ""
@@ -252,7 +252,7 @@ msgstr "BĚŽÍCÍ"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:13
 msgid "Respawn when crashed"
-msgstr ""
+msgstr "V případě pádu spustit znovu"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:12
 msgid "Run daemon as group"
@@ -282,7 +282,7 @@ msgstr "Hostitel dílčí domény"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:38
 msgid "TCP mux"
-msgstr ""
+msgstr "TCP mux"
 
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:38
 msgid ""
@@ -348,4 +348,4 @@ msgstr ""
 #: applications/luci-app-frps/htdocs/luci-static/resources/view/frps.js:128
 #: applications/luci-app-frps/root/usr/share/luci/menu.d/luci-app-frps.json:3
 msgid "frp Server"
-msgstr ""
+msgstr "frp server"

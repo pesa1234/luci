@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2025-04-17 03:48+0000\n"
+"PO-Revision-Date: 2025-04-25 05:53+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsopenwisp/cs/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:97
 msgid "CA Path"
-msgstr ""
+msgstr "Popis umístění cert. autority"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:12
 msgid ""
@@ -42,15 +42,15 @@ msgstr "Časový limit spojení"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:49
 msgid "Consistent Key"
-msgstr ""
+msgstr "Konzistentní klíč"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:29
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:27
 msgid "Enable"
-msgstr ""
+msgstr "Povolit"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:28
 msgid "Enable or disable the OpenWISP service."
@@ -58,7 +58,7 @@ msgstr "Zapnout nebo vypnout službu OpenWISP."
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:30
 msgid "Enabled"
-msgstr ""
+msgstr "Povoleno"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:16
 msgid "General Settings"
@@ -66,7 +66,7 @@ msgstr ""
 
 #: applications/luci-app-openwisp/root/usr/share/rpcd/acl.d/luci-app-openwisp.json:3
 msgid "Grant access to luci-app-openwisp"
-msgstr ""
+msgstr "Udělit přístup k luci-app-openwisp"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:74
 msgid "Hardware ID Key"
@@ -95,11 +95,11 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:53
 msgid "MAC Interface"
-msgstr ""
+msgstr "MAC rozhraní"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:56
 msgid "Management Interface"
-msgstr ""
+msgstr "Správní rozhraní"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:92
 msgid "Max Time"
@@ -107,7 +107,7 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:60
 msgid "Merge Config"
-msgstr ""
+msgstr "Sloučit nastavení"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:11
 #: applications/luci-app-openwisp/root/usr/share/luci/menu.d/luci-app-openwisp.json:3
@@ -130,11 +130,11 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:107
 msgid "Post-reload Hook"
-msgstr ""
+msgstr "Háček po znovunačtení"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:103
 msgid "Pre-reload Hook"
-msgstr ""
+msgstr "Háček před znovunačtením"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:33
 msgid "Server URL"
@@ -150,11 +150,11 @@ msgstr "Štítky"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:64
 msgid "Tags applied to this device."
-msgstr ""
+msgstr "Štítky uplatněné na toto zařízení."
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:66
 msgid "Test Config"
-msgstr ""
+msgstr "Vyzkoušet nastavení"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:70
 msgid "Test Script"
@@ -162,7 +162,7 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:23
 msgid "The Key of this device in the OpenWISP server."
-msgstr ""
+msgstr "Klíč tohoto zařízení v OpenWISP serveru."
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:33
 msgid ""
@@ -171,11 +171,11 @@ msgstr "URL OpenWISP serveru. Příklad: https://openwisp2.mynetwork.com"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:20
 msgid "The UUID of this device in the OpenWISP server."
-msgstr ""
+msgstr "UUID tohoto zařízení v OpenWISP serveru."
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:53
 msgid "The interface to use for getting the MAC for this device."
-msgstr ""
+msgstr "Rozhraní které použít pro získání MAC pro toto zařízení."
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:56
 msgid "The interface to use for management and control."
@@ -198,6 +198,8 @@ msgid ""
 "Use a unique hardware ID for device identification, for example a serial "
 "number."
 msgstr ""
+"Použít pro identifikaci zařízení neopakující se identifikátor hardware, "
+"například sériové číslo."
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:100
 msgid ""
@@ -222,7 +224,7 @@ msgstr ""
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:45
 msgid "Verify SSL"
-msgstr ""
+msgstr "Ověřit SSL"
 
 #: applications/luci-app-openwisp/htdocs/luci-static/resources/view/openwisp.js:45
 msgid "Verify the server SSL certificate."

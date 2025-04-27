@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2025-04-19 11:06+0000\n"
+"PO-Revision-Date: 2025-04-25 05:53+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsupnp/cs/>\n"
@@ -167,7 +167,7 @@ msgstr "Nejvyšší umožněná rychlost stahování hlášení (v kB/s)"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:158
 msgid "Report maximum upload speed in kByte/s"
-msgstr ""
+msgstr "Hlásit nejvyšší rychlost odesílání v kBajtů/s"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:205
 msgid "Report system instead of service uptime"
@@ -195,11 +195,11 @@ msgstr "Nastavení služby"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:134
 msgid "Service Setup"
-msgstr "Obecná nastavení"
+msgstr "Nastavení služby"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:212
 msgid "Service lease file"
-msgstr ""
+msgstr "Soubor se zápůjčkami služby"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:138
 msgid "Start autonomous port mapping service"
@@ -207,7 +207,7 @@ msgstr "Spustit službu autonomního mapování portů"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:137
 msgid "Start service"
-msgstr ""
+msgstr "Spustit službu"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:88
 msgctxt ""
@@ -228,6 +228,8 @@ msgstr "Neexistují žádná aktivní přesměrování."
 msgid ""
 "To detect the public IPv4 address for unrestricted full-cone/one-to-one NATs"
 msgstr ""
+"Pro zjištění veřejné IPv4 adresy pro neomezené NAT překlady full-cone/one-to-"
+"one"
 
 #: applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json:3
 msgid "UPnP IGD & PCP"
@@ -245,7 +247,7 @@ msgstr "Povolit režim UPnP IGDv1"
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:62
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:113
 msgid "Unknown"
-msgstr "Neznámé"
+msgstr "Neznámý"
 
 #: applications/luci-app-upnp/htdocs/luci-static/resources/view/upnp/upnp.js:157
 msgid "Upload speed"
