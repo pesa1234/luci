@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-24 12:08+0000\n"
+"PO-Revision-Date: 2025-04-28 09:36+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationspbr/cs/>\n"
@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:240
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:358
@@ -64,6 +64,10 @@ msgid ""
 "have dev option other than tun* or tap* or specific use cases of WireGuard "
 "servers. See the %sREADME%s for details."
 msgstr ""
+"Umožňuje zadat seznam názvů rozhraní (malými písmeny) která mají být službou "
+"výslovně podporována. Může být užitečné pokud vaše OpenVPN tunely mají "
+"předvolbu zařízení jinou než tun* nebo tap* nebo specifické případy použití "
+"WireGuard serverů. Podrobnosti viz %sREADME%S."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:159
 msgid ""
@@ -72,6 +76,10 @@ msgid ""
 "WireGuard servers, which have a listen_port defined, are handled "
 "automatically, do not add those here.See the %sREADME%s for details."
 msgstr ""
+"Umožňuje zadat seznam rozhraní (malými písmeny), která mají být službou "
+"ignorována. Může se hodit pro OpenVPN server, provozovaný na zařízení s "
+"OpenWrt. WireGuard servery, které mají definován listen_port, jsou "
+"obslouženy automaticky – nepřidávejte je sem. Podrobnosti viz %sREADME%s."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:43
 msgid "Basic Configuration"
@@ -276,7 +284,7 @@ msgstr "Průnik se nezdařil pro IPv4 pro zásadu „%s“"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:382
 msgid "Insertion failed for both IPv4 and IPv6 for policy '%s'"
-msgstr ""
+msgstr "Vložení pro zásadu „%s“ se nezdařilo jak pro IPv4, tak pro IPv6"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:238
 msgid "Installed AdGuardHome (%s) doesn't support 'ipset_file' option."
@@ -365,6 +373,8 @@ msgstr "Před změnou této předvolby si prosím přečtěte %sREADME%s."
 msgid ""
 "Please set 'dhcp.%%s.force=1' to speed up service start-up %s(more info)%s"
 msgstr ""
+"Pro zrychlení spouštění služby nastavte„'dhcp.%%s.force=“' %s(další "
+"informace)%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:248
 msgid "Please unset 'chain' or set 'chain' to 'PREROUTING' for policy '%s'"

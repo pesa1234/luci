@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-25 05:53+0000\n"
+"PO-Revision-Date: 2025-04-30 12:19+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationskeepalived/cs/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:205
 msgid "2"
@@ -24,6 +24,9 @@ msgid ""
 "A VIP address migrates from one LVS router to the other during a failover, "
 "thus maintaining a presence at that IP address"
 msgstr ""
+"Virtuální IP adresa se stěhuje z jednoho LVS směrovače na jiný v průběhu "
+"převzetí služby v případě selhání a tím je přítomnost takové IP adresy "
+"zachována"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:46
 msgid "A server with a higher priority becomes a MASTER"
@@ -33,6 +36,8 @@ msgstr "Server s vyšší prioritou se stane HLAVNÍM"
 msgid ""
 "A virtual server is a service configured to listen on a specific virtual IP."
 msgstr ""
+"Virtuální server je služba nastavená tak, aby očekávala spojení na konkrétní "
+"virtuální IP adrese."
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:210
 msgid "Accept"
@@ -52,6 +57,8 @@ msgid ""
 "Additional files to synchronize, By default it synchronizes sysupgrade "
 "backup files"
 msgstr ""
+"Další soubory k synchronizaci – ve výchozím stavu toto synchronizuje soubory "
+"se zálohou z sysupgrade"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:29
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:34
@@ -66,7 +73,7 @@ msgstr "Adresa serveru"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:72
 msgid "Addresses add|del on change to MASTER, to BACKUP."
-msgstr ""
+msgstr "Přidání|smazání adresy při změně na HLAVNÍ, na ZÁLOŽNÍ."
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:19
 msgid ""
@@ -92,6 +99,8 @@ msgid ""
 "Allows the lower priority machine to maintain the master role, even when a "
 "higher priority machine comes back online."
 msgstr ""
+"Umožňuje stroji, který má nižší prioritu, ponechat si roli hlavního, i když "
+"se navrátí do provozu stroj, který má vyšší prioritu."
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:25
 msgid "As soon as the other machine(s) come up, an election will be held."
@@ -143,7 +152,7 @@ msgstr "Ladící stupeň podrobností"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:87
 msgid "Default IP for binding vrrpd is the primary IP on interface"
-msgstr ""
+msgstr "Výchozí IP adresa na kterou navázat vrrpd je hlavní IP adresa rozhraní"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:292
 msgid ""
@@ -160,7 +169,7 @@ msgstr "Smyčka prodlevy"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:59
 msgid "Delay in seconds before VRRP instances start up after"
-msgstr ""
+msgstr "Prodleva (v sekundách) po až které bude VRRP instance spuštěna"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:36
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:28
@@ -223,6 +232,7 @@ msgstr "E-mailové upozornění"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:31
 msgid "Email to use when processing “MAIL FROM:” SMTP command"
 msgstr ""
+"E-mailová adresa kterou použít při zpracovávání SMTP příkazu “MAIL FROM:”"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:30
 msgid "Enable"
@@ -312,7 +322,7 @@ msgstr "Globální"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:267
 msgid "Go to FAULT state if any of these go down"
-msgstr ""
+msgstr "Pokud jakékoli z tohoto spadne, přejít do stavu PORUCHA"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:276
 msgid "Go to FAULT state if any of these go down, if unweighted"
@@ -373,7 +383,7 @@ msgstr "IP adresa"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:62
 msgid "IP Addresses must be configured for Static IP List"
-msgstr ""
+msgstr "Je třeba, aby pro seznam statických byly nastaveny IP adresy"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:117
 msgid "IPSec"
@@ -384,11 +394,15 @@ msgid ""
 "If peer is backup node, Current system should be sender, If peer is master "
 "current system should be receiver"
 msgstr ""
+"Pokud je protějšek záložní uzel, stávající systém by měl být odesilatelem. "
+"Pokud je protějšek hlavním, stávající systém by měl být příjemcem"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:60
 msgid ""
 "If peer runs on non standard ssh port, change to correct ssh port number"
 msgstr ""
+"Pokud protějšek je spuštěný na nestandardním ssh portu, změňte zde na "
+"potřebné číslo ssh portu"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:73
 msgid ""
@@ -522,7 +536,7 @@ msgstr "Skupina vícesměrového vysílání kterou použít pro IPv4 VRRP inzer
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:53
 msgid "Multicast Group to use for IPv6 VRRP adverts"
-msgstr ""
+msgstr "Skupina vícesměrového vysílání kterou používat pro IPv6 VRRP propagace"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:108
 msgid "Multicast Source IP"
@@ -577,7 +591,7 @@ msgstr "Heslo"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:120
 msgid "Password for accessing vrrpd, should be the same on all machines"
-msgstr ""
+msgstr "Heslo pro přístup k vrrpd – mělo by být stejné na všech strojích"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:69
 msgid "Path of the script to execute"
@@ -606,6 +620,8 @@ msgid ""
 "Peers can be referenced into Instances cluster and data/config "
 "synchronization"
 msgstr ""
+"Na protějšky je možné se odkazovat jako klastr instancí a synchronizaci dat/"
+"nastavení"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:93
 msgid "Persist Granularity"
@@ -620,6 +636,8 @@ msgid ""
 "Poll to detect media link failure using ETHTOOL, MII or ioctl interface "
 "otherwise uses netlink interface"
 msgstr ""
+"Dotazovat se ohledně zjišťování selhání linky pomocí ETHTOOL, MII nebo ioctl "
+"rozhraní – v opačném případě použije netlink rozhraní"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:44
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:146
@@ -676,12 +694,12 @@ msgstr "Relativní váha, kterou použít"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:92
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:116
 msgid "Required number of successes for KO transition"
-msgstr ""
+msgstr "Potřebný počet úspěchů pro přechod z KO"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:87
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:110
 msgid "Required number of successes for OK transition"
-msgstr ""
+msgstr "Potřebný počet úspěchů pro přechod do OK"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:189
 msgid "Retry"
@@ -719,7 +737,7 @@ msgstr "Trasy"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:258
 msgid "Routes add|del when changing to MASTER, to BACKUP"
-msgstr ""
+msgstr "Přidání|smazání tras při změně na HLAVNÍ, na ZÁLOŽNÍ"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:68
 msgid "Routes must be configured for Static Routes"
@@ -781,7 +799,7 @@ msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:185
 msgid "Send/Recv VRRP messages from base interface instead of VMAC interface"
-msgstr ""
+msgstr "Odesílat/přijímat VRRP zprávy z podkladového namísto VMAC rozhraní"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:54
 msgid "Sender"
@@ -789,7 +807,7 @@ msgstr "Odesilatel"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:67
 msgid "Sender will send files to this location of receiver."
-msgstr ""
+msgstr "Odesilatel bude posílat soubory do tohoto umístění na příjemci."
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:45
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:147
@@ -886,7 +904,7 @@ msgstr "Cíl"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:26
 msgid "The machine with the highest \"priority\" will become MASTER."
-msgstr ""
+msgstr "Stroj s vyšší „priority“ se stane HLAVNÍM."
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_sync_group.js:27
 msgid ""
@@ -915,7 +933,7 @@ msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:216
 msgid "Time in seconds to delay preempting compared"
-msgstr ""
+msgstr "Doba (v sekundách) o kterou odložit předporovnání"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:41
 msgid "Timeout in seconds for SMTP stream processing"
@@ -930,6 +948,8 @@ msgid ""
 "To decrease the number of packets sent in adverts, you can exclude most IPs "
 "from adverts."
 msgstr ""
+"Pro snížení počtu paketů, posílaných v propagacích, je možné z propagací "
+"vynechat většinu IP adres."
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/track_interface.js:13
 msgid "Track Interface"
@@ -954,7 +974,7 @@ msgstr "Sledování"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:24
 msgid "Tracking scripts would be referenced from VRRP instances"
-msgstr ""
+msgstr "Sledovací skripty by byly odkazovány z VRRP instancí"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/url.js:20
 msgid "URL Path"
@@ -1042,6 +1062,7 @@ msgstr "VRRP skript"
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:20
 msgid "VRRP Scripts must be configured for Track Scripts"
 msgstr ""
+"Aby bylo možné používat sledovací skripty, je třeba nastavit VRRP skripty"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:58
 msgid "VRRP Startup Delay"

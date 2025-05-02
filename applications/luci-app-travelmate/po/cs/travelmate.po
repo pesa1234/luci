@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-25 14:28+0000\n"
+"PO-Revision-Date: 2025-04-30 12:19+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationstravelmate/cs/>\n"
@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:76
 msgid "-- AP Selection --"
@@ -49,7 +49,7 @@ msgstr "Ověřování se"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:539
 msgid "Auto Added Open Uplink"
-msgstr ""
+msgstr "Automaticky přidaný otevřený uplink"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:617
 msgid "Auto Login Script"
@@ -57,19 +57,24 @@ msgstr ""
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:352
 msgid "AutoAdd Open Uplinks"
-msgstr ""
+msgstr "Automaticky přidávat otevřené uplinky"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:600
 msgid ""
 "Automatically (re-)enable the uplink after <em>n</em> minutes, e.g. after "
 "failed login attempts.<br /> The default of '0' disables this feature."
 msgstr ""
+"Automaticky (znovu)povolit uplink po <em>n</em> minutách, např. po "
+"nezdařených pokusech o přihlášení.<br /> Výchozí „0“ (nula) tuto funkci "
+"vypíná."
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:352
 msgid ""
 "Automatically add open uplinks like hotel captive portals to your wireless "
 "config."
 msgstr ""
+"Automaticky přidávat otevřené uplinky jako hotelové zachycovací portály do "
+"vašeho nastavení bezdrátového."
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:582
 msgid ""
@@ -278,6 +283,8 @@ msgstr "Obecná nastavení"
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:348
 msgid "Generate a random unicast MAC address for each uplink connection."
 msgstr ""
+"Pro každé odchozí rozhraní vytvořit náhodnou MAC adresu jednosměrového "
+"vysílání."
 
 #: applications/luci-app-travelmate/root/usr/share/rpcd/acl.d/luci-app-travelmate.json:3
 msgid "Grant access to LuCI app travelmate"
@@ -286,7 +293,7 @@ msgstr "Udělit přístup k LuCI aplikaci travelmate"
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:380
 msgid ""
 "How long should travelmate wait for a successful wlan uplink connection."
-msgstr ""
+msgstr "Jak dlouho má travelmate čekat na úspěšné odchozí wlan spojení."
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:435
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:991
@@ -465,6 +472,8 @@ msgid ""
 "Proactively scan and switch to a higher prioritized uplink, despite of an "
 "already existing connection."
 msgstr ""
+"Proaktivně skenovat a přepínat na uplinky s vyšší prioritou, nezávisle na už "
+"existujícím spojení."
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:438
 msgid "Profile used by 'msmtp' for travelmate notification E-Mails."
@@ -522,7 +531,7 @@ msgstr "Omezit travelmate na jediné rádio nebo změnit celkové pořadí skeno
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:370
 msgid "Retry limit to connect to an uplink."
-msgstr ""
+msgstr "Limit počtu opakovaných pokusů pro připojení k uplink."
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:246
 msgid "Run Flags"
