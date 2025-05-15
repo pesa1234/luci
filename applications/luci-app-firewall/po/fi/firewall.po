@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-30 17:00+0200\n"
-"PO-Revision-Date: 2025-04-30 09:26+0000\n"
+"PO-Revision-Date: 2025-05-04 15:03+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsfirewall/fi/>\n"
@@ -308,7 +308,7 @@ msgstr "DSCP-merkki vaaditaan"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:397
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:270
 msgid "Destination address"
-msgstr "Kohdeosoite"
+msgstr "Määränpään osoite"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/rules.js:399
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:278
@@ -974,7 +974,7 @@ msgstr "Rajoita naamiointi tiettyihin kohdeverkkoihin"
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:216
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js:255
 msgid "Restrict to address family"
-msgstr "Rajoita tietyille osoitteille"
+msgstr "Rajoita osoiteperheelle"
 
 #: applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/snats.js:297
 msgid "Rewrite IP address"
@@ -1579,48 +1579,3 @@ msgstr ""
 #: applications/luci-app-firewall/htdocs/luci-static/resources/tools/firewall.js:339
 msgid "valid firewall mark"
 msgstr "kelvollinen palomuurimerkintä"
-
-#~ msgid "Enable logging on this zone"
-#~ msgstr "Ota kirjaaminen käyttöön tällä vyöhykkeellä"
-
-#~ msgid "ipv4"
-#~ msgstr "ipv4"
-
-#~ msgid "Software based offloading for routing/NAT"
-#~ msgstr "Ohjelmistopohjainen reititys/NAT"
-
-#~ msgid ""
-#~ "Forwarded IPv4%{proto?, protocol %{proto#%{next?, }<var>%{item.name}</"
-#~ "var>}}%{mark?, mark <var%{mark.inv? data-tooltip=\"Match fwmarks except %"
-#~ "{mark.num}%{mark.mask? with mask %{mark.mask}}.\":%{mark.mask? data-"
-#~ "tooltip=\"Mask fwmark value with %{mark.mask} before compare.\"}}>%"
-#~ "{mark.val}</var>}"
-#~ msgstr ""
-#~ "Välitetty IPv4%{proto?, protokolla %{proto#%{next?, }<var>%{item.name}</"
-#~ "var>}}%{mark?, mark <var%{mark.inv? data-tooltip=\"Vastaa muita merkitöjä "
-#~ "%{mark.num}%{mark.mask? maski %{mark.mask}}.\":%{mark.mask? data-"
-#~ "tooltip=\"Maskaa merkintä %{mark.mask} enne vertailua.\"}}>%{mark.val}</"
-#~ "var>}"
-
-#~ msgid ""
-#~ "Incoming IPv4%{proto?, protocol %{proto#%{next?, }%{item.types?<var "
-#~ "class=\"cbi-tooltip-container\">%{item.name}<span class=\"cbi-"
-#~ "tooltip\">ICMP with types %{item.types#%{next?, }<var>%{item}</var>}</"
-#~ "span></var>:<var>%{item.name}</var>}}}%{mark?, mark <var%{mark.inv? data-"
-#~ "tooltip=\"Match fwmarks except %{mark.num}%{mark.mask? with mask %"
-#~ "{mark.mask}}.\":%{mark.mask? data-tooltip=\"Mask fwmark value with %"
-#~ "{mark.mask} before compare.\"}}>%{mark.val}</var>}%{helper?, helper %"
-#~ "{helper.inv?<var data-tooltip=\"Match any helper except &quot;%"
-#~ "{helper.name}&quot;\">%{helper.val}</var>:<var data-tooltip=\"%"
-#~ "{helper.name}\">%{helper.val}</var>}}"
-#~ msgstr ""
-#~ "Saapuva IPv4%{proto?, protokolla %{proto#%{next?, }%{item.types?<var "
-#~ "class=\"cbi-tooltip-container\">%{item.name}<span class=\"cbi-"
-#~ "tooltip\">ICMP tyypit %{item.types#%{next?, }<var>%{item}</var>}</span></"
-#~ "var>:<var>%{item.name}</var>}}}%{mark?, mark <var%{mark.inv? data-"
-#~ "tooltip=\"Vastaa muita merkejä paitsi %{mark.num}%{mark.mask? maskilla %"
-#~ "{mark.mask}}.\":%{mark.mask? data-tooltip=\"Maskaa merkkin arvolla %"
-#~ "{mark.mask} before compare.\"}}>%{mark.val}</var>}%{helper?, helper %"
-#~ "{helper.inv?<var data-tooltip=\"Vastaa muita avustajia paitsi &quot;%"
-#~ "{helper.name}&quot;\">%{helper.val}</var>:<var data-tooltip=\"%"
-#~ "{helper.name}\">%{helper.val}</var>}}"

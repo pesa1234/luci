@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-04-30 09:26+0000\n"
+"PO-Revision-Date: 2025-05-03 17:07+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationspbr/fi/>\n"
@@ -274,7 +274,7 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:330
 msgid "Interface"
-msgstr "Sovitin"
+msgstr "Liitäntä"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:353
 msgid "Interface '%s' has no assigned DNS"
@@ -592,8 +592,8 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:333
 msgid ""
-"The %s interface not found, you need to set the 'pbr.config."
-"procd_wan_interface' option"
+"The %s interface not found, you need to set the "
+"'pbr.config.procd_wan_interface' option"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:96
@@ -709,18 +709,3 @@ msgstr ""
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:48
 msgid "unknown"
 msgstr ""
-
-#~ msgid "Comment"
-#~ msgstr "Kommentti"
-
-#~ msgid "Configuration"
-#~ msgstr "Kokoonpano"
-
-#~ msgid "Loading"
-#~ msgstr "Ladataan"
-
-#~ msgid "Stopped"
-#~ msgstr "Pysäytetty"
-
-#~ msgid "VPN"
-#~ msgstr "VPN"

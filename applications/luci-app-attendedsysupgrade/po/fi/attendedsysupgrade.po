@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-31 22:28+0000\n"
+"PO-Revision-Date: 2025-05-04 15:03+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsattendedsysupgrade/fi/>\n"
@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/status/include/11_upgrades.js:50
 msgid "A new %s version of OpenWrt is available:"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/status/include/11_upgrades.js:37
 msgid "Available"
-msgstr ""
+msgstr "Saatavilla"
 
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/attendedsysupgrade/overview.js:557
 msgid "Board Name / Profile"
@@ -354,24 +354,3 @@ msgstr ""
 #: applications/luci-app-attendedsysupgrade/htdocs/luci-static/resources/view/status/include/11_upgrades.js:56
 msgid "release notes"
 msgstr ""
-
-#~ msgid "10% Received build request"
-#~ msgstr "10 % Vastaanotettu koostamispyyntö"
-
-#~ msgid "20% Downloading ImageBuilder archive"
-#~ msgstr "20 % Ladataan ImageBuilder-arkistoa"
-
-#~ msgid "40% Setting Up ImageBuilder"
-#~ msgstr "40 % Määritetään ImageBuilder"
-
-#~ msgid "60% Validate package selection"
-#~ msgstr "60 % Varmistetaan pakettivalikoima"
-
-#~ msgid "80% Generating firmware image"
-#~ msgstr "80 % Luodaan laiteohjelmiston levykuva"
-
-#~ msgid "Progress: %s"
-#~ msgstr "Edistyminen: %s"
-
-#~ msgid "attended sysupgrade via rpcd and luci"
-#~ msgstr "järjestelmän valvottu päivitys rcpd:n ja luci:n kautta"

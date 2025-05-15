@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-10 03:40+0200\n"
-"PO-Revision-Date: 2024-11-09 08:59+0000\n"
-"Last-Translator: Mac Mac <nofxmac@gmail.com>\n"
+"PO-Revision-Date: 2025-05-03 17:07+0000\n"
+"Last-Translator: george kitsoukakis <norhorn@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openwrt/luci/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1277
 msgid "!known (not known)"
@@ -1328,7 +1328,7 @@ msgstr ""
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:56
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:69
 msgid "Automatic"
-msgstr ""
+msgstr "Αυτόματο"
 
 #: modules/luci-compat/luasrc/model/network/proto_hnet.lua:7
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:7
@@ -1443,7 +1443,7 @@ msgstr "Λίστα αρχείων για αντίγραφο ασφαλείας"
 #: modules/luci-compat/luasrc/view/cbi/wireless_modefreq.htm:186
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:532
 msgid "Band"
-msgstr ""
+msgstr "Μπάντα"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:735
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/bandwidth.js:314
@@ -1625,7 +1625,7 @@ msgstr ""
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3013
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:4434
 msgid "Browse…"
-msgstr ""
+msgstr "Πρόγραμμα περιήγησης…"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/20_memory.js:40
 msgid "Buffered"
@@ -1743,7 +1743,7 @@ msgstr ""
 
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:17
 msgid "Category"
-msgstr ""
+msgstr "Κατηγορία"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:114
 msgid "Cell ID"
@@ -1934,7 +1934,7 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:173
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:179
 msgid "Close"
-msgstr ""
+msgstr "Κλείσιμο"
 
 #: protocols/luci-proto-3g/htdocs/luci-static/resources/protocol/3g.js:156
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/ppp.js:128
@@ -2131,7 +2131,7 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:132
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:271
 msgid "Continue"
-msgstr ""
+msgstr "Συνέχεια"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:98
 msgctxt "nft jump action"
@@ -2243,15 +2243,15 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1579
 msgid "DAE-Client"
-msgstr ""
+msgstr "Πελάτης-DAE"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1584
 msgid "DAE-Port"
-msgstr ""
+msgstr "Θύρα-DAE"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1590
 msgid "DAE-Secret"
-msgstr ""
+msgstr "Μυστικό-DAE"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:900
 msgid "DHCP Options"
@@ -2294,7 +2294,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:914
 msgid "DHCPv6-Service"
-msgstr ""
+msgstr "Υπηρεσία-DHCPv6"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:40
 msgid "DNS"
@@ -2349,7 +2349,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:391
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:718
 msgid "DNSSEC"
-msgstr ""
+msgstr "DNSSEC"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:723
 msgid "DNSSEC check unsigned"
@@ -2511,7 +2511,7 @@ msgstr "Περιγραφή"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3066
 msgid "Deselect"
-msgstr ""
+msgstr "Αποεπιλογή"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:237
 msgid "Design"
@@ -2727,7 +2727,7 @@ msgstr "Αγνόησε τις απαντήσεις ανοδικής ροής {rf
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:357
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:372
 msgid "Disconnect"
-msgstr ""
+msgstr "Αποσύνδεση"
 
 #: modules/luci-compat/luasrc/model/network/proto_ncm.lua:64
 msgid "Disconnection attempt failed"
@@ -2876,7 +2876,7 @@ msgstr ""
 
 #: modules/luci-compat/luasrc/view/cbi/tblsection.htm:152
 msgid "Down"
-msgstr ""
+msgstr "Κάτω"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3070
 msgid "Download"
@@ -3560,7 +3560,7 @@ msgstr ""
 
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:19
 msgid "External"
-msgstr ""
+msgstr "Εξωτερικό"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1711
 msgid "External R0 Key Holder List"
@@ -3711,7 +3711,7 @@ msgstr "τοπικό αρχείο <abbr title=\"Domain Name System\">DNS</abbr>"
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3014
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:882
 msgid "Filename"
-msgstr ""
+msgstr "Όνομα αρχείου"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:867
 msgid "Filename of the boot image advertised to clients."
@@ -4292,7 +4292,7 @@ msgstr ""
 
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:22
 msgid "Guest"
-msgstr ""
+msgstr "Επισκέπτης"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:81
 msgid "HE.net password"
@@ -4631,7 +4631,7 @@ msgstr ""
 
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:88
 msgid "IPv4+IPv6"
-msgstr ""
+msgstr "IPv4+IPv6"
 
 #: modules/luci-compat/luasrc/model/network/proto_ipip.lua:9
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:10
@@ -4777,7 +4777,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:90
 msgid "IPv6-PD"
-msgstr ""
+msgstr "IPv6-PD"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1263
 msgid "IPv6-Suffix (hex)"
@@ -4921,7 +4921,7 @@ msgstr ""
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:449
 msgid "Image"
-msgstr ""
+msgstr "Εικόνα"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:275
 msgid "Image check failed:"
@@ -4992,7 +4992,7 @@ msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/bandwidth.js:267
 msgid "Inbound:"
-msgstr ""
+msgstr "Εισερχόμενο:"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:264
 msgid ""
@@ -5040,7 +5040,7 @@ msgstr "Πληροφορίες"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:91
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:92
 msgid "Information"
-msgstr ""
+msgstr "Πληροφορίες"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:573
 msgid "Ingress QoS mapping"
@@ -5224,7 +5224,7 @@ msgstr "Διεπαφές"
 
 #: protocols/luci-proto-hnet/htdocs/luci-static/resources/protocol/hnet.js:20
 msgid "Internal"
-msgstr ""
+msgstr "Εσωτερικό"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:85
 msgid "International Mobile Station Equipment Identity"
@@ -5477,7 +5477,7 @@ msgstr ""
 #: modules/luci-compat/luasrc/model/network/proto_ppp.lua:21
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:10
 msgid "L2TP"
-msgstr ""
+msgstr "L2TP"
 
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/l2tp.js:40
 msgid "L2TP Server"
@@ -6478,7 +6478,7 @@ msgstr ""
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:2572
 msgid "More…"
-msgstr ""
+msgstr "Περισσότερα…"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:192
 msgid "Mount Point"
@@ -6798,7 +6798,7 @@ msgstr "Επόμενο »"
 
 #: modules/luci-base/htdocs/luci-static/resources/form.js:4249
 msgid "No"
-msgstr ""
+msgstr "Όχι"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:635
 msgid "No DHCP Server configured for this interface"
@@ -7075,7 +7075,7 @@ msgstr "Επισήμανση"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js:135
 msgid "Nslookup"
-msgstr ""
+msgstr "Nslookup"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:835
 msgid "Number of cached DNS entries, 10000 is maximum, 0 is no caching."
@@ -7279,7 +7279,7 @@ msgstr "Η επιλογή αφαιρέθηκε"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1547
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1888
 msgid "Optional"
-msgstr ""
+msgstr "Προαιρετικό"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1177
 msgid "Optional hostname to assign"
@@ -7404,7 +7404,7 @@ msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/connections.js:367
 msgid "Other:"
-msgstr ""
+msgstr "Άλλο:"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:69
 msgid "Out"
@@ -7738,7 +7738,7 @@ msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:151
 msgid "Password2"
-msgstr ""
+msgstr "Password2"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/sshkeys.js:266
 msgid "Paste or drag SSH key file…"
@@ -7901,7 +7901,7 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js:88
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js:98
 msgid "Ping"
-msgstr ""
+msgstr "Ping"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:49
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:50
@@ -8186,7 +8186,7 @@ msgstr ""
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:147
 msgid "Quality"
-msgstr ""
+msgstr "Ποιότητα"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:181
 msgid ""
@@ -12465,586 +12465,3 @@ msgstr ""
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Πίσω"
-
-#~ msgid "Start"
-#~ msgstr "Αρχή"
-
-#~ msgid "ARP"
-#~ msgstr "ARP"
-
-#~ msgid "ARP IP Targets"
-#~ msgstr "Στόχοι IP ARP"
-
-#~ msgid "ARP Interval"
-#~ msgstr "Διάστημα ARP"
-
-#~ msgid "ARP Validation"
-#~ msgstr "Επικύρωση ARP"
-
-#~ msgid "ARP mode to consider a slave as being up"
-#~ msgstr "Λειτουργία ARP για να θεωρηθεί ένας πελάτης ως ανερχόμενος"
-
-#~ msgid "ARP monitoring is not supported for the selected policy!"
-#~ msgstr "Η παρακολούθηση ARP δεν υποστηρίζεται για την επιλεγμένη πολιτική!"
-
-#~ msgid "Active-Backup policy (active-backup, 1)"
-#~ msgstr "Πολιτική Active-Backup (ενεργό αντίγραφο ασφαλείας, 1)"
-
-#~ msgid "Adaptive load balancing (balance-alb, 6)"
-#~ msgstr "Προσαρμοστική εξισορρόπηση φορτίου (balance-alb, 6)"
-
-#~ msgid "Adaptive transmit load balancing (balance-tlb, 5)"
-#~ msgstr "Προσαρμοστική εξισορρόπηση φορτίου μετάδοσης (balance-tlb, 5)"
-
-#~ msgid "Aggregation Selection Logic"
-#~ msgstr "Λογική Επιλογής Συνάθροισης"
-
-#~ msgid "Aggregator: All slaves down or has no slaves (stable, 0)"
-#~ msgstr "Aggregator: Όλοι οι πελάτες κάτω ή δεν υπάρχουν (stable, 0)"
-
-#~ msgid ""
-#~ "Aggregator: Chosen by the largest number of ports + slave added/removed "
-#~ "or state changes (count, 2)"
-#~ msgstr ""
-#~ "Aggregator: Επιλέγεται από τον μεγαλύτερο αριθμό θυρών + πελάτες που "
-#~ "προστέθηκαν/αφαιρέθηκαν ή αλλαγές κατάστασης (count, 2)"
-
-#~ msgid "Aggregator: Slave added/removed or state changes (bandwidth, 1)"
-#~ msgstr ""
-#~ "Aggregator: Προστέθηκε/αφαιρέθηκε πελάτης ή αλλαγές κατάστασης "
-#~ "(bandwidth, 1)"
-
-#~ msgid "Back"
-#~ msgstr "Πίσω"
-
-#~ msgid "Apply and keep settings"
-#~ msgstr "Εφαρμογή και διατήρηση ρυθμίσεων"
-
-#~ msgid "Run a filesystem check before mounting the device"
-#~ msgstr "Εκτέλεση ελέγχου του συστήματος αρχείων πριν προσαρτηθεί η συσκευή"
-
-#~ msgid "Run filesystem check"
-#~ msgstr "Εκτέλεση ελέγχου συστήματος αρχείων"
-
-#~ msgid "Always send DHCP Options. Sometimes needed, with e.g. PXELinux."
-#~ msgstr ""
-#~ "Να στέλνετε πάντα τις Επιλογές DHCP. Μερικές φορές χρειάζεται, με π.χ. "
-#~ "PXELinux."
-
-#~ msgid "Apply DHCP Options to this net. (Empty = all clients)."
-#~ msgstr ""
-#~ "Εφαρμόστε τις επιλογές DHCP σε αυτό το δίκτυο. (Άδειο = όλοι οι πελάτες)."
-
-#~ msgid "Resolv and Hosts Files"
-#~ msgstr "Αρχεία Resolv και Hosts"
-
-#~ msgid "Upstream resolvers will be queried in the order of the resolv file."
-#~ msgstr ""
-#~ "Οι <abbr title=\"Σύστημα Ονόματος Τομέα\">DNS</abbr> εξυπηρετητές θα "
-#~ "ερωτηθούν με την σειρά εμφάνισης στο αρχείο resolvfile"
-
-#~ msgid "Do not forward DNS queries without dots or domain parts."
-#~ msgstr ""
-#~ "Να μην προωθούνται ερωτήματα <abbr title=\"Domain Name System\">DNS</"
-#~ "abbr> χωρίς όνομα τομέα <abbr title=\"Domain Name System\">DNS</abbr>"
-
-#~ msgid "Ignore <code>/etc/hosts</code>"
-#~ msgstr "Αγνόησε <code>/etc/hosts</code>"
-
-#~ msgid "Local server"
-#~ msgstr "Τοπικός εξυπηρετητής"
-
-#~ msgid ""
-#~ "<code>/#/</code> matches any domain. <code>/example.com/</code> returns "
-#~ "NXDOMAIN."
-#~ msgstr ""
-#~ "<code>/#/</code> ταιριάζει σε οποιονδήποτε τομέα. <code>/example.com/</"
-#~ "code> επιστρέφει το NXDOMAIN."
-
-#~ msgid "Distance to farthest network member in meters."
-#~ msgstr "Απόσταση σε μέτρα από το πιο απομακρυσμένο μέλος του δικτύου."
-
-#~ msgid "Annex A + L + M (all)"
-#~ msgstr "Annex A + L + M (όλα)"
-
-#~ msgid "Annex A G.992.1"
-#~ msgstr "Annex A G.992.1"
-
-#~ msgid "Annex A G.992.2"
-#~ msgstr "Annex A G.992.2"
-
-#~ msgid "Annex A G.992.3"
-#~ msgstr "Annex A G.992.3"
-
-#~ msgid "Annex A G.992.5"
-#~ msgstr "Annex A G.992.5"
-
-#~ msgid "Annex B (all)"
-#~ msgstr "Annex B (όλα)"
-
-#~ msgid "Annex B G.992.1"
-#~ msgstr "Annex B G.992.1"
-
-#~ msgid "Annex B G.992.3"
-#~ msgstr "Annex B G.992.3"
-
-#~ msgid "Annex B G.992.5"
-#~ msgstr "Annex B G.992.5"
-
-#~ msgid "Annex J (all)"
-#~ msgstr "Annex J (όλα)"
-
-#~ msgid "Annex L G.992.3 POTS 1"
-#~ msgstr "Annex L G.992.3 POTS 1"
-
-#~ msgid "Annex M (all)"
-#~ msgstr "Annex M (όλα)"
-
-#~ msgid "Annex M G.992.3"
-#~ msgstr "Annex M G.992.3"
-
-#~ msgid "Annex M G.992.5"
-#~ msgstr "Annex M G.992.5"
-
-#~ msgid "ATU-C System Vendor ID"
-#~ msgstr "Αναγνωριστικό προμηθευτή συστήματος ATU-C"
-
-#~ msgid "Aggregate Transmit Power (ACTATP)"
-#~ msgstr "Συνολική ισχύς μετάδοσης (ACTATP)"
-
-#~ msgid "Filter useless"
-#~ msgstr "Φιλτράρισμα άχρηστων"
-
-#~ msgid "Network Utilities"
-#~ msgstr "Εργαλεία Δικτύου"
-
-#~ msgid "Back to configuration"
-#~ msgstr "Πίσω προς παραμετροποίηση"
-
-#~ msgid "Close list..."
-#~ msgstr "Κλείσιμο λίστας..."
-
-#~ msgid "No files found"
-#~ msgstr "Δε βρέθηκαν αρχεία"
-
-#~ msgid "Do not forward queries that cannot be answered by public resolvers."
-#~ msgstr ""
-#~ "Να μην προωθούνται αιτήματα τα οποία δεν μπορούν να απαντηθούν από "
-#~ "δημόσιους εξυπηρετητές ονομάτων"
-
-#~ msgid "Default %d"
-#~ msgstr "Προεπιλογή %d"
-
-#~ msgid "Root directory for files served via TFTP."
-#~ msgstr "Κατάλογος Root για αρχεία που σερβίρονται μέσω TFTP"
-
-#~ msgid "TFTP Settings"
-#~ msgstr "Ρυθμίσεις TFTP"
-
-#~ msgid "Auto Refresh"
-#~ msgstr "Αυτόματη Ανανέωση"
-
-#~ msgid "on"
-#~ msgstr "ανοιχτό"
-
-#~ msgid "Host entries"
-#~ msgstr "Καταχωρήσεις Υπολογιστών"
-
-#~ msgid "Announced DNS servers"
-#~ msgstr "Ενεργοί διακομιστές DNS"
-
-#~ msgid "Bridge interfaces"
-#~ msgstr "Γεφύρωμα διεπαφών"
-
-#, fuzzy
-#~ msgid "Creates a bridge over specified interface(s)"
-#~ msgstr "δημιουργεί μία γέφυρα μεταξύ των ορισμένων διεπαφών"
-
-#~ msgid "Enable/Disable"
-#~ msgstr "Ενεργοποίηση/Απενεργοποίηση"
-
-#~ msgid "USB Device"
-#~ msgstr "Συσκευή USB"
-
-#~ msgid "Define a name for this network."
-#~ msgstr "Ορίστε ένα όνομα για αυτό το δίκτυο."
-
-#, fuzzy
-#~ msgid "Bad address specified!"
-#~ msgstr "Μη έγκυρη διεύθυνση!"
-
-#~ msgid "Loading"
-#~ msgstr "Φόρτωση"
-
-#~ msgid "Realtime Connections"
-#~ msgstr "Συνδέσεις πραγματικού χρόνου"
-
-#~ msgid "Realtime Traffic"
-#~ msgstr "Κίνηση πραγματικού χρόνου"
-
-#~ msgid "There are no active leases."
-#~ msgstr "Δεν υπάρχουν ενεργά leases."
-
-#~ msgid ""
-#~ "This page gives an overview over currently active network connections."
-#~ msgstr ""
-#~ "Αυτή η σελίδα δίνει μία εικόνα για τις τρέχουσες ενεργές συνδέσεις "
-#~ "δικτύου."
-
-#~ msgid "Changes applied."
-#~ msgstr "Αλλαγές εφαρμόστηκαν."
-
-#~ msgid "Keep settings"
-#~ msgstr "Διατήρηση ρυθμίσεων"
-
-#~ msgid "Rebooting..."
-#~ msgstr "Επανεκκίνηση..."
-
-#~ msgid "(%s available)"
-#~ msgstr "(%s διαθέσιμα)"
-
-#~ msgid "Check"
-#~ msgstr "Έλεγχος"
-
-#~ msgid "Checksum"
-#~ msgstr "Άθροισμα Ελέγχου"
-
-#~ msgid "Enable this mount"
-#~ msgstr "Ενεργοποίηση αυτής της προσάρτησης"
-
-#~ msgid "Enable this swap"
-#~ msgstr "Ενεργοποίηση αυτής της swap"
-
-#~ msgid "Flash Firmware"
-#~ msgstr "Φλασάρισμα Firmware"
-
-#~ msgid "Flashing..."
-#~ msgstr "Φλασάρεται..."
-
-#, fuzzy
-#~ msgid "Mount Entry"
-#~ msgstr "Προσάρτηση"
-
-#~ msgid "Proceed"
-#~ msgstr "Συνέχεια"
-
-#~ msgid "Really reset all changes?"
-#~ msgstr "Αρχικοποίηση όλων των αλλαγών;"
-
-#~ msgid "Root"
-#~ msgstr "Root"
-
-#~ msgid ""
-#~ "The filesystem that was used to format the memory (<abbr title=\"for "
-#~ "example\">e.g.</abbr> <samp><abbr title=\"Third Extended "
-#~ "Filesystem\">ext3</abbr></samp>)"
-#~ msgstr ""
-#~ "Το σύστημα αρχείων που χρησιμοποιήθηκε για διαμόρφωση (<abbr "
-#~ "title=\"παραδείγματος χάρην\">π.χ.</abbr> <samp><abbr title=\"Third "
-#~ "Extended Filesystem\">ext3</abbr></samp>)"
-
-#, fuzzy
-#~ msgid "Specifies the listening port of this <em>Dropbear</em> instance"
-#~ msgstr ""
-#~ "Προσδιορίζει την θύρα ακρόασης αυτού του στιγμιοτύπου <em>Dropbear</em>"
-
-#~ msgid "Antenna 1"
-#~ msgstr "Κεραία 1"
-
-#~ msgid "Antenna 2"
-#~ msgstr "Κεραία 2"
-
-#~ msgid "Back to overview"
-#~ msgstr "Πίσω προς επισκόπηση"
-
-#~ msgid "Back to scan results"
-#~ msgstr "Πίσω στα αποτελέσματα σάρωσης"
-
-#~ msgid "Common Configuration"
-#~ msgstr "Κοινή Παραμετροποίηση"
-
-#~ msgid "Connect"
-#~ msgstr "Σύνδεση"
-
-#~ msgid "Connection Limit"
-#~ msgstr "Όριο Συνδέσεων"
-
-#~ msgid "Cover the following interface"
-#~ msgstr "Κάλυψη της ακόλουθης διεπαφής"
-
-#~ msgid "Cover the following interfaces"
-#~ msgstr "Κάλυψη των ακόλουθων διεπαφών"
-
-#~ msgid "Create Interface"
-#~ msgstr "Δημιουργία Διεπαφής"
-
-#~ msgid "Diversity"
-#~ msgstr "Διαφορική Λήψη"
-
-#~ msgid "Edit this interface"
-#~ msgstr "Επεξεργασία αυτής της διεπαφής"
-
-#~ msgid "Frame Bursting"
-#~ msgstr "Bursting Πλαισίων"
-
-#~ msgid "Install package %q"
-#~ msgstr "Εγκατάσταση πακέτου %q"
-
-#~ msgid "Interface Overview"
-#~ msgstr "Επισκόπηση Διεπαφής"
-
-#~ msgid "Name of the new interface"
-#~ msgstr "Όνομα νέας διεπαφής"
-
-#~ msgid "No network configured on this device"
-#~ msgstr "Δεν υπάρχει παραμετροποιημένο δίκτυο σε αυτή τη συσκευή"
-
-#~ msgid "No network name specified"
-#~ msgstr "Δεν έχει οριστεί όνομα δικτύου"
-
-#~ msgid ""
-#~ "On this page you can configure the network interfaces. You can bridge "
-#~ "several interfaces by ticking the \"bridge interfaces\" field and enter "
-#~ "the names of several network interfaces separated by spaces. You can also "
-#~ "use <abbr title=\"Virtual Local Area Network\">VLAN</abbr> notation "
-#~ "<samp>INTERFACE.VLANNR</samp> (<abbr title=\"for example\">e.g.</abbr>: "
-#~ "<samp>eth0.1</samp>)."
-#~ msgstr ""
-#~ "Σε αυτή τη σελίδα μπορείτε να ρυθμίσετε τις διεπαφές δικτύου. Μπορείτε να "
-#~ "γεφυρώσετε πολλαπλές διεπαφές τικάροντας το πεδίο \"γεφύρωμα διεπαφών\" "
-#~ "και εισάγοντας τα ονόματα των διεπαφών δικτύου χωρισμένα με κενά. "
-#~ "Μπορείτε επίσης να χρησιμοποιήσετε παράσταση τύπου <abbr title=\"Virtual "
-#~ "Local Area Network\">VLAN</abbr> <samp>INTERFACE.VLANNR</samp> (<abbr "
-#~ "title=\"παραδείγματος χάριν\">π.χ.</abbr>: <samp>eth0.1</samp>)."
-
-#~ msgid "Package libiwinfo required!"
-#~ msgstr "Απαιτείται το πακέτο libiwinfo!"
-
-#~ msgid "Protocol of the new interface"
-#~ msgstr "Πρωτόκολλο νέας διεπαφής"
-
-#~ msgid "Protocol support is not installed"
-#~ msgstr "Η υποστήριξη πρωτοκόλλου δεν έχει εκγατασταθεί"
-
-#~ msgid "Receiver Antenna"
-#~ msgstr "Κεραία Λήψης"
-
-#~ msgid "Repeat scan"
-#~ msgstr "Επανάληψη σάρωσης"
-
-#~ msgid "Replace entry"
-#~ msgstr "Αντικατάσταση καταχώρησης"
-
-#, fuzzy
-#~ msgid "Separate Clients"
-#~ msgstr "Απομόνωση Πελατών"
-
-#~ msgid "The given network name is not unique"
-#~ msgstr "Το παρεχόμενο όνομα δικτύου δεν είναι μοναδικό"
-
-#~ msgid "Transmission Rate"
-#~ msgstr "Ρυθμός Εκπομπής"
-
-#~ msgid "Transmit Power"
-#~ msgstr "Ισχύς Εκπομπής"
-
-#~ msgid "Uploaded File"
-#~ msgstr "Το Αρχείο Ανέβηκε"
-
-#~ msgid "Wireless is restarting..."
-#~ msgstr "Το ασύρματο δίκτυο επανεκκινείται..."
-
-#~ msgid "Netmask"
-#~ msgstr "Μάσκα δικτύου"
-
-#~ msgid "Synchronizing..."
-#~ msgstr "Συγχρονισμός..."
-
-#~ msgid "The following changes have been reverted"
-#~ msgstr "Οι παρακάτω αλλαγές έχουν αναιρεθεί"
-
-#~ msgid "Theme"
-#~ msgstr "Εμφάνιση"
-
-#~ msgid "Password successfully changed!"
-#~ msgstr "Ο κωδικός πρόσβασης άλλαξε επιτυχώς!"
-
-#~ msgid "Unknown Error, password not changed!"
-#~ msgstr "Άγνωστο Λάθος. ο κωδικός πρόσβασης δεν άλλαξε!"
-
-#~ msgid "Available packages"
-#~ msgstr "Διαθέσιμα πακέτα"
-
-#~ msgid "Displaying only packages containing"
-#~ msgstr "Εμφάνιση μόνο πακέτων που περιέχουν"
-
-#~ msgid "Download and install package"
-#~ msgstr "Κατέβασμα και εγκατάσταση πακέτου"
-
-#~ msgid "Find package"
-#~ msgstr "Εύρεση πακέτου"
-
-#~ msgid "Free space"
-#~ msgstr "Ελεύθερος χώρος"
-
-#~ msgid "Install"
-#~ msgstr "Εγκατάσταση"
-
-#~ msgid "Installed packages"
-#~ msgstr "Εγκατεστημένα πακέτα"
-
-#~ msgid "No package lists available"
-#~ msgstr "Δεν υπάρχουν διαθέσιμες λίστες πακέτων"
-
-#~ msgid "OK"
-#~ msgstr "Εντάξει"
-
-#~ msgid "OPKG-Configuration"
-#~ msgstr "Παραμετροποίηση OPKG"
-
-#~ msgid "Package lists are older than 24 hours"
-#~ msgstr "Οι λίστες πακέτων έχουν να ανανεωθούν πάνω από 24 ώρες"
-
-#~ msgid "Package name"
-#~ msgstr "Όνομα πακέτου"
-
-#~ msgid "Software"
-#~ msgstr "Λογισμικό"
-
-#~ msgid "Version"
-#~ msgstr "Έκδοση"
-
-#~ msgid "Disable DNS setup"
-#~ msgstr "Απενεργοποίηση ρυθμίσεων DNS"
-
-#~ msgid "IPv4 and IPv6"
-#~ msgstr "IPv4 και IPv6"
-
-#~ msgid "Multicast address"
-#~ msgstr "Διεύθυνση Multicast"
-
-#~ msgid "Protocol family"
-#~ msgstr "Οικογένεια πρωτοκόλλου"
-
-#~ msgid "No chains in this table"
-#~ msgstr "Δεν υπάρχουν αλυσίδες σε αυτόν τον πίνακα"
-
-#~ msgid "Configuration files will be kept."
-#~ msgstr "Τα αρχεία παραμετροποίησης θα διατηρηθούν."
-
-#~ msgid "Note: Configuration files will be erased."
-#~ msgstr "Σημείωση: Τα αρχεία παραμετροποίησης θα διαγραφούν."
-
-#~ msgid "Activate this network"
-#~ msgstr "Ενεργοποίηση αυτού του δικτύου"
-
-#~ msgid "Interface reconnected"
-#~ msgstr "Η διεπαφή επανασυνδέθηκε"
-
-#~ msgid "Interface shut down"
-#~ msgstr "Η διεπαφή απενεργοποιήθηκε"
-
-#~ msgid "Reconnecting interface"
-#~ msgstr "Επανασύνδεση της διεπαφής"
-
-#~ msgid "Shutdown this network"
-#~ msgstr "Απενεργοποίηση αυτού του δικτύου"
-
-#~ msgid "Wireless restarted"
-#~ msgstr "Το ασύρματο δίκτυο επανεκκινήθηκε"
-
-#~ msgid "Wireless shut down"
-#~ msgstr "Το ασύρματο δίκτυο τερματίστηκε"
-
-#~ msgid "DHCP Leases"
-#~ msgstr "DHCP Leases"
-
-#~ msgid "Sort"
-#~ msgstr "Ταξινόμηση"
-
-#~ msgid "help"
-#~ msgstr "βοήθεια"
-
-#~ msgid "IPv6 WAN Status"
-#~ msgstr "Κατάσταση IPv6 WAN"
-
-#~ msgid "Apply"
-#~ msgstr "Εφαρμογή"
-
-#~ msgid "Applying changes"
-#~ msgstr "Εφαρμογή αλλαγών"
-
-#~ msgid "Configuration applied."
-#~ msgstr "Η Παραμετροποίηση εφαρμόστηκε."
-
-#~ msgid "Save &#38; Apply"
-#~ msgstr "Αποθήκευση &#38; Εφαρμογή"
-
-#~ msgid "The following changes have been committed"
-#~ msgstr "Οι παρακάτω αλλαγές έχουν υποβληθεί"
-
-#~ msgid "Action"
-#~ msgstr "Ενέργεια"
-
-#~ msgid "Buttons"
-#~ msgstr "Κουμπιά"
-
-#~ msgid "Maximum hold time"
-#~ msgstr "Μέγιστος χρόνος κράτησης"
-
-#~ msgid "Minimum hold time"
-#~ msgstr "Ελάχιστος χρόνος κράτησης"
-
-#~ msgid "Path to executable which handles the button event"
-#~ msgstr "Διαδρομή για το εκτελέσιμο που χειρίζεται το γεγονός του κουμπιού"
-
-#~ msgid "Leasetime"
-#~ msgstr "Χρόνος Lease"
-
-#~ msgid "AR Support"
-#~ msgstr "Υποστήριξη AR"
-
-#~ msgid "Background Scan"
-#~ msgstr "Σάρωση Παρασκηνίου"
-
-#~ msgid "Compression"
-#~ msgstr "Συμπίεση"
-
-#~ msgid "Disable HW-Beacon timer"
-#~ msgstr "Απενεργοποίηση χρονιστή HW-Beacon"
-
-#~ msgid "Do not send probe responses"
-#~ msgstr "Να μην στέλνονται απαντήσεις σε probes"
-
-#~ msgid "Fast Frames"
-#~ msgstr "Γρήγορα Πλαίσια"
-
-#~ msgid "Maximum Rate"
-#~ msgstr "Μέγιστος Ρυθμός"
-
-#~ msgid "Minimum Rate"
-#~ msgstr "Ελάχιστος Ρυθμός"
-
-#~ msgid "Multicast Rate"
-#~ msgstr "Ρυθμός Multicast"
-
-#~ msgid "Outdoor Channels"
-#~ msgstr "Εξωτερικά Κανάλια"
-
-#~ msgid "Regulatory Domain"
-#~ msgstr "Ρυθμιστική Περιοχή"
-
-#~ msgid "Separate WDS"
-#~ msgstr "Ξεχωριστά WDS"
-
-#~ msgid "Turbo Mode"
-#~ msgstr "Λειτουργία Turbo"
-
-#~ msgid "XR Support"
-#~ msgstr "Υποστήριξη XR"
-
-#~ msgid "An additional network will be created if you leave this unchecked."
-#~ msgstr "Ένα επιπλέον δίκτυο θα δημιουργηθεί εάν αυτό αφεθεί κενό"
-
-#~ msgid "VLAN Interface"
-#~ msgstr "Διεπαφή VLAN"
