@@ -95,44 +95,7 @@ return view.extend({
 				uci.set('firewall', section_id, 'flow_offloading', value === '0' ? null : '1');
 				uci.set('firewall', section_id, 'flow_offloading_hw', value === '2' ? '1' : null);
 			};
-			
-			o = s.option(form.Flag, 'offload_delay', _('Enable Offload delay'), _('Delay small flows to remain in software processing for performance reasons'));
-			o.depends('offloading_type', '2');
-			o.cfgvalue = function(section_id) {
-			return uci.get('firewall', section_id, 'offload_delay');
-			};
-			o.write = function(section_id, value) {
-				uci.set('firewall', section_id, 'offload_delay', value);
-			};
-			o.remove = function(section_id) {
-				uci.unset('firewall', section_id, 'offload_delay');
-			};
-					
-			o = s.option(form.Value, 'ofd_packets', _('Offload max packet'), _('Matches traffic from connections that have sent fewer than example 30 packets.'));
-			o.value('32', _("32"));
-			o.datatype = 'uinteger';
-			o.depends('offload_delay', '1');
-			o.default = ('32');
-			o.write = function(section_id, value) {
-				uci.set('firewall', section_id, 'ofd_packets', value);
-			};
-			o.remove = function(section_id) {
-				uci.unset('firewall', section_id, 'ofd_packets');
-			};
-			
-			o = s.option(form.ListValue, 'ofd_proto', _('Offload protocol'), _('Matches packets using the UDP orTCP protocol.'));
-			o.value('{udp}', _("UDP"));
-			o.value('{udp, tcp}', _("UDP -TCP"));
-			o.value('{tcp}', _("TCP"));
-			o.depends('offload_delay', '1');
-			o.default = ('{udp}', _("UDP"));
-			o.write = function(section_id, value) {
-				uci.set('firewall', section_id, 'ofd_proto', value);
-			};
-			o.remove = function(section_id) {
-				uci.unset('firewall', section_id, 'ofd_proto');
-			};
-			
+						
 		}
 
 		s = m.section(form.GridSection, 'zone', _('Zones'));
