@@ -2728,11 +2728,11 @@ const CBITableSection = CBITypedSection.extend(/** @lends LuCI.form.TableSection
 
 			dom.append(tdEl.lastElementChild,
 				E('button', {
-					'title': btn_title || _('Clone') + '⿻',
+					'title': btn_title || _('Clone'),
 					'class': 'btn cbi-button cbi-button-neutral',
 					'click': ui.createHandlerFn(this, 'handleClone', section_id, true),
 					'disabled': this.map.readonly || null
-				}, [ btn_title || _('Clone') + '⿻' ])
+				}, [ btn_title || _('Clone') ])
 			);
 		}
 
@@ -3779,7 +3779,10 @@ const CBIValue = CBIAbstractValue.extend(/** @lends LuCI.form.Value.prototype */
 				E('div', { 'class': 'cbi-value-description' }, this.description.trim()));
 
 		if (depend_list && depend_list.length)
-			optionEl.classList.add('hidden');
+			if (in_table)
+				optionEl.firstChild.classList.add('hidden');
+			else
+				optionEl.classList.add('hidden');
 
 		optionEl.addEventListener('widget-change',
 			L.bind(this.map.checkDepends, this.map));
