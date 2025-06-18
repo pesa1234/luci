@@ -2,24 +2,24 @@
 
 CONFIG_FILE="/etc/config/advanced"
 
-# Check if the configuration file already exists
 if [ ! -f "$CONFIG_FILE" ]; then
 
-    # Create the file
     touch "$CONFIG_FILE"
     
-    # Add the 'defaults' section
     uci add advanced defaults
 
-    # Save the changes
     uci commit advanced
 fi
 
 if ! uci show advanced.@edcca[0] >/dev/null 2>&1; then
-    # Aggiunge la sezione 'edcca'
-    uci add advanced edcca
 
-    # Salva le modifiche
+    uci add advanced edcca
+    uci commit advanced
+fi
+
+if ! uci show advanced.@advanced_packet_steering[0] >/dev/null 2>&1; then
+    
+    uci add advanced advanced_packet_steering
     uci commit advanced
 fi
 
