@@ -22,7 +22,6 @@ return view.extend({
 		o.default = uci.get('advanced', 'defaults', 'usb_2');
 		o.write = function(section_id, value) {
 			uci.set('advanced', section_id, 'usb_2', value);
-			fs.exec('/etc/init.d/advanced_setup', ['start']);
 		};
 
 		return m.render();

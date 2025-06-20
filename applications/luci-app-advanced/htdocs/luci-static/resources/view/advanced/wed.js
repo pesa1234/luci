@@ -82,7 +82,6 @@ return view.extend({
 			o.default = uci.get('advanced', 'defaults', 'atf_enable');
 			o.write = function(section_id, value) {
 				uci.set('advanced', section_id, 'atf_enable',value);
-				fs.exec('/etc/init.d/advanced_setup', ['start']);
 			};
 			
 			o = s.option(form.ListValue, "hw_atf_enable", _("Enable HW ATF"));
