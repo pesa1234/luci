@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: form</title>
+    <title>Global</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -3827,7 +3827,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="LuCI.form.html">Class: form</h1>
+        <h1 class="page-title" data-filename="global.html">Global</h1>
         
 
 
@@ -3836,43 +3836,8 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="LuCI.html">LuCI</a>.</span>
     
-    form
     </h2>
-    
-        <div class="class-description"><p>The LuCI form class provides high level abstractions for creating
-UCI- or JSON backed configurations forms.</p>
-<p>To import the class in views, use <code>'require form'</code>, to import it in
-external JavaScript, use <code>L.require(&quot;form&quot;).then(...)</code>.</p>
-<p>A typical form is created by first constructing a
-<a href="LuCI.form.Map.html"><code>LuCI.form.Map</code></a> or <a href="LuCI.form.JSONMap.html"><code>LuCI.form.JSONMap</code></a> instance using <code>new</code> and
-by subsequently adding sections and options to it. Finally
-<a href="LuCI.form.Map.html#render"><code>render()</code></a> is invoked on the instance to
-assemble the HTML markup and insert it into the DOM.</p>
-<p>Example:</p>
-<pre>
-'use strict';
-'require form';
-
-let m, s, o;
-
-m = new form.Map('example', 'Example form',
-	'This is an example form mapping the contents of /etc/config/example');
-
-s = m.section(form.NamedSection, 'first_section', 'example', 'The first section',
-	'This sections maps "config example first_section" of /etc/config/example');
-
-o = s.option(form.Flag, 'some_bool', 'A checkbox option');
-
-o = s.option(form.ListValue, 'some_choice', 'A select element');
-o.value('choice1', 'The first choice');
-o.value('choice2', 'The second choice');
-
-m.render().then((node) => {
-	document.body.appendChild(node);
-});
-</pre></div>
     
 </header>  
 
@@ -3882,16 +3847,64 @@ m.render().then((node) => {
     
     
         
+        
+        
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+        
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="form">
+        <h4 class="name" id="getValue">
             
-            new LuCI.form<span class="signature">()</span>
+            getValue<span class="signature">()</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="form.js.html">form.js</a>, <a href="form.js.html#line5136">line 5136</a>
+            <a href="ui.js.html">ui.js</a>, <a href="ui.js.html#line2742">line 2742</a>
         </div>
         
     </div>
@@ -3947,8 +3960,42 @@ m.render().then((node) => {
     
 </dd>
 
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="render">
+            
+            render<span class="signature">()</span>
+        </h4>
     
+        
+        <div class="tag-source">
+            <a href="ui.js.html">ui.js</a>, <a href="ui.js.html#line2687">line 2687</a>
+        </div>
+        
     </div>
+
+    
+</dt>
+<dd>
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
     
     
     
@@ -3957,81 +4004,97 @@ m.render().then((node) => {
     
     
     
-        <h3 class="subsection-title">Classes</h3>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
         
-        <dl>
-            <dt><a href="LuCI.form.AbstractElement.html">AbstractElement</a></dt>
-            <dd></dd>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setValue">
+            
+            setValue<span class="signature">()</span>
+        </h4>
+    
         
-            <dt><a href="LuCI.form.AbstractSection.html">AbstractSection</a></dt>
-            <dd></dd>
+        <div class="tag-source">
+            <a href="ui.js.html">ui.js</a>, <a href="ui.js.html#line2752">line 2752</a>
+        </div>
         
-            <dt><a href="LuCI.form.AbstractValue.html">AbstractValue</a></dt>
-            <dd></dd>
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
         
-            <dt><a href="LuCI.form.ButtonValue.html">ButtonValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.DummyValue.html">DummyValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.DynamicList.html">DynamicList</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.FileUpload.html">FileUpload</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.FlagValue.html">FlagValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.GridSection.html">GridSection</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.HiddenValue.html">HiddenValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.JSONMap.html">JSONMap</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.ListValue.html">ListValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.Map.html">Map</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.MultiValue.html">MultiValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.NamedSection.html">NamedSection</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.RangeSliderValue.html">RangeSliderValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.RichListValue.html">RichListValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.SectionValue.html">SectionValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.TableSection.html">TableSection</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.TextValue.html">TextValue</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.TypedSection.html">TypedSection</a></dt>
-            <dd></dd>
-        
-            <dt><a href="LuCI.form.Value.html">Value</a></dt>
-            <dd></dd>
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
         </dl>
-    
-    
-    
-    
-    
-    
     
     
     
