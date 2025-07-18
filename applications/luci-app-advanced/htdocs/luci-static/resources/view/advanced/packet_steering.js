@@ -42,6 +42,13 @@ return view.extend({
 		o.write = function(section_id, value) {
 			uci.set('advanced', section_id, 'advanced_packet_steering_enable', value);
 		};
+		
+		o = s.option(form.Value, "advanced_packet_steering_delay", _("Boot delay of advanced packet steering"),_('Default: 30 sec'));
+		o.value('30', _("30"));
+		o.value('10', _("10"));
+		o.value('60', _("60"));
+		o.datatype = 'integer';
+		o.default = '30';
 
 		return m.render();
 	}
