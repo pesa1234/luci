@@ -1,14 +1,24 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"PO-Revision-Date: 2025-06-20 21:40+0000\n"
+"Last-Translator: CRISTIAN ANDREI <cristianvdr@gmail.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/openwrt/"
+"luciapplicationspbr/ro/>\n"
+"Language: ro\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:240
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:358
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:316
 msgid "%s binary cannot be found"
-msgstr ""
+msgstr "Binarul %s nu poate fi găsit"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:48
 msgid ""
@@ -16,6 +26,9 @@ msgid ""
 "anything in this section! Change any of the settings below with extreme "
 "caution!%s"
 msgstr ""
+"%sWARNING:%s Vă rugăm să verificați %sREADME%s înainte de a modifica ceva în "
+"această secțiune! Schimbați oricare dintre setările de mai jos cu mare "
+"precauție!%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:40
 msgid "Active"
@@ -23,25 +36,27 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:116
 msgid "AdGuardHome ipset"
-msgstr ""
+msgstr "IP setare AdGuard Home"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:177
 msgid "Add"
-msgstr ""
+msgstr "Adăugați"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:234
 msgid "Add Ignore Target"
-msgstr ""
+msgstr "Adăugați Ignoră Ținta"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:236
 msgid ""
 "Adds 'ignore' to the list of interfaces for policies. See the %sREADME%s for "
 "details."
 msgstr ""
+"Adaugă 'ignore' la lista de interfețe pentru politici. Consultați %sREADME%s "
+"pentru detalii."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:46
 msgid "Advanced Configuration"
-msgstr ""
+msgstr "Configurație avansată"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:143
 msgid ""
@@ -61,35 +76,37 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:43
 msgid "Basic Configuration"
-msgstr ""
+msgstr "Configurație de Bază"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:321
 msgid "Chain"
-msgstr ""
+msgstr "Legătură"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:406
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:405
 msgid "Command failed: '%s'"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:71
 msgid "Condensed output"
-msgstr ""
+msgstr "Ieșire condensată"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:313
 msgid "Config (%s) validation failure"
-msgstr ""
+msgstr "Eșec de validare a configurării (%s)"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:68
 msgid "Controls both system log and console output verbosity."
 msgstr ""
+"Controlează atât jurnalul de sistem, cât și verbalitatea ieșirii în consolă."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:402
 msgid "Custom User File Includes"
-msgstr ""
+msgstr "Fișierul de utilizator personalizat include"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:361
 msgid "Custom user file '%s' not found or empty"
 msgstr ""
+"Fișierul de utilizator personalizat \"%s\" nu a fost găsit sau este gol"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:340
 msgid "DNS Policies"
@@ -97,41 +114,41 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:393
 msgid "DSCP Tag"
-msgstr ""
+msgstr "Etichetă DSCP"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:380
 msgid "DSCP Tagging"
-msgstr ""
+msgstr "Etichetarea DSCP"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:185
 msgid "Default ICMP Interface"
-msgstr ""
+msgstr "Interfață ICMP implicită"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:411
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:410
 msgid "Default fw4 chain '%s' is missing"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:410
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:409
 msgid "Default fw4 table '%s' is missing"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:546
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:545
 msgid "Disable"
-msgstr ""
+msgstr "Dezactivați"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:114
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:134
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:242
 msgid "Disabled"
-msgstr ""
+msgstr "Dezactivat"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:540
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:539
 msgid "Disabling %s service"
-msgstr ""
+msgstr "Dezactivarea serviciului %s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:252
 msgid "Display these protocols in protocol column in Web UI."
-msgstr ""
+msgstr "Afișați aceste protocoale în coloana Protocol din Web UI."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:266
 msgid ""
@@ -141,23 +158,23 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:120
 msgid "Dnsmasq ipset"
-msgstr ""
+msgstr "MascaDns ipset"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:124
 msgid "Dnsmasq nft set"
-msgstr ""
+msgstr "Dnsmasq nft setare"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:85
 msgid "Do not enforce policies when their gateway is down"
-msgstr ""
+msgstr "Nu aplicați politicile atunci când gateway-ul lor este oprit"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:593
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:592
 msgid "Donate to the Project"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:527
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:526
 msgid "Enable"
-msgstr ""
+msgstr "Permite"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:135
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:243
@@ -165,17 +182,17 @@ msgstr ""
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:354
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:415
 msgid "Enabled"
-msgstr ""
+msgstr "Activat"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:521
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:520
 msgid "Enabling %s service"
-msgstr ""
+msgstr "Activarea serviciului %s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:363
 msgid "Error running custom user file '%s'"
-msgstr ""
+msgstr "Eroare la rularea fișierului de utilizator personalizat \"%s"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:435
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:434
 msgid "Errors encountered, please check the %sREADME%s"
 msgstr ""
 
@@ -184,50 +201,52 @@ msgid ""
 "FW Mask used by the service. High mask is used to avoid conflict with SQM/"
 "QoS. Change with caution together with"
 msgstr ""
+"FW Masca utilizată de serviciu. Masca înaltă este utilizată pentru a evita "
+"conflictul cu SQM/QoS. Modificați cu prudență împreună cu"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:402
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:401
 msgid "Failed to download '%s'"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:400
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:399
 msgid "Failed to download '%s', HTTPS is not supported"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:395
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:394
 msgid "Failed to install fw4 nft file '%s'"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:360
 msgid "Failed to reload '%s'"
-msgstr ""
+msgstr "Nu s-a reușit reîncărcarea \"%s"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:391
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:390
 msgid "Failed to resolve '%s'"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:359
 msgid "Failed to set up '%s'"
-msgstr ""
+msgstr "A eșuat la configurarea \"%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:367
 msgid "Failed to set up any gateway"
-msgstr ""
+msgstr "Nu a reușit să configureze nicio poartă de acces"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:186
 msgid "Force the ICMP protocol interface."
-msgstr ""
+msgstr "Forțează interfața protocolului ICMP."
 
 #: applications/luci-app-pbr/root/usr/share/rpcd/acl.d/luci-app-pbr.json:3
 msgid "Grant UCI and file access for luci-app-pbr"
-msgstr ""
+msgstr "Acordă acces la UCI și fișiere pentru luci-app-pbr"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:132
 msgid "IPv6 Support"
-msgstr ""
+msgstr "Suport IPv6"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:157
 msgid "Ignored Interfaces"
-msgstr ""
+msgstr "Interfețe ignorate"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:52
 msgid "Inactive"
@@ -237,7 +256,7 @@ msgstr ""
 msgid "Inactive (Disabled)"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:408
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:407
 msgid "Incompatible custom user file detected '%s'"
 msgstr ""
 
@@ -249,7 +268,7 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:178
 msgid "Insert"
-msgstr ""
+msgstr "Introduceți"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:385
 msgid "Insertion failed for IPv4 for policy '%s'"
@@ -261,11 +280,11 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:238
 msgid "Installed AdGuardHome (%s) doesn't support 'ipset_file' option."
-msgstr ""
+msgstr "AdGuardHome instalat (%s) nu acceptă opțiunea 'ipset_file'."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:330
 msgid "Interface"
-msgstr ""
+msgstr "Interfață"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:353
 msgid "Interface '%s' has no assigned DNS"
@@ -273,20 +292,20 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:254
 msgid "Invalid OpenVPN config for %s interface"
-msgstr ""
+msgstr "Configurație OpenVPN invalidă pentru interfața %s"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:393
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:392
 msgid "Invalid OpenVPN config for '%s' interface"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:280
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:361
 msgid "Local addresses / devices"
-msgstr ""
+msgstr "Adrese / dispozitive locale"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:286
 msgid "Local ports"
-msgstr ""
+msgstr "Porturi locale"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:376
 msgid "Mismatched IP family between in policy '%s'"
@@ -299,7 +318,7 @@ msgstr ""
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:278
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:358
 msgid "Name"
-msgstr ""
+msgstr "Nume"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:261
 msgid ""
@@ -318,29 +337,30 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:188
 msgid "No Change"
-msgstr ""
+msgstr "Nici o schimbare"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:188
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:58
 msgid "Not installed or not found"
-msgstr ""
+msgstr "Nu este instalat sau nu a fost găsit"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:67
 msgid "Output verbosity"
-msgstr ""
+msgstr "Verbalizarea ieșirii"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:420
 msgid "Path"
-msgstr ""
+msgstr "Cale"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:215
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:601
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:600
 msgid "Please %sdonate%s to support development of this project."
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:101
 msgid "Please check the %sREADME%s before changing this option."
 msgstr ""
+"Vă rugăm să verificați %sREADME%s înainte de a modifica această opțiune."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:270
 msgid ""
@@ -350,26 +370,34 @@ msgstr ""
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:248
 msgid "Please unset 'chain' or set 'chain' to 'PREROUTING' for policy '%s'"
 msgstr ""
+"Vă rugăm să dezactivați 'chain' sau să setați 'chain' la 'PREROUTING' pentru "
+"politica '%s'"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:251
 msgid "Please unset 'chain' or set 'chain' to 'prerouting' for policy '%s'"
 msgstr ""
+"Vă rugăm să dezactivați \"chain\" sau să setați \"chain\" la \"prerouting\" "
+"pentru politica \"%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:245
 msgid "Please unset 'proto' or set 'proto' to 'all' for policy '%s'"
 msgstr ""
+"Vă rugăm să dezactivați \"proto\" sau să setați \"proto\" la \"all\" pentru "
+"politica \"%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:242
 msgid "Please unset 'src_addr', 'src_port' and 'dest_port' for policy '%s'"
 msgstr ""
+"Vă rugăm să dezactivați 'src_addr', 'src_port' și 'dest_port' pentru "
+"politica '%s'"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:259
 msgid "Policies"
-msgstr ""
+msgstr "Politici"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:356
 msgid "Policy '%s' has an unknown interface"
-msgstr ""
+msgstr "Politica \"%s\" are o interfață necunoscută"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:351
 msgid "Policy '%s' has no assigned DNS"
@@ -377,13 +405,13 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:350
 msgid "Policy '%s' has no assigned interface"
-msgstr ""
+msgstr "Politica \"%s\" nu are o interfață atribuită"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:348
 msgid "Policy '%s' has no source/destination parameters"
-msgstr ""
+msgstr "Politica \"%s\" nu are parametri sursă/destinație"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:397
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:396
 msgid ""
 "Policy '%s' refers to URL which can't be downloaded in 'secure_reload' mode"
 msgstr ""
@@ -394,23 +422,24 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:40
 msgid "Policy Based Routing - Configuration"
-msgstr ""
+msgstr "Rutarea bazată pe politici - Configurație"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:161
 msgid "Policy Based Routing - Status"
-msgstr ""
+msgstr "Rutare bazată pe politici - Stare"
 
 #: applications/luci-app-pbr/root/usr/share/luci/menu.d/luci-app-pbr.json:3
 msgid "Policy Routing"
-msgstr ""
+msgstr "Politica de rutare"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:304
 msgid "Protocol"
-msgstr ""
+msgstr "Protocol"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:389
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:388
 msgid "Received empty tid/mark or interface name when setting up routing"
 msgstr ""
+"A primit un tid/mark sau un nume de interfață gol la configurarea rutelor"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:336
 msgid "Refer to https://docs.openwrt.melmac.net/pbr/#procd_wan_interface"
@@ -422,13 +451,13 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:292
 msgid "Remote addresses / domains"
-msgstr ""
+msgstr "Adrese / domenii la distanță"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:298
 msgid "Remote ports"
-msgstr ""
+msgstr "Porturi la distanță"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:412
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:411
 msgid "Required binary '%s' is missing"
 msgstr ""
 
@@ -438,108 +467,119 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:324
 msgid "Resolver set (%s) is not supported on this system"
-msgstr ""
+msgstr "Setul Resolver (%s) nu este acceptat pe acest sistem"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:235
 msgid "Resolver set (%s) is not supported on this system."
-msgstr ""
+msgstr "Setul Resolver (%s) nu este acceptat pe acest sistem."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:318
 msgid ""
 "Resolver set support (%s) requires ipset, but ipset binary cannot be found"
 msgstr ""
+"Suportul pentru setul de rezolvare (%s) necesită ipset, dar binarul ipset nu "
+"poate fi găsit"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:321
 msgid ""
 "Resolver set support (%s) requires nftables, but nft binary cannot be found"
 msgstr ""
+"Suportul pentru setul de rezolvare (%s) necesită nftables, dar binarul nft "
+"nu poate fi găsit"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:489
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:488
 msgid "Restart"
-msgstr ""
+msgstr "Reporniți"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:483
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:482
 msgid "Restarting %s service"
-msgstr ""
+msgstr "Repornirea serviciului %s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:174
 msgid "Rule Create option"
-msgstr ""
+msgstr "Opțiunea de creare a regulilor"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:404
 msgid ""
 "Run the following user files after setting up but before restarting DNSMASQ. "
 "See the %sREADME%s for details."
 msgstr ""
+"Rulați următoarele fișiere de utilizator după configurarea, dar înainte de a "
+"reporni DNSMASQ. Consultați %sREADME%s pentru detalii."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:170
 msgid "Running"
-msgstr ""
+msgstr "Rulare"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:80
 msgid "See the %sREADME%s for details."
-msgstr ""
+msgstr "Consultați %sREADME%s pentru detalii."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:175
 msgid "Select Add for -A/add and Insert for -I/Insert."
-msgstr ""
+msgstr "Selectați Add pentru -A/add și Insert pentru -I/Insert."
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:572
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:571
 msgid "Service Control"
-msgstr ""
+msgstr "Controlul serviciilor"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:420
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:419
 msgid "Service Errors"
-msgstr ""
+msgstr "Erori de serviciu"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:206
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:217
 msgid "Service FW Mask"
-msgstr ""
+msgstr "Masca de serviciu FW"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:202
 msgid "Service Gateways"
-msgstr ""
+msgstr "Porți de serviciu"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:165
 msgid "Service Status"
-msgstr ""
+msgstr "Starea serviciului"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:283
 msgid "Service Warnings"
-msgstr ""
+msgstr "Atenționări de serviciu"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:382
 msgid ""
 "Set DSCP tags (in range between 1 and 63) for specific interfaces. See the "
 "%sREADME%s for details."
 msgstr ""
+"Setați etichetele DSCP (în intervalul 1-63) pentru anumite interfețe. "
+"Consultați %sREADME%s pentru detalii."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:370
 msgid "Skipping IPv6 policy '%s' as IPv6 support is disabled"
-msgstr ""
+msgstr "Ignorarea politicii IPv6 \"%s\" deoarece suportul IPv6 este dezactivat"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:470
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:469
 msgid "Start"
-msgstr ""
+msgstr "Porniți"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:464
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:463
 msgid "Starting %s service"
-msgstr ""
+msgstr "Pornirea serviciului %s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:202
 msgid ""
 "Starting (WAN) FW Mark for marks used by the service. High starting mark is "
 "used to avoid conflict with SQM/QoS. Change with caution together with"
 msgstr ""
+"Starting (WAN) FW Mark pentru mărcile utilizate de serviciu. Marca de "
+"pornire ridicată este utilizată pentru a evita conflictul cu SQM/QoS. "
+"Modificați cu prudență împreună cu"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:63
 msgid "Status"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:508
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:507
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:184
 msgid "Stopped (Disabled)."
@@ -549,71 +589,71 @@ msgstr ""
 msgid "Stopped."
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:502
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:501
 msgid "Stopping %s service"
-msgstr ""
+msgstr "Se operște servciul %s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:79
 msgid "Strict enforcement"
-msgstr ""
+msgstr "Aplicarea strictă a legii"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:86
 msgid "Strictly enforce policies when their gateway is down"
-msgstr ""
+msgstr "Aplică cu strictețe politicile atunci când gateway-ul lor este oprit"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:141
 msgid "Supported Interfaces"
-msgstr ""
+msgstr "Interfețe acceptate"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:251
 msgid "Supported Protocols"
-msgstr ""
+msgstr "Protocoale acceptate"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:70
 msgid "Suppress/No output"
-msgstr ""
+msgstr "Suprimare/Nicio ieșire"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:362
 msgid "Syntax error in custom user file '%s'"
-msgstr ""
+msgstr "Eroare de sintaxă în fișierul de utilizator personalizat \"%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:206
 msgid "The %s indicates default gateway. See the %sREADME%s for details."
-msgstr ""
+msgstr "%s indică gateway-ul implicit. Consultați %sREADME%s pentru detalii."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:333
 msgid ""
-"The %s interface not found, you need to set the 'pbr.config."
-"procd_wan_interface' option"
+"The %s interface not found, you need to set the "
+"'pbr.config.procd_wan_interface' option"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:96
 msgid "The %s is not supported on this system."
-msgstr ""
+msgstr "%s nu este acceptat pe acest sistem."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:330
 msgid "The %s service failed to discover WAN gateway"
-msgstr ""
+msgstr "Serviciul %s nu a reușit să descopere gateway-ul WAN"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:327
 msgid "The %s service is currently disabled"
-msgstr ""
+msgstr "Serviciul %s este în prezent dezactivat"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:92
 msgid "The %s support is unknown."
-msgstr ""
+msgstr "Suportul %s este necunoscut."
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:257
 msgid "The WebUI application (luci-app-pbr) is outdated, please update it"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:404
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:403
 msgid "The file:// schema requires curl, but it's not detected on this system"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:339
 msgid "The ipset name '%s' is longer than allowed 31 characters"
-msgstr ""
+msgstr "Numele ipset '%s' este mai lung decât cele 31 de caractere permise"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:342
 msgid "The nft set name '%s' is longer than allowed 255 characters"
@@ -625,23 +665,19 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:345
 msgid "Unexpected exit or service termination: '%s'"
-msgstr ""
+msgstr "Ieșire neașteptată sau încheiere neașteptată a serviciului: \"%s"
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:414
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:413
 msgid "Unknown IPv6 Link type for device '%s'"
 msgstr ""
 
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:387
-msgid "Unknown entry in policy '%s'"
-msgstr ""
-
-#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:432
+#: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:431
 msgid "Unknown error!"
 msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:373
 msgid "Unknown packet mark for interface '%s'"
-msgstr ""
+msgstr "Marcă de pachet necunoscută pentru interfața \"%s"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:379
 msgid "Unknown protocol in policy '%s'"
@@ -649,21 +685,23 @@ msgstr ""
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:295
 msgid "Unknown warning"
-msgstr ""
+msgstr "Atenționări necunoscute"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:365
 msgid ""
 "Use of 'curl' is detected in custom user file '%s', but 'curl' isn't "
 "installed"
 msgstr ""
+"Utilizarea \"curl\" este detectată în fișierul utilizator personalizat "
+"\"%s\", dar \"curl\" nu este instalat"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:111
 msgid "Use resolver set support for domains"
-msgstr ""
+msgstr "Utilizați suportul pentru setul de rezolvare pentru domenii"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:72
 msgid "Verbose output"
-msgstr ""
+msgstr "Ieșire abundentă"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:64
 msgid "Version"
@@ -676,15 +714,15 @@ msgstr ""
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:200
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:223
 msgid "WAN Table FW Mark"
-msgstr ""
+msgstr "Tabel WAN FW Mark"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:61
 msgid "Web UI Configuration"
-msgstr ""
+msgstr "Configurarea interfeței web"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/pbr/overview.js:313
 msgid "all"
-msgstr ""
+msgstr "toate"
 
 #: applications/luci-app-pbr/htdocs/luci-static/resources/pbr/status.js:174
 #: applications/luci-app-pbr/htdocs/luci-static/resources/view/status/include/72_pbr.js:44
