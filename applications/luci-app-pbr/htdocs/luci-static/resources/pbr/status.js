@@ -15,7 +15,7 @@ var pkg = {
 	},
 	get URL() {
 		return (
-			"https://docs.openwrt.melmac.ca/" +
+			"https://docs.openwrt.melmac.net/" +
 			pkg.Name +
 			"/" +
 			(pkg.ReadmeCompat ? pkg.ReadmeCompat + "/" : "")
@@ -23,7 +23,7 @@ var pkg = {
 	},
 	get DonateURL() {
 		return (
-			"https://docs.openwrt.melmac.ca/" +
+			"https://docs.openwrt.melmac.net/" +
 			pkg.Name +
 			"/" +
 			(pkg.ReadmeCompat ? pkg.ReadmeCompat + "/" : "") +
@@ -333,7 +333,7 @@ var status = baseclass.extend({
 						"The %s interface not found, you need to set the 'pbr.config.procd_wan_interface' option"
 					),
 					errorNoWanInterfaceHint: _(
-						"Refer to https://docs.openwrt.melmac.ca/pbr/#procd_wan_interface"
+						"Refer to https://docs.openwrt.melmac.net/pbr/#procd_wan_interface"
 					),
 					errorIpsetNameTooLong: _(
 						"The ipset name '%s' is longer than allowed 31 characters"
@@ -384,7 +384,6 @@ var status = baseclass.extend({
 					errorPolicyProcessInsertionFailedIpv4: _(
 						"Insertion failed for IPv4 for policy '%s'"
 					),
-					errorPolicyProcessUnknownEntry: _("Unknown entry in policy '%s'"),
 					errorInterfaceRoutingEmptyValues: _(
 						"Received empty tid/mark or interface name when setting up routing"
 					),
