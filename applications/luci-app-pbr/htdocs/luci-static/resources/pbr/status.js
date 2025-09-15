@@ -11,7 +11,7 @@ var pkg = {
 		return "pbr";
 	},
 	get LuciCompat() {
-		return 15;
+		return 16;
 	},
 	get ReadmeCompat() {
 		return "1.1.9";
@@ -43,6 +43,29 @@ var pkg = {
 				? template.format(...info)
 				: template.format(info || " ")) + "<br />"
 		);
+	},
+	buildGatewayText: function (gw) {
+		const gateways = Array.isArray(gw) ? gw : Object.values(gw);
+		const lines = gateways.map((g) => {
+			const iface = g.name;
+			if (!iface) return "";
+			const dev_ipv4 = g.device_ipv4;
+			const gw_ipv4 = g.gateway_ipv4;
+			const dev_ipv6 = g.device_ipv6;
+			const gw_ipv6 = g.gateway_ipv6;
+			const default_gw = g.default;
+			const parts = [iface];
+			if (dev_ipv4 && dev_ipv4 !== iface) parts.push(dev_ipv4);
+			if (gw_ipv4) parts.push(gw_ipv4);
+			if (gw_ipv6) {
+				if (dev_ipv6 && dev_ipv6 !== iface) parts.push(dev_ipv6);
+				parts.push(gw_ipv6);
+			}
+			let line = parts.join("/");
+			if (default_gw) line += " ✓";
+			return line;
+		});
+		return lines.join("<br />");
 	},
 };
 
@@ -136,6 +159,7 @@ var status = baseclass.extend({
 				},
 				ubus: ubusInfo?.[pkg.Name]?.instances?.main?.data || {
 					packageCompat: 0,
+					gateways: [],
 					errors: [],
 					warnings: [],
 				},
@@ -200,13 +224,13 @@ var status = baseclass.extend({
 			]);
 
 			var gatewaysDiv = [];
-			if (reply.status.gateways) {
+			if (reply.ubus.gateways) {
 				var gatewaysTitle = E(
 					"label",
 					{ class: "cbi-value-title" },
 					_("Service Gateways")
 				);
-				text =
+				var description =
 					_(
 						"The %s indicates default gateway. See the %sREADME%s for details."
 					).format(
@@ -221,8 +245,13 @@ var status = baseclass.extend({
 						"<a href='" + pkg.DonateURL + "' target='_blank'>",
 						"</a>"
 					);
-				var gatewaysDescr = E("div", { class: "cbi-value-description" }, text);
-				var gatewaysText = E("div", {}, reply.status.gateways);
+				var gatewaysDescr = E(
+					"div",
+					{ class: "cbi-value-description" },
+					description
+				);
+				text = pkg.buildGatewayText(reply.ubus.gateways);
+				var gatewaysText = E("div", {}, text);
 				var gatewaysField = E("div", { class: "cbi-value-field" }, [
 					gatewaysText,
 					gatewaysDescr,

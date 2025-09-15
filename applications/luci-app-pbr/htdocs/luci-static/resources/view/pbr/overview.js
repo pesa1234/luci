@@ -373,6 +373,12 @@ return view.extend({
 			element === "ignore" || o.value(element);
 		});
 
+		o = s.option(form.Value, "dest_dns_port", _("Remote DNS Port"));
+		o.optional = true;
+		o.rmempty = true;
+		o.datatype = "port";
+		o.default = "53";
+
 		s = m.section(
 			form.NamedSection,
 			"config",
