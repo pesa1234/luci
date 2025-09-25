@@ -13,7 +13,7 @@
 # ubus -S call luci.pbr getInterfaces '{"name": "pbr" }'
 
 readonly rpcdCompat='17'
-readonly pbrFunctionsFile='/etc/init.d/pbr'
+readonly pbrFunctionsFile="${IPKG_INSTROOT}/etc/init.d/pbr"
 if [ -s "$pbrFunctionsFile" ]; then
 # shellcheck source=../../../../../pbr/files/etc/init.d/pbr
 	. "$pbrFunctionsFile"
