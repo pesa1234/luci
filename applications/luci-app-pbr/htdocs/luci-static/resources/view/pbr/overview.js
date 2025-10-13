@@ -196,10 +196,10 @@ return view.extend({
 		o = s.taboption(
 			"tab_advanced",
 			form.Value,
-			"uplink_mark",
-			_("Uplink Interface Table FW Mark"),
+			"wan_mark",
+			_("WAN Table FW Mark"),
 			_(
-				"Starting (Uplink Interface) FW Mark for marks used by the service. High starting mark is " +
+				"Starting (WAN) FW Mark for marks used by the service. High starting mark is " +
 					"used to avoid conflict with SQM/QoS. Change with caution together with"
 			) +
 				" " +
@@ -372,12 +372,6 @@ return view.extend({
 		reply.interfaces.forEach((element) => {
 			element === "ignore" || o.value(element);
 		});
-
-		o = s.option(form.Value, "dest_dns_port", _("Remote DNS Port"));
-		o.optional = true;
-		o.rmempty = true;
-		o.datatype = "port";
-		o.default = "53";
 
 		s = m.section(
 			form.NamedSection,
