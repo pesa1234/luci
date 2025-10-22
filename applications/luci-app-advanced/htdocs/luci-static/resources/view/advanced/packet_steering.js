@@ -41,6 +41,9 @@ return view.extend({
 
 		o.write = function(section_id, value) {
 			uci.set('advanced', section_id, 'advanced_packet_steering_enable', value);
+			fs.exec("/etc/init.d/advanced_setup", ["reload", "generic"])
+					  .then(() => console.log("advanced_setup reload generic done"))
+					  .catch(err => console.error(err));
 		};
 		
 		o = s.option(form.Value, "advanced_packet_steering_delay", _("Boot delay of advanced packet steering"),_('Default: 30 sec'));

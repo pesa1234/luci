@@ -82,6 +82,9 @@ return view.extend({
 			o.default = uci.get('advanced', 'defaults', 'atf_enable');
 			o.write = function(section_id, value) {
 				uci.set('advanced', section_id, 'atf_enable',value);
+				fs.exec("/etc/init.d/advanced_setup", ["reload", "atf"])
+					  .then(() => console.log("advanced_setup reload atf done"))
+					  .catch(err => console.error(err));
 			};
 			
 			o = s.option(form.ListValue, "hw_atf_enable", _("Enable HW ATF"));
@@ -92,6 +95,9 @@ return view.extend({
 			o.default = uci.get('advanced', 'defaults', 'hw_atf_enable');
 			o.write = function(section_id, value) {
 				uci.set('advanced', section_id, 'hw_atf_enable',value);
+				fs.exec("/etc/init.d/advanced_setup", ["reload", "atf"])
+					  .then(() => console.log("advanced_setup reload atf done"))
+					  .catch(err => console.error(err));
 			};
 						
 		}	
