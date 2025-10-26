@@ -321,9 +321,7 @@ return view.extend({
 		o = s.option(form.ListValue, "chain", _("Chain"));
 		o.value("", "prerouting");
 		o.value("forward", "forward");
-		o.value("input", "input");
 		o.value("output", "output");
-		o.value("postrouting", "postrouting");
 		o.default = "";
 		o.rmempty = true;
 
