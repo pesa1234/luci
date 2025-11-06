@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: luci-app-ddns 2.4.0-1\n"
 "POT-Creation-Date: 2016-01-30 11:07+0100\n"
-"PO-Revision-Date: 2025-10-30 03:42+0000\n"
+"PO-Revision-Date: 2025-11-05 20:47+0000\n"
 "Last-Translator: nKsyn <e.nksyn@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luciapplicationsddns/zh_Hans/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:427
 msgid "\"../\" not allowed in path for Security Reason."
@@ -22,7 +22,7 @@ msgstr "基于安全原因路径中不允许含有 \"../\" 。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:766
 msgid "A.k.a. the TOKEN at e.g. afraid.org"
-msgstr "也称为 TOKEN，例如在 afraid.org 上"
+msgstr "有的服务商使用 TOKEN 作为更新密码，例如在 afraid.org 上"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:462
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:530
@@ -204,7 +204,7 @@ msgstr "与 DDNS 提供商通信时使用安全连接"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:615
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1144
 msgid "Enabled"
-msgstr "已启用"
+msgstr "启用"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:969
 msgid "Error"
@@ -279,7 +279,7 @@ msgstr "全局设置"
 
 #: applications/luci-app-ddns/root/usr/share/rpcd/acl.d/luci-app-ddns.json:3
 msgid "Grant access to ddns procedures"
-msgstr "授予 DDNS 程序的访问权限"
+msgstr "授予 DDNS 程序的权限"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:324
 msgid "HTTPS not supported"
@@ -353,9 +353,8 @@ msgstr "信息"
 msgid ""
 "Install 'bind-host' or 'knot-host' or 'drill' package if you know you need "
 "TCP for DNS requests."
-msgstr ""
-"如果你确定 DNS 请求需要使用TCP协议，请安装 'bind-host'、'knot-host' 或 "
-"'drill' 软件包。"
+msgstr "如果需要使用TCP协议进行 DNS 请求，请安装 'bind-host'、'knot-host' 或 'drill' "
+"软件包。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:390
 msgid ""
@@ -412,7 +411,7 @@ msgstr "记录日志到 syslog"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1134
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/status/include/70_ddns.js:29
 msgid "Lookup Hostname"
-msgstr "查询主机名"
+msgstr "域名"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:810
 msgid "Method used to determine the system IP-Address to send in updates"
@@ -723,7 +722,7 @@ msgstr "这个问题仅在你拥有多个 WAN 接口，并且无法通过其中�
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1088
 msgid "This is the current content of the log file in %h for this service."
-msgstr "这是当前在日志文件 %h 中此服务的日志内容。"
+msgstr "这是此服务在 %h 中的日志文件的当前内容。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:211
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:281
@@ -807,7 +806,7 @@ msgstr "警告"
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:508
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:633
 msgid "Which record type to update at the DDNS provider (A/AAAA)"
-msgstr "在 DDNS 服务提供商处应该更新哪种记录类型（A/AAAA）"
+msgstr "要在 DDNS 服务提供商处更新的记录类型（IPv4 A 或 IPv6 AAAA）"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1062
 msgid "Which time units to use for retry counters."
@@ -822,7 +821,7 @@ msgstr "向日志中写入详细信息。文件将自动缩小。"
 msgid ""
 "Writes log messages to syslog. Critical Errors will always be written to "
 "syslog."
-msgstr "将日志写入syslog。无论是否启用，关键错误始终写入syslog。"
+msgstr "将日志写入系统日志。无论是否启用，严重错误始终写入。"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:379
 msgid ""

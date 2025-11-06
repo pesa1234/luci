@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-10-27 15:04+0000\n"
+"PO-Revision-Date: 2025-11-05 00:02+0000\n"
 "Last-Translator: nKsyn <e.nksyn@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luciapplicationsmwan3/zh_Hans/>\n"
@@ -146,7 +146,7 @@ msgstr "内容已保存。"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:27
 msgid "Critical"
-msgstr "关键"
+msgstr "严重"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/globals.js:32
 msgid "Debug"
@@ -189,7 +189,7 @@ msgstr "启用 SSL 跟踪"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:55
 msgid "Enabled"
-msgstr "已启用"
+msgstr "启用"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/rule.js:118
 msgid ""
@@ -404,7 +404,7 @@ msgstr "成员名称不能与配置的接口、策略或规则相同。"
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:288
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/member.js:57
 msgid "Metric"
-msgstr "度量值"
+msgstr "跃点数"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/status/include/90_mwan3.js:19
 #: applications/luci-app-mwan3/root/usr/share/luci/menu.d/luci-app-mwan3.json:3
@@ -430,7 +430,7 @@ msgstr "MultiWAN 管理器 - 成员"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/notify.js:26
 msgid "MultiWAN Manager - Notify"
-msgstr "MultiWAN 管理器 - 通知"
+msgstr "MultiWAN 管理器 - 通知脚本"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/status/overview.js:93
 msgid "MultiWAN Manager - Overview"
@@ -518,7 +518,7 @@ msgstr "通知"
 
 #: applications/luci-app-mwan3/root/usr/share/luci/menu.d/luci-app-mwan3.json:96
 msgid "Notify"
-msgstr "通知"
+msgstr "通知脚本"
 
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/network/interface.js:62
 #: applications/luci-app-mwan3/htdocs/luci-static/resources/view/mwan3/status/overview.js:38
