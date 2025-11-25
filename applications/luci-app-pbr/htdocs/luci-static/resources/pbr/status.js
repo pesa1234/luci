@@ -11,10 +11,10 @@ var pkg = {
 		return "pbr";
 	},
 	get LuciCompat() {
-		return 17;
+		return 19;
 	},
 	get ReadmeCompat() {
-		return "1.2.0";
+		return "1.2.1";
 	},
 	get URL() {
 		return (
@@ -69,12 +69,6 @@ var pkg = {
 	},
 };
 
-var getGateways = rpc.declare({
-	object: "luci." + pkg.Name,
-	method: "getGateways",
-	params: ["name"],
-});
-
 var getInitList = rpc.declare({
 	object: "luci." + pkg.Name,
 	method: "getInitList",
@@ -84,12 +78,6 @@ var getInitList = rpc.declare({
 var getInitStatus = rpc.declare({
 	object: "luci." + pkg.Name,
 	method: "getInitStatus",
-	params: ["name"],
-});
-
-var getInterfaces = rpc.declare({
-	object: "luci." + pkg.Name,
-	method: "getInterfaces",
 	params: ["name"],
 });
 
@@ -143,8 +131,9 @@ var status = baseclass.extend({
 	render: function () {
 		return Promise.all([
 			L.resolveDefault(getInitStatus(pkg.Name), {}),
+			L.resolveDefault(getPlatformSupport(pkg.Name), {}),
 			L.resolveDefault(getUbusInfo(pkg.Name), {}),
-		]).then(function ([initStatus, ubusInfo]) {
+		]).then(function ([initStatus, platformSupport, ubusInfo]) {
 			var reply = {
 				status: initStatus?.[pkg.Name] || {
 					enabled: null,
@@ -153,9 +142,18 @@ var status = baseclass.extend({
 					running_nft: null,
 					running_nft_file: null,
 					version: null,
-					gateways: null,
 					packageCompat: 0,
 					rpcdCompat: 0,
+				},
+				platform: platformSupport?.[pkg.Name] || {
+					ipset_installed: false,
+					nft_installed: false,
+					adguardhome_installed: false,
+					dnsmasq_installed: false,
+					unbound_installed: false,
+					adguardhome_ipset_support: false,
+					dnsmasq_ipset_support: false,
+					dnsmasq_nftset_support: false,
 				},
 				ubus: ubusInfo?.[pkg.Name]?.instances?.main?.data || {
 					packageCompat: 0,
@@ -317,6 +315,9 @@ var status = baseclass.extend({
 					warningIncompatibleDHCPOption6: _(
 						"Incompatible DHCP Option 6 for interface %s"
 					),
+					warningNetifdMissingInterfaceLocal: _(
+						"Netifd setup: option netifd_interface_local is missing, assuming '%s'"
+					),
 				};
 				var warningsTitle = E(
 					"label",
@@ -457,6 +458,21 @@ var status = baseclass.extend({
 						"Failed to create temporary file with mktemp mask: '%s'"
 					),
 					errorSummary: _("Errors encountered, please check %s"),
+					errorNetifdNftFileInstall: _(
+						"Netifd setup: failed to install fw4 netifd nft file '%s'"
+					),
+					errorNetifdNftFileRemove: _(
+						"Netifd setup: failed to remove fw4 netifd nft file '%s'"
+					),
+					errorNetifdMissingOption: _(
+						"Netifd setup: required option '%s' is missing"
+					),
+					errorNetifdInvalidGateway4: _(
+						"Netifd setup: invalid value of netifd_interface_default option '%s'"
+					),
+					errorNetifdInvalidGateway6: _(
+						"Netifd setup: invalid value of netifd_interface_default6 option '%s'"
+					),
 				};
 				var errorsTitle = E(
 					"label",
@@ -670,7 +686,6 @@ return L.Class.extend({
 	status: status,
 	pkg: pkg,
 	getInitStatus: getInitStatus,
-	getInterfaces: getInterfaces,
 	getPlatformSupport: getPlatformSupport,
 	getUbusInfo: getUbusInfo,
 });
