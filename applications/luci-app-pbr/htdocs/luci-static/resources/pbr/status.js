@@ -81,6 +81,12 @@ var getInitStatus = rpc.declare({
 	params: ["name"],
 });
 
+var getInterfaces = rpc.declare({
+	object: "luci." + pkg.Name,
+	method: "getInterfaces",
+	params: ["name"],
+});
+
 var getPlatformSupport = rpc.declare({
 	object: "luci." + pkg.Name,
 	method: "getPlatformSupport",
@@ -131,9 +137,8 @@ var status = baseclass.extend({
 	render: function () {
 		return Promise.all([
 			L.resolveDefault(getInitStatus(pkg.Name), {}),
-			L.resolveDefault(getPlatformSupport(pkg.Name), {}),
 			L.resolveDefault(getUbusInfo(pkg.Name), {}),
-		]).then(function ([initStatus, platformSupport, ubusInfo]) {
+		]).then(function ([initStatus, ubusInfo]) {
 			var reply = {
 				status: initStatus?.[pkg.Name] || {
 					enabled: null,
@@ -144,16 +149,6 @@ var status = baseclass.extend({
 					version: null,
 					packageCompat: 0,
 					rpcdCompat: 0,
-				},
-				platform: platformSupport?.[pkg.Name] || {
-					ipset_installed: false,
-					nft_installed: false,
-					adguardhome_installed: false,
-					dnsmasq_installed: false,
-					unbound_installed: false,
-					adguardhome_ipset_support: false,
-					dnsmasq_ipset_support: false,
-					dnsmasq_nftset_support: false,
 				},
 				ubus: ubusInfo?.[pkg.Name]?.instances?.main?.data || {
 					packageCompat: 0,
@@ -686,6 +681,7 @@ return L.Class.extend({
 	status: status,
 	pkg: pkg,
 	getInitStatus: getInitStatus,
+	getInterfaces: getInterfaces,
 	getPlatformSupport: getPlatformSupport,
 	getUbusInfo: getUbusInfo,
 });
