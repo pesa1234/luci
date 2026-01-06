@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-12-29 10:00+0000\n"
+"PO-Revision-Date: 2026-01-03 16:54+0000\n"
 "Last-Translator: Hyeonjeong Lee <h9101654@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationstravelmate/ko/>\n"
@@ -279,7 +279,7 @@ msgstr ""
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:282
 msgid "General Settings"
-msgstr "기본 설정"
+msgstr "일반 설정"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:354
 msgid "Generate a random unicast MAC address for each uplink connection."
@@ -838,7 +838,7 @@ msgstr ""
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:377
 msgid "Verbose Debug Logging"
-msgstr ""
+msgstr "상세 디버그 로그 기록"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:313
 msgid "WLAN Scan Mode"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2025-12-29 10:01+0000\n"
+"PO-Revision-Date: 2026-01-03 16:53+0000\n"
 "Last-Translator: Hyeonjeong Lee <h9101654@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationssmartdns/ko/>\n"
@@ -42,7 +42,7 @@ msgstr ""
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:132
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:639
 msgid "Advanced Settings"
-msgstr ""
+msgstr "고급 설정"
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:253
 msgid ""
@@ -344,7 +344,7 @@ msgstr ""
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:131
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:638
 msgid "General Settings"
-msgstr ""
+msgstr "일반 설정"
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:599
 msgid "Generate Coredump"
@@ -421,11 +421,11 @@ msgstr ""
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:624
 msgid "Log File"
-msgstr ""
+msgstr "로그 파일"
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:608
 msgid "Log Level"
-msgstr ""
+msgstr "로그 수준"
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:620
 msgid "Log Number"
@@ -433,7 +433,7 @@ msgstr ""
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:604
 msgid "Log Size"
-msgstr ""
+msgstr "로그 크기"
 
 #: applications/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js:757
 msgid "Marking Packets"

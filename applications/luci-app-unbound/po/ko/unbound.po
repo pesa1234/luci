@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-12-29 10:01+0000\n"
+"PO-Revision-Date: 2026-01-04 09:37+0000\n"
 "Last-Translator: Hyeonjeong Lee <h9101654@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsunbound/ko/>\n"
@@ -270,7 +270,7 @@ msgstr ""
 
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zones.js:58
 msgid "Forward"
-msgstr "포워드"
+msgstr "전달"
 
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zone-details.js:54
 msgid "Forward (simple handoff)"
@@ -386,7 +386,7 @@ msgstr ""
 
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/configure.js:172
 msgid "Local Domain"
-msgstr ""
+msgstr "로컬 도메인"
 
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/configure.js:177
 msgid "Local Domain Type"
@@ -587,7 +587,7 @@ msgstr ""
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zone-details.js:60
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zones.js:83
 msgid "Servers"
-msgstr ""
+msgstr "서버"
 
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zone-details.js:61
 msgid "Servers for this zone; see README.md for optional form"
@@ -778,7 +778,7 @@ msgstr ""
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zones.js:64
 #: applications/luci-app-unbound/root/usr/share/luci/menu.d/luci-app-unbound.json:35
 msgid "Zones"
-msgstr ""
+msgstr "영역"
 
 #: applications/luci-app-unbound/htdocs/luci-static/resources/view/unbound/zones.js:76
 msgid "accept upstream results for"
