@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-01-05 05:34+0000\n"
+"PO-Revision-Date: 2026-01-11 11:13+0000\n"
 "Last-Translator: Džiugas Januševičius <dziugas1959@hotmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsdawn/lt/>\n"
@@ -418,198 +418,218 @@ msgstr "Nepasiekiama"
 msgid ""
 "Number of connected stations to consider \"better\" for use_station_count"
 msgstr ""
+"Prijungtų stočių skaičius, kurį reikia atsižvelgti „geresniu“, skirtas – „"
+"use_station_count“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:353
 msgid ""
 "Number of consecutive times a client should be evaluated as ready to kick "
 "before actually doing it"
 msgstr ""
+"Kiek kartų iš eilės klientas turėtų būti įvertintas kaip pasirengęs išmesti, "
+"skaičius, prieš tai aktualiai darant"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:304
 msgid "Number of entries to include in a 802.11v DISASSOCIATE Neighbor Report"
 msgstr ""
+"įvestys, kuriuos reikia įtraukti į – „802.11v“ ATSIRIBOJIMO kaimyno "
+"atskaitą, skaičius"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:286
 msgid "Number of sampling periods to average channel utilization values over"
 msgstr ""
+"Pavyzdžių atrankos periodų skaičius, siekiant apskaičiuoti vidutines kanalo "
+"panaudojimo reikšmes per"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:359
 msgid "Number of times a client should retry PROBE before acceptance"
 msgstr ""
+"Kiek kartų klientas turėtų pakartoti PATIKRINIMĄ prieš priėmimą, skaičius"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:151
 msgid "Path to hostapd runtime information"
-msgstr ""
+msgstr "Kelias į – „hostapd“ vykdančiąją informaciją"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:400
 msgid "Per AP weighting"
-msgstr ""
+msgstr "Per „AP“ - prieigos taško svertinį"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:483
 msgid "Per dB increment for weighted RSSI evaluation"
-msgstr ""
+msgstr "Per dB prieaugį, skirta svertinam „RSSI“ įvertinimui"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:204
 msgid "Port for TCP networking"
-msgstr ""
+msgstr "Prievadas, skirtas „TCP“ tinklavimui"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:370
 msgid ""
 "Preferred order for using Passive, Active or Table 802.11k BEACON information"
 msgstr ""
+"Pageidaujama pasyviosios, aktyviosios arba lentelės „802.11k“ ŠVYTURIO "
+"informacijos naudojimo tvarka"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/hearing_map.js:66
 msgid "RCPI"
-msgstr ""
+msgstr "„RCPI“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:369
 msgid "RRM Mode"
-msgstr ""
+msgstr "„RRM“ veiksena"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/hearing_map.js:67
 msgid "RSNI"
-msgstr ""
+msgstr "„RSNI“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:470
 msgid "RSSI"
-msgstr ""
+msgstr "„RSSI“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:464
 msgid "RSSI Center"
-msgstr ""
+msgstr "„RSSI“ centras"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:476
 msgid "RSSI Value"
-msgstr ""
+msgstr "„RSSI“ reikšmė"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:482
 msgid "RSSI Weight"
-msgstr ""
+msgstr "„RSSI“ svoris"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/hearing_map.js:66
 msgid "Received Channel Power Indication"
-msgstr ""
+msgstr "Gauto kanalo galios indikacija"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/hearing_map.js:67
 msgid "Received Signal to Noise Indicator"
-msgstr ""
+msgstr "Gauto „SNR“ indikatorius"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:227
 msgid "Remove AP"
-msgstr ""
+msgstr "Pašalinti „AP“ – prieigos tašką"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:233
 msgid "Remove Client"
-msgstr ""
+msgstr "Pašalinti klientą"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:239
 msgid "Remove Probe"
-msgstr ""
+msgstr "Pašalinti zondą"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:139
 msgid "Reporting on standard behaviour"
-msgstr ""
+msgstr "Pranešamas ant standartinio elgesio"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/hearing_map.js:70
 msgid "Score"
-msgstr ""
+msgstr "Balas/-ai"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:471
 msgid "Score addition when signal exceeds threshold"
-msgstr ""
+msgstr "Balų pridėjimas, kai signalas viršija slenkstį"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:430
 msgid "Score addition when signal is below threshold"
-msgstr ""
+msgstr "Balų pridėjimas, kai signalas yra žemiau slenksčio"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:453
 msgid "Score increment if HT is not supported"
-msgstr ""
+msgstr "Balų prieaugis, jei „HT“ yra nepalaikomas"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:418
 msgid "Score increment if HT is supported"
-msgstr ""
+msgstr "Balų prieaugis, jei „HT“ yra palaikomas"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:459
 msgid "Score increment if VHT is not supported"
-msgstr ""
+msgstr "Balų prieaugis, jei „VHT“ yra nepalaikomas"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:489
 msgid "Score increment if VHT is supported"
-msgstr ""
+msgstr "Balų prieaugis, jei „VHT“ yra palaikomas"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:442
 msgid "Score increment if channel utilization is above max_chan_util_val"
-msgstr ""
+msgstr "Balų prieaugis, jei kanalo panaudojimas viršija – „max_chan_util_val“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:406
 msgid "Score increment if channel utilization is below chan_util_val"
 msgstr ""
+"Balų prieaugis, jei kanalo panaudojimas yra žemiau – „max_chan_util_val“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:142
 msgid "Serious malfunction / unexpected behaviour"
-msgstr ""
+msgstr "Rimta/-as triktis/netikėtas elgesys"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:194
 msgid "Server IP"
-msgstr ""
+msgstr "Serverio IP"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:375
 msgid "Set Hostapd Neighbor Report"
-msgstr ""
+msgstr "Nustatyti „Hostapd“ kaimyno atskaitą"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/hearing_map.js:65
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/network_overview.js:61
 msgid "Signal"
-msgstr ""
+msgstr "Signalas"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:141
 msgid "Something appears wrong, but recoverable"
-msgstr ""
+msgstr "Kažkas atrodo negerai, bet galima atkurti"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:365
 msgid "Space separated list of MACS to use in \"static\" AP Neighbor Report"
 msgstr ""
+"Tarpais atskirtas „MAC“ (dgs.) sąrašas, naudojamas „nekintamo AP“ – prieigos "
+"taško kaimyno atskaitoje"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:140
 msgid "Standard behaviour always worth reporting"
-msgstr ""
+msgstr "Tipinis elgesys, apie kurį visada verta pranešti"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/status/dawn/network_overview.js:48
 msgid "Stations Connected"
-msgstr ""
+msgstr "Stotys prijungtos"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:203
 msgid "TCP port"
-msgstr ""
+msgstr "„TCP“ prievadas"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:190
 msgid "TCP w/out UMDNS discovery"
-msgstr ""
+msgstr "„TCP“ be „UMDNS“ atradimu"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:189
 msgid "TCP with UMDNS discovery"
-msgstr ""
+msgstr "„TCP“ su „UMDNS“ atradimu"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:477
 msgid "Threshold for a good RSSI"
-msgstr ""
+msgstr "Gero „RSSI“ slenkstis"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:436
 msgid "Threshold for bad RSSI"
-msgstr ""
+msgstr "Blogo „RSSI“ slenkstis"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:264
 msgid "Timer to (re-)register for hostapd messages for each local BSSID"
 msgstr ""
+"Laikmatis, skirtas (pakartotinei) registracijai, norint gauti „hostapd“ "
+"pranešimus kiekvienam vietiniam „BSSID“"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:246
 msgid "Timer to ask all connected clients for a new BEACON REPORT"
 msgstr ""
+"Laikmatis, skirtas visiems prijungtiems klientams prašyti naujo ŠVYTURIO "
+"ATSKAITO"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:252
 msgid "Timer to get recent channel utilization figure for each local BSSID"
 msgstr ""
+"Laikmatis, skirtas gauti naujausią kiekvieno vietinio „BSSID“ kanalo "
+"panaudojimo iliustraciją"
 
 #: applications/luci-app-dawn/htdocs/luci-static/resources/view/network/dawn.js:270
 msgid ""
