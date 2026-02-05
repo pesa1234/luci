@@ -545,6 +545,7 @@ select {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 18px;
+	align-items: baseline;
 }
 
 .cbi-value-field {
@@ -2033,15 +2034,13 @@ form.inline { display: inline; margin-bottom: 0; }
 	font-weight: normal;
 }
 
-.cbi-section-table-titles.named::before,
+.cbi-section-table-titles {
+	font-weight: bold;
+}
+
 .cbi-section-table-descr.named::before,
 .cbi-section-table-row[data-title]::before {
-	content: attr(data-title) " ";
-	display: table-cell;
-	padding: 10px 10px 9px;
-	line-height: 18px;
-	font-weight: bold;
-	vertical-align: middle;
+	content: none;
 }
 
 .cbi-section-table-titles.named::before,

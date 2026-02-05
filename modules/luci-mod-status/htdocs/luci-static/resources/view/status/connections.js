@@ -3,6 +3,7 @@
 'require poll';
 'require request';
 'require rpc';
+'require fs';
 
 var callLuciRealtimeStats = rpc.declare({
 	object: 'luci',
@@ -24,11 +25,18 @@ var callNetworkRrdnsLookup = rpc.declare({
 	expect: { '': {} }
 });
 
+var callLuciRpcGetHostHints = rpc.declare({
+	object: 'luci-rpc',
+	method: 'getHostHints',
+	expect: { '': {} }
+});
+
 var graphPolls = [],
-    pollInterval = 3,
-    dns_cache = {},
-    enableLookups = false,
-    filterText = '';
+	pollInterval = 3,
+	dns_cache = {},
+	service_cache = {},
+	enableLookups = false,
+	filterText = '';
 
 var recheck_lookup_queue = {};
 
@@ -107,6 +115,40 @@ return view.extend({
 	},
 
 	updateConntrack: function(conn) {
+		function fetchServices() {
+			if (Object.keys(service_cache).length > 0) return;
+
+			fs.read('/etc/services')
+				.then((rawData) => {
+					const lines = rawData.split('\n');  // Split data into lines
+					// Parse each line to extract port and service info
+					lines.forEach(line => {
+						const match = line.match(/^([\w-]+)\s+(\d+)\/(\w+)/);  // Regex to match service definition
+						if (match) {
+							const [, service, port, protocol] = match;
+							// Cache the service info by port and protocol
+							if (!service_cache[port]) service_cache[port] = {};
+							service_cache[port][protocol] = service;
+						}
+					});
+				})
+				.catch((error) => {
+					console.error('Error fetching services:', error);
+				});
+		}
+
+		function joinAddressWithPortOrServiceName(address, port, protocol) {
+			if (!port) return address;
+
+			if (enableLookups) {
+				fetchServices();
+				const service = service_cache[Number(port)]?.[protocol];
+				if (service)
+					return `${address}:${service}`;
+			}
+			return `${address}:${port}`;
+		}
+
 		var lookup_queue = [ ];
 		var rows = [];
 
@@ -133,8 +175,8 @@ return view.extend({
 
 			const network = c.layer3.toUpperCase();
 			const protocol = c.layer4.toUpperCase();
-			const source ='%h'.format(c.hasOwnProperty('sport') ? (src + ':' + c.sport) : src);
-			const destination = '%h'.format(c.hasOwnProperty('dport') ? (dst + ':' + c.dport) : dst);
+			const source ='%h'.format(joinAddressWithPortOrServiceName(src, c.sport, protocol));
+			const destination = '%h'.format(joinAddressWithPortOrServiceName(dst, c.dport, protocol));
 			const transfer = [ c.bytes, '%1024.2mB (%d %s)'.format(c.bytes, c.packets, _('Pkts.')) ];
 
 			if (filterText) {
@@ -158,31 +200,55 @@ return view.extend({
 		cbi_update_table('#connections', rows, E('em', _('No information available')));
 
 		if (enableLookups && lookup_queue.length > 0) {
-			var reduced_lookup_queue = lookup_queue;
+			// Take a batch of max 100 addresses
+			const reduced_lookup_queue = lookup_queue.length > 100
+				? lookup_queue.slice(0, 100)
+				: lookup_queue;
 
-			if (lookup_queue.length > 100)
-				reduced_lookup_queue = lookup_queue.slice(0, 100);
+			const checked = new Set(reduced_lookup_queue);
 
-			callNetworkRrdnsLookup(reduced_lookup_queue, 5000, 1000).then(function(replies) {
-				for (var index in reduced_lookup_queue) {
-					var address = reduced_lookup_queue[index];
+			callNetworkRrdnsLookup(reduced_lookup_queue, 5000, 1000).then(function (replies) {
+				const unresolved = [];
 
-					if (!address)
-						continue;
-
+				// Remove resolved addresses from lookup_queue, keep unresolved
+				lookup_queue = lookup_queue.filter(address => {
+					if (!checked.has(address)) return true; // outside this batch → keep
 					if (replies[address]) {
 						dns_cache[address] = replies[address];
-						lookup_queue.splice(reduced_lookup_queue.indexOf(address), 1);
-						continue;
+						return false; // resolved → remove
 					}
+					unresolved.push(address);
+					return true; // unresolved → keep
+				});
 
-					if (recheck_lookup_queue[address] > 2) {
-						dns_cache[address] = (address.match(/:/)) ? '[' + address + ']' : address;
-						lookup_queue.splice(index, 1);
-					}
-					else {
-						recheck_lookup_queue[address] = (recheck_lookup_queue[address] || 0) + 1;
-					}
+				if (unresolved.length > 0) {
+					callLuciRpcGetHostHints().then(function (hints) {
+						const ipNameMap = {};
+
+						for (const hint of Object.values(hints || {})) {
+							if (!hint || !hint.name) continue;
+							for (const ip of [...(hint.ipaddrs || []), ...(hint.ip6addrs || [])]) {
+								ipNameMap[ip] = hint.name;
+							}
+						}
+
+						// Apply host hints and recheck logic
+						lookup_queue = lookup_queue.filter(address => {
+							if (!checked.has(address)) return true; // outside batch → keep
+							if (ipNameMap[address]) {
+								dns_cache[address] = ipNameMap[address]
+								return false; // resolved → remove
+							}
+
+							if ((recheck_lookup_queue[address] || 0) > 2) {
+								dns_cache[address] = address.includes(':') ? `[${address}]` : address;
+								return false; // give up → remove
+							}
+
+							recheck_lookup_queue[address] = (recheck_lookup_queue[address] || 0) + 1;
+							return true; // unresolved → keep
+						});
+					});
 				}
 
 				var btn = document.querySelector('.btn.toggle-lookups');
