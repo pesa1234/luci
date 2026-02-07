@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-02-05 16:10+0000\n"
+"PO-Revision-Date: 2026-02-05 21:26+0000\n"
 "Last-Translator: EESF-2 <eesf-2@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luciapplicationstravelmate/zh_Hant/>\n"
@@ -27,6 +27,12 @@ msgstr "-- 選擇AP --"
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:437
 msgid "-- default --"
 msgstr "-- 預設 --"
+
+#: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:170
+msgid ""
+"<b><em>Please note:</em></b> On first start please call the 'Interface "
+"Wizard' once, to make the necessary network- and firewall settings."
+msgstr ""
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:499
 msgid "AP QR-Codes..."
@@ -99,8 +105,8 @@ msgid ""
 "requires the additional configuration of <em>Wireguard</em> or <em>OpenVPN</"
 "em>."
 msgstr ""
-"自動處理 VPN 連接。<br />請注意: 此功能需要額外設定 <em>Wireguard</em>或<em>"
-"OpenVPN</em>。"
+"自動處理 VPN 連接。<br />請注意: 此功能需要額外設定 <em>Wireguard</em>或"
+"<em>OpenVPN</em>。"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:317
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:509
@@ -140,11 +146,7 @@ msgstr ""
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:168
 msgid ""
 "Configuration of the travelmate package to enable travel router "
-"functionality. For further information <a href=\"https://github.com/openwrt/"
-"packages/blob/master/net/travelmate/files/README.md\" target=\"_blank\" "
-"rel=\"noreferrer noopener\" >check the online documentation</a>. <br /> "
-"<b><em>Please note:</em></b> On first start please call the 'Interface "
-"Wizard' once, to make the necessary network- and firewall settings."
+"functionality. For further information %s."
 msgstr ""
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:531
@@ -827,7 +829,7 @@ msgstr "為此上行連結使用指定的MAC位址。"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:431
 msgid "User Agent"
-msgstr "用戶代理"
+msgstr "User Agent"
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:674
 msgid "VPN Hook"
@@ -950,6 +952,10 @@ msgstr "驗證= MSCHAPV2"
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/stations.js:980
 msgid "auth=PAP"
 msgstr "驗證= PAP"
+
+#: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:169
+msgid "check the online documentation"
+msgstr ""
 
 #: applications/luci-app-travelmate/htdocs/luci-static/resources/view/travelmate/overview.js:315
 msgid "passive"
