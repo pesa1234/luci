@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-02-09 03:21+0000\n"
+"PO-Revision-Date: 2026-02-14 00:51+0000\n"
 "Last-Translator: EESF-2 <eesf-2@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luciapplicationsfrpc/zh_Hant/>\n"
@@ -50,8 +50,8 @@ msgid ""
 "value is 0, the admin server will not be started.<br />By default, this "
 "value is 0."
 msgstr ""
-"AdminPort 指定管理伺服器監聽的連接埠。 如果此值為 0，則不會啟動管理伺服器。 "
-"<br />預設情況下，此值為0。"
+"AdminPort 指定管理伺服器監聽的連接埠。如果此值為 0，則不會啟動管理伺服器"
+"。<br />預設情況下，此值為0。"
 
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:31
 msgid ""
@@ -197,7 +197,7 @@ msgstr ""
 
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:53
 msgid "If remote_port is 0, frps will assign a random port for you"
-msgstr "如果遠端連接埠為 0，frps 會為你分配一個隨機連接埠"
+msgstr "如果 remote_port 為 0，frps 會為你分配一個隨機連接埠"
 
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:48
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:226
@@ -257,7 +257,7 @@ msgid ""
 "\"info\"."
 msgstr ""
 "LogLevel 指定最低日誌級別。有效值為 \"trace\", \"debug\", \" info\", "
-"\"warn\" 和 \"error\"。 <br />預設情況下，此值為 \"info\"。"
+"\"warn\" 和 \"error\"。<br />預設情況下，此值為 \"info\"。"
 
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:25
 msgid ""
@@ -318,7 +318,7 @@ msgstr "代理名稱"
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:45
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:225
 msgid "Proxy type"
-msgstr "代理類別"
+msgstr "代理類型"
 
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:45
 msgid ""
@@ -442,7 +442,7 @@ msgid ""
 "succeed. <br />By default, this value is \"\"."
 msgstr ""
 "Token 指定用於建立要發送到伺服器的密鑰的授權金鑰。伺服器必須具有匹配的權杖才"
-"能授權成功。 <br />預設情況下，此值為 \"\"。"
+"能授權成功。<br />預設情況下，此值為 \"\"。"
 
 #: applications/luci-app-frpc/htdocs/luci-static/resources/view/frpc.js:83
 msgid "Unix domain socket path"

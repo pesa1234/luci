@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-12-30 17:00+0000\n"
-"Last-Translator: Steve <secure@mail.az>\n"
+"PO-Revision-Date: 2026-02-15 08:22+0000\n"
+"Last-Translator: PhillyMay <mein.alias@outlook.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openwrt/"
-"luciapplicationsmjpg-streamer/de/>\n"
+"luciapplicationsustreamer/de/>\n"
 "Language: de\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:247
 msgid "Allow origin"
@@ -31,16 +31,19 @@ msgid "Backlight compensation"
 msgstr ""
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:437
+#, fuzzy
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitrate:"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:476
+#, fuzzy
 msgid "Brightness"
-msgstr ""
+msgstr "Helligkeit"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:158
+#, fuzzy
 msgid "Buffers"
-msgstr ""
+msgstr "Puffer"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:355
 msgid "Client TTL"
@@ -48,8 +51,9 @@ msgstr ""
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:389
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:426
+#, fuzzy
 msgid "Client TTL. Default: 10."
-msgstr ""
+msgstr "Client TTL. Standard: 10."
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:512
 msgid "Color effect"
@@ -213,8 +217,9 @@ msgid "HTTP output"
 msgstr "HTTP-Ausgabe"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:202
+#, fuzzy
 msgid "Host"
-msgstr ""
+msgstr "Host"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:488
 msgid "Hue"
@@ -484,7 +489,7 @@ msgstr ""
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:50
 msgid "performance"
-msgstr ""
+msgstr "Leistung"
 
 #: applications/luci-app-ustreamer/htdocs/luci-static/resources/view/ustreamer/ustreamer.js:78
 msgid "units: seconds"
