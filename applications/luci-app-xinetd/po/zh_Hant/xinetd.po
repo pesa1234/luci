@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2026-02-14 00:51+0000\n"
+"PO-Revision-Date: 2026-02-22 16:17+0000\n"
 "Last-Translator: EESF-2 <eesf-2@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luciapplicationsxinetd/zh_Hant/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:73
 msgid "Access Control"
@@ -28,7 +28,7 @@ msgstr "新增服務條目"
 msgid ""
 "Additional arguments passed to the server. There is no validation of this "
 "input."
-msgstr "傳遞給伺服器的額外參數。此輸入不會得到任何驗證。"
+msgstr "傳遞給伺服器的額外參數。此輸入不會得到任何認證。"
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:72
 msgid "Advanced Settings"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:141
 msgid "The port used for this service, valid range: 0 - 65535"
-msgstr ""
+msgstr "此服務使用的連接埠，有效範圍: 0 - 65535"
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:147
 msgid "The protocol to be used for this service"
@@ -245,7 +245,7 @@ msgstr "此服務使用的協定"
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:154
 msgid "The type of the socket used for this service"
-msgstr ""
+msgstr "此服務使用的 socket 類型"
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:207
 msgid "Threading behaviour"
@@ -332,7 +332,7 @@ msgstr ""
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:156
 msgid "stream-based service"
-msgstr ""
+msgstr "基於串流的服務"
 
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:58
 #: applications/luci-app-xinetd/htdocs/luci-static/resources/view/xinetd/xinetd.js:67
