@@ -1900,7 +1900,6 @@ msgstr "Ràng buộc máy chủ NTP"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -1933,7 +1932,6 @@ msgstr ""
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -2032,14 +2030,6 @@ msgstr "Đệm"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:260
 msgid "By default, dnsmasq caches A, AAAA, CNAME and SRV DNS record types."
 msgstr "Mặc định, dnsmasq lưu trữ các loại bản ghi DNS A, AAAA, CNAME và SRV."
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:131
-msgid ""
-"CA certificate (PEM encoded; Use instead of system-wide store to verify the "
-"gateway certificate."
-msgstr ""
-"Chứng chỉ CA (mã hóa PEM; Sử dụng thay thế cho hệ thống lưu trữ toàn cầu để "
-"xác minh chứng chỉ cổng vào."
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:178
 msgid "CA certificate; if empty it will be saved after the first connection."
@@ -6022,7 +6012,6 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
 msgid "If unchecked, no default route is configured"
 msgstr ""
@@ -6030,7 +6019,6 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:140
 msgid "If unchecked, the advertised DNS server addresses are ignored"
 msgstr ""
@@ -6440,11 +6428,6 @@ msgstr "Giá trị nhập vào không hợp lí"
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:73
 msgid "Invalid APN provided"
 msgstr "APN không hợp lệ được cung cấp"
-
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:38
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:41
-msgid "Invalid Base64 key string"
-msgstr "Giá trị khóa Base64 không thích hợp"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:729
 msgid ""
@@ -7108,10 +7091,6 @@ msgstr "Cục bộ 6"
 #: modules/luci-base/htdocs/luci-static/resources/tools/views.js:56
 msgid "Local 7"
 msgstr "Cục bộ 7"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:171
-msgid "Local IP address"
-msgstr "Địa chỉ IP cục bộ"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:12
 #: modules/luci-compat/luasrc/model/network.lua:30
@@ -8732,17 +8711,9 @@ msgstr "Xem tổng quan quy tắc iptables…"
 msgid "Open list..."
 msgstr "Đang mở danh sách ..."
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:63
-msgid "OpenConnect"
-msgstr "OpenConnect"
-
 #: modules/luci-compat/luasrc/model/network/proto_openconnect.lua:9
 msgid "OpenConnect (CISCO AnyConnect)"
 msgstr "OpenConnect (CISCO AnyConnect)"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:63
-msgid "OpenFortivpn"
-msgstr "OpenFortivpn"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:326
 msgid "OpenVPN"
@@ -8833,12 +8804,6 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:137
 msgid "Optional, free-form notes about this device"
 msgstr "Tùy chọn, ghi chú tự do về thiết bị này"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
-msgstr ""
-"Tùy chọn, tính bằng giây. Nếu đặt thành '0', không có việc kết nối lại được "
-"thực hiện."
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:176
 msgid ""
@@ -9304,7 +9269,6 @@ msgstr "Chuyển tiếp (Sao chép thiết bị vật lý thành một MAC VLAN 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2088
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:51
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:301
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
@@ -9503,10 +9467,6 @@ msgstr "Persist/unpersist ifconfig-pool"
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:653
 msgid "Persistent Keep Alive"
 msgstr "Giữ liên tục"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Persistent reconnect interval"
-msgstr "Khoảng thời gian kết nối lại liên tục"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:310
 msgid "PersistentKeepAlive setting is invalid"
@@ -12867,11 +12827,6 @@ msgstr "Đây là địa chỉ IPv4 của relay"
 msgid "This authentication type is not applicable to the selected EAP method."
 msgstr "Loại xác thực này không áp dụng cho phương pháp EAP đã chọn."
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:56
-msgid "This does not look like a valid PEM file"
-msgstr "Tập tin không giống như một tệp PEM hợp lệ"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1773
 msgid ""
 "This identifier is randomly generated the first time the device is booted."
@@ -13648,7 +13603,6 @@ msgstr "Sử dụng DHCPv6"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:144
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:139
 msgid "Use DNS servers advertised by peer"
 msgstr "Sử dụng máy chủ DNS được quảng cáo bởi máy ngang cấp"
@@ -13705,7 +13659,6 @@ msgstr "Sử dụng máy chủ DNS tự tạo"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:133
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:128
 msgid "Use default gateway"
 msgstr "Sử dụng cổng mặc định"
@@ -13713,7 +13666,6 @@ msgstr "Sử dụng cổng mặc định"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1214
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:166
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
 msgid "Use gateway metric"
 msgstr "Sử dụng gateway metric"
@@ -13816,7 +13768,6 @@ msgid "User"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:154
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:106
 msgid "User certificate (PEM encoded)"
 msgstr "Chứng chỉ người dùng (mã hóa PEM)"
 
@@ -13825,13 +13776,11 @@ msgid "User identifier"
 msgstr "Nhận dạng người dùng"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:166
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:118
 msgid "User key (PEM encoded)"
 msgstr "Khóa người dùng (mã hóa PEM)"
 
 #: modules/luci-base/ucode/template/sysauth.ut:23
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:143
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:101
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:56
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:13
 msgid "Username"
@@ -13900,24 +13849,10 @@ msgstr "Địa chỉ cục bộ VPN"
 msgid "VPN Local port"
 msgstr "Cổng cục bộ VPN"
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:94
-msgid "VPN Protocol"
-msgstr "Giao thức VPN"
-
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:103
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:93
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:58
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:39
 msgid "VPN Server"
 msgstr "Máy chủ VPN"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:154
-msgid "VPN Server certificate's SHA256 hash"
-msgstr "Băm SHA256 của chứng chỉ máy chủ VPN"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:96
-msgid "VPN Server port"
-msgstr "Cổng máy chủ VPM"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:141
 msgid "VPN Server's certificate SHA1 hash"
@@ -15121,14 +15056,6 @@ msgstr "Giá trị nguyên hợp lệ"
 msgid "valid multicast MAC address"
 msgstr "địa chỉ MAC đa điểm hợp lệ"
 
-#: modules/luci-base/htdocs/luci-static/resources/validation.js:1006
-msgid ""
-"valid network device name between 1 and 15 characters not containing \":\", "
-"\"/\", \"%\" or spaces"
-msgstr ""
-"tên thiết bị mạng hợp lệ từ 1 đến 15 ký tự không chứa \":\", \"/\", \"%\" "
-"hoặc khoảng trắng"
-
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:1004
 msgid "valid network device name, not \".\" or \"..\""
 msgstr "tên thiết bị mạng hợp lệ, không phải là \".\" hoặc \"..\""
@@ -15233,6 +15160,52 @@ msgstr ""
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Quay lại"
+
+#~ msgid ""
+#~ "CA certificate (PEM encoded; Use instead of system-wide store to verify "
+#~ "the gateway certificate."
+#~ msgstr ""
+#~ "Chứng chỉ CA (mã hóa PEM; Sử dụng thay thế cho hệ thống lưu trữ toàn cầu "
+#~ "để xác minh chứng chỉ cổng vào."
+
+#~ msgid "Invalid Base64 key string"
+#~ msgstr "Giá trị khóa Base64 không thích hợp"
+
+#~ msgid "Local IP address"
+#~ msgstr "Địa chỉ IP cục bộ"
+
+#~ msgid "OpenConnect"
+#~ msgstr "OpenConnect"
+
+#~ msgid "OpenFortivpn"
+#~ msgstr "OpenFortivpn"
+
+#~ msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
+#~ msgstr ""
+#~ "Tùy chọn, tính bằng giây. Nếu đặt thành '0', không có việc kết nối lại "
+#~ "được thực hiện."
+
+#~ msgid "Persistent reconnect interval"
+#~ msgstr "Khoảng thời gian kết nối lại liên tục"
+
+#~ msgid "This does not look like a valid PEM file"
+#~ msgstr "Tập tin không giống như một tệp PEM hợp lệ"
+
+#~ msgid "VPN Protocol"
+#~ msgstr "Giao thức VPN"
+
+#~ msgid "VPN Server certificate's SHA256 hash"
+#~ msgstr "Băm SHA256 của chứng chỉ máy chủ VPN"
+
+#~ msgid "VPN Server port"
+#~ msgstr "Cổng máy chủ VPM"
+
+#~ msgid ""
+#~ "valid network device name between 1 and 15 characters not containing \":"
+#~ "\", \"/\", \"%\" or spaces"
+#~ msgstr ""
+#~ "tên thiết bị mạng hợp lệ từ 1 đến 15 ký tự không chứa \":\", \"/\", \"%\" "
+#~ "hoặc khoảng trắng"
 
 #~ msgid "Add template based configuration"
 #~ msgstr "Thêm cấu hình dựa trên mẫu"

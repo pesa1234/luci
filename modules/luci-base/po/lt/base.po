@@ -1951,7 +1951,6 @@ msgstr "Susieti/Pririšti „NTP“ serverį"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -1984,7 +1983,6 @@ msgstr ""
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -2091,14 +2089,6 @@ msgid "By default, dnsmasq caches A, AAAA, CNAME and SRV DNS record types."
 msgstr ""
 "Pagal numatytuosius nustatymus, „dnsmasq“ talpykloje/podėlyje saugo – „A“, "
 "„AAAA“, „CNAME“ ir „SRV DNS“ įrašų tipus."
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:131
-msgid ""
-"CA certificate (PEM encoded; Use instead of system-wide store to verify the "
-"gateway certificate."
-msgstr ""
-"„CA“ sertifikatas (užkoduotas „PEM“; Naudoti vietoj „system-wide“ laikymą, "
-"kad patikrintumėte tinklo tarpuvartės sertifikatą)."
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:178
 msgid "CA certificate; if empty it will be saved after the first connection."
@@ -6178,14 +6168,12 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
 msgid "If unchecked, no default route is configured"
 msgstr "Jei nepažymėta, numatytasis maršrutas nėra sukonfigūruotas"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:140
 msgid "If unchecked, the advertised DNS server addresses are ignored"
 msgstr "Jei nepažymėta, reklamuojami „DNS“ serverio adresai yra ignoruojami"
@@ -6600,11 +6588,6 @@ msgstr "Negalimas"
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:73
 msgid "Invalid APN provided"
 msgstr "Negalimas pateiktas „APN“"
-
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:38
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:41
-msgid "Invalid Base64 key string"
-msgstr "Negalimas „Base64“ rakto įvestis"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:729
 msgid ""
@@ -7297,10 +7280,6 @@ msgstr "Vietinė sąsaja – 6-a"
 #: modules/luci-base/htdocs/luci-static/resources/tools/views.js:56
 msgid "Local 7"
 msgstr "Vietinė sąsaja – 7-a"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:171
-msgid "Local IP address"
-msgstr "Vietinis IP adresas"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:12
 #: modules/luci-compat/luasrc/model/network.lua:30
@@ -8952,17 +8931,9 @@ msgstr "Atidaryti „iptables“ taisyklių apibendrinimą…"
 msgid "Open list..."
 msgstr "Atidaryti sąrašą..."
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:63
-msgid "OpenConnect"
-msgstr "„OpenConnect“"
-
 #: modules/luci-compat/luasrc/model/network/proto_openconnect.lua:9
 msgid "OpenConnect (CISCO AnyConnect)"
 msgstr "„OpenConnect (CISCO AnyConnect)“"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:63
-msgid "OpenFortivpn"
-msgstr "„OpenFortivpn“"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:326
 msgid "OpenVPN"
@@ -9055,12 +9026,6 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:137
 msgid "Optional, free-form notes about this device"
 msgstr "Pasirenkamas, laisvos formos užrašai apie šį įrenginį"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
-msgstr ""
-"Pasirinktinis, sekundėmis. Jeigu nustatytas į – 0, tada nebus mėginama "
-"pakartotinai prisijungti."
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:176
 msgid ""
@@ -9536,7 +9501,6 @@ msgstr "Perduoti (Dubliuoti fizinį įrenginį į vieną „MAC VLAN“)"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2088
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:51
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:301
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
@@ -9740,10 +9704,6 @@ msgstr "Išlaikyti/Neišlaikyti „ifconfig-pool“"
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:653
 msgid "Persistent Keep Alive"
 msgstr "Pastoviai laikyti „gyvą“/„reaguojantį“ („PersistentKeepAlive“)"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Persistent reconnect interval"
-msgstr "Pastovus perjungimo intervalas"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:310
 msgid "PersistentKeepAlive setting is invalid"
@@ -13193,11 +13153,6 @@ msgid "This authentication type is not applicable to the selected EAP method."
 msgstr ""
 "Šis autentifikavimo patvirtinimo tipas netaikomas pasirinktam „EAP“ metodui."
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:56
-msgid "This does not look like a valid PEM file"
-msgstr "Tai neatrodo kaip tinkamas „PEM“ failas"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1773
 msgid ""
 "This identifier is randomly generated the first time the device is booted."
@@ -13996,7 +13951,6 @@ msgstr "Naudoti „DHCPv6“"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:144
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:139
 msgid "Use DNS servers advertised by peer"
 msgstr "Naudoti lygiarangio reklamuojamus „DNS“ serverius"
@@ -14057,7 +14011,6 @@ msgstr "Naudoti tinkintą „DNS“ serverį"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:133
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:128
 msgid "Use default gateway"
 msgstr "Naudoti numatytąjį tinklo tarpuvartę"
@@ -14065,7 +14018,6 @@ msgstr "Naudoti numatytąjį tinklo tarpuvartę"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1214
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:166
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
 msgid "Use gateway metric"
 msgstr "Naudoti tinklo tarpuvartės metrika"
@@ -14172,7 +14124,6 @@ msgid "User"
 msgstr ""
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:154
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:106
 msgid "User certificate (PEM encoded)"
 msgstr "Naudotojo/Vartotojo sertifikatas („PEM“ užkoduotas/-a)"
 
@@ -14181,13 +14132,11 @@ msgid "User identifier"
 msgstr "Naudotojo/Vartotojo identifikatorius"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:166
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:118
 msgid "User key (PEM encoded)"
 msgstr "Naudotojo/Vartotojo raktas („PEM“ užkoduotas/-a)"
 
 #: modules/luci-base/ucode/template/sysauth.ut:23
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:143
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:101
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:56
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:13
 msgid "Username"
@@ -14256,24 +14205,10 @@ msgstr "Vietinis „VPN“ adresas"
 msgid "VPN Local port"
 msgstr "Vietinis „VPN“ prievadas"
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:94
-msgid "VPN Protocol"
-msgstr "„VPN“ protokolas"
-
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:103
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:93
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:58
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:39
 msgid "VPN Server"
 msgstr "„VPN“ serveris"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:154
-msgid "VPN Server certificate's SHA256 hash"
-msgstr "„VPN“ serverio sertifikato „SHA256“ maiša"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:96
-msgid "VPN Server port"
-msgstr "„VPN“ serverio prievadas"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:141
 msgid "VPN Server's certificate SHA1 hash"
@@ -15491,14 +15426,6 @@ msgstr "tinkamas sveikojo skaičiaus reikšmė"
 msgid "valid multicast MAC address"
 msgstr "galiojantis daugiaadresinio transliavimo „MAC“ adresas"
 
-#: modules/luci-base/htdocs/luci-static/resources/validation.js:1006
-msgid ""
-"valid network device name between 1 and 15 characters not containing \":\", "
-"\"/\", \"%\" or spaces"
-msgstr ""
-"tinkamas tinklo įrenginio pavadinimas tarp 1 ir 15 simbolių, kuriame nėra "
-"„:“, „/“, „%“ ar tarpų"
-
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:1004
 msgid "valid network device name, not \".\" or \"..\""
 msgstr "tinkamas tinklo įrenginio pavadinimas, ne „.“ ar „..“"
@@ -15608,6 +15535,52 @@ msgstr "„{example_nx}“ grąžina „{nxdomain}“."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "🡐 Atgal"
+
+#~ msgid ""
+#~ "CA certificate (PEM encoded; Use instead of system-wide store to verify "
+#~ "the gateway certificate."
+#~ msgstr ""
+#~ "„CA“ sertifikatas (užkoduotas „PEM“; Naudoti vietoj „system-wide“ "
+#~ "laikymą, kad patikrintumėte tinklo tarpuvartės sertifikatą)."
+
+#~ msgid "Invalid Base64 key string"
+#~ msgstr "Negalimas „Base64“ rakto įvestis"
+
+#~ msgid "Local IP address"
+#~ msgstr "Vietinis IP adresas"
+
+#~ msgid "OpenConnect"
+#~ msgstr "„OpenConnect“"
+
+#~ msgid "OpenFortivpn"
+#~ msgstr "„OpenFortivpn“"
+
+#~ msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
+#~ msgstr ""
+#~ "Pasirinktinis, sekundėmis. Jeigu nustatytas į – 0, tada nebus mėginama "
+#~ "pakartotinai prisijungti."
+
+#~ msgid "Persistent reconnect interval"
+#~ msgstr "Pastovus perjungimo intervalas"
+
+#~ msgid "This does not look like a valid PEM file"
+#~ msgstr "Tai neatrodo kaip tinkamas „PEM“ failas"
+
+#~ msgid "VPN Protocol"
+#~ msgstr "„VPN“ protokolas"
+
+#~ msgid "VPN Server certificate's SHA256 hash"
+#~ msgstr "„VPN“ serverio sertifikato „SHA256“ maiša"
+
+#~ msgid "VPN Server port"
+#~ msgstr "„VPN“ serverio prievadas"
+
+#~ msgid ""
+#~ "valid network device name between 1 and 15 characters not containing \":"
+#~ "\", \"/\", \"%\" or spaces"
+#~ msgstr ""
+#~ "tinkamas tinklo įrenginio pavadinimas tarp 1 ir 15 simbolių, kuriame nėra "
+#~ "„:“, „/“, „%“ ar tarpų"
 
 #~ msgid "Add template based configuration"
 #~ msgstr "Pridėti šablono pagrįstą konfigūraciją"

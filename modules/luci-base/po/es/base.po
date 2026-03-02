@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-10 03:41+0200\n"
-"PO-Revision-Date: 2026-02-25 06:47+0000\n"
+"PO-Revision-Date: 2026-02-27 01:00+0000\n"
 "Last-Translator: Franco Castillo <castillofrancodamian@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openwrt/luci/es/>"
 "\n"
@@ -1937,7 +1937,6 @@ msgstr "Vincular servidor NTP"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -1972,7 +1971,6 @@ msgstr ""
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -2075,14 +2073,6 @@ msgid "By default, dnsmasq caches A, AAAA, CNAME and SRV DNS record types."
 msgstr ""
 "De forma predeterminada, dnsmasq almacena en caché los tipos de registros "
 "DNS A, AAAA, CNAME y SRV."
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:131
-msgid ""
-"CA certificate (PEM encoded; Use instead of system-wide store to verify the "
-"gateway certificate."
-msgstr ""
-"Certificado CA (codificado PEM; úselo en lugar del almacenamiento en todo el "
-"sistema para verificar el certificado de la puerta de enlace)."
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:178
 msgid "CA certificate; if empty it will be saved after the first connection."
@@ -3029,7 +3019,7 @@ msgstr "DUID/IAIDs"
 
 #: modules/luci-base/htdocs/luci-static/resources/tools/views.js:36
 msgid "Daemon"
-msgstr "Proceso en segundo plano"
+msgstr "Demonio"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:29
 msgid "Data Rate"
@@ -3682,7 +3672,7 @@ msgstr "No avisar de inconsistencias en ifconfig"
 
 #: modules/luci-compat/luasrc/view/cbi/tblsection.htm:152
 msgid "Down"
-msgstr "Abajo"
+msgstr "Bajar"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:3511
 msgid "Download"
@@ -6123,14 +6113,12 @@ msgstr ""
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
 msgid "If unchecked, no default route is configured"
 msgstr "Si no está marcado, no se configurará ninguna ruta predeterminada"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:140
 msgid "If unchecked, the advertised DNS server addresses are ignored"
 msgstr ""
@@ -6546,11 +6534,6 @@ msgstr "No válido"
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:73
 msgid "Invalid APN provided"
 msgstr "APN proporcionado no es válido"
-
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:38
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:41
-msgid "Invalid Base64 key string"
-msgstr "Cadena de clave Base64 no válida"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:729
 msgid ""
@@ -7235,10 +7218,6 @@ msgstr "Local 6"
 #: modules/luci-base/htdocs/luci-static/resources/tools/views.js:56
 msgid "Local 7"
 msgstr "Local 7"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:171
-msgid "Local IP address"
-msgstr "Dirección IP local"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:12
 #: modules/luci-compat/luasrc/model/network.lua:30
@@ -8883,17 +8862,9 @@ msgstr "Abrir descripción general de las reglas de iptables…"
 msgid "Open list..."
 msgstr "Abrir lista..."
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:63
-msgid "OpenConnect"
-msgstr "OpenConnect"
-
 #: modules/luci-compat/luasrc/model/network/proto_openconnect.lua:9
 msgid "OpenConnect (CISCO AnyConnect)"
 msgstr "OpenConnect (CISCO AnyConnect)"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:63
-msgid "OpenFortivpn"
-msgstr "OpenFortivpn"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:326
 msgid "OpenVPN"
@@ -8984,12 +8955,6 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:137
 msgid "Optional, free-form notes about this device"
 msgstr "Notas opcionales de forma libre sobre este dispositivo"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
-msgstr ""
-"Opcional, en segundos. Si se establece en '0', no se intenta volver a "
-"conectar."
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:176
 msgid ""
@@ -9457,7 +9422,6 @@ msgstr "Traspasar (Duplicar dispositivo físico a una sola MAC VLAN)"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2088
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:51
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:301
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
@@ -9664,10 +9628,6 @@ msgstr "Mantener/no mantener el listado de interfaces"
 msgid "Persistent Keep Alive"
 msgstr "Mantener conectado continuamente"
 
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Persistent reconnect interval"
-msgstr "Intervalo de reconexión persistente"
-
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:310
 msgid "PersistentKeepAlive setting is invalid"
 msgstr "La configuración de PersistentKeepAlive no es válida"
@@ -9837,7 +9797,7 @@ msgstr "Presente"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:572
 msgid "Preshared Key"
-msgstr "Clave precompartida"
+msgstr "Clava pre-compartida"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:543
 msgid "Preshared key in use"
@@ -10145,7 +10105,8 @@ msgstr "Llavero R1"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:934
 msgid "RA <abbr title=\"Prefix Information Option\">PIO</abbr> Flags"
-msgstr "Indicadores RA <abbr title=\"Opción de Información Prefijo\">PIO</abbr>"
+msgstr ""
+"Indicadores RA <abbr title=\"Opción de Información Prefijo\">PIO</abbr>"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1735
 msgid "RADIUS Access-Request attributes"
@@ -11128,7 +11089,7 @@ msgstr "Rx LDPC"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:226
 msgid "SHA256"
-msgstr "SHA-256"
+msgstr "SHA256"
 
 #: protocols/luci-proto-modemmanager/htdocs/luci-static/resources/view/modemmanager/status.js:145
 msgid "SIM %d"
@@ -11978,7 +11939,8 @@ msgstr ""
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:114
 msgid "Specify a placeholder gateway for routes"
-msgstr "Especifique una puerta de enlace de marcador de posición para las rutas"
+msgstr ""
+"Especifique una puerta de enlace de marcador de posición para las rutas"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:69
@@ -13166,11 +13128,6 @@ msgstr "Dirección IPv4 del relé"
 msgid "This authentication type is not applicable to the selected EAP method."
 msgstr "Este tipo de autenticación no es aplicable al método EAP seleccionado."
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:56
-msgid "This does not look like a valid PEM file"
-msgstr "Esto no parece un archivo PEM válido"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1773
 msgid ""
 "This identifier is randomly generated the first time the device is booted."
@@ -13564,7 +13521,7 @@ msgstr "ID de túnel"
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3068
 #: modules/luci-compat/luasrc/model/network.lua:1431
 msgid "Tunnel Interface"
-msgstr "Interfaz de túnel"
+msgstr "Interfaz del túnel"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/464xlat.js:44
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/dslite.js:57
@@ -13872,7 +13829,7 @@ msgstr "Par sin título"
 
 #: modules/luci-compat/luasrc/view/cbi/tblsection.htm:151
 msgid "Up"
-msgstr "Arriba"
+msgstr "Subir"
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:5027
 msgid "Upload"
@@ -13979,7 +13936,6 @@ msgstr "Usar DHCPv6"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:144
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:139
 msgid "Use DNS servers advertised by peer"
 msgstr "Usar servidores DNS anunciados por el par"
@@ -13996,14 +13952,14 @@ msgstr "Usa códigos de país ISO/IEC 3166 alpha2."
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:78
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:84
 msgid "Use MTU on tunnel interface"
-msgstr "MTU a usar en el interfaz de túnel"
+msgstr "MTU a usar en el interfaz del túnel"
 
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6in4.js:85
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6rd.js:65
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/6to4.js:49
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/map.js:80
 msgid "Use TTL on tunnel interface"
-msgstr "TTL a usar en el interfaz de túnel"
+msgstr "TTL a usar en el interfaz del túnel"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:53
 msgid "Use VLAN tagging"
@@ -14036,7 +13992,6 @@ msgstr "Usar servidores DNS personalizados"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:133
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:128
 msgid "Use default gateway"
 msgstr "Utilizar la puerta de enlace predeterminada"
@@ -14044,7 +13999,6 @@ msgstr "Utilizar la puerta de enlace predeterminada"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1214
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:166
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
 msgid "Use gateway metric"
 msgstr "Usar métrica de puerta de enlace"
@@ -14149,7 +14103,6 @@ msgid "User"
 msgstr "Usuario"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:154
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:106
 msgid "User certificate (PEM encoded)"
 msgstr "Certificado de usuario (Codificado PEM)"
 
@@ -14158,13 +14111,11 @@ msgid "User identifier"
 msgstr "Identificador de usuario"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:166
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:118
 msgid "User key (PEM encoded)"
 msgstr "Clave de usuario (codificada PEM)"
 
 #: modules/luci-base/ucode/template/sysauth.ut:23
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:143
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:101
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:56
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:13
 msgid "Username"
@@ -14233,24 +14184,10 @@ msgstr "VPN dirección local"
 msgid "VPN Local port"
 msgstr "VPN puerto local"
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:94
-msgid "VPN Protocol"
-msgstr "Protocolo VPN"
-
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:103
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:93
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:58
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:39
 msgid "VPN Server"
 msgstr "Servidor VPN"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:154
-msgid "VPN Server certificate's SHA256 hash"
-msgstr "Hash SHA256 del certificado del servidor VPN"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:96
-msgid "VPN Server port"
-msgstr "Puerto del servidor VPN"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:141
 msgid "VPN Server's certificate SHA1 hash"
@@ -15479,14 +15416,6 @@ msgstr "valor entero valido"
 msgid "valid multicast MAC address"
 msgstr "dirección MAC de multidifusión válida"
 
-#: modules/luci-base/htdocs/luci-static/resources/validation.js:1006
-msgid ""
-"valid network device name between 1 and 15 characters not containing \":\", "
-"\"/\", \"%\" or spaces"
-msgstr ""
-"nombre de dispositivo de red válido entre 1 y 15 caracteres que no contenga "
-"\":\", \"/\", \"%\" o espacios"
-
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:1004
 msgid "valid network device name, not \".\" or \"..\""
 msgstr "nombre de dispositivo de red válido, no \".\" o \"..\""
@@ -15595,6 +15524,52 @@ msgstr "{example_nx} devuelve {nxdomain}."
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Volver"
+
+#~ msgid ""
+#~ "CA certificate (PEM encoded; Use instead of system-wide store to verify "
+#~ "the gateway certificate."
+#~ msgstr ""
+#~ "Certificado CA (codificado PEM; úselo en lugar del almacenamiento en todo "
+#~ "el sistema para verificar el certificado de la puerta de enlace)."
+
+#~ msgid "Invalid Base64 key string"
+#~ msgstr "Cadena de clave Base64 no válida"
+
+#~ msgid "Local IP address"
+#~ msgstr "Dirección IP local"
+
+#~ msgid "OpenConnect"
+#~ msgstr "OpenConnect"
+
+#~ msgid "OpenFortivpn"
+#~ msgstr "OpenFortivpn"
+
+#~ msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
+#~ msgstr ""
+#~ "Opcional, en segundos. Si se establece en '0', no se intenta volver a "
+#~ "conectar."
+
+#~ msgid "Persistent reconnect interval"
+#~ msgstr "Intervalo de reconexión persistente"
+
+#~ msgid "This does not look like a valid PEM file"
+#~ msgstr "Esto no parece un archivo PEM válido"
+
+#~ msgid "VPN Protocol"
+#~ msgstr "Protocolo VPN"
+
+#~ msgid "VPN Server certificate's SHA256 hash"
+#~ msgstr "Hash SHA256 del certificado del servidor VPN"
+
+#~ msgid "VPN Server port"
+#~ msgstr "Puerto del servidor VPN"
+
+#~ msgid ""
+#~ "valid network device name between 1 and 15 characters not containing \":"
+#~ "\", \"/\", \"%\" or spaces"
+#~ msgstr ""
+#~ "nombre de dispositivo de red válido entre 1 y 15 caracteres que no "
+#~ "contenga \":\", \"/\", \"%\" o espacios"
 
 #~ msgid "Add template based configuration"
 #~ msgstr "Agregar configuración basada en plantillas"

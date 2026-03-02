@@ -4,8 +4,8 @@
 #
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-02-24 17:10+0000\n"
-"Last-Translator: MkQtS <MkQtS@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-02-28 15:41+0000\n"
+"Last-Translator: kae <handicapped8@dollicons.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luci/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -77,7 +77,7 @@ msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:35
 msgid "%s is untagged in multiple VLANs!"
-msgstr "%s 有多个 VLAN 未打标签!"
+msgstr "%s 在多个 VLAN 中都没有标签！"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:596
 msgid "%s means \"the address of the system running dnsmasq\"."
@@ -88,9 +88,8 @@ msgid ""
 "%s services running on this device in the default VRF context (ie., not "
 "bound to any VRF device) shall work across all VRF domains."
 msgstr ""
-"开启时，此设备上在默认 VRF 上下文（即未绑定到任何 VRF 设备）中运行的 %s 服"
-"务，<abbr title=\"可接受来自所有 VRF 的连接请求\">能在所有 VRF 域中使用</"
-"abbr>。"
+"在默认VRF环境下运行于该设备上的%s服务（即不绑定在任何VRF设备）应在所有VRF域间"
+"工作。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:698
 msgid "%s uses a human-readable encoding of hex-and-colons"
@@ -210,7 +209,7 @@ msgstr "07：x64 UEFI"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:71
 msgid "0: Deny"
-msgstr "拒绝"
+msgstr "0：拒绝"
 
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:60
 msgctxt "sstp log level value"
@@ -274,7 +273,7 @@ msgstr "19：ARM UEFI 64 HTTP 启动"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:71
 msgid "1: OS utils"
-msgstr "OS 工具"
+msgstr "1：仅限系统组件"
 
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:61
 msgctxt "sstp log level value"
@@ -331,7 +330,7 @@ msgstr "29：RISC-V 128 位 UEFI"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:71
 msgid "2: User scripts"
-msgstr "用户脚本"
+msgstr "2：允许用户脚本"
 
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:62
 msgctxt "sstp log level value"
@@ -380,7 +379,7 @@ msgstr "39：龙芯 64 位 UEFI"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:71
 msgid "3: Allow passwords in env"
-msgstr "3：在环境变量中允许密码"
+msgstr "3：允许在环境变量中传递密码"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1058
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1068
@@ -653,8 +652,8 @@ msgid ""
 "entirely (which is the default setting)."
 msgstr ""
 "batman-adv 节点可以运行于在服务器模式（与Mesh 共享其 Internet 连接）或客户端"
-"模式（在 Mesh 中搜索最合适的 Internet 连接）或完全关闭网关支持（这是默认设置"
-"）。"
+"模式（在 Mesh 中搜索最合适的 Internet 连接）或完全关闭网关支持（这是默认设"
+"置）。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:482
 msgid "A configuration for the device \"%s\" already exists"
@@ -680,8 +679,8 @@ msgid ""
 "A numeric table index, or symbol alias declared in %s. Special aliases local "
 "(255), main (254) and default (253) are also valid"
 msgstr ""
-"可以是路由表索引号，或在 %s 中声明的符号别名。特殊别名 local（255）、main（"
-"254）和 default（253）也可以使用"
+"可以是路由表索引号，或在 %s 中声明的符号别名。特殊别名 local（255）、main"
+"（254）和 default（253）也可以使用"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:899
 msgid ""
@@ -1052,10 +1051,10 @@ msgid ""
 "code>, <code>unix://</code> or <code>quic://</code>"
 msgstr ""
 "添加监听器以便接受来自非本地节点的传入对等连接。无论这里设置了哪些监听器，组"
-"播对等发现都可以正常工作。URI 格式：<code>tls://0.0.0.0:0</code> 或 <code>"
-"tls://[::]:0</code> 用于在所有接口上监听。选择一个可接受的 URI，如 <code>"
-"tls://</code>,<code>tcp://</code>,<code>unix://</code> 或 <code>quic://</"
-"code>"
+"播对等发现都可以正常工作。URI 格式：<code>tls://0.0.0.0:0</code> 或 "
+"<code>tls://[::]:0</code> 用于在所有接口上监听。选择一个可接受的 URI，如 "
+"<code>tls://</code>,<code>tcp://</code>,<code>unix://</code> 或 <code>quic://"
+"</code>"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:219
 msgid "Add local domain suffix to names served from hosts files."
@@ -1588,14 +1587,16 @@ msgstr "关联数"
 msgid ""
 "At least <strong>%h</strong> per <strong>%h</strong>, burst of <strong>%h</"
 "strong>"
-msgstr "至少 <strong>%h</strong> 每 <strong>%h</strong>，<strong>%h</strong> 突发"
+msgstr ""
+"至少 <strong>%h</strong> 每 <strong>%h</strong>，<strong>%h</strong> 突发"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:134
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:135
 msgid ""
 "At most <strong>%h</strong> per <strong>%h</strong>, burst of <strong>%h</"
 "strong>"
-msgstr "至多 <strong>%h</strong> 每 <strong>%h</strong>，<strong>%h</strong> 突发"
+msgstr ""
+"至多 <strong>%h</strong> 每 <strong>%h</strong>，<strong>%h</strong> 突发"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/mounts.js:133
 msgid "Attempt to enable configured mount points for attached devices"
@@ -1824,9 +1825,9 @@ msgid ""
 "packet fits but it is possible to deactivate the fragmentation entirely."
 msgstr ""
 "Batman-adv 内置 2 层分段，用于流经网格的单播数据，这允许在不允许将 MTU 增加到"
-"超过 1500 字节的标准以太网数据包大小的接口/连接上运行 batman-adv。启用分段后"
-"，batman-adv 将自动对过大数据包进行分段并在另一端对它们去分段。该功能默认处于"
-"启用状态，但如数据包大小适合则该功能不活跃，但不可以完全停用该功能。"
+"超过 1500 字节的标准以太网数据包大小的接口/连接上运行 batman-adv。启用分段"
+"后，batman-adv 将自动对过大数据包进行分段并在另一端对它们去分段。该功能默认处"
+"于启用状态，但如数据包大小适合则该功能不活跃，但不可以完全停用该功能。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1030
 msgid "Beacon Interval"
@@ -1858,7 +1859,6 @@ msgstr "绑定 NTP 服务器"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -1889,7 +1889,6 @@ msgstr "绑定服务记录到域名：指定服务的位置。见 <a href=\"%s\"
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:64
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:144
 #: protocols/luci-proto-vti/htdocs/luci-static/resources/protocol/vti.js:59
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:132
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:132
@@ -1925,7 +1924,7 @@ msgstr "“中继来源”和“中继目标地址”都需要指定。"
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3052
 #: modules/luci-compat/luasrc/model/network.lua:1421
 msgid "Bridge"
-msgstr "桥接"
+msgstr "网桥"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:549
 msgctxt "MACVLAN mode"
@@ -1988,12 +1987,6 @@ msgstr "已缓冲"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:260
 msgid "By default, dnsmasq caches A, AAAA, CNAME and SRV DNS record types."
 msgstr "默认情况下，dnsmasq 会缓存 A，AAAA，CNAME 和 SRV 类型的 DNS 记录。"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:131
-msgid ""
-"CA certificate (PEM encoded; Use instead of system-wide store to verify the "
-"gateway certificate."
-msgstr "CA 证书（PEM 编码；而不是使用系统范围的存储来验证网关证书。"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:178
 msgid "CA certificate; if empty it will be saved after the first connection."
@@ -2152,8 +2145,8 @@ msgid ""
 "Certificate constraint substring - e.g. /CN=wifi.mycompany.com<br />See "
 "`logread -f` during handshake for actual values"
 msgstr ""
-"证书约束子字符串 - 例如：/CN=wifi.mycompany.com<br />请参阅握手期间 "
-"`logread -f` 的实际值"
+"证书约束子字符串 - 例如：/CN=wifi.mycompany.com<br />请参阅握手期间 `logread "
+"-f` 的实际值"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2008
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2066
@@ -2310,8 +2303,8 @@ msgid ""
 "Click \"Save mtdblock\" to download specified mtdblock file. (NOTE: THIS "
 "FEATURE IS FOR PROFESSIONALS! )"
 msgstr ""
-"点击“保存 mtdblock”以下载指定的 mtdblock 分区文件。（注意：此功能面向专业人士"
-"！）"
+"点击“保存 mtdblock”以下载指定的 mtdblock 分区文件。（注意：此功能面向专业人"
+"士！）"
 
 #: modules/luci-base/htdocs/luci-static/resources/network.js:3981
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1057
@@ -3712,8 +3705,8 @@ msgid ""
 "repositories) allows packages in lists signed by it to be installed by the "
 "package manager."
 msgstr ""
-"每个软件仓库的公钥（来自官方或第三方仓库）使其签名的软件包能够被包管理器安装"
-"。"
+"每个软件仓库的公钥（来自官方或第三方仓库）使其签名的软件包能够被包管理器安"
+"装。"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:91
 msgid "Echo parameters to log"
@@ -5898,14 +5891,12 @@ msgstr "如果指定，则通过分区卷标而不是固定的设备文件来挂
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:70
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:134
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:129
 msgid "If unchecked, no default route is configured"
 msgstr "取消勾选则不创建到该接口网关的默认路由"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:140
 msgid "If unchecked, the advertised DNS server addresses are ignored"
 msgstr "取消勾选则忽略上游通告的 DNS 服务器"
@@ -5919,9 +5910,9 @@ msgid ""
 "datarates of the <abbr title=\"Random Access Memory\">RAM</abbr>."
 msgstr ""
 "如果物理内存不足，闲置数据可自动移到交换设备暂存，以增加可用的 <abbr "
-"title=\"Random Access Memory（随机存取存储器）\">RAM</abbr>。请注意： 数据交"
-"换的过程会非常慢，因为交换设备无法像 <abbr title=\"Random Access Memory（随机"
-"存取存储器）\">RAM</abbr> 那样的高速地访问。"
+"title=\"Random Access Memory（随机存取存储器）\">RAM</abbr>。请注意：数据交换"
+"的过程会非常慢，因为交换设备无法像 <abbr title=\"Random Access Memory（随机存"
+"取存储器）\">RAM</abbr> 那样的高速地访问。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:1017
 msgid "Ignore"
@@ -6308,11 +6299,6 @@ msgstr "无效"
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:73
 msgid "Invalid APN provided"
 msgstr "提供的 APN 无效"
-
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:38
-#: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:41
-msgid "Invalid Base64 key string"
-msgstr "无效的 Base64 密钥"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:729
 msgid ""
@@ -6973,10 +6959,6 @@ msgstr "本地 6"
 msgid "Local 7"
 msgstr "本地 7"
 
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:171
-msgid "Local IP address"
-msgstr "本地 IP 地址"
-
 #: modules/luci-base/htdocs/luci-static/resources/network.js:12
 #: modules/luci-compat/luasrc/model/network.lua:30
 msgid "Local IP address is invalid"
@@ -7490,8 +7472,8 @@ msgid ""
 "Maximum time allowed between sending unsolicited <abbr title=\"Router "
 "Advertisement, ICMPv6 Type 134\">RA</abbr>. Default is 600 seconds."
 msgstr ""
-"连续发送主动 <abbr title=\"Router Advertisement, ICMPv6 Type 134（路由器通告"
-"，ICMPv6 类型 134）\">RA</abbr> 消息时允许的最长时间间隔。默认为 600 秒。"
+"连续发送主动 <abbr title=\"Router Advertisement, ICMPv6 Type 134（路由器通"
+"告，ICMPv6 类型 134）\">RA</abbr> 消息时允许的最长时间间隔。默认为 600 秒。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1003
 msgid "Maximum transmit power"
@@ -7606,7 +7588,8 @@ msgstr "最小活动链路数"
 msgid ""
 "Minimum required time in seconds before an ARP entry may be replaced. "
 "Prevents ARP cache thrashing."
-msgstr "在 ARP 条目被替换前所需的最短等待时间（单位：秒）。用于防止 ARP 缓存抖动。"
+msgstr ""
+"在 ARP 条目被替换前所需的最短等待时间（单位：秒）。用于防止 ARP 缓存抖动。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:312
 msgid "Minimum source port #"
@@ -7617,8 +7600,8 @@ msgid ""
 "Minimum time allowed between sending unsolicited <abbr title=\"Router "
 "Advertisement, ICMPv6 Type 134\">RA</abbr>. Default is 200 seconds."
 msgstr ""
-"连续发送主动 <abbr title=\"Router Advertisement, ICMPv6 Type 134（路由器通告"
-"，ICMPv6 类型 134）\">RA</abbr> 消息时允许的最短时间间隔。默认为 200 秒。"
+"连续发送主动 <abbr title=\"Router Advertisement, ICMPv6 Type 134（路由器通"
+"告，ICMPv6 类型 134）\">RA</abbr> 消息时允许的最短时间间隔。默认为 200 秒。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:202
 msgid "Mirror monitor port"
@@ -8354,7 +8337,8 @@ msgstr "注：仅 IPv4。"
 msgid ""
 "Note: Some wireless drivers do not fully support 802.11w. E.g. mwlwifi may "
 "have problems"
-msgstr "注意：有些无线驱动程序不完全支持 802.11w。例如：mwlwifi 可能会有一些问题"
+msgstr ""
+"注意：有些无线驱动程序不完全支持 802.11w。例如：mwlwifi 可能会有一些问题"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2129
 msgid ""
@@ -8470,8 +8454,8 @@ msgid ""
 "Off: <code>vlanXXX</code>, e.g., <code>vlan1</code>. On: "
 "<code>vlan_tagged_interface.XXX</code>, e.g. <code>eth0.1</code>."
 msgstr ""
-"关：<code>vlanXXX</code>，如 <code>vlan1</code>。开：<code>接口名.VLAN</code>"
-"，如 <code>eth0.1</code>。"
+"关：<code>vlanXXX</code>，如 <code>vlan1</code>。开：<code>接口名.VLAN</"
+"code>，如 <code>eth0.1</code>。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dns.js:811
 msgid ""
@@ -8566,17 +8550,9 @@ msgstr "打开 iptables 规则概况…"
 msgid "Open list..."
 msgstr "打开列表…"
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:63
-msgid "OpenConnect"
-msgstr "OpenConnect"
-
 #: modules/luci-compat/luasrc/model/network/proto_openconnect.lua:9
 msgid "OpenConnect (CISCO AnyConnect)"
 msgstr "OpenConnect (CISCO AnyConnect)"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:63
-msgid "OpenFortivpn"
-msgstr "OpenFortivpn"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:326
 msgid "OpenVPN"
@@ -8663,10 +8639,6 @@ msgstr ""
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/system.js:137
 msgid "Optional, free-form notes about this device"
 msgstr "此设备的可选任意格式备注"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
-msgstr "可选。单位： 秒。 如果设置为 “0”，则不尝试重新连接。"
 
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:176
 msgid ""
@@ -9124,7 +9096,6 @@ msgstr "直通（将物理设备镜像到单个 MAC VLAN）"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2088
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:51
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:145
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:103
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:58
 #: protocols/luci-proto-yggdrasil/htdocs/luci-static/resources/protocol/yggdrasil.js:301
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:19
@@ -9323,10 +9294,6 @@ msgstr "持久/非持久 ifconfig 池"
 msgid "Persistent Keep Alive"
 msgstr "持续保持连接"
 
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:149
-msgid "Persistent reconnect interval"
-msgstr "持续重新连接间隔"
-
 #: protocols/luci-proto-wireguard/htdocs/luci-static/resources/protocol/wireguard.js:310
 msgid "PersistentKeepAlive setting is invalid"
 msgstr "PersistentKeepAlive 设置无效"
@@ -9400,7 +9367,7 @@ msgstr "策略"
 
 #: protocols/luci-proto-openvpn/htdocs/luci-static/resources/protocol/openvpn.js:71
 msgid "Policy level over usage of external programs and scripts"
-msgstr "外部程序和脚本超出了策略允许的使用范围"
+msgstr "外部程序及脚本的使用策略级别"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/nftables.js:695
 msgctxt "Chain hook policy"
@@ -9532,8 +9499,8 @@ msgid ""
 "Prevents one wireless client to talk to another. This setting only affects "
 "packets without any VLAN tag (untagged packets)."
 msgstr ""
-"防止无线客户端之间通信。 此设置仅影响没有 VLAN 标记的数据包（未打标记的数据包"
-"）。"
+"防止无线客户端之间通信。 此设置仅影响没有 VLAN 标记的数据包（未打标记的数据"
+"包）。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:218
 msgid ""
@@ -10051,7 +10018,8 @@ msgstr "中继桥"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:496
 msgid "Relay DHCP requests elsewhere. OK: v4↔v4, v6↔v6. Not OK: v4↔v6, v6↔v4."
-msgstr "将 DHCP 请求转发到其他服务器。可以是：v4↔v4，v6↔v6。不能是：v4↔v6，v6↔v4。"
+msgstr ""
+"将 DHCP 请求转发到其他服务器。可以是：v4↔v4，v6↔v6。不能是：v4↔v6，v6↔v4。"
 
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:154
 msgid "Relay between networks"
@@ -10558,8 +10526,8 @@ msgid ""
 "(and advertise it in WLAN beacons). Only works if the specified network "
 "interface is a bridge. Shortens the time-critical reassociation process."
 msgstr ""
-"健壮安全网络（RSN）：允许 WPA2-EAP 网络的漫游预认证（并在 WLAN 信标中发布它）"
-"。只有当指定的网络接口是网桥时才有效。缩短时序要求严格的再关联过程。"
+"健壮安全网络（RSN）：允许 WPA2-EAP 网络的漫游预认证（并在 WLAN 信标中发布"
+"它）。只有当指定的网络接口是网桥时才有效。缩短时序要求严格的再关联过程。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:1061
 msgid "Robustness"
@@ -11371,7 +11339,8 @@ msgstr ""
 msgid ""
 "Specifies how often (in seconds) clients should check whether IPv6-only mode "
 "is still preferred (see %s, odhcpd only)."
-msgstr "指定客户端应该每隔多少秒检查仅 IPv6 模式是否仍是首选（详见 %s，仅 odhcpd）。"
+msgstr ""
+"指定客户端应该每隔多少秒检查仅 IPv6 模式是否仍是首选（详见 %s，仅 odhcpd）。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/routes.js:207
 msgid "Specifies the TOS value to match in IP headers"
@@ -12547,9 +12516,9 @@ msgid ""
 "directives are used in preference to untagged ones. Note that one of mac, "
 "duid or hostname still needs to be specified (can be a wildcard)."
 msgstr ""
-"标签构造筛选所用的主机命令；可以提供多个标签，在此情形下请求必须匹配所有标签"
-"。带标签命令的优先级高于不带标签的命令。注意：仍需配置 mac、duid 和主机名三者"
-"中的一个（可以是通配符）。"
+"标签构造筛选所用的主机命令；可以提供多个标签，在此情形下请求必须匹配所有标"
+"签。带标签命令的优先级高于不带标签的命令。注意：仍需配置 mac、duid 和主机名三"
+"者中的一个（可以是通配符）。"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/flash.js:120
 msgid ""
@@ -12623,11 +12592,6 @@ msgstr "中继的 IPv4 地址"
 msgid "This authentication type is not applicable to the selected EAP method."
 msgstr "此身份验证类型不适用于所选的 EAP 方法。"
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:48
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:56
-msgid "This does not look like a valid PEM file"
-msgstr "这不是有效的 PEM 文件"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1773
 msgid ""
 "This identifier is randomly generated the first time the device is booted."
@@ -12662,10 +12626,10 @@ msgid ""
 "selector but rather go to the Wireless settings and select this Interface as "
 "a network from there."
 msgstr ""
-"这是将上方的物理设备连接到的 batman-adv 设备。如果此列表为空，需要先创建一个"
-"。如果想通过有线网络设备路由 mesh 流量，请在上面的设备选择器中选择它。如果想"
-"将 batman-adv 接口分配给 Wi-Fi mesh 网络，则不要在设备选择器中选择设备，而是"
-"在无线设置关联此接口作为网络。"
+"这是将上方的物理设备连接到的 batman-adv 设备。如果此列表为空，需要先创建一"
+"个。如果想通过有线网络设备路由 mesh 流量，请在上面的设备选择器中选择它。如果"
+"想将 batman-adv 接口分配给 Wi-Fi mesh 网络，则不要在设备选择器中选择设备，而"
+"是在无线设置关联此接口作为网络。"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/startup.js:116
 msgid ""
@@ -13181,7 +13145,8 @@ msgstr "错误的数据回复格式"
 msgid ""
 "Unique Local Address (%s) - prefix <code>fd00::/8</code> (the L bit is "
 "always 1)."
-msgstr "唯一本地地址（%s） - 前缀为 <code>fd00::/8</code>（其中 L 位始终为 1）。"
+msgstr ""
+"唯一本地地址（%s） - 前缀为 <code>fd00::/8</code>（其中 L 位始终为 1）。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1069
 msgid "Units: dBm. Where -255 is weakest, and -10 is strong."
@@ -13381,7 +13346,6 @@ msgstr "使用 DHCPv6"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1201
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:144
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:162
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:139
 msgid "Use DNS servers advertised by peer"
 msgstr "自动获取 DNS 服务器"
@@ -13438,7 +13402,6 @@ msgstr "使用自定义的 DNS 服务器"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1197
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:133
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:158
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:128
 msgid "Use default gateway"
 msgstr "使用该接口的网关作为默认网关"
@@ -13446,7 +13409,6 @@ msgstr "使用该接口的网关作为默认网关"
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1214
 #: protocols/luci-proto-ipv6/htdocs/luci-static/resources/protocol/ipip6.js:73
 #: protocols/luci-proto-mbim/htdocs/luci-static/resources/protocol/mbim.js:138
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:166
 #: protocols/luci-proto-qmi/htdocs/luci-static/resources/protocol/qmi.js:133
 msgid "Use gateway metric"
 msgstr "网关跃点"
@@ -13547,7 +13509,6 @@ msgid "User"
 msgstr "用户"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:154
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:106
 msgid "User certificate (PEM encoded)"
 msgstr "用户证书（PEM）"
 
@@ -13556,13 +13517,11 @@ msgid "User identifier"
 msgstr "用户标识符"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:166
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:118
 msgid "User key (PEM encoded)"
 msgstr "用户密钥（PEM）"
 
 #: modules/luci-base/ucode/template/sysauth.ut:23
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:143
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:101
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:56
 #: themes/luci-theme-bootstrap/ucode/template/themes/bootstrap/sysauth.ut:13
 msgid "Username"
@@ -13631,24 +13590,10 @@ msgstr "VPN 本地地址"
 msgid "VPN Local port"
 msgstr "VPN 本地端口"
 
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:94
-msgid "VPN Protocol"
-msgstr "VPN 协议"
-
-#: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:103
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:93
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:58
 #: protocols/luci-proto-vpnc/htdocs/luci-static/resources/protocol/vpnc.js:39
 msgid "VPN Server"
 msgstr "VPN 服务器"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:154
-msgid "VPN Server certificate's SHA256 hash"
-msgstr "VPN 服务器证书的 SHA256 哈希"
-
-#: protocols/luci-proto-openfortivpn/htdocs/luci-static/resources/protocol/openfortivpn.js:96
-msgid "VPN Server port"
-msgstr "VPN 服务器端口"
 
 #: protocols/luci-proto-openconnect/htdocs/luci-static/resources/protocol/openconnect.js:141
 msgid "VPN Server's certificate SHA1 hash"
@@ -14837,12 +14782,6 @@ msgstr "有效整数值"
 msgid "valid multicast MAC address"
 msgstr "有效的组播 MAC 地址"
 
-#: modules/luci-base/htdocs/luci-static/resources/validation.js:1006
-msgid ""
-"valid network device name between 1 and 15 characters not containing \":\", "
-"\"/\", \"%\" or spaces"
-msgstr "1 到 15 个字符间的有效网络设备名，不包含 \":\", \"/\", \"%\" 或者空格"
-
 #: modules/luci-base/htdocs/luci-static/resources/validation.js:1004
 msgid "valid network device name, not \".\" or \"..\""
 msgstr "有效的网络设备名，非 \".\" 或 \"..\""
@@ -14949,6 +14888,47 @@ msgstr "{example_nx} 返回 {nxdomain}。"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« 后退"
+
+#~ msgid ""
+#~ "CA certificate (PEM encoded; Use instead of system-wide store to verify "
+#~ "the gateway certificate."
+#~ msgstr "CA 证书（PEM 编码；而不是使用系统范围的存储来验证网关证书。"
+
+#~ msgid "Invalid Base64 key string"
+#~ msgstr "无效的 Base64 密钥"
+
+#~ msgid "Local IP address"
+#~ msgstr "本地 IP 地址"
+
+#~ msgid "OpenConnect"
+#~ msgstr "OpenConnect"
+
+#~ msgid "OpenFortivpn"
+#~ msgstr "OpenFortivpn"
+
+#~ msgid "Optional, in seconds. If set to '0', no reconnect is attempted."
+#~ msgstr "可选。单位：秒。 如果设置为 “0”，则不尝试重新连接。"
+
+#~ msgid "Persistent reconnect interval"
+#~ msgstr "持续重新连接间隔"
+
+#~ msgid "This does not look like a valid PEM file"
+#~ msgstr "这不是有效的 PEM 文件"
+
+#~ msgid "VPN Protocol"
+#~ msgstr "VPN 协议"
+
+#~ msgid "VPN Server certificate's SHA256 hash"
+#~ msgstr "VPN 服务器证书的 SHA256 哈希"
+
+#~ msgid "VPN Server port"
+#~ msgstr "VPN 服务器端口"
+
+#~ msgid ""
+#~ "valid network device name between 1 and 15 characters not containing \":"
+#~ "\", \"/\", \"%\" or spaces"
+#~ msgstr ""
+#~ "1 到 15 个字符间的有效网络设备名，不包含 \":\", \"/\", \"%\" 或者空格"
 
 #~ msgid "Add template based configuration"
 #~ msgstr "添加基于模板的配置"

@@ -132,7 +132,7 @@ return view.extend({
 					setText('feeds', info.active_feeds?.join(' '));
 					setText('backend', info.dns_backend);
 					setText('ifaces', info.run_ifaces);
-					setText('dirs', info.run_directories);
+					setText('dirs', info.run_information);
 					setText('flags', info.run_flags);
 					setText('run', info.last_run);
 					setText('sys', info.system_info);
@@ -168,7 +168,7 @@ return view.extend({
 					E('div', { 'class': 'cbi-value-field', 'id': 'ifaces', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
 				]),
 				E('div', { 'class': 'cbi-value' }, [
-					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Run Directories')),
+					E('label', { 'class': 'cbi-value-title', 'style': 'margin-bottom:-5px;padding-top:0rem;' }, _('Run Information')),
 					E('div', { 'class': 'cbi-value-field', 'id': 'dirs', 'style': 'margin-bottom:-5px;color:#37c;' }, '-')
 				]),
 				E('div', { 'class': 'cbi-value' }, [
@@ -262,6 +262,16 @@ return view.extend({
 		o = s.taboption('additional', form.Flag, 'adb_debug', _('Verbose Debug Logging'), _('Enable verbose debug logging in case of any processing errors.'));
 		o.rmempty = false;
 
+		o = s.taboption('additional', form.ListValue, 'adb_cores', _('CPU Cores'), _('Limit the cpu cores used by adblock to save RAM, autodetected by default.'));
+		o.value('1');
+		o.value('2');
+		o.value('4');
+		o.value('8');
+		o.value('16');
+		o.placeholder = _('-- default --');
+		o.optional = true;
+		o.rmempty = true;
+
 		o = s.taboption('additional', form.ListValue, 'adb_nicelimit', _('Nice Level'), _('The selected priority will be used for adblock background processing.'));
 		o.value('-20', _('Highest Priority'));
 		o.value('-10', _('High Priority'));
@@ -320,7 +330,7 @@ return view.extend({
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_allowdnsv4', _('IPv4 DNS Resolver'), _('IPv4 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_allowdnsv4', _('IPv4 DNS Resolver'), _('External IPv4 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
 		o.depends('adb_nftallow', '1');
 		o.datatype = 'ip4addr("nomask")';
 		o.value('86.54.11.100', _('DNS4EU (unfiltered)'));
@@ -332,7 +342,7 @@ return view.extend({
 		o.default = '86.54.11.100';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_allowdnsv6', _('IPv6 DNS Resolver'), _('IPv6 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_allowdnsv6', _('IPv6 DNS Resolver'), _('External IPv6 DNS resolver applied to MACs and interfaces using the unfiltered DNS policy.'));
 		o.depends('adb_nftallow', '1');
 		o.datatype = 'ip6addr("nomask")';
 		o.value('2a13:1001::86:54:11:100', _('DNS4EU (unfiltered)'));
@@ -366,7 +376,7 @@ return view.extend({
 		o.optional = true;
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_blockdnsv4', _('IPv4 DNS Resolver'), _('IPv4 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_blockdnsv4', _('IPv4 DNS Resolver'), _('External IPv4 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
 		o.depends('adb_nftblock', '1');
 		o.datatype = 'ip4addr("nomask")';
 		o.value('86.54.11.1', _('DNS4EU (protective)'));
@@ -387,7 +397,7 @@ return view.extend({
 		o.default = '86.54.11.13';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_blockdnsv6', _('IPv6 DNS Resolver'), _('IPv6 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_blockdnsv6', _('IPv6 DNS Resolver'), _('External IPv6 DNS resolver applied to MACs and interfaces using the filtered DNS policy.'));
 		o.depends('adb_nftblock', '1');
 		o.datatype = 'ip6addr("nomask")';
 		o.value('2a13:1001::86:54:11:1', _('DNS4EU (protective)'));
@@ -434,7 +444,7 @@ return view.extend({
 		o.default = '15';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_remotednsv4', _('IPv4 Remote DNS Resolver'), _('IPv4 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_remotednsv4', _('IPv4 Remote DNS Resolver'), _('External IPv4 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
 		o.depends('adb_nftremote', '1');
 		o.datatype = 'ip4addr("nomask")';
 		o.value('86.54.11.100', _('DNS4EU (unfiltered)'));
@@ -446,7 +456,7 @@ return view.extend({
 		o.default = '86.54.11.100';
 		o.rmempty = true;
 
-		o = s.taboption('firewall', form.Value, 'adb_remotednsv6', _('IPv6 Remote DNS Resolver'), _('IPv6 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
+		o = s.taboption('firewall', form.Value, 'adb_remotednsv6', _('IPv6 Remote DNS Resolver'), _('External IPv6 DNS resolver applied to MACs using the unfiltered remote DNS policy.'));
 		o.depends('adb_nftremote', '1');
 		o.datatype = 'ip6addr("nomask")';
 		o.value('2a13:1001::86:54:11:100', _('DNS4EU (unfiltered)'));
@@ -472,6 +482,55 @@ return view.extend({
 			o.rawhtml = true;
 			o.default = svg;
 		}
+
+		o = s.taboption('firewall', form.DummyValue, '_sub');
+		o.rawhtml = true;
+		o.default = '<hr style="width: 200px; height: 1px;" /><em style="color:#37c;font-weight:bold;">' + _('External DNS Bridge (Zero‑Downtime during DNS Restarts)') + '</em>';
+
+		o = s.taboption('firewall', form.Flag, 'adb_nftbridge', _('Enable DNS Bridge'), _('Enables a temporary DNS bridge to an external DNS resolver during local DNS restarts.'));
+		o.rmempty = false;
+
+		o = s.taboption('firewall', form.Value, 'adb_bridgednsv4', _('IPv4 DNS Resolver'), _('External IPv4 DNS resolver used during bridging.'));
+		o.depends('adb_nftbridge', '1');
+		o.datatype = 'ip4addr("nomask")';
+		o.value('86.54.11.1', _('DNS4EU (protective)'));
+		o.value('86.54.11.12', _('DNS4EU (protective+family)'));
+		o.value('86.54.11.13', _('DNS4EU (protective+adblock)'));
+		o.value('86.54.11.11', _('DNS4EU (protective+family+adblock)'));
+		o.value('176.9.93.198', _('dnsforge (normal)'));
+		o.value('49.12.43.208', _('dnsforge (clean)'));
+		o.value('49.12.222.213', _('dnsforge (hard)'));
+		o.value('94.140.14.14', _('AdGuard (default)'));
+		o.value('94.140.14.15', _('AdGuard (family)'));
+		o.value('76.76.10.0', _('Control D (security)'));
+		o.value('76.76.10.10', _('Control D (family)'));
+		o.value('76.76.10.11', _('Control D (adblock)'));
+		o.value('1.1.1.2', _('Cloudflare (malware)'));
+		o.value('1.1.1.3', _('Cloudflare (malware+family)'));
+		o.value('9.9.9.9', _('Quad9 (malware)'));
+		o.default = '86.54.11.13';
+		o.rmempty = true;
+
+		o = s.taboption('firewall', form.Value, 'adb_bridgednsv6', _('IPv6 DNS Resolver'), _('external IPv6 DNS resolver used during bridging.'));
+		o.depends('adb_nftbridge', '1');
+		o.datatype = 'ip6addr("nomask")';
+		o.value('2a13:1001::86:54:11:1', _('DNS4EU (protective)'));
+		o.value('2a13:1001::86:54:11:12', _('DNS4EU (protective+family)'));
+		o.value('2a13:1001::86:54:11:13', _('DNS4EU (protective+adblock)'));
+		o.value('2a13:1001::86:54:11:11', _('DNS4EU (protective+family+adblock)'));
+		o.value('2a01:4f8:151:34aa::198', _('dnsforge (normal)'));
+		o.value('2a01:4f8:c012:ed89::208', _('dnsforge (clean)'));
+		o.value('2a01:4f8:c17:2c61::213', _('dnsforge (hard)'));
+		o.value('2a10:50c0::ad1:ff', _('AdGuard (default)'));
+		o.value('2a10:50c0::bad1:ff', _('AdGuard (family)'));
+		o.value('2606:1a40:1::', _('Control D (security)'));
+		o.value('2606:1a40:1::1', _('Control D (family)'));
+		o.value('2606:1a40:1::2', _('Control D (adblock)'));
+		o.value('2606:4700:4700::1112', _('Cloudflare (malware)'));
+		o.value('2606:4700:4700::1113', _('Cloudflare (malware+family)'));
+		o.value('2620:fe::fe', _('Quad9 (malware)'));
+		o.default = '2a13:1001::86:54:11:13';
+		o.rmempty = true;
 
 		o = s.taboption('firewall', form.DummyValue, '_sub');
 		o.rawhtml = true;
