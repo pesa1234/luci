@@ -10,12 +10,12 @@ return view.extend({
 
 		m = new form.Map('advanced');
 
-		s = m.section(form.TypedSection, 'defaults', _('USB speed setting'),
-			_('This setting forces the USB speed to 2.0 in case your USB 3.0 device interferes with 2.4 GHz WiFi.'));
+		s = m.section(form.TypedSection, 'defaults', _('USB Speed'),
+			_('Force the USB controller to operate at USB 2.0 speed when USB 3.x devices cause interference on the 2.4 GHz band.'));
 		s.anonymous = true;
 		s.addremove = false;
 
-		o = s.option(form.ListValue, 'usb_2', _('Force USB to 2.0 speed'));
+		o = s.option(form.ListValue, 'usb_2', _('Force USB 2.0 Mode'));
 		o.value('0', _('Off'));
 		o.value('1', _('On'));
 		o.optional = false;
@@ -27,12 +27,12 @@ return view.extend({
 					  .catch(err => console.error(err));
 		};
 
-		s = m.section(form.TypedSection, 'defaults', _('USB power setting'),
-			_('Enable or disable USB port power.'));
+		s = m.section(form.TypedSection, 'defaults', _('USB Power'),
+			_('Enable or disable power on the USB port.'));
 		s.anonymous = true;
 		s.addremove = false;
 
-		o = s.option(form.ListValue, 'usb_power', _('Power ON/OFF USB port'));
+		o = s.option(form.ListValue, 'usb_power', _('USB Port Power'));
 		o.value('0', _('Off'));
 		o.value('1', _('On'));
 		o.optional = false;

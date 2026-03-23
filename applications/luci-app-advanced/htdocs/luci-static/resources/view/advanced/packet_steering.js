@@ -16,16 +16,16 @@ return view.extend({
 		let m = new form.Map('advanced');
 		let pktSteering = uci.get('network', 'globals', 'packet_steering') || '0';
 
-		let s = m.section(form.TypedSection, 'advanced_packet_steering', _('Advanced packet steering setting'),
-			_('Configures RPS (Receive Packet Steering) by assigning each network interface to one or more specific CPU cores, in order to distribute incoming network traffic efficiently across the system’s CPUs.'));
+		let s = m.section(form.TypedSection, 'advanced_packet_steering', _('Packet Steering'),
+			_('Configures Receive Packet Steering (RPS) by assigning network interfaces to specific CPU cores. This can distribute incoming traffic more evenly across the system and improve overall responsiveness.'));
 
 		s.anonymous = true;
 		s.addremove = false;
 
-		let o = s.option(form.ListValue, "advanced_packet_steering_enable", _("Enable Advanced packet steering"));
-		o.value('0', _("Disabled"));
-		o.value('1', _("On - Standard (only WiFi)"));
-		o.value('2', _("On - Advanced (wan-bridge-WiFi)"));
+		let o = s.option(form.ListValue, "advanced_packet_steering_enable", _("Enable Packet Steering"));
+		o.value('0', _("Off"));
+		o.value('1', _("On - Standard (Wi-Fi only)"));
+		o.value('2', _("On - Advanced (WAN, bridge and Wi-Fi)"));
 		o.default = '0';
 		
 		o.cfgvalue = function(section_id) {
@@ -36,7 +36,7 @@ return view.extend({
 
 		if (pktSteering === '1' || pktSteering === '2') {
 		  o.readonly = true;
-		  o.description = _('⚠ <br><strong style="color:red">Warning:</strong> "Network - Global Network Option" is enabled. Disable it to enable this setting. ⚠');
+		  o.description = _('"Network > Global network options" packet steering is already enabled. Disable that setting before using this page.');
 		}
 
 		o.write = function(section_id, value) {
@@ -46,7 +46,7 @@ return view.extend({
 					  .catch(err => console.error(err));
 		};
 		
-		o = s.option(form.Value, "advanced_packet_steering_delay", _("Boot delay of advanced packet steering"),_('Default: 30 sec'));
+		o = s.option(form.Value, "advanced_packet_steering_delay", _("Boot Delay"), _('Delay before advanced packet steering is applied at boot. Default: 30 seconds.'));
 		o.value('30', _("30"));
 		o.value('10', _("10"));
 		o.value('60', _("60"));

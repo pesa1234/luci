@@ -1,65 +1,68 @@
 {
-  "admin/advanced/": {
-    "title": "Advanced",
-    "order": 60,
-    "action": {
-      "type": "firstchild"
-    },
-    "depends": {
-      "acl": [ "luci-app-advanced" ],
-	  "fs": {
+	"admin/advanced/": {
+		"title": "Advanced",
+		"order": 60,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-advanced" ],
+			"fs": {
 				"/etc/init.d/advanced_setup": "executable"
-			},
-    }
-  },
-
-  "admin/advanced/wed": {
-    "title": "WED",
-    "order": 1,
-    "action": {
-      "type": "view",
-      "path": "advanced/wed"
-    }
-  },
-  
-    "admin/advanced/edcca": {
-    "title": "EDCCA",
-    "order": 2,
-    "action": {
-      "type": "view",
-      "path": "advanced/edcca"
-    }
-  },
-  
-   "admin/advanced/packet_steering": {
-    "title": "Packet Steering",
-    "order": 3,
-    "action": {
-      "type": "view",
-      "path": "advanced/packet_steering"
-    }
-  },
-  
-  "admin/advanced/hqos": {
-    "title": "HQoS",
-    "order": 4,
-    "action": {
-      "type": "view",
-      "path": "advanced/hqos"
-    },
-	"depends": {
-	  "fs": {
+			}
+		}
+	},
+	"admin/advanced/wed": {
+		"title": "WED Offloading",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "advanced/wed"
+		}
+	},
+	"admin/advanced/airtime": {
+		"title": "Airtime Fairness",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "advanced/airtime"
+		}
+	},
+	"admin/advanced/edcca": {
+		"title": "EDCCA",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "advanced/edcca"
+		}
+	},
+	"admin/advanced/packet_steering": {
+		"title": "Packet Steering",
+		"order": 4,
+		"action": {
+			"type": "view",
+			"path": "advanced/packet_steering"
+		}
+	},
+	"admin/advanced/hqos": {
+		"title": "HQoS",
+		"order": 5,
+		"action": {
+			"type": "view",
+			"path": "advanced/hqos"
+		},
+		"depends": {
+			"fs": {
 				"/sbin/mtkhnat": "executable"
-			},
-    }
-  },
-
-  "admin/advanced/usb": {
-    "title": "USB",
-    "order": 5,
-    "action": {
-      "type": "view",
-      "path": "advanced/usb"
-    }
-  }
+			}
+		}
+	},
+	"admin/advanced/usb": {
+		"title": "USB",
+		"order": 6,
+		"action": {
+			"type": "view",
+			"path": "advanced/usb"
+		}
+	}
 }

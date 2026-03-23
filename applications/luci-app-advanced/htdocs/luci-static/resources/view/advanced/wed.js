@@ -1,109 +1,61 @@
 'use strict';
 'require view';
 'require form';
-'require fs';
 'require rpc';
 'require uci';
-'require ui';
 
-// Project code format is tabs, not spaces
+const callSetWED = rpc.declare({
+	object: 'luci',
+	method: 'setWED',
+	params: [ 'enabled' ],
+	expect: { enabled: false }
+});
+
+const callGetWED = rpc.declare({
+	object: 'luci',
+	method: 'getWED',
+	params: [ 'enabled' ],
+	expect: { enabled: false }
+});
+
 return view.extend({
-	callConntrackHelpers: rpc.declare({
-		object: 'luci',
-		method: 'getConntrackHelpers',
-		expect: { result: [] }
-	}),
-	
-		
+	load: function() {
+		return uci.load('advanced');
+	},
+
 	render: function() {
+		let m = new form.Map('advanced');
 
-		let m, s, o;
-
-		m = new form.Map('advanced');
-		
-		/* mt7915 specific Wired Ethernet Dispatch (WED) */
-		
 		if (L.hasSystemFeature('wedoffload')) {
-			const callSetWED = rpc.declare({
-				object: 'luci',
-				method: 'setWED',
-				params: [ 'enabled' ],
-				expect: { enabled: false }
-			});
- 			const callGetWED = rpc.declare({
-				object: 'luci',
-				method: 'getWED',
-				params: [ 'enabled' ],
-				expect: { enabled: false }
-			});
-			s = m.section(form.TypedSection, 'defaults', _('WED Offloading'),
-				_('Wireless Ethernet Dispatch (WED). It is an extension of hardware flow offloading it can reduce CPU loads, increase routing throughput and ping of wireless devices. ***After saved and apply this change, a reboot of the device is necessary to take effect.***'));
+			let s = m.section(form.TypedSection, 'defaults', _('WED Offloading'),
+				_('Wireless Ethernet Dispatch (WED) offloads part of the Wi-Fi data path in hardware. This can reduce CPU usage and improve routing throughput for wireless clients. A reboot is required for changes to fully take effect.'));
+			let o;
+
 			s.anonymous = true;
 			s.addremove = false;
-			o = s.option(form.ListValue, "wed_enable", _("WED"));
-			o.value('0', _("Off"));
-			o.value('1', _("On"));
+
+			o = s.option(form.ListValue, 'wed_enable', _('Enable WED'));
+			o.value('0', _('Off'));
+			o.value('1', _('On'));
 			o.optional = false;
-			o.load = async function(section_id) {
-				let ret = await callGetWED().then((enabled) => { return enabled });
-				if (!ret) return '0';
-				if (ret) return '1';
+			o.load = async function() {
+				return (await callGetWED()) ? '1' : '0';
 			};
 			o.write = async function(section_id, value) {
-				if (value && (value == '1' || value == '0')) {
-					const ret = await callSetWED(value == '1' ? true : false).then((enabled) => {
-						return enabled;
-					});
-					if (!ret) {
-						uci.unset('advanced', section_id, 'wed_offloading');
-						return '0';
-						}
-					if (ret) {
-						uci.set('advanced', section_id, 'wed_offloading', '1');
-						return '1';
-						}
+				if (value !== '0' && value !== '1')
+					return;
+
+				const ret = await callSetWED(value == '1');
+				if (!ret) {
+					uci.unset('advanced', section_id, 'wed_offloading');
+					return '0';
 				}
+
+				uci.set('advanced', section_id, 'wed_offloading', '1');
+				return '1';
 			};
 		}
-		
-		/* mt7915 specific HW ATF */
-		
-		if (L.hasSystemFeature('vow')) {
-			
-			s = m.section(form.TypedSection, 'defaults', _('Hardware AirTimeFairness - Enable WED to set-up'),
-				_('ATF optimizes wireless performance by giving clients a fairer share of channel airtime. When ATF is enabled, mt7915e also switches to the legacy 5.4-style Airtime Fairness exposure on next boot. HW ATF is available only when ATF is enabled.'));
-			s.anonymous = true;
-			s.addremove = false;
-			o = s.option(form.ListValue, "atf_enable", _("Enable ATF"));
-			o.value('0', _("Off"));
-			o.value('1', _("On"));
-			o.optional = false;
-			o.depends('wed_enable', '1');
-			o.default = uci.get('advanced', 'defaults', 'atf_enable');
-			o.write = function(section_id, value) {
-				uci.set('advanced', section_id, 'atf_enable',value);
-				if (value != '1')
-					uci.set('advanced', section_id, 'hw_atf_enable', '0');
-				fs.exec("/etc/init.d/advanced_setup", ["reload", "atf"])
-					  .then(() => console.log("advanced_setup reload atf done"))
-					  .catch(err => console.error(err));
-			};
-			
-			o = s.option(form.ListValue, "hw_atf_enable", _("Enable HW ATF"));
-			o.value('0', _("Off"));
-			o.value('1', _("On"));
-			o.optional = false;
-			o.depends({ 'wed_enable': '1', 'atf_enable': '1' });
-			o.default = uci.get('advanced', 'defaults', 'hw_atf_enable');
-			o.write = function(section_id, value) {
-				uci.set('advanced', section_id, 'hw_atf_enable',value);
-				fs.exec("/etc/init.d/advanced_setup", ["reload", "atf"])
-					  .then(() => console.log("advanced_setup reload atf done"))
-					  .catch(err => console.error(err));
-			};
-						
-		}	
- 
+
 		return m.render();
 	},
 });
