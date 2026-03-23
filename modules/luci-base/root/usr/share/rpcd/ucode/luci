@@ -484,15 +484,30 @@ const methods = {
 			const wed_path = '/sys/module/mt7915e/parameters/wed_enable';
 			const wed_mod_path = '/etc/modules.d/mt7915e';
 			if (access(wed_path) && access(wed_mod_path)){
+				const modline = trim(replace(readfile(wed_mod_path) ?? '', /[\r\n\t]+/g, ' '));
+				let opts = [];
+				let seen = {};
 				const fw = open(wed_path, 'w');
 				const fm = open(wed_mod_path, 'w');
+				for (let tok in split(modline, ' ')) {
+					tok = trim(tok);
+					if (!tok || tok == 'mt7915e' || tok == 'wed_enable=1')
+						continue;
+					if (seen[tok])
+						continue;
+					seen[tok] = true;
+					push(opts, tok);
+				}
+				let new_mod_line = 'mt7915e';
+				for (let tok in opts)
+					new_mod_line += ' ' + tok;
 				if (request?.args?.enabled == true) {
 					fw.write('Y\n');
-					fm.write('mt7915e wed_enable=1\n');
+					new_mod_line += ' wed_enable=1';
 				} else if (request?.args?.enabled == false) {
 					fw.write('N\n');
-					fm.write('mt7915e\n');
 				}
+				fm.write(new_mod_line + '\n');
 				fw.close();
 				fm.close();
 				const fd_content = trim(readfile(wed_path, 4));

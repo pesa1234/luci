@@ -71,7 +71,7 @@ return view.extend({
 		if (L.hasSystemFeature('vow')) {
 			
 			s = m.section(form.TypedSection, 'defaults', _('Hardware AirTimeFairness - Enable WED to set-up'),
-				_('The primary purpose of ATF is to optimize wireless network performance by ensuring that all connected devices receive a fair share of the available airtime on a Wi-Fi channel, regardless of their speed or capabilities. '));
+				_('ATF optimizes wireless performance by giving clients a fairer share of channel airtime. When ATF is enabled, mt7915e also switches to the legacy 5.4-style Airtime Fairness exposure on next boot. HW ATF is available only when ATF is enabled.'));
 			s.anonymous = true;
 			s.addremove = false;
 			o = s.option(form.ListValue, "atf_enable", _("Enable ATF"));
@@ -82,6 +82,8 @@ return view.extend({
 			o.default = uci.get('advanced', 'defaults', 'atf_enable');
 			o.write = function(section_id, value) {
 				uci.set('advanced', section_id, 'atf_enable',value);
+				if (value != '1')
+					uci.set('advanced', section_id, 'hw_atf_enable', '0');
 				fs.exec("/etc/init.d/advanced_setup", ["reload", "atf"])
 					  .then(() => console.log("advanced_setup reload atf done"))
 					  .catch(err => console.error(err));
@@ -91,7 +93,7 @@ return view.extend({
 			o.value('0', _("Off"));
 			o.value('1', _("On"));
 			o.optional = false;
-			o.depends('wed_enable', '1');
+			o.depends({ 'wed_enable': '1', 'atf_enable': '1' });
 			o.default = uci.get('advanced', 'defaults', 'hw_atf_enable');
 			o.write = function(section_id, value) {
 				uci.set('advanced', section_id, 'hw_atf_enable',value);
@@ -105,4 +107,3 @@ return view.extend({
 		return m.render();
 	},
 });
-
