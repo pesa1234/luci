@@ -87,6 +87,21 @@ return view.extend({
 			fs.exec('/sbin/wifi', ['up']);
 		};
 
+		o = s.option(form.Value, "thres_3", _("EDCCA BW160"),_('Default: -54: dbm - Range: -126 to 0'));
+		o.value('-54', _("-54"));
+		o.value('-59', _("-59"));
+		o.value('-64', _("-64"));
+		o.depends('edcca_enable', '1');
+		o.datatype = 'integer';
+		o.cfgvalue = function(section_id) {
+		return uci.get('advanced', section_id, 'thres_3') || '-54';
+		};
+		o.write = function(section_id, value) {
+			uci.set('advanced', section_id, 'thres_3', value);
+			fs.exec('/sbin/wifi', ['down']);
+			fs.exec('/sbin/wifi', ['up']);
+		};
+
 		return m.render();
 	},
 });
