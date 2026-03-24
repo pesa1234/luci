@@ -47,6 +47,7 @@ const mapProfiles = {
 const defaultProfile = mapProfiles.default;
 const presetProfiles = Object.keys(mapProfiles);
 const presetValueOptions = [ 'compensation', 'thres_0', 'thres_1', 'thres_2', 'thres_3' ];
+const pendingProfiles = {};
 let map;
 let needsWifiRestart = false;
 
@@ -89,7 +90,11 @@ function detectSectionProfile(section_id) {
 }
 
 function getSelectedProfile(section_id) {
+	const pendingProfile = pendingProfiles[section_id];
 	const storedProfile = uci.get('advanced', section_id, 'profile');
+
+	if (pendingProfile === 'custom' || mapProfiles[pendingProfile] != null)
+		return pendingProfile;
 
 	if (storedProfile === 'custom' || mapProfiles[storedProfile] != null)
 		return storedProfile;
@@ -129,6 +134,48 @@ function applyPresetToWidgets(section_id, profile) {
 	}
 }
 
+function syncPresetValues(section_id, profile) {
+	const settings = mapProfiles[profile];
+	let changed = false;
+
+	if (settings == null)
+		return changed;
+
+	if (uci.get('advanced', section_id, 'profile') !== profile)
+		changed = true;
+
+	uci.set('advanced', section_id, 'profile', profile);
+
+	for (let option of presetValueOptions) {
+		if (uci.get('advanced', section_id, option) !== settings[option])
+			changed = true;
+
+		uci.set('advanced', section_id, option, settings[option]);
+	}
+
+	return changed;
+}
+
+function syncSelectedPresetValues() {
+	let changed = false;
+
+	uci.sections('advanced', 'edcca', function(section) {
+		const section_id = section['.name'];
+		const profile = getSelectedProfile(section_id);
+
+		if (syncPresetValues(section_id, profile))
+			changed = true;
+	});
+
+	if (changed)
+		needsWifiRestart = true;
+}
+
+function clearPendingProfiles() {
+	for (let section_id in pendingProfiles)
+		delete pendingProfiles[section_id];
+}
+
 function addCustomDepends(option) {
 	option.depends({
 		edcca_enable: '1',
@@ -158,7 +205,7 @@ return view.extend({
 		map = new form.Map('advanced');
 
 		s = map.section(form.TypedSection, 'edcca', _('EDCCA'),
-			_('Energy Detect Clear Channel Assessment (EDCCA) controls how aggressively the radio considers the channel busy before transmitting. Select a preset to preview fixed values in read-only fields, or choose Custom to edit the values directly. Wi-Fi is restarted once after saving changes.'));
+			_('Energy Detect Clear Channel Assessment (EDCCA) controls how aggressively the radio considers the channel busy before transmitting. Select a preset to preview fixed values in read-only fields, or choose Custom to edit the values directly. Wi-Fi is restarted only after Save & Apply.'));
 		s.anonymous = true;
 		s.addremove = false;
 
@@ -186,19 +233,17 @@ return view.extend({
 			return detectSectionProfile(section_id);
 		};
 		o.onchange = function(ev, section_id, value) {
+			pendingProfiles[section_id] = value;
 			applyPresetToWidgets(section_id, value);
 		};
 		o.write = function(section_id, value) {
-			const settings = mapProfiles[value];
-
+			delete pendingProfiles[section_id];
 			uci.set('advanced', section_id, 'profile', value);
 
-			if (settings == null)
+			if (!syncPresetValues(section_id, value))
 				return;
 
 			needsWifiRestart = true;
-			for (let option of presetValueOptions)
-				uci.set('advanced', section_id, option, settings[option]);
 		};
 
 		o = s.option(form.Value, 'compensation', _('EDCCA Compensation'), _('Code default: -6. Range: -126 to 126.'));
@@ -207,6 +252,7 @@ return view.extend({
 		o.value('-4', _('-4'));
 		o.value('-2', _('-2'));
 		o.datatype = 'integer';
+		o.retain = true;
 		addCustomDepends(o);
 		o.cfgvalue = function(section_id) {
 			return getUciValue(section_id, 'compensation', defaultProfile.compensation);
@@ -229,6 +275,7 @@ return view.extend({
 		o.value('-57', _('-57'));
 		o.value('-53', _('-53'));
 		o.datatype = 'integer';
+		o.retain = true;
 		addCustomDepends(o);
 		o.cfgvalue = function(section_id) {
 			return getUciValue(section_id, 'thres_0', defaultProfile.thres_0);
@@ -251,6 +298,7 @@ return view.extend({
 		o.value('-59', _('-59'));
 		o.value('-55', _('-55'));
 		o.datatype = 'integer';
+		o.retain = true;
 		addCustomDepends(o);
 		o.cfgvalue = function(section_id) {
 			return getUciValue(section_id, 'thres_1', defaultProfile.thres_1);
@@ -273,6 +321,7 @@ return view.extend({
 		o.value('-56', _('-56'));
 		o.value('-52', _('-52'));
 		o.datatype = 'integer';
+		o.retain = true;
 		addCustomDepends(o);
 		o.cfgvalue = function(section_id) {
 			return getUciValue(section_id, 'thres_2', defaultProfile.thres_2);
@@ -295,6 +344,7 @@ return view.extend({
 		o.value('-52', _('-52'));
 		o.value('-49', _('-49'));
 		o.datatype = 'integer';
+		o.retain = true;
 		addCustomDepends(o);
 		o.cfgvalue = function(section_id) {
 			return getUciValue(section_id, 'thres_3', defaultProfile.thres_3);
@@ -321,20 +371,23 @@ return view.extend({
 	},
 
 	handleSave: function(ev) {
-		return map.save().then(function() {
-			if (!needsWifiRestart)
-				return;
+		syncSelectedPresetValues();
 
-			needsWifiRestart = false;
-			return restartWifi();
-		}, function(err) {
-			needsWifiRestart = false;
-			throw err;
+		return map.save().then(function(result) {
+			clearPendingProfiles();
+			return result;
 		});
 	},
 
 	handleSaveApply: function(ev, mode) {
 		return this.handleSave(ev).then(function() {
+			if (!needsWifiRestart)
+				return;
+
+			return restartWifi().then(function() {
+				needsWifiRestart = false;
+			});
+		}).then(function() {
 			return ui.changes.apply(mode == '0');
 		});
 	},
