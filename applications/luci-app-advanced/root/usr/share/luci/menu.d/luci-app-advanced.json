@@ -21,7 +21,7 @@
 		}
 	},
 	"admin/advanced/airtime": {
-		"title": "Airtime Fairness",
+		"title": "Airtime Fairness (ATF)",
 		"order": 2,
 		"action": {
 			"type": "view",

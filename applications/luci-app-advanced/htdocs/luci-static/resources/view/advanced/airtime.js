@@ -13,14 +13,14 @@ return view.extend({
 		let m = new form.Map('advanced');
 
 		if (L.hasSystemFeature('vow')) {
-			let description = _('Airtime Fairness (ATF) distributes channel airtime more evenly between clients. Enabling ATF also switches mt7915e to the legacy 5.4-style Airtime Fairness exposure on the next boot, so a reboot is required for the driver change to fully take effect. Hardware ATF can be enabled only when ATF is enabled.');
+			let description = _('Airtime Fairness (ATF) allocates Wi-Fi airtime more evenly across clients, helping prevent slower devices from monopolizing the channel. Enabling ATF also switches mt7915e to the legacy 5.4-style Airtime Fairness mode, which requires reprobe of the mt7915e driver and causes a brief Wi-Fi interruption while changes are applied. Weighted Airtime Fairness (WATF), also referred to by MediaTek as HW-ATF, adjusts airtime quantums on top of ATF.');
 			let s, o;
 
-			s = m.section(form.TypedSection, 'defaults', _('Airtime Fairness'), description);
+			s = m.section(form.TypedSection, 'defaults', _('Airtime Fairness (ATF)'), description);
 			s.anonymous = true;
 			s.addremove = false;
 
-			o = s.option(form.ListValue, 'atf_enable', _('Enable ATF'));
+			o = s.option(form.ListValue, 'atf_enable', _('Enable Airtime Fairness (ATF)'));
 			o.value('0', _('Off'));
 			o.value('1', _('On'));
 			o.optional = false;
@@ -35,8 +35,8 @@ return view.extend({
 					.catch(err => console.error(err));
 			};
 
-			o = s.option(form.ListValue, 'hw_atf_enable', _('Enable HW ATF'),
-				_('Hardware ATF is available only when ATF is enabled.'));
+			o = s.option(form.ListValue, 'hw_atf_enable', _('Enable Weighted Airtime Fairness (WATF)'),
+				_('Weighted Airtime Fairness (WATF), also referred to by MediaTek as HW-ATF, builds on Airtime Fairness (ATF) by applying airtime quantum levels.'));
 			o.value('0', _('Off'));
 			o.value('1', _('On'));
 			o.optional = false;

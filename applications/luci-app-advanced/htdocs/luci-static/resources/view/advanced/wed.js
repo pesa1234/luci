@@ -28,7 +28,7 @@ return view.extend({
 
 		if (L.hasSystemFeature('wedoffload')) {
 			let s = m.section(form.TypedSection, 'defaults', _('WED Offloading'),
-				_('Wireless Ethernet Dispatch (WED) offloads part of the Wi-Fi data path in hardware. This can reduce CPU usage and improve routing throughput for wireless clients. A reboot is required for changes to fully take effect.'));
+				_('Wireless Ethernet Dispatch (WED) offloads part of the Wi-Fi data path in hardware. This can reduce CPU usage and improve routing throughput for wireless clients. Applying changes reprobes the mt7915e driver, causing a brief Wi-Fi interruption.'));
 			let o;
 
 			s.anonymous = true;

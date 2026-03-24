@@ -483,6 +483,7 @@ const methods = {
 		call: function(request) {
 			const wed_path = '/sys/module/mt7915e/parameters/wed_enable';
 			const wed_mod_path = '/etc/modules.d/mt7915e';
+			const reprobe_cmd = '/etc/init.d/advanced_setup reload wed >/dev/null 2>&1';
 			if (access(wed_path) && access(wed_mod_path)){
 				const modline = trim(replace(readfile(wed_mod_path) ?? '', /[\r\n\t]+/g, ' '));
 				let opts = [];
@@ -510,6 +511,7 @@ const methods = {
 				fm.write(new_mod_line + '\n');
 				fw.close();
 				fm.close();
+				system(reprobe_cmd);
 				const fd_content = trim(readfile(wed_path, 4));
 				let result = false;
 				if(fd_content === 'Y') result = true;

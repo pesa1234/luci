@@ -15,6 +15,7 @@
 		},
 		"write": {
 			"file": {
+				"/etc/init.d/advanced_setup *": [ "exec" ],
 				"/sbin/mtkhnat": [ "exec" ]
 			},
 			"ubus": {
