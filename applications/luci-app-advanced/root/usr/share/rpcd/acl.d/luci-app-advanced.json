@@ -1,11 +1,12 @@
 {
   "luci-app-advanced": {
     "description": "Grant UCI and RPC access to LuCI app advanced",
-	"read": {
+		"read": {
 			"file": {
 				"/sbin/logread -e wifi": [ "exec" ],
 				"/sbin/wifi": [ "exec" ],
-				"/usr/sbin/logread -e wifi": [	"exec" ]
+				"/usr/sbin/logread -e wifi": [	"exec" ],
+				"/sys/kernel/debug/cake_mq/sync_time_ns": [ "read" ]
 			},
 			"ubus": {
 				"file": [ "read" ],
@@ -19,7 +20,7 @@
 				"/sbin/mtkhnat": [ "exec" ]
 			},
 			"ubus": {
-				"file": [ "write" ],
+				"file": [ "write", "exec" ],
 				"luci": [ "setWED" ]
 			},
 			"uci": [ "advanced", "mtkhnat" ]

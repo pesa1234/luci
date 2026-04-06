@@ -57,9 +57,22 @@
 			}
 		}
 	},
+	"admin/advanced/cake": {
+		"title": "CAKE Settings",
+		"order": 6,
+		"action": {
+			"type": "view",
+			"path": "advanced/cake"
+		},
+		"depends": {
+			"fs": {
+				"/sys/kernel/debug/cake_mq/sync_time_ns": "file"
+			}
+		}
+	},
 	"admin/advanced/usb": {
 		"title": "USB",
-		"order": 6,
+		"order": 7,
 		"action": {
 			"type": "view",
 			"path": "advanced/usb"

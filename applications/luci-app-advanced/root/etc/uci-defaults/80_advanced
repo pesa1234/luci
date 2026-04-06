@@ -2,12 +2,10 @@
 
 CONFIG_FILE="/etc/config/advanced"
 
-if [ ! -f "$CONFIG_FILE" ]; then
+if ! uci show advanced.@defaults[0] >/dev/null 2>&1; then
 
-    touch "$CONFIG_FILE"
-    
+    [ -f "$CONFIG_FILE" ] || touch "$CONFIG_FILE"
     uci add advanced defaults
-
     uci commit advanced
 fi
 
