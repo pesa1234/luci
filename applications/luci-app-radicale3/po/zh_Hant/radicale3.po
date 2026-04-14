@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: luci-app-radicale 3\n"
-"PO-Revision-Date: 2026-04-04 03:09+0000\n"
-"Last-Translator: UDP <udp@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-04-14 17:39+0000\n"
+"Last-Translator: ZW <roc_fe@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/openwrt/luciapplicationsradicale3/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -39,7 +39,7 @@ msgstr "進階"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:117
 msgid "Allowed Ciphers"
-msgstr "允許的密碼"
+msgstr "允許的加密演算法"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:148
 msgid "Authentication"
@@ -47,7 +47,7 @@ msgstr "認證"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:185
 msgid "Authentication Type"
-msgstr "認證類型"
+msgstr "認證類別"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:174
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:224
@@ -160,7 +160,7 @@ msgstr ""
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:113
 msgid "For verifying client certificates"
-msgstr ""
+msgstr "用於驗證用戶端憑證"
 
 #: applications/luci-app-radicale3/root/usr/share/rpcd/acl.d/luci-app-radicale3.json:3
 msgid "Grant UCI access for luci-app-radicale3"
@@ -208,7 +208,7 @@ msgstr "紀錄等級"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:448
 msgid "Logging"
-msgstr "記錄"
+msgstr "紀錄"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:170
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:220
@@ -326,7 +326,7 @@ msgstr ""
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:77
 msgid "Radicale v3 CalDav/CardDAV Server Configuration"
-msgstr "Radicale v3 CalDav/CardDAV 伺服器配置"
+msgstr "Radicale v3 CalDav/CardDAV 伺服器設定"
 
 #: applications/luci-app-radicale3/root/usr/share/luci/menu.d/luci-app-radicale3.json:3
 msgid "Radicale3"
@@ -384,7 +384,7 @@ msgstr "SSL"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:117
 msgid "See python3-openssl documentation for available ciphers"
-msgstr "可用密碼請見 python3-openssl 文件"
+msgstr "可用加密演算法請見 python3-openssl 文件"
 
 #: applications/luci-app-radicale3/htdocs/luci-static/resources/view/radicale3.js:121
 msgid "See python3-openssl documentation for available protocols"

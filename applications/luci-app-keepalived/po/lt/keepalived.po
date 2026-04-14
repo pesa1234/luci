@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-04-10 17:02+0000\n"
+"PO-Revision-Date: 2026-04-14 17:39+0000\n"
 "Last-Translator: Džiugas Januševičius <dziugas1959@hotmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationskeepalived/lt/>\n"
@@ -670,17 +670,20 @@ msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:93
 msgid "Persist Granularity"
-msgstr ""
+msgstr "Išlaikyti granuliuotumą"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:87
 msgid "Persist Timeout"
-msgstr ""
+msgstr "Išlaikyti pasibaigusios užklausos laiką"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:29
 msgid ""
 "Poll to detect media link failure using ETHTOOL, MII or ioctl interface "
 "otherwise uses netlink interface"
 msgstr ""
+"Apklausa, skirta nustatyti medijos ryšio trikčius/gedimus, naudojant – „"
+"ETHTOOL“, MII arba „ioctl“ sąsają ir/arba sietuvą; kitais atvejais "
+"naudojama/-as – „netlink“ sąsaja ir/arba sietuvas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:44
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:146
@@ -690,130 +693,133 @@ msgstr "Prievadas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:171
 msgid "Port to connect to"
-msgstr ""
+msgstr "Prievadas, prie kuriuo prijungti į"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:215
 msgid "Preempt Delay"
-msgstr ""
+msgstr "Išankstinis atidėjimas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:45
 msgid "Priority"
-msgstr ""
+msgstr "Pirmenybė"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:30
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:34
 msgid "Probes Received"
-msgstr ""
+msgstr "Gauti zondai"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/overview.js:29
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/status/include/35_keepalived.js:33
 msgid "Probes Sent"
-msgstr ""
+msgstr "Išsiųsti zondai"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:38
 msgid "Protocol"
-msgstr ""
+msgstr "Protokolas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:55
 msgid "Real Server"
-msgstr ""
+msgstr "Tikras serveris"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:127
 msgid "Real Server to redirect all request"
-msgstr ""
+msgstr "Tikras serveris, skirtas peradresuoti visas užklausas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:126
 msgid "Real Servers"
-msgstr ""
+msgstr "Tikri serveriai"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:54
 msgid "Receiver"
-msgstr ""
+msgstr "Gavėjas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:153
 msgid "Relative weight to use"
-msgstr ""
+msgstr "Naudotinas santykinis svoris"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:92
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:116
 msgid "Required number of successes for KO transition"
-msgstr ""
+msgstr "Reikalingas sėkmių skaičius, kad būtų atliktas „KO“ perėjimas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:87
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:110
 msgid "Required number of successes for OK transition"
-msgstr ""
+msgstr "Reikalingas sėkmių skaičius, kad būtų atliktas „OK“ perėjimas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:189
 msgid "Retry"
-msgstr ""
+msgstr "Pakartoti/Bandyti iš naujo"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:49
 msgid "Reverse"
-msgstr ""
+msgstr "Apversti"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/script.js:86
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:109
 msgid "Rise"
-msgstr ""
+msgstr "Pakilti"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:81
 msgid "Round-Robin"
-msgstr ""
+msgstr "Ratelis"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:79
 #: applications/luci-app-keepalived/root/usr/share/luci/menu.d/luci-app-keepalived.json:33
 msgid "Route"
-msgstr ""
+msgstr "Maršrutas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:51
 msgid "Route Table"
-msgstr ""
+msgstr "Maršruto lentelė"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:18
 msgid "Router ID"
-msgstr ""
+msgstr "Maršrutizatoriaus ID"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:18
 msgid "Routes"
-msgstr ""
+msgstr "Maršrutai"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/vrrp_instance.js:258
 msgid "Routes add|del when changing to MASTER, to BACKUP"
 msgstr ""
+"Maršrutai pridedami|ištrinami, keičiant į VALDYTOJĄ arba ATSARGINĘ KOPIJĄ"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:68
 msgid "Routes must be configured for Static Routes"
-msgstr ""
+msgstr "Maršrutai turi būti sukonfigūruoti nekintamiems maršrutams"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:19
 msgid ""
 "Routes would be referenced into Static and Virtual Routes of VRRP instances"
 msgstr ""
+"Maršrutai būtų susieti su nekintamais ir virtualiais „VRRP“ egzempliorių "
+"maršrutais"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:48
 msgid "SMTP Connect Timeout"
-msgstr ""
+msgstr "„SMTP“ prisijungimo pasibaigusios užklausos laikas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/globals.js:43
 msgid "SMTP Server"
-msgstr ""
+msgstr "„SMTP“ serveris"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:58
 msgid "SSH Port"
-msgstr ""
+msgstr "„SSH“ prievadas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/peers.js:83
 msgid "SSH Public Key"
-msgstr ""
+msgstr "„SSH“ viešasis raktas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/servers.js:80
 msgid "Scheduler Algorigthm"
-msgstr ""
+msgstr "Planuoklės algoritmas"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:46
 msgid "Scope"
-msgstr ""
+msgstr "Sritis"
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/ipaddress.js:47
 msgid "Scope of the Address"
@@ -1175,7 +1181,7 @@ msgstr ""
 
 #: applications/luci-app-keepalived/htdocs/luci-static/resources/view/keepalived/route.js:53
 msgid "default"
-msgstr "numatyta/-s"
+msgstr "numatyta/-s/-ai"
 
 #~ msgid "Fail"
 #~ msgstr "Nepavyko/-sta"
