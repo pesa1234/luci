@@ -112,6 +112,85 @@ function fetch_server_data_with_jq(hostname) {
 	};
 }
 
+function fetch_countries() {
+	if (!has_command(SERVICE_NAME)) {
+		return {
+			countries: null,
+			error: sprintf('%s command not found.', SERVICE_NAME)
+		};
+	}
+
+	let output = read_command_output(sprintf('%s countries 2>/dev/null', SERVICE_NAME));
+	let countries = [];
+
+	if (!output) {
+		return {
+			countries: null,
+			error: sprintf('Unable to read available countries from %s.', SERVICE_NAME)
+		};
+	}
+
+	for (let line in split(output, /\r?\n/)) {
+		let entry = trim(line);
+		let parts = null;
+
+		if (entry == '')
+			continue;
+
+		parts = match(entry, /^(.*):\s*([A-Z]{2})$/);
+		if (!parts)
+			continue;
+
+		push(countries, {
+			name: trim(parts[1]),
+			code: parts[2]
+		});
+	}
+
+	if (!length(countries)) {
+		return {
+			countries: null,
+			error: sprintf('No countries returned by %s.', SERVICE_NAME)
+		};
+	}
+
+	return {
+		countries: countries,
+		error: null
+	};
+}
+
+function fetch_runtime_status() {
+	if (!has_command(SERVICE_NAME)) {
+		return {
+			status: null,
+			error: sprintf('%s command not found.', SERVICE_NAME)
+		};
+	}
+
+	let output = read_command_output(sprintf('%s status 2>/dev/null', SERVICE_NAME));
+
+	if (!output) {
+		return {
+			status: null,
+			error: sprintf('Unable to read %s runtime status.', SERVICE_NAME)
+		};
+	}
+
+	try {
+		return {
+			status: json(output),
+			error: null
+		};
+	} catch (e) {
+		log.ERR('Failed to parse nordvpnlite status output: %J', e);
+		return {
+			status: null,
+			error: sprintf('Unable to parse %s status output.', SERVICE_NAME)
+		};
+	}
+}
+
 return {
 	nordvpnlite: {
 		get_config: {
@@ -250,6 +329,54 @@ return {
 					hostname: server.hostname,
 					address: server.address,
 					public_key: server.public_key
+				};
+			}
+		},
+
+		get_countries: {
+			call: function() {
+				let result = fetch_countries();
+				let countries = result ? result.countries : null;
+				let error = result ? result.error : null;
+
+				if (error || !countries) {
+					return {
+						success: false,
+						error: error || sprintf('Unable to query available countries from %s.', SERVICE_NAME)
+					};
+				}
+
+				return {
+					success: true,
+					countries: countries
+				};
+			}
+		},
+
+		get_runtime_status: {
+			call: function() {
+				let result = fetch_runtime_status();
+				let status = result ? result.status : null;
+				let error = result ? result.error : null;
+
+				if (error || !status) {
+					return {
+						success: false,
+						error: error || sprintf('Unable to query %s runtime status.', SERVICE_NAME)
+					};
+				}
+
+				return {
+					success: true,
+					telio_is_running: status.telio_is_running == true,
+					ip_address: status.ip_address || '',
+					exit_node: {
+						identifier: status.exit_node && status.exit_node.identifier ? status.exit_node.identifier : '',
+						public_key: status.exit_node && status.exit_node.public_key ? status.exit_node.public_key : '',
+						hostname: status.exit_node && status.exit_node.hostname ? status.exit_node.hostname : '',
+						endpoint: status.exit_node && status.exit_node.endpoint ? status.exit_node.endpoint : '',
+						state: status.exit_node && status.exit_node.state ? status.exit_node.state : ''
+					}
 				};
 			}
 		}

@@ -32,6 +32,16 @@ var callGetServerData = rpc.declare({
     params: ['hostname']
 });
 
+var callGetCountries = rpc.declare({
+    object: 'nordvpnlite',
+    method: 'get_countries'
+});
+
+var callGetRuntimeStatus = rpc.declare({
+    object: 'nordvpnlite',
+    method: 'get_runtime_status'
+});
+
 var serverHostnameSuffix = '.nordvpn.com';
 
 var defaultConfig = {
@@ -79,7 +89,218 @@ function callGetServerDataWithTimeout(hostname) {
     });
 }
 
+function callGetCountriesWithTimeout() {
+    var previousTimeout = L.env.rpctimeout;
+
+    L.env.rpctimeout = Math.max(L.env.rpctimeout || 20, 30);
+
+    return Promise.resolve(callGetCountries()).finally(function () {
+        L.env.rpctimeout = previousTimeout;
+    });
+}
+
+function callGetRuntimeStatusWithTimeout() {
+    var previousTimeout = L.env.rpctimeout;
+
+    L.env.rpctimeout = Math.max(L.env.rpctimeout || 20, 30);
+
+    return Promise.resolve(callGetRuntimeStatus()).finally(function () {
+        L.env.rpctimeout = previousTimeout;
+    });
+}
+
 return view.extend({
+    getCountryChoices: function (selectedCode) {
+        var countries = Array.isArray(this.countryChoices) ? this.countryChoices : [];
+        var code = String(selectedCode || '').trim().toUpperCase();
+        var choices = {
+            '': this.countryChoicesLoaded === true
+                ? _('Select a country')
+                : _('Type a country code or click Get country list')
+        };
+        var seen = {};
+
+        countries.forEach(function (country) {
+            var countryCode;
+            var countryName;
+
+            if (!isObject(country))
+                return;
+
+            countryCode = String(country.code || '').trim().toUpperCase();
+            countryName = String(country.name || '').trim();
+
+            if (countryCode === '' || seen[countryCode] === true)
+                return;
+
+            seen[countryCode] = true;
+            choices[countryCode] = countryName !== '' ? countryName + ' (' + countryCode + ')' : countryCode;
+        });
+
+        if (code !== '' && !choices.hasOwnProperty(code))
+            choices[code] = code;
+
+        return choices;
+    },
+
+    resetOptionChoices: function (option, choices) {
+        option.keylist = [];
+        option.vallist = [];
+
+        Object.keys(choices || {}).forEach(function (key) {
+            option.value(key, choices[key]);
+        });
+    },
+
+    updateCountryChoices: function (selectedCode) {
+        var code = String(selectedCode || '').trim().toUpperCase();
+        var choices = this.getCountryChoices(code);
+        var widget = this.vpn_country_option.getUIElement('config');
+        var keys = Object.keys(choices);
+
+        this.resetOptionChoices(this.vpn_country_option, choices);
+
+        if (!widget)
+            return;
+
+        if (typeof widget.clearChoices === 'function')
+            widget.clearChoices(true);
+
+        if (typeof widget.addChoices === 'function')
+            widget.addChoices(keys, choices);
+
+        widget.setValue(code !== '' ? code : '');
+    },
+
+    handleCountryCodeChange: function (section_id, value) {
+        var normalized = String(value || '').trim().toUpperCase();
+        var widget = this.vpn_country_option.getUIElement(section_id);
+
+        if (!widget || normalized === String(value || ''))
+            return;
+
+        widget.setValue(normalized);
+    },
+
+    updateVpnModeVisibility: function (section_id) {
+        var sid = section_id || 'config';
+        var mode = String(this.vpn_mode_option.formvalue(sid) || '').trim();
+        var showCountry = mode === 'country';
+        var showServer = mode === 'server';
+
+        if (this.vpn_country_option)
+            this.vpn_country_option.setActive(sid, showCountry);
+
+        if (this.server_hostname_option)
+            this.server_hostname_option.setActive(sid, showServer);
+
+        if (this.server_lookup_option)
+            this.server_lookup_option.setActive(sid, showServer);
+
+        if (this.server_address_option)
+            this.server_address_option.setActive(sid, showServer);
+
+        if (this.server_public_key_option)
+            this.server_public_key_option.setActive(sid, showServer);
+    },
+
+    handleGetCountries: function () {
+        ui.showModal(null, [
+            E('p', { 'class': 'spinning' }, _('Fetching available NordVPN countries'))
+        ]);
+
+        return callGetCountriesWithTimeout().then(function (res) {
+            var currentCountry = String(this.vpn_country_option.formvalue('config') || '').trim().toUpperCase();
+
+            ui.hideModal();
+
+            if (!res || res.success !== true || !Array.isArray(res.countries)) {
+                ui.addNotification(_('Country lookup failed'), E('p', (res && res.error) ? String(res.error) : _('Unable to fetch the country list.')));
+                return;
+            }
+
+            this.countryChoicesLoaded = true;
+            this.countryChoices = res.countries;
+            this.updateCountryChoices(currentCountry);
+
+            ui.addNotification(_('Countries loaded'), E('p', _('Country list has been updated.')));
+        }.bind(this)).catch(function (err) {
+            ui.hideModal();
+            ui.addNotification(_('Country lookup failed'), E('p', err ? String(err) : _('Unknown error')));
+        });
+    },
+
+    getRuntimeStatusDisplayData: function (status) {
+        var exitNode = isObject(status) && isObject(status.exit_node) ? status.exit_node : {};
+
+        return {
+            telio_running: status && status.telio_is_running === true ? _('Yes') : (status && status.telio_is_running === false ? _('No') : ''),
+            ip_address: status && status.ip_address ? String(status.ip_address) : '',
+            identifier: exitNode.identifier ? String(exitNode.identifier) : '',
+            hostname: exitNode.hostname ? String(exitNode.hostname) : '',
+            endpoint: exitNode.endpoint ? String(exitNode.endpoint) : '',
+            state: exitNode.state ? String(exitNode.state) : '',
+            public_key: exitNode.public_key ? String(exitNode.public_key) : ''
+        };
+    },
+
+    setRuntimeStatusField: function (id, value) {
+        var node = document.getElementById(id);
+
+        if (!node)
+            return;
+
+        node.textContent = value != null ? String(value) : '';
+    },
+
+    updateRuntimeStatusPanel: function (status) {
+        var data = this.getRuntimeStatusDisplayData(status);
+
+        this.runtimeStatus = status || null;
+        this.setRuntimeStatusField('nordvpnlite-runtime-telio', data.telio_running);
+        this.setRuntimeStatusField('nordvpnlite-runtime-ip', data.ip_address);
+        this.setRuntimeStatusField('nordvpnlite-runtime-identifier', data.identifier);
+        this.setRuntimeStatusField('nordvpnlite-runtime-hostname', data.hostname);
+        this.setRuntimeStatusField('nordvpnlite-runtime-endpoint', data.endpoint);
+        this.setRuntimeStatusField('nordvpnlite-runtime-state', data.state);
+        this.setRuntimeStatusField('nordvpnlite-runtime-public-key', data.public_key);
+    },
+
+    getRuntimeStatusFingerprint: function (status) {
+        var exitNode = isObject(status) && isObject(status.exit_node) ? status.exit_node : {};
+
+        return JSON.stringify({
+            telio_is_running: status && status.telio_is_running === true,
+            ip_address: status && status.ip_address ? String(status.ip_address) : '',
+            identifier: exitNode.identifier ? String(exitNode.identifier) : '',
+            hostname: exitNode.hostname ? String(exitNode.hostname) : '',
+            endpoint: exitNode.endpoint ? String(exitNode.endpoint) : '',
+            state: exitNode.state ? String(exitNode.state) : '',
+            public_key: exitNode.public_key ? String(exitNode.public_key) : ''
+        });
+    },
+
+    handleGetRuntimeStatus: function () {
+        ui.showModal(null, [
+            E('p', { 'class': 'spinning' }, _('Fetching NordVPN Lite runtime status'))
+        ]);
+
+        return callGetRuntimeStatusWithTimeout().then(function (res) {
+            ui.hideModal();
+
+            if (!res || res.success !== true) {
+                ui.addNotification(_('Status lookup failed'), E('p', (res && res.error) ? String(res.error) : _('Unable to fetch NordVPN Lite runtime status.')));
+                return;
+            }
+
+            this.updateRuntimeStatusPanel(res);
+            ui.addNotification(_('Status loaded'), E('p', _('NordVPN Lite runtime status has been updated.')));
+        }.bind(this)).catch(function (err) {
+            ui.hideModal();
+            ui.addNotification(_('Status lookup failed'), E('p', err ? String(err) : _('Unknown error')));
+        });
+    },
+
     load: function () {
         return Promise.all([
             L.resolveDefault(callGetConfig(), null).then(function (result) {
@@ -100,6 +321,9 @@ return view.extend({
                     enabled: false,
                     running: false
                 };
+            }),
+            L.resolveDefault(callGetRuntimeStatusWithTimeout(), null).then(function (result) {
+                return (isObject(result) && result.success === true) ? result : null;
             })
         ]);
     },
@@ -107,6 +331,7 @@ return view.extend({
     renderServicePanel: function (status) {
         var buttonStyle = 'margin-right:0.5rem; margin-bottom:0.25rem;';
         var enableStyle = buttonStyle + ' margin-left:1rem;';
+        var runtimeData = this.getRuntimeStatusDisplayData(this.runtimeStatus);
         var statusText;
         var canStart = false;
         var canRestart = false;
@@ -195,6 +420,17 @@ return view.extend({
             }.bind(this)
         }, _('Disable'));
 
+        var btnGetStatus = E('button', {
+            'class': 'btn cbi-button cbi-button-apply',
+            'type': 'button',
+            'style': buttonStyle,
+            'disabled': status.rpcAvailable === false ? true : null,
+            'click': function (ev) {
+                ev.preventDefault();
+                return this.handleGetRuntimeStatus();
+            }.bind(this)
+        }, _('Get status'));
+
         return E('div', { 'class': 'cbi-section' }, [
             E('div', { 'class': 'cbi-value' }, [
                 E('label', { 'class': 'cbi-value-title' }, _('Service Status')),
@@ -209,6 +445,40 @@ return view.extend({
                     btnEnable,
                     btnDisable
                 ]))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Runtime Status')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', {}, [
+                    btnGetStatus
+                ]))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Telio Running')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-telio' }, runtimeData.telio_running))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Tunnel IP Address')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-ip' }, runtimeData.ip_address))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Exit Node Identifier')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-identifier' }, runtimeData.identifier))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Exit Node Hostname')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-hostname' }, runtimeData.hostname))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Exit Node Endpoint')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-endpoint' }, runtimeData.endpoint))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Exit Node State')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-state' }, runtimeData.state))
+            ]),
+            E('div', { 'class': 'cbi-value' }, [
+                E('label', { 'class': 'cbi-value-title' }, _('Exit Node Public Key')),
+                E('div', { 'class': 'cbi-value-field' }, E('div', { 'id': 'nordvpnlite-runtime-public-key', 'style': 'word-break:break-all;' }, runtimeData.public_key))
             ])
         ]);
     },
@@ -282,6 +552,130 @@ return view.extend({
         });
     },
 
+    pollAppliedStatus: function (previousFingerprint) {
+        var serviceAttempts = 0;
+        var runtimeAttempts = 0;
+        var maxServiceAttempts = 45;
+        var maxRuntimeAttempts = 20;
+        var latestServiceStatus = null;
+        var latestRuntimeStatus = null;
+        var pollService;
+        var pollRuntime;
+
+        pollRuntime = function (resolve) {
+            runtimeAttempts++;
+
+            return L.resolveDefault(callGetRuntimeStatusWithTimeout(), null).then(function (runtimeStatus) {
+                var fingerprint;
+                var exitState;
+                var shouldReload = false;
+
+                if (isObject(runtimeStatus) && runtimeStatus.success === true) {
+                    latestRuntimeStatus = runtimeStatus;
+                    this.runtimeStatus = runtimeStatus;
+
+                    fingerprint = this.getRuntimeStatusFingerprint(runtimeStatus);
+                    exitState = String((runtimeStatus.exit_node && runtimeStatus.exit_node.state) || '').trim().toLowerCase();
+
+                    shouldReload = (exitState === 'connected') ||
+                        (runtimeAttempts >= 3 && runtimeStatus.telio_is_running === true) ||
+                        (previousFingerprint !== '' && fingerprint !== previousFingerprint);
+                }
+
+                if (shouldReload || runtimeAttempts >= maxRuntimeAttempts) {
+                    if (latestServiceStatus)
+                        this.serviceStatus = latestServiceStatus;
+
+                    if (latestRuntimeStatus)
+                        this.runtimeStatus = latestRuntimeStatus;
+
+                    ui.hideModal();
+                    location.reload();
+                    resolve();
+                    return;
+                }
+
+                window.setTimeout(function () {
+                    pollRuntime.call(this, resolve);
+                }.bind(this), 1000);
+            }.bind(this)).catch(function () {
+                if (runtimeAttempts >= maxRuntimeAttempts) {
+                    ui.hideModal();
+                    location.reload();
+                    resolve();
+                    return;
+                }
+
+                window.setTimeout(function () {
+                    pollRuntime.call(this, resolve);
+                }.bind(this), 1000);
+            }.bind(this));
+        }.bind(this);
+
+        pollService = function (resolve) {
+            serviceAttempts++;
+
+            return L.resolveDefault(callGetServiceStatus(), null).then(function (serviceStatus) {
+                if (isObject(serviceStatus)) {
+                    serviceStatus.rpcAvailable = true;
+                    latestServiceStatus = serviceStatus;
+                }
+
+                if (latestServiceStatus && latestServiceStatus.running === true)
+                    return pollRuntime.call(this, resolve);
+
+                if (serviceAttempts >= maxServiceAttempts) {
+                    ui.hideModal();
+                    location.reload();
+                    resolve();
+                    return;
+                }
+
+                window.setTimeout(function () {
+                    pollService.call(this, resolve);
+                }.bind(this), 1000);
+            }.bind(this)).catch(function () {
+                if (serviceAttempts >= maxServiceAttempts) {
+                    ui.hideModal();
+                    location.reload();
+                    resolve();
+                    return;
+                }
+
+                window.setTimeout(function () {
+                    pollService.call(this, resolve);
+                }.bind(this), 1000);
+            }.bind(this));
+        }.bind(this);
+
+        return new Promise(function (resolve) {
+            window.setTimeout(function () {
+                pollService.call(this, resolve);
+            }.bind(this), 1000);
+        }.bind(this));
+    },
+
+    handleSaveApplyRestart: function () {
+        var previousFingerprint = this.getRuntimeStatusFingerprint(this.runtimeStatus);
+
+        ui.showModal(null, [
+            E('p', { 'class': 'spinning' }, _('Restarting NordVPN Lite service and refreshing runtime status'))
+        ]);
+
+        return callSetServiceAction('restart').then(function (res) {
+            if (!res || res.success !== true) {
+                ui.hideModal();
+                ui.addNotification(_('Action failed'), E('p', (res && res.error) ? String(res.error) : _('Could not restart the service.')));
+                return;
+            }
+
+            return this.pollAppliedStatus(previousFingerprint);
+        }.bind(this)).catch(function (err) {
+            ui.hideModal();
+            ui.addNotification(_('Action failed'), E('p', err ? String(err) : _('Unknown error')));
+        });
+    },
+
     getVpnFormData: function (config) {
         var data = {
             authentication_token: config.authentication_token === '<REPLACE_WITH_YOUR_TOKEN>' ? '' : String(config.authentication_token || ''),
@@ -295,7 +689,7 @@ return view.extend({
         if (config.vpn && config.vpn !== 'recommended') {
             if (config.vpn.country != null) {
                 data.vpn_mode = 'country';
-                data.vpn_country = String(config.vpn.country || '');
+                data.vpn_country = String(config.vpn.country || '').trim().toUpperCase();
             } else if (config.vpn.server != null) {
                 data.vpn_mode = 'server';
                 data.server_hostname = normalizeServerHostname(config.vpn.server.hostname || '');
@@ -309,12 +703,13 @@ return view.extend({
 
     handleServerHostnameChange: function (section_id, value) {
         var normalized = normalizeServerHostname(value);
-        var node = document.getElementById(this.server_hostname_option.cbid(section_id));
+        var widget = this.server_hostname_option.getUIElement(section_id);
+        var node = widget ? (widget.node.querySelector('input, textarea, select') || widget.node) : null;
         var serverAddress = String(this.server_address_option.formvalue(section_id) || '').trim();
         var serverPublicKey = String(this.server_public_key_option.formvalue(section_id) || '').trim();
 
-        if (node && node.value !== normalized)
-            node.value = normalized;
+        if (widget && node && node.value !== normalized)
+            widget.setValue(normalized);
 
         if (normalized === this.serverDataHostname)
             return;
@@ -389,10 +784,14 @@ return view.extend({
             enabled: false,
             running: false
         };
+        var runtimeStatus = data[2] || null;
         var view = this;
 
         this.config = config;
         this.serviceStatus = serviceStatus;
+        this.runtimeStatus = runtimeStatus;
+        this.countryChoices = [];
+        this.countryChoicesLoaded = false;
 
         var form_data = {
             config: this.getVpnFormData(this.config)
@@ -414,17 +813,44 @@ return view.extend({
         o.value('country', _('Country code'));
         o.value('server', _('Specific server'));
         o.rmempty = false;
+        o.onchange = function (ev, section_id) {
+            view.updateVpnModeVisibility(section_id);
+            window.setTimeout(function () {
+                m.checkDepends(ev);
+            }, 0);
+        };
 
-        o = this.vpn_country_option = s.option(form.Value, 'vpn_country', _('Country Code'));
+        o = this.vpn_country_option = s.option(form.Value, 'vpn_country', _('Country'));
         o.depends('vpn_mode', 'country');
-        o.placeholder = _('US');
-        o.description = _('Enter a two-letter country code (e.g., US, DE, GB).');
+        o.placeholder = _('IE');
+        o.description = _('Type a two-letter country code or load the country list and choose one from the dropdown.');
         o.validate = function (_, value) {
             if (view.vpn_mode_option.formvalue('config') !== 'country')
                 return true;
 
-            value = String(value || '').trim();
-            return value.length === 2 ? true : _('Please provide a two-letter country code.');
+            value = String(value || '').trim().toUpperCase();
+            return /^[A-Z]{2}$/.test(value) ? true : _('Please provide a two-letter country code.');
+        };
+        this.resetOptionChoices(o, this.getCountryChoices(form_data.config.vpn_country));
+        o.onchange = function (ev, section_id, value) {
+            view.handleCountryCodeChange(section_id, value);
+        };
+        o.renderWidget = function (section_id, option_index, cfgvalue) {
+            var input = form.Value.prototype.renderWidget.call(this, section_id, option_index, cfgvalue);
+            var button = E('button', {
+                'class': 'btn cbi-button cbi-button-apply',
+                'type': 'button',
+                'style': 'white-space:nowrap;',
+                'click': function (ev) {
+                    ev.preventDefault();
+                    return view.handleGetCountries();
+                }
+            }, _('Get country list'));
+
+            return E('div', { 'style': 'display:flex; align-items:center; gap:0.5rem; max-width:34rem;' }, [
+                E('div', { 'style': 'flex:1 1 auto;' }, input),
+                button
+            ]);
         };
 
         o = this.server_hostname_option = s.option(form.Value, 'server_hostname', _('Server Hostname'));
@@ -454,7 +880,7 @@ return view.extend({
             ]);
         };
 
-        o = s.option(form.Button, '_get_server_data', _('Server Lookup'));
+        o = this.server_lookup_option = s.option(form.Button, '_get_server_data', _('Server Lookup'));
         o.depends('vpn_mode', 'server');
         o.inputtitle = _('Get data');
         o.inputstyle = 'apply';
@@ -505,6 +931,10 @@ return view.extend({
             else
                 nodes.appendChild(servicePanel);
 
+            window.setTimeout(function () {
+                view.updateVpnModeVisibility('config');
+            }, 0);
+
             return nodes;
         }.bind(this));
     },
@@ -512,7 +942,7 @@ return view.extend({
     saveConfig: async function (showSuccessNotification) {
         const token = String(this.authentication_token_option.formvalue('config') || '<REPLACE_WITH_YOUR_TOKEN>').trim();
         const vpnMode = String(this.vpn_mode_option.formvalue('config') || 'recommended').trim();
-        const vpnCountry = String(this.vpn_country_option.formvalue('config') || '').trim();
+        const vpnCountry = String(this.vpn_country_option.formvalue('config') || '').trim().toUpperCase();
         const serverHostname = normalizeServerHostname(this.server_hostname_option.formvalue('config'));
         const fullServerHostname = buildServerHostname(serverHostname);
         const serverAddress = String(this.server_address_option.formvalue('config') || '').trim();
@@ -522,7 +952,7 @@ return view.extend({
 
         if (vpnMode === 'country') {
             if (!this.vpn_country_option.isValid('config')) {
-                ui.addNotification(_('Save failed'), E('p', _('Incorrect format of the country code')));
+                ui.addNotification(_('Save failed'), E('p', this.vpn_country_option.getValidationError('config') || _('Please choose a country.')));
                 return false;
             }
 
@@ -573,9 +1003,7 @@ return view.extend({
         }
     },
 
-    handleSave: function () {
-        return this.saveConfig(true);
-    },
+    handleSave: null,
 
     handleSaveApply: function () {
         return this.saveConfig(false).then(function (saved) {
@@ -592,7 +1020,7 @@ return view.extend({
                 return;
             }
 
-            return this.handleServiceAction('restart');
+            return this.handleSaveApplyRestart();
         }.bind(this));
     },
 

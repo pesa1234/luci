@@ -6,7 +6,9 @@
 				"nordvpnlite": [
 					"get_config",
 					"get_service_status",
-					"get_server_data"
+					"get_server_data",
+					"get_countries",
+					"get_runtime_status"
 				]
 			}
 		},
