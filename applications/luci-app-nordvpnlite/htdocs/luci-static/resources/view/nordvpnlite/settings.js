@@ -32,6 +32,8 @@ var callGetServerData = rpc.declare({
     params: ['hostname']
 });
 
+var serverHostnameSuffix = '.nordvpn.com';
+
 var defaultConfig = {
     authentication_token: '<REPLACE_WITH_YOUR_TOKEN>',
     vpn: 'recommended',
@@ -46,16 +48,58 @@ var defaultConfig = {
     }
 };
 
+function isObject(value) {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function normalizeServerHostname(value) {
+    value = String(value || '').trim().toLowerCase();
+
+    if (value.slice(-1) === '.')
+        value = value.slice(0, -1);
+
+    if (value.slice(-serverHostnameSuffix.length) === serverHostnameSuffix)
+        value = value.slice(0, -serverHostnameSuffix.length);
+
+    return value;
+}
+
+function buildServerHostname(value) {
+    value = normalizeServerHostname(value);
+    return value !== '' ? value + serverHostnameSuffix : '';
+}
+
+function callGetServerDataWithTimeout(hostname) {
+    var previousTimeout = L.env.rpctimeout;
+
+    L.env.rpctimeout = Math.max(L.env.rpctimeout || 20, 60);
+
+    return Promise.resolve(callGetServerData(hostname)).finally(function () {
+        L.env.rpctimeout = previousTimeout;
+    });
+}
+
 return view.extend({
     load: function () {
         return Promise.all([
-            callGetConfig().then(function (result) {
-                return result.config || defaultConfig;
+            L.resolveDefault(callGetConfig(), null).then(function (result) {
+                return {
+                    rpcAvailable: isObject(result),
+                    config: (isObject(result) && isObject(result.config)) ? result.config : defaultConfig
+                };
             }),
-            L.resolveDefault(callGetServiceStatus(), {
-                installed: false,
-                enabled: false,
-                running: false
+            L.resolveDefault(callGetServiceStatus(), null).then(function (result) {
+                if (isObject(result)) {
+                    result.rpcAvailable = true;
+                    return result;
+                }
+
+                return {
+                    rpcAvailable: false,
+                    installed: false,
+                    enabled: false,
+                    running: false
+                };
             })
         ]);
     },
@@ -64,8 +108,15 @@ return view.extend({
         var buttonStyle = 'margin-right:0.5rem; margin-bottom:0.25rem;';
         var enableStyle = buttonStyle + ' margin-left:1rem;';
         var statusText;
+        var canStart = false;
+        var canRestart = false;
+        var canStop = false;
+        var canEnable = false;
+        var canDisable = false;
 
-        if (!status.installed)
+        if (status.rpcAvailable === false)
+            statusText = _('RPC backend unavailable');
+        else if (!status.installed)
             statusText = _('Not installed or not found');
         else if (status.running)
             statusText = _('Running');
@@ -74,11 +125,26 @@ return view.extend({
         else
             statusText = _('Stopped (Disabled).');
 
+        if (status.installed) {
+            if (status.enabled) {
+                canDisable = true;
+
+                if (status.running) {
+                    canRestart = true;
+                    canStop = true;
+                } else {
+                    canStart = true;
+                }
+            } else {
+                canEnable = true;
+            }
+        }
+
         var btnStart = E('button', {
             'class': 'btn cbi-button cbi-button-apply',
             'type': 'button',
             'style': buttonStyle,
-            'disabled': !status.installed || !status.enabled || status.running,
+            'disabled': canStart ? null : true,
             'click': function (ev) {
                 ev.preventDefault();
                 return this.handleServiceAction('start');
@@ -89,7 +155,7 @@ return view.extend({
             'class': 'btn cbi-button cbi-button-apply',
             'type': 'button',
             'style': buttonStyle,
-            'disabled': !status.installed || !status.enabled || !status.running,
+            'disabled': canRestart ? null : true,
             'click': function (ev) {
                 ev.preventDefault();
                 return this.handleServiceAction('restart');
@@ -100,7 +166,7 @@ return view.extend({
             'class': 'btn cbi-button cbi-button-reset',
             'type': 'button',
             'style': buttonStyle,
-            'disabled': !status.installed || !status.enabled || !status.running,
+            'disabled': canStop ? null : true,
             'click': function (ev) {
                 ev.preventDefault();
                 return this.handleServiceAction('stop');
@@ -111,7 +177,7 @@ return view.extend({
             'class': 'btn cbi-button cbi-button-apply',
             'type': 'button',
             'style': enableStyle,
-            'disabled': !status.installed || status.enabled,
+            'disabled': canEnable ? null : true,
             'click': function (ev) {
                 ev.preventDefault();
                 return this.handleServiceAction('enable');
@@ -122,7 +188,7 @@ return view.extend({
             'class': 'btn cbi-button cbi-button-reset',
             'type': 'button',
             'style': buttonStyle,
-            'disabled': !status.installed || !status.enabled,
+            'disabled': canDisable ? null : true,
             'click': function (ev) {
                 ev.preventDefault();
                 return this.handleServiceAction('disable');
@@ -232,7 +298,7 @@ return view.extend({
                 data.vpn_country = String(config.vpn.country || '');
             } else if (config.vpn.server != null) {
                 data.vpn_mode = 'server';
-                data.server_hostname = String(config.vpn.server.hostname || '');
+                data.server_hostname = normalizeServerHostname(config.vpn.server.hostname || '');
                 data.server_address = String(config.vpn.server.address || '');
                 data.server_public_key = String(config.vpn.server.public_key || '');
             }
@@ -241,19 +307,41 @@ return view.extend({
         return data;
     },
 
-    setOptionValue: function (option, value) {
-        var node = document.getElementById(option.cbid('config'));
+    handleServerHostnameChange: function (section_id, value) {
+        var normalized = normalizeServerHostname(value);
+        var node = document.getElementById(this.server_hostname_option.cbid(section_id));
+        var serverAddress = String(this.server_address_option.formvalue(section_id) || '').trim();
+        var serverPublicKey = String(this.server_public_key_option.formvalue(section_id) || '').trim();
 
-        if (!node)
+        if (node && node.value !== normalized)
+            node.value = normalized;
+
+        if (normalized === this.serverDataHostname)
             return;
 
-        node.value = value != null ? String(value) : '';
+        if (serverAddress === '' && serverPublicKey === '')
+            return;
+
+        this.serverDataHostname = '';
+        this.setOptionValue(this.server_address_option, '');
+        this.setOptionValue(this.server_public_key_option, '');
+    },
+
+    setOptionValue: function (option, value) {
+        var widget = option.getUIElement('config');
+        var node = widget ? (widget.node.querySelector('input, textarea, select') || widget.node) : null;
+
+        if (!widget || !node)
+            return;
+
+        widget.setValue(value != null ? String(value) : '');
         node.dispatchEvent(new Event('input', { bubbles: true }));
         node.dispatchEvent(new Event('change', { bubbles: true }));
     },
 
     handleGetServerData: function () {
-        var hostname = String(this.server_hostname_option.formvalue('config') || '').trim();
+        var hostname = normalizeServerHostname(this.server_hostname_option.formvalue('config'));
+        var fullHostname = buildServerHostname(hostname);
 
         if (hostname === '') {
             ui.addNotification(_('Lookup failed'), E('p', _('Please enter a server hostname first.')));
@@ -269,7 +357,7 @@ return view.extend({
             E('p', { 'class': 'spinning' }, _('Fetching NordVPN server data'))
         ]);
 
-        return callGetServerData(hostname).then(function (res) {
+        return callGetServerDataWithTimeout(fullHostname).then(function (res) {
             ui.hideModal();
 
             if (!res || res.success !== true) {
@@ -277,7 +365,8 @@ return view.extend({
                 return;
             }
 
-            this.setOptionValue(this.server_hostname_option, res.hostname || hostname);
+            this.serverDataHostname = hostname;
+            this.setOptionValue(this.server_hostname_option, normalizeServerHostname(res.hostname || fullHostname));
             this.setOptionValue(this.server_address_option, res.address || '');
             this.setOptionValue(this.server_public_key_option, res.public_key || '');
 
@@ -289,8 +378,13 @@ return view.extend({
     },
 
     render: function (data) {
-        var config = data[0];
+        var configState = data[0] || {
+            rpcAvailable: false,
+            config: defaultConfig
+        };
+        var config = configState.config;
         var serviceStatus = data[1] || {
+            rpcAvailable: false,
             installed: false,
             enabled: false,
             running: false
@@ -303,6 +397,8 @@ return view.extend({
         var form_data = {
             config: this.getVpnFormData(this.config)
         };
+
+        this.serverDataHostname = form_data.config.server_hostname;
 
         var m = new form.JSONMap(form_data, _('NordVPN Lite'),
             _('Configure your NordVPN Lite connection settings.'));
@@ -333,9 +429,30 @@ return view.extend({
 
         o = this.server_hostname_option = s.option(form.Value, 'server_hostname', _('Server Hostname'));
         o.depends('vpn_mode', 'server');
-        o.datatype = 'hostname';
-        o.placeholder = _('uk1904.nordvpn.com');
-        o.description = _('Enter a NordVPN server hostname, then use Get data to fill the IP and public key.');
+        o.placeholder = _('uk2222');
+        o.description = _('Enter only the server prefix. The .nordvpn.com suffix is added automatically. Use Get data to fill the IP and public key.');
+        o.validate = function (_, value) {
+            if (view.vpn_mode_option.formvalue('config') !== 'server')
+                return true;
+
+            value = normalizeServerHostname(value);
+
+            if (value === '')
+                return true;
+
+            return /^[a-z0-9-]+$/.test(value) ? true : _('Please enter only the server prefix, for example uk2222.');
+        };
+        o.onchange = function (ev, section_id, value) {
+            view.handleServerHostnameChange(section_id, value);
+        };
+        o.renderWidget = function (section_id, option_index, cfgvalue) {
+            var input = form.Value.prototype.renderWidget.call(this, section_id, option_index, cfgvalue);
+
+            return E('div', { 'style': 'display:flex; align-items:center; gap:0.5rem; max-width:30rem;' }, [
+                E('div', { 'style': 'flex:1 1 auto;' }, input),
+                E('span', { 'style': 'white-space:nowrap;' }, serverHostnameSuffix)
+            ]);
+        };
 
         o = s.option(form.Button, '_get_server_data', _('Server Lookup'));
         o.depends('vpn_mode', 'server');
@@ -347,32 +464,41 @@ return view.extend({
 
         o = this.server_address_option = s.option(form.Value, 'server_address', _('Server IP Address'));
         o.depends('vpn_mode', 'server');
+        o.readonly = true;
         o.datatype = 'ipaddr';
-        o.placeholder = _('185.246.211.10');
+        o.placeholder = '';
         o.validate = function (section_id, value) {
             if (view.vpn_mode_option.formvalue('config') !== 'server')
                 return true;
 
             value = String(value || '').trim();
             if (value === '')
-                return _('Please provide a server IP address.');
+                return _('Use Get data to load the server IP address.');
 
             return form.Value.prototype.validate.apply(this, [section_id, value]);
         };
 
         o = this.server_public_key_option = s.option(form.Value, 'server_public_key', _('Server Public Key'));
         o.depends('vpn_mode', 'server');
-        o.placeholder = _('WireGuard public key');
+        o.readonly = true;
+        o.placeholder = '';
         o.validate = function (_, value) {
             if (view.vpn_mode_option.formvalue('config') !== 'server')
                 return true;
 
-            return String(value || '').trim() !== '' ? true : _('Please provide a server public key.');
+            return String(value || '').trim() !== '' ? true : _('Use Get data to load the server public key.');
         };
 
         return m.render().then(function (nodes) {
             var servicePanel = this.renderServicePanel(serviceStatus);
+            var pageTitle = nodes.querySelector('.cbi-map-descr');
             var pageActions = nodes.querySelector('.cbi-page-actions');
+
+            if (configState.rpcAvailable === false && pageTitle && pageTitle.parentNode) {
+                pageTitle.parentNode.insertBefore(E('div', { 'class': 'alert-message warning' }, [
+                    _('The NordVPN Lite RPC backend is unavailable. LuCI is showing default values until rpcd loads the backend again.')
+                ]), pageTitle.nextSibling);
+            }
 
             if (pageActions)
                 nodes.insertBefore(servicePanel, pageActions);
@@ -383,11 +509,12 @@ return view.extend({
         }.bind(this));
     },
 
-    handleSave: async function () {
+    saveConfig: async function (showSuccessNotification) {
         const token = String(this.authentication_token_option.formvalue('config') || '<REPLACE_WITH_YOUR_TOKEN>').trim();
         const vpnMode = String(this.vpn_mode_option.formvalue('config') || 'recommended').trim();
         const vpnCountry = String(this.vpn_country_option.formvalue('config') || '').trim();
-        const serverHostname = String(this.server_hostname_option.formvalue('config') || '').trim();
+        const serverHostname = normalizeServerHostname(this.server_hostname_option.formvalue('config'));
+        const fullServerHostname = buildServerHostname(serverHostname);
         const serverAddress = String(this.server_address_option.formvalue('config') || '').trim();
         const serverPublicKey = String(this.server_public_key_option.formvalue('config') || '').trim();
 
@@ -396,24 +523,24 @@ return view.extend({
         if (vpnMode === 'country') {
             if (!this.vpn_country_option.isValid('config')) {
                 ui.addNotification(_('Save failed'), E('p', _('Incorrect format of the country code')));
-                return;
+                return false;
             }
 
             this.config.vpn = { country: vpnCountry };
         } else if (vpnMode === 'server') {
             if (serverHostname !== '' && !this.server_hostname_option.isValid('config')) {
-                ui.addNotification(_('Save failed'), E('p', _('Please provide a valid server hostname.')));
-                return;
+                ui.addNotification(_('Save failed'), E('p', _('Please provide a valid server hostname prefix.')));
+                return false;
             }
 
             if (!this.server_address_option.isValid('config')) {
                 ui.addNotification(_('Save failed'), E('p', _('Please provide a valid server IP address.')));
-                return;
+                return false;
             }
 
             if (!this.server_public_key_option.isValid('config')) {
                 ui.addNotification(_('Save failed'), E('p', _('Please provide the server public key.')));
-                return;
+                return false;
             }
 
             this.config.vpn = {
@@ -423,23 +550,51 @@ return view.extend({
                 }
             };
 
-            if (serverHostname !== '')
-                this.config.vpn.server.hostname = serverHostname;
+            if (fullServerHostname !== '')
+                this.config.vpn.server.hostname = fullServerHostname;
         } else {
             this.config.vpn = 'recommended';
         }
 
         try {
             const res = await callSetConfig(this.config);
-            if (!res || res.success !== true)
+            if (!res || res.success !== true) {
                 ui.addNotification(_('Save failed'), E('p', _('Could not write config file.')));
-            else
+                return false;
+            }
+
+            if (showSuccessNotification !== false)
                 ui.addNotification(_('Saved'), E('p', _('Configuration updated.')));
+
+            return true;
         } catch (err) {
             ui.addNotification(_('Save failed'), E('p', err ? String(err) : _('Unknown error')));
+            return false;
         }
     },
 
-    handleSaveApply: null,
+    handleSave: function () {
+        return this.saveConfig(true);
+    },
+
+    handleSaveApply: function () {
+        return this.saveConfig(false).then(function (saved) {
+            if (!saved)
+                return;
+
+            if (!this.serviceStatus || this.serviceStatus.rpcAvailable === false) {
+                ui.addNotification(_('Saved'), E('p', _('Configuration updated, but the RPC backend is unavailable so the service could not be restarted.')));
+                return;
+            }
+
+            if (!this.serviceStatus.installed) {
+                ui.addNotification(_('Saved'), E('p', _('Configuration updated, but the service is not installed or not found.')));
+                return;
+            }
+
+            return this.handleServiceAction('restart');
+        }.bind(this));
+    },
+
     handleReset: null
 });

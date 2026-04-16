@@ -5,12 +5,13 @@ const INIT_SCRIPT = '/etc/init.d/nordvpnlite';
 const SERVICE_NAME = 'nordvpnlite';
 const SERVERS_API_URL = 'https://api.nordvpn.com/v1/servers?limit=20000';
 const VALID_ACTIONS = ['start', 'stop', 'restart', 'reload', 'enable', 'disable'];
+const SERVER_LOOKUP_TIMEOUT = 45;
 let fs = require('fs');
 let log = require('log');
 
 function has_service() {
 	let st = fs.stat(INIT_SCRIPT);
-	return st && st.type == 'file' && st.perm && st.perm.user_exec;
+	return st && st.type == 'file' && st.user_exec != false;
 }
 
 function service_action(action) {
@@ -42,22 +43,51 @@ function read_command_output(command) {
 	return trim(output);
 }
 
-function fetch_servers_index() {
+function fetch_server_data_with_jq(hostname) {
 	let url = shell_quote(SERVERS_API_URL);
+	let jq_filter = shell_quote(
+		'first(.[] | select(.hostname == $h) | {' +
+			'hostname,' +
+			'address: .station,' +
+			'supports_wireguard_udp: ([.technologies[] | select(.identifier == "wireguard_udp")] | length > 0),' +
+			'public_key: ([.technologies[] | select(.identifier == "wireguard_udp") | .metadata[] | select(.name == "public_key") | .value][0])' +
+		'})'
+	);
+	let quoted_hostname = shell_quote(hostname);
 	let commands = [];
 
-	if (has_command('curl'))
-		push(commands, 'curl -sS ' + url + ' 2>/dev/null');
+	if (!has_command('jq'))
+		return {
+			server: null,
+			error: 'jq is required for NordVPN server lookup.'
+		};
 
-	if (has_command('uclient-fetch'))
-		push(commands, 'uclient-fetch -qO- ' + url + ' 2>/dev/null');
+	if (has_command('curl')) {
+		push(commands, sprintf(
+			'curl --connect-timeout 10 --max-time %d -sS %s 2>/dev/null | jq -c -r --arg h %s %s 2>/dev/null',
+			SERVER_LOOKUP_TIMEOUT, url, quoted_hostname, jq_filter
+		));
+	}
 
-	if (has_command('wget'))
-		push(commands, 'wget -qO- ' + url + ' 2>/dev/null');
+	if (has_command('uclient-fetch')) {
+		push(commands, sprintf(
+			'uclient-fetch -qO- %s 2>/dev/null | jq -c -r --arg h %s %s 2>/dev/null',
+			url, quoted_hostname, jq_filter
+		));
+	}
+
+	if (has_command('wget')) {
+		push(commands, sprintf(
+			'wget -T %d -qO- %s 2>/dev/null | jq -c -r --arg h %s %s 2>/dev/null',
+			SERVER_LOOKUP_TIMEOUT, url, quoted_hostname, jq_filter
+		));
+	}
 
 	if (!length(commands)) {
-		log.ERR('No HTTP client found for NordVPN API lookup');
-		return [null, 'No supported HTTP client found (curl, uclient-fetch or wget).'];
+		return {
+			server: null,
+			error: 'No supported HTTP client found (curl, uclient-fetch or wget).'
+		};
 	}
 
 	for (let command in commands) {
@@ -67,27 +97,19 @@ function fetch_servers_index() {
 			continue;
 
 		try {
-			return [json(output), null];
+			return {
+				server: json(output),
+				error: null
+			};
 		} catch (e) {
-			log.ERR('Failed to parse NordVPN API response: %J', e);
+			log.ERR('Failed to parse NordVPN server lookup response: %J', e);
 		}
 	}
 
-	return [null, 'Unable to download or parse NordVPN server list.'];
-}
-
-function extract_public_key(technologies) {
-	for (let technology in technologies || []) {
-		if (technology?.identifier != 'wireguard_udp')
-			continue;
-
-		for (let meta in technology.metadata || []) {
-			if (meta?.name == 'public_key' && meta?.value)
-				return meta.value;
-		}
-	}
-
-	return null;
+	return {
+		server: null,
+		error: sprintf('Lookup timed out or failed for %s.', hostname)
+	};
 }
 
 return {
@@ -143,7 +165,10 @@ return {
 		set_service_action: {
 			args: { action: 'action' },
 			call: function(req) {
-				let action = req?.args?.action;
+				let action = null;
+
+				if (req && req.args)
+					action = req.args.action;
 
 				if (index(VALID_ACTIONS, action) < 0) {
 					return {
@@ -171,9 +196,15 @@ return {
 		},
 
 		get_server_data: {
-			args: { hostname: 'hostname' },
+			args: { hostname: '' },
 			call: function(req) {
-				let hostname = trim(req?.args?.hostname || '');
+				let hostname = '';
+				let fetch_result = null;
+				let server = null;
+				let fetch_error = null;
+
+				if (req && req.args && req.args.hostname != null)
+					hostname = trim(req.args.hostname);
 
 				if (hostname == '') {
 					return {
@@ -182,39 +213,43 @@ return {
 					};
 				}
 
-				let [servers, fetch_error] = fetch_servers_index();
+				fetch_result = fetch_server_data_with_jq(hostname);
+				server = fetch_result ? fetch_result.server : null;
+				fetch_error = fetch_result ? fetch_result.error : null;
 
-				if (fetch_error || !servers) {
+				if (fetch_error) {
 					return {
 						success: false,
-						error: fetch_error || 'Unable to query NordVPN API.'
+						error: fetch_error
 					};
 				}
 
-				for (let server in servers) {
-					if (lc(server?.hostname || '') != lc(hostname))
-						continue;
-
-					let public_key = extract_public_key(server.technologies || []);
-
-					if (!public_key) {
-						return {
-							success: false,
-							error: sprintf('No WireGuard public key found for %s.', hostname)
-						};
-					}
-
+				if (!server) {
 					return {
-						success: true,
-						hostname: server.hostname,
-						address: server.station,
-						public_key: public_key
+						success: false,
+						error: sprintf('Server not found or lookup timed out for %s.', hostname)
+					};
+				}
+
+				if (server.supports_wireguard_udp !== true) {
+					return {
+						success: false,
+						error: sprintf('Server %s does not support wireguard_udp.', hostname)
+					};
+				}
+
+				if (!server.public_key) {
+					return {
+						success: false,
+						error: sprintf('No WireGuard public key found for %s.', hostname)
 					};
 				}
 
 				return {
-					success: false,
-					error: sprintf('Server not found: %s', hostname)
+					success: true,
+					hostname: server.hostname,
+					address: server.address,
+					public_key: server.public_key
 				};
 			}
 		}
