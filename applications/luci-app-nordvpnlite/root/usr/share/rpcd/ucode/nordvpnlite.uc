@@ -3,6 +3,8 @@
 const CONFIG_FILE = '/etc/nordvpnlite/config.json';
 const INIT_SCRIPT = '/etc/init.d/nordvpnlite';
 const SERVICE_NAME = 'nordvpnlite';
+const UCI_CONFIG = 'nordvpnlite';
+const UCI_SECTION = 'settings';
 const SERVERS_API_URL = 'https://api.nordvpn.com/v1/servers?limit=20000';
 const VALID_ACTIONS = ['start', 'stop', 'restart', 'reload', 'enable', 'disable'];
 const SERVER_LOOKUP_TIMEOUT = 45;
@@ -41,6 +43,37 @@ function read_command_output(command) {
 		return null;
 
 	return trim(output);
+}
+
+function config_enabled() {
+	let value = read_command_output(sprintf('uci -q get %s.%s.enabled 2>/dev/null', UCI_CONFIG, UCI_SECTION));
+
+	if (value == null || value == '')
+		return true;
+
+	switch (lc(trim(value))) {
+		case '0':
+		case 'off':
+		case 'false':
+		case 'no':
+		case 'disabled':
+			return false;
+		default:
+			return true;
+	}
+}
+
+function write_config_enabled(enabled) {
+	let value = enabled ? '1' : '0';
+
+	return system(sprintf(
+		"uci -q set %s.%s=settings >/dev/null 2>&1 && " +
+		"uci -q set %s.%s.enabled='%s' >/dev/null 2>&1 && " +
+		"uci -q commit %s >/dev/null 2>&1",
+		UCI_CONFIG, UCI_SECTION,
+		UCI_CONFIG, UCI_SECTION, value,
+		UCI_CONFIG
+	)) == 0;
 }
 
 function fetch_server_data_with_jq(hostname) {
@@ -196,12 +229,42 @@ return {
 		get_config: {
 			call: function() {
 				let content = null;
+
 				try {
 					content = json(fs.readfile(CONFIG_FILE));
 				} catch (e) {
 					log.ERR("Failed to read config file: %J", e);
 				}
+
 				return { config: content };
+			}
+		},
+
+		get_config_enabled: {
+			call: function() {
+				return { enabled: config_enabled() };
+			}
+		},
+
+		set_config_enabled: {
+			args: { enabled: true },
+			call: function(req) {
+				let enabled = true;
+
+				if (req && req.args)
+					enabled = (req.args.enabled == true || req.args.enabled == 1 || req.args.enabled == '1');
+
+				if (!write_config_enabled(enabled)) {
+					return {
+						success: false,
+						error: sprintf('Unable to write /etc/config/%s.', UCI_CONFIG)
+					};
+				}
+
+				return {
+					success: true,
+					enabled: enabled
+				};
 			}
 		},
 
@@ -236,6 +299,7 @@ return {
 				return {
 					installed: true,
 					enabled: service_action('enabled') == 0,
+					config_enabled: config_enabled(),
 					running: service_action('running') == 0
 				};
 			}

@@ -15,6 +15,17 @@ var callSetConfig = rpc.declare({
     params: ['config']
 });
 
+var callGetConfigEnabled = rpc.declare({
+    object: 'nordvpnlite',
+    method: 'get_config_enabled'
+});
+
+var callSetConfigEnabled = rpc.declare({
+    object: 'nordvpnlite',
+    method: 'set_config_enabled',
+    params: ['enabled']
+});
+
 var callGetServiceStatus = rpc.declare({
     object: 'nordvpnlite',
     method: 'get_service_status'
@@ -324,6 +335,12 @@ return view.extend({
             }),
             L.resolveDefault(callGetRuntimeStatusWithTimeout(), null).then(function (result) {
                 return (isObject(result) && result.success === true) ? result : null;
+            }),
+            L.resolveDefault(callGetConfigEnabled(), null).then(function (result) {
+                return {
+                    rpcAvailable: isObject(result),
+                    enabled: !isObject(result) || result.enabled !== false
+                };
             })
         ]);
     },
@@ -332,6 +349,7 @@ return view.extend({
         var buttonStyle = 'margin-right:0.5rem; margin-bottom:0.25rem;';
         var enableStyle = buttonStyle + ' margin-left:1rem;';
         var runtimeData = this.getRuntimeStatusDisplayData(this.runtimeStatus);
+        var configEnabled = status.config_enabled !== false;
         var statusText;
         var canStart = false;
         var canRestart = false;
@@ -343,6 +361,10 @@ return view.extend({
             statusText = _('RPC backend unavailable');
         else if (!status.installed)
             statusText = _('Not installed or not found');
+        else if (!configEnabled && status.running)
+            statusText = _('Running (Config disabled).');
+        else if (!configEnabled)
+            statusText = _('Stopped (Config disabled).');
         else if (status.running)
             statusText = _('Running');
         else if (status.enabled)
@@ -355,10 +377,10 @@ return view.extend({
                 canDisable = true;
 
                 if (status.running) {
-                    canRestart = true;
+                    canRestart = configEnabled;
                     canStop = true;
                 } else {
-                    canStart = true;
+                    canStart = configEnabled;
                 }
             } else {
                 canEnable = true;
@@ -407,7 +429,7 @@ return view.extend({
                 ev.preventDefault();
                 return this.handleServiceAction('enable');
             }.bind(this)
-        }, _('Enable'));
+        }, _('Enable autostart'));
 
         var btnDisable = E('button', {
             'class': 'btn cbi-button cbi-button-reset',
@@ -418,7 +440,7 @@ return view.extend({
                 ev.preventDefault();
                 return this.handleServiceAction('disable');
             }.bind(this)
-        }, _('Disable'));
+        }, _('Disable autostart'));
 
         var btnGetStatus = E('button', {
             'class': 'btn cbi-button cbi-button-apply',
@@ -523,8 +545,8 @@ return view.extend({
             start: _('Starting NordVPN Lite service'),
             restart: _('Restarting NordVPN Lite service'),
             stop: _('Stopping NordVPN Lite service'),
-            enable: _('Enabling NordVPN Lite service'),
-            disable: _('Disabling NordVPN Lite service')
+            enable: _('Enabling NordVPN Lite autostart'),
+            disable: _('Disabling NordVPN Lite autostart')
         };
 
         ui.showModal(null, [
@@ -785,16 +807,25 @@ return view.extend({
             running: false
         };
         var runtimeStatus = data[2] || null;
+        var configEnabledState = data[3] || {
+            rpcAvailable: false,
+            enabled: true
+        };
         var view = this;
 
         this.config = config;
         this.serviceStatus = serviceStatus;
         this.runtimeStatus = runtimeStatus;
+        this.configEnabled = configEnabledState.enabled !== false;
+        this.configEnabledState = configEnabledState;
         this.countryChoices = [];
         this.countryChoicesLoaded = false;
+        this.serviceStatus.config_enabled = this.configEnabled;
 
         var form_data = {
-            config: this.getVpnFormData(this.config)
+            config: Object.assign(this.getVpnFormData(this.config), {
+                enabled: this.configEnabled ? '1' : '0'
+            })
         };
 
         this.serverDataHostname = form_data.config.server_hostname;
@@ -804,7 +835,11 @@ return view.extend({
 
         var s = m.section(form.NamedSection, 'config');
 
-        var o = this.authentication_token_option = s.option(form.Value, 'authentication_token', _('Authentication Token'));
+        var o = this.enabled_option = s.option(form.Flag, 'enabled', _('Enabled'));
+        o.default = '1';
+        o.rmempty = false;
+
+        o = this.authentication_token_option = s.option(form.Value, 'authentication_token', _('Authentication Token'));
         o.password = true;
         o.placeholder = _('Enter your Nord Account authentication token');
 
@@ -947,6 +982,7 @@ return view.extend({
         const fullServerHostname = buildServerHostname(serverHostname);
         const serverAddress = String(this.server_address_option.formvalue('config') || '').trim();
         const serverPublicKey = String(this.server_public_key_option.formvalue('config') || '').trim();
+        const enabled = this.enabled_option.formvalue('config') !== '0';
 
         this.config.authentication_token = token;
 
@@ -987,11 +1023,23 @@ return view.extend({
         }
 
         try {
+            const enabledRes = await callSetConfigEnabled(enabled);
+            if (!enabledRes || enabledRes.success !== true) {
+                ui.addNotification(_('Save failed'), E('p', (enabledRes && enabledRes.error) ? String(enabledRes.error) : _('Could not write service enabled flag.')));
+                return false;
+            }
+
             const res = await callSetConfig(this.config);
             if (!res || res.success !== true) {
                 ui.addNotification(_('Save failed'), E('p', _('Could not write config file.')));
                 return false;
             }
+
+            this.configEnabled = enabled;
+            this.configEnabledState = {
+                rpcAvailable: true,
+                enabled: enabled
+            };
 
             if (showSuccessNotification !== false)
                 ui.addNotification(_('Saved'), E('p', _('Configuration updated.')));
@@ -1017,6 +1065,14 @@ return view.extend({
 
             if (!this.serviceStatus.installed) {
                 ui.addNotification(_('Saved'), E('p', _('Configuration updated, but the service is not installed or not found.')));
+                return;
+            }
+
+            if (this.configEnabled === false) {
+                if (this.serviceStatus.running)
+                    return this.handleServiceAction('stop');
+
+                location.reload();
                 return;
             }
 
