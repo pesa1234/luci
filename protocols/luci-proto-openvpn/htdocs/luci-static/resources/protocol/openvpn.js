@@ -347,7 +347,7 @@ const openvpnOptions = [
 			_('3: Allow passwords in env')
 		],
 		label: _('Policy level over usage of external programs and scripts'),
-		default: 1
+		default: 2
 	},
 	{
 		tab: 'scripts',
@@ -660,7 +660,7 @@ const openvpnOptions = [
 		type: form.Flag,
 		name: 'route_noexec',
 		label: _('Don\'t add routes automatically'),
-		default: 0
+		default: 1
 	},
 	{
 		tab: 'networking',
