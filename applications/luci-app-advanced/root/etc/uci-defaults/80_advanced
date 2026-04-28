@@ -14,6 +14,29 @@ if ! uci -q get advanced.@defaults[0].cake_ifb_tx_queues_mode >/dev/null 2>&1; t
     uci commit advanced
 fi
 
+if ! uci -q get advanced.@defaults[0].wed_offloading >/dev/null 2>&1; then
+    if grep -qw 'wed_enable=1' /etc/modules.d/mt7915e 2>/dev/null; then
+        uci set advanced.@defaults[0].wed_offloading='1'
+    else
+        uci set advanced.@defaults[0].wed_offloading='0'
+    fi
+    uci commit advanced
+fi
+
+if ! uci -q get advanced.@defaults[0].atf_enable >/dev/null 2>&1; then
+    if grep -qw 'expose_airtime_fairness=0' /etc/modules.d/mt7915e 2>/dev/null; then
+        uci set advanced.@defaults[0].atf_enable='1'
+    else
+        uci set advanced.@defaults[0].atf_enable='0'
+    fi
+    uci commit advanced
+fi
+
+if ! uci -q get advanced.@defaults[0].hw_atf_enable >/dev/null 2>&1; then
+    uci set advanced.@defaults[0].hw_atf_enable='0'
+    uci commit advanced
+fi
+
 if ! uci show advanced.@edcca[0] >/dev/null 2>&1; then
 
     uci add advanced edcca

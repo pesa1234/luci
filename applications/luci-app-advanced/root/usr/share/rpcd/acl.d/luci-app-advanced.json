@@ -6,7 +6,8 @@
 				"/sbin/logread -e wifi": [ "exec" ],
 				"/sbin/wifi": [ "exec" ],
 				"/usr/sbin/logread -e wifi": [	"exec" ],
-				"/sys/kernel/debug/cake_mq/sync_time_ns": [ "read" ]
+				"/sys/kernel/debug/cake_mq/sync_time_ns": [ "read" ],
+				"/sys/module/mt7915e/parameters/expose_airtime_fairness": [ "read" ]
 			},
 			"ubus": {
 				"file": [ "read" ],
@@ -21,7 +22,7 @@
 			},
 			"ubus": {
 				"file": [ "write", "exec" ],
-				"luci": [ "setWED" ]
+				"system": [ "reboot" ]
 			},
 			"uci": [ "advanced", "mtkhnat" ]
 		}
