@@ -11,9 +11,9 @@ const atfRuntimeStatusId = 'advanced-atf-runtime-status';
 const atfApplyStatusId = 'advanced-atf-apply-status';
 const atfRebootButtonId = 'advanced-atf-reboot-button';
 
-let currentAtfConfigValue = '0';
-let currentAtfFormValue = '0';
-let currentAtfRuntimeEnabled = false;
+let currentAtfConfigValue = '1';
+let currentAtfFormValue = '1';
+let currentAtfRuntimeEnabled = true;
 let currentAtfRuntimeValue = 'Y';
 
 const callReboot = rpc.declare({
@@ -23,7 +23,7 @@ const callReboot = rpc.declare({
 });
 
 function runtimeAtfEnabled(value) {
-	return value === 'N';
+	return value === 'Y';
 }
 
 function atfNeedsReboot(configValue, runtimeEnabled) {
@@ -34,9 +34,9 @@ function formatAtfRuntimeStatus(enabled, value) {
 	let meaning;
 
 	if (value === 'N')
-		meaning = _('N means MediaTek/VOW legacy ATF is active');
+		meaning = _('N means mac80211 airtime fairness is hidden');
 	else if (value === 'Y')
-		meaning = _('Y means standard airtime fairness is exposed, so MediaTek/VOW ATF is inactive');
+		meaning = _('Y means mac80211 airtime fairness is exposed');
 	else
 		meaning = _('unknown runtime value');
 
@@ -144,12 +144,12 @@ return view.extend({
 	render: function(data) {
 		currentAtfRuntimeValue = data[1] || 'Y';
 		currentAtfRuntimeEnabled = runtimeAtfEnabled(currentAtfRuntimeValue);
-		currentAtfConfigValue = '0';
-		currentAtfFormValue = '0';
+		currentAtfConfigValue = '1';
+		currentAtfFormValue = '1';
 		let m = new form.Map('advanced');
 
 		if (L.hasSystemFeature('vow')) {
-			let description = _('Airtime Fairness (ATF) allocates Wi-Fi airtime more evenly across clients, helping prevent slower devices from monopolizing the channel. Changes to the ATF module mode are applied on the next reboot. The mt7915e runtime parameter is inverted: expose_airtime_fairness=N means the MediaTek/VOW legacy ATF path is active, while Y means it is inactive. Weighted Airtime Fairness (WATF), also referred to by MediaTek as HW-ATF, adjusts airtime quantums on top of ATF and is applied at runtime when ATF is already active.');
+			let description = _('Airtime Fairness (ATF) allocates Wi-Fi airtime more evenly across clients, helping prevent slower devices from monopolizing the channel. On mt7915e, expose_airtime_fairness=Y keeps mac80211 airtime fairness visible; upstream MediaTek/VOW HW-ATF is controlled by the same setting through the runtime vow_atf debugfs switch when available. Changes to the module mode are applied on the next reboot.');
 			let s, o;
 
 			s = m.section(form.TypedSection, 'defaults', _('Airtime Fairness (ATF)'), description);
@@ -160,9 +160,9 @@ return view.extend({
 			o.value('0', _('Off'));
 			o.value('1', _('On'));
 			o.optional = false;
-			o.default = '0';
+			o.default = '1';
 			o.cfgvalue = function(section_id) {
-				currentAtfConfigValue = uci.get('advanced', section_id, 'atf_enable') || '0';
+				currentAtfConfigValue = uci.get('advanced', section_id, 'atf_enable') || '1';
 				currentAtfFormValue = currentAtfConfigValue;
 				return currentAtfFormValue;
 			};
@@ -177,14 +177,12 @@ return view.extend({
 				currentAtfConfigValue = value;
 				currentAtfFormValue = value;
 				uci.set('advanced', section_id, 'atf_enable', value);
-				if (value != '1')
-					uci.set('advanced', section_id, 'hw_atf_enable', '0');
 			};
 
 			o = s.option(form.DummyValue, '_atf_apply_status', _('Apply status'));
 			o.rawhtml = true;
 			o.cfgvalue = function(section_id) {
-				currentAtfConfigValue = uci.get('advanced', section_id, 'atf_enable') || '0';
+				currentAtfConfigValue = uci.get('advanced', section_id, 'atf_enable') || '1';
 				currentAtfFormValue = currentAtfConfigValue;
 
 				return E('span', {}, [
@@ -215,19 +213,6 @@ return view.extend({
 			o.default = E('span', { 'id': atfRuntimeStatusId },
 				formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue));
 
-			o = s.option(form.ListValue, 'hw_atf_enable', _('Enable Weighted Airtime Fairness (WATF)'),
-				_('Weighted Airtime Fairness (WATF), also referred to by MediaTek as HW-ATF, builds on Airtime Fairness (ATF) by applying airtime quantum levels.'));
-			o.value('0', _('Off'));
-			o.value('1', _('On'));
-			o.optional = false;
-			o.default = uci.get('advanced', 'defaults', 'hw_atf_enable') || '0';
-			o.depends('atf_enable', '1');
-			o.write = function(section_id, value) {
-				if (value !== '0' && value !== '1')
-					return;
-
-				uci.set('advanced', section_id, 'hw_atf_enable', value);
-			};
 		}
 
 		return m.render();

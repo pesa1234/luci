@@ -24,16 +24,12 @@ if ! uci -q get advanced.@defaults[0].wed_offloading >/dev/null 2>&1; then
 fi
 
 if ! uci -q get advanced.@defaults[0].atf_enable >/dev/null 2>&1; then
-    if grep -qw 'expose_airtime_fairness=0' /etc/modules.d/mt7915e 2>/dev/null; then
-        uci set advanced.@defaults[0].atf_enable='1'
-    else
-        uci set advanced.@defaults[0].atf_enable='0'
-    fi
+    uci set advanced.@defaults[0].atf_enable='1'
     uci commit advanced
 fi
 
-if ! uci -q get advanced.@defaults[0].hw_atf_enable >/dev/null 2>&1; then
-    uci set advanced.@defaults[0].hw_atf_enable='0'
+if uci -q get advanced.@defaults[0].hw_atf_enable >/dev/null 2>&1; then
+    uci -q delete advanced.@defaults[0].hw_atf_enable
     uci commit advanced
 fi
 
