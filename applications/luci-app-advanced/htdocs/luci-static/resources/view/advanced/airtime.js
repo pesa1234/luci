@@ -148,7 +148,7 @@ return view.extend({
 		currentAtfFormValue = '1';
 		let m = new form.Map('advanced');
 
-		if (L.hasSystemFeature('vow')) {
+		if (L.hasSystemFeature('vow') || L.hasSystemFeature('wedoffload')) {
 			let description = _('Airtime Fairness (ATF) allocates Wi-Fi airtime more evenly across clients, helping prevent slower devices from monopolizing the channel. On mt7915e, expose_airtime_fairness=Y keeps mac80211 airtime fairness visible; upstream MediaTek/VOW HW-ATF is controlled by the same setting through the runtime vow_atf debugfs switch when available. Changes to the module mode are applied on the next reboot.');
 			let s, o;
 
