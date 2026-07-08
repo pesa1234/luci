@@ -150,6 +150,7 @@ return view.extend({
 			o.value('1', _('On'));
 			o.default = '0';
 			o.optional = false;
+			o.rmempty = false;
 			o.cfgvalue = function(section_id) {
 				currentWedConfigValue = uci.get('advanced', section_id, 'wed_offloading') || '0';
 				currentWedFormValue = currentWedConfigValue;
@@ -165,7 +166,12 @@ return view.extend({
 
 				currentWedConfigValue = value;
 				currentWedFormValue = value;
-				uci.set('advanced', section_id, 'wed_offloading', value);
+				return uci.set('advanced', section_id, 'wed_offloading', value);
+			};
+			o.remove = function(section_id) {
+				currentWedConfigValue = '0';
+				currentWedFormValue = '0';
+				return uci.set('advanced', section_id, 'wed_offloading', '0');
 			};
 
 			o = s.option(form.DummyValue, '_wed_apply_status', _('Apply status'));

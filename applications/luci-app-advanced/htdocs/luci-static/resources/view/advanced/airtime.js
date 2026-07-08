@@ -15,6 +15,7 @@ let currentAtfConfigValue = '1';
 let currentAtfFormValue = '1';
 let currentAtfRuntimeEnabled = true;
 let currentAtfRuntimeValue = 'Y';
+let currentAtfRuntimeOutput = '';
 
 const callReboot = rpc.declare({
 	object: 'system',
@@ -34,13 +35,13 @@ function formatAtfRuntimeStatus(enabled, value) {
 	let meaning;
 
 	if (value === 'N')
-		meaning = _('N means mac80211 airtime fairness is hidden');
+		meaning = _('Linux ATF stays hidden until reboot or driver reload');
 	else if (value === 'Y')
-		meaning = _('Y means mac80211 airtime fairness is exposed');
+		meaning = _('Linux ATF is visible to the Wi-Fi stack');
 	else
 		meaning = _('unknown runtime value');
 
-	return 'runtime ATF: %s (expose_airtime_fairness=%s, %s)'.format(
+	return 'Runtime status: Linux ATF=%s (module=%s, %s)'.format(
 		enabled ? _('On') : _('Off'),
 		value || '-',
 		meaning);
@@ -51,6 +52,14 @@ function setAtfRuntimeStatus(text) {
 
 	if (node)
 		node.textContent = text;
+}
+
+function readAtfRuntimeOutput() {
+	return fs.exec('/etc/init.d/advanced_setup', [ 'runtime_atf' ]).then(function(res) {
+		let output = res && res.stdout ? res.stdout.trim() : '';
+
+		return output || formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue);
+	});
 }
 
 function formatAtfApplyStatus(configValue, runtimeEnabled) {
@@ -77,17 +86,21 @@ function setAtfApplyStatus() {
 }
 
 function refreshAtfRuntimeStatus() {
-	setAtfRuntimeStatus(_('runtime ATF: reading...'));
+	setAtfRuntimeStatus(_('Runtime status: reading...'));
 
-	return L.resolveDefault(fs.trimmed(atfRuntimePath), 'Y').then(function(value) {
-		currentAtfRuntimeValue = value || 'Y';
+	return Promise.all([
+		L.resolveDefault(fs.trimmed(atfRuntimePath), 'Y'),
+		L.resolveDefault(readAtfRuntimeOutput(), '')
+	]).then(function(data) {
+		currentAtfRuntimeValue = data[0] || 'Y';
 		currentAtfRuntimeEnabled = runtimeAtfEnabled(currentAtfRuntimeValue);
-		setAtfRuntimeStatus(formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue));
+		currentAtfRuntimeOutput = data[1] || formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue);
+		setAtfRuntimeStatus(currentAtfRuntimeOutput);
 		setAtfApplyStatus();
 
 		return currentAtfRuntimeEnabled;
 	}).catch(function(err) {
-		setAtfRuntimeStatus(_('runtime ATF: unable to read setting'));
+		setAtfRuntimeStatus(_('Runtime status: unable to read setting'));
 	});
 }
 
@@ -125,7 +138,7 @@ function reloadAtfAfterApply() {
 		fs.exec('/etc/init.d/advanced_setup', [ 'reload', 'atf' ])
 			.then(refreshAtfRuntimeStatus)
 			.catch(function(err) {
-				setAtfRuntimeStatus(_('runtime ATF: unable to refresh setting'));
+				setAtfRuntimeStatus(_('Runtime status: unable to refresh setting'));
 				ui.addNotification(null, E('p', err.message));
 			});
 	};
@@ -137,30 +150,33 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.load('advanced'),
-			L.resolveDefault(fs.trimmed(atfRuntimePath), 'Y')
+			L.resolveDefault(fs.trimmed(atfRuntimePath), 'Y'),
+			L.resolveDefault(readAtfRuntimeOutput(), '')
 		]);
 	},
 
 	render: function(data) {
 		currentAtfRuntimeValue = data[1] || 'Y';
 		currentAtfRuntimeEnabled = runtimeAtfEnabled(currentAtfRuntimeValue);
+		currentAtfRuntimeOutput = data[2] || formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue);
 		currentAtfConfigValue = '1';
 		currentAtfFormValue = '1';
 		let m = new form.Map('advanced');
 
 		if (L.hasSystemFeature('vow') || L.hasSystemFeature('wedoffload')) {
-			let description = _('Airtime Fairness (ATF) allocates Wi-Fi airtime more evenly across clients, helping prevent slower devices from monopolizing the channel. On mt7915e, expose_airtime_fairness=Y keeps mac80211 airtime fairness visible; upstream MediaTek/VOW HW-ATF is controlled by the same setting through the runtime vow_atf debugfs switch when available. Changes to the module mode are applied on the next reboot.');
+			let description = _('Balances Wi-Fi airtime so slower clients cannot dominate the channel. On MT7915, On enables both Linux Airtime Fairness and MediaTek VOW ATF/WATF. Save & Apply updates VOW immediately when supported by the driver; the Reboot button appears only when the Linux module state still needs a reboot.');
 			let s, o;
 
-			s = m.section(form.TypedSection, 'defaults', _('Airtime Fairness (ATF)'), description);
+			s = m.section(form.TypedSection, 'defaults', _('Airtime Fairness (ATF/WATF)'), description);
 			s.anonymous = true;
 			s.addremove = false;
 
-			o = s.option(form.ListValue, 'atf_enable', _('Enable Airtime Fairness (ATF)'));
+			o = s.option(form.ListValue, 'atf_enable', _('Enable Airtime Fairness'));
 			o.value('0', _('Off'));
 			o.value('1', _('On'));
 			o.optional = false;
 			o.default = '1';
+			o.rmempty = false;
 			o.cfgvalue = function(section_id) {
 				currentAtfConfigValue = uci.get('advanced', section_id, 'atf_enable') || '1';
 				currentAtfFormValue = currentAtfConfigValue;
@@ -176,7 +192,12 @@ return view.extend({
 
 				currentAtfConfigValue = value;
 				currentAtfFormValue = value;
-				uci.set('advanced', section_id, 'atf_enable', value);
+				return uci.set('advanced', section_id, 'atf_enable', value);
+			};
+			o.remove = function(section_id) {
+				currentAtfConfigValue = '1';
+				currentAtfFormValue = '1';
+				return uci.set('advanced', section_id, 'atf_enable', '1');
 			};
 
 			o = s.option(form.DummyValue, '_atf_apply_status', _('Apply status'));
@@ -199,8 +220,8 @@ return view.extend({
 				]);
 			};
 
-			o = s.option(form.Button, '_read_atf_runtime', _('Runtime ATF setting'));
-			o.inputtitle = _('Read setting');
+			o = s.option(form.Button, '_read_atf_runtime', _('Runtime status'));
+			o.inputtitle = _('Read status');
 			o.inputstyle = 'action';
 			o.write = function() {};
 			o.remove = function() {};
@@ -208,10 +229,10 @@ return view.extend({
 				return refreshAtfRuntimeStatus();
 			};
 
-			o = s.option(form.DummyValue, '_atf_runtime_output', _('Runtime ATF output'));
+			o = s.option(form.DummyValue, '_atf_runtime_output', _('Runtime details'));
 			o.rawhtml = true;
 			o.default = E('span', { 'id': atfRuntimeStatusId },
-				formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue));
+				currentAtfRuntimeOutput);
 
 		}
 
