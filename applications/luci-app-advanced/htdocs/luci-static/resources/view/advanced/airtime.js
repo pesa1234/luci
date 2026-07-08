@@ -2,50 +2,15 @@
 'require view';
 'require form';
 'require fs';
-'require rpc';
 'require ui';
 'require uci';
 
-const atfRuntimePath = '/sys/module/mt7915e/parameters/expose_airtime_fairness';
 const atfRuntimeStatusId = 'advanced-atf-runtime-status';
 const atfApplyStatusId = 'advanced-atf-apply-status';
-const atfRebootButtonId = 'advanced-atf-reboot-button';
 
 let currentAtfConfigValue = '1';
 let currentAtfFormValue = '1';
-let currentAtfRuntimeEnabled = true;
-let currentAtfRuntimeValue = 'Y';
 let currentAtfRuntimeOutput = '';
-
-const callReboot = rpc.declare({
-	object: 'system',
-	method: 'reboot',
-	expect: { result: 0 }
-});
-
-function runtimeAtfEnabled(value) {
-	return value === 'Y';
-}
-
-function atfNeedsReboot(configValue, runtimeEnabled) {
-	return ((configValue === '1') !== (runtimeEnabled === true));
-}
-
-function formatAtfRuntimeStatus(enabled, value) {
-	let meaning;
-
-	if (value === 'N')
-		meaning = _('Linux ATF stays hidden until reboot or driver reload');
-	else if (value === 'Y')
-		meaning = _('Linux ATF is visible to the Wi-Fi stack');
-	else
-		meaning = _('unknown runtime value');
-
-	return 'Runtime status: Linux ATF=%s (module=%s, %s)'.format(
-		enabled ? _('On') : _('Off'),
-		value || '-',
-		meaning);
-}
 
 function setAtfRuntimeStatus(text) {
 	const node = document.getElementById(atfRuntimeStatusId);
@@ -58,76 +23,35 @@ function readAtfRuntimeOutput() {
 	return fs.exec('/etc/init.d/advanced_setup', [ 'runtime_atf' ]).then(function(res) {
 		let output = res && res.stdout ? res.stdout.trim() : '';
 
-		return output || formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue);
+		return output || _('Runtime status: VOW runtime status unavailable');
 	});
 }
 
-function formatAtfApplyStatus(configValue, runtimeEnabled) {
+function formatAtfApplyStatus() {
 	if (currentAtfFormValue !== currentAtfConfigValue)
 		return _('Save & Apply is required');
 
-	return atfNeedsReboot(configValue, runtimeEnabled)
-		? _('Reboot is required')
-		: _('Applied');
+	return _('Applied');
 }
 
 function setAtfApplyStatus() {
 	const node = document.getElementById(atfApplyStatusId);
-	const rebootAllowed = currentAtfFormValue === currentAtfConfigValue;
 
 	if (node)
-		node.textContent = formatAtfApplyStatus(currentAtfConfigValue, currentAtfRuntimeEnabled);
-
-	const rebootButton = document.getElementById(atfRebootButtonId);
-
-	if (rebootButton)
-		rebootButton.style.display = rebootAllowed &&
-			atfNeedsReboot(currentAtfConfigValue, currentAtfRuntimeEnabled) ? '' : 'none';
+		node.textContent = formatAtfApplyStatus();
 }
 
 function refreshAtfRuntimeStatus() {
 	setAtfRuntimeStatus(_('Runtime status: reading...'));
 
-	return Promise.all([
-		L.resolveDefault(fs.trimmed(atfRuntimePath), 'Y'),
-		L.resolveDefault(readAtfRuntimeOutput(), '')
-	]).then(function(data) {
-		currentAtfRuntimeValue = data[0] || 'Y';
-		currentAtfRuntimeEnabled = runtimeAtfEnabled(currentAtfRuntimeValue);
-		currentAtfRuntimeOutput = data[1] || formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue);
+	return L.resolveDefault(readAtfRuntimeOutput(), '').then(function(output) {
+		currentAtfRuntimeOutput = output || _('Runtime status: VOW runtime status unavailable');
 		setAtfRuntimeStatus(currentAtfRuntimeOutput);
 		setAtfApplyStatus();
 
-		return currentAtfRuntimeEnabled;
+		return currentAtfRuntimeOutput;
 	}).catch(function(err) {
 		setAtfRuntimeStatus(_('Runtime status: unable to read setting'));
-	});
-}
-
-function handleAtfReboot(ev) {
-	if (ev)
-		ev.preventDefault();
-
-	return callReboot().then(function(res) {
-		if (res != 0) {
-			ui.addNotification(null, E('p', _('The reboot command failed with code %d').format(res)));
-			L.raise('Error', 'Reboot failed');
-		}
-
-		ui.showModal(_('Rebooting...'), [
-			E('p', { 'class': 'spinning' }, _('Waiting for device...'))
-		]);
-
-		window.setTimeout(function() {
-			ui.showModal(_('Rebooting...'), [
-				E('p', { 'class': 'spinning alert-message warning' },
-					_('Device unreachable! Still waiting for device...'))
-			]);
-		}, 150000);
-
-		ui.awaitReconnect();
-	}).catch(function(e) {
-		ui.addNotification(null, E('p', e.message));
 	});
 }
 
@@ -150,21 +74,18 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.load('advanced'),
-			L.resolveDefault(fs.trimmed(atfRuntimePath), 'Y'),
 			L.resolveDefault(readAtfRuntimeOutput(), '')
 		]);
 	},
 
 	render: function(data) {
-		currentAtfRuntimeValue = data[1] || 'Y';
-		currentAtfRuntimeEnabled = runtimeAtfEnabled(currentAtfRuntimeValue);
-		currentAtfRuntimeOutput = data[2] || formatAtfRuntimeStatus(currentAtfRuntimeEnabled, currentAtfRuntimeValue);
+		currentAtfRuntimeOutput = data[1] || _('Runtime status: VOW runtime status unavailable');
 		currentAtfConfigValue = '1';
 		currentAtfFormValue = '1';
 		let m = new form.Map('advanced');
 
 		if (L.hasSystemFeature('vow') || L.hasSystemFeature('wedoffload')) {
-			let description = _('Balances Wi-Fi airtime so slower clients cannot dominate the channel. On MT7915, On enables both Linux Airtime Fairness and MediaTek VOW ATF/WATF. Save & Apply updates VOW immediately when supported by the driver; the Reboot button appears only when the Linux module state still needs a reboot.');
+			let description = _('Balances Wi-Fi airtime so slower clients cannot dominate the channel. On MT7915, this controls only the MediaTek VOW ATF/WATF runtime setting; Linux airtime fairness remains visible to the Wi-Fi stack. Save & Apply updates the setting immediately when supported by the driver, without requiring a reboot.');
 			let s, o;
 
 			s = m.section(form.TypedSection, 'defaults', _('Airtime Fairness (ATF/WATF)'), description);
@@ -208,15 +129,7 @@ return view.extend({
 
 				return E('span', {}, [
 					E('span', { 'id': atfApplyStatusId },
-						formatAtfApplyStatus(currentAtfConfigValue, currentAtfRuntimeEnabled)),
-					' ',
-					E('button', {
-						'id': atfRebootButtonId,
-						'type': 'button',
-						'class': 'cbi-button cbi-button-action important',
-						'style': atfNeedsReboot(currentAtfConfigValue, currentAtfRuntimeEnabled) ? null : 'display:none',
-						'click': handleAtfReboot
-					}, _('Reboot'))
+						formatAtfApplyStatus())
 				]);
 			};
 
