@@ -2,18 +2,18 @@
 
 const CONFIG_FILE = '/etc/nordvpnlite/config.json';
 const INIT_SCRIPT = '/etc/init.d/nordvpnlite';
+const NORDVPNLITE_BIN = '/usr/sbin/nordvpnlite';
 const SERVICE_NAME = 'nordvpnlite';
-const UCI_CONFIG = 'nordvpnlite';
-const UCI_SECTION = 'settings';
 const SERVERS_API_URL = 'https://api.nordvpn.com/v1/servers?limit=20000';
 const VALID_ACTIONS = ['start', 'stop', 'restart', 'reload', 'enable', 'disable'];
+const COMMAND_TIMEOUT_SECONDS = 30;
 const SERVER_LOOKUP_TIMEOUT = 45;
 let fs = require('fs');
 let log = require('log');
 
 function has_service() {
 	let st = fs.stat(INIT_SCRIPT);
-	return st && st.type == 'file' && st.user_exec != false;
+	return st && st.type == 'file' && st.perm && st.perm.user_exec;
 }
 
 function service_action(action) {
@@ -31,6 +31,11 @@ function has_command(command) {
 	return system(sprintf('command -v %s >/dev/null 2>&1', command)) == 0;
 }
 
+function has_nordvpnlite() {
+	let st = fs.stat(NORDVPNLITE_BIN);
+	return st && st.type == 'file' && st.perm && st.perm.user_exec;
+}
+
 function read_command_output(command) {
 	let pp = fs.popen(command, 'r');
 	if (!pp)
@@ -43,37 +48,6 @@ function read_command_output(command) {
 		return null;
 
 	return trim(output);
-}
-
-function config_enabled() {
-	let value = read_command_output(sprintf('uci -q get %s.%s.enabled 2>/dev/null', UCI_CONFIG, UCI_SECTION));
-
-	if (value == null || value == '')
-		return true;
-
-	switch (lc(trim(value))) {
-		case '0':
-		case 'off':
-		case 'false':
-		case 'no':
-		case 'disabled':
-			return false;
-		default:
-			return true;
-	}
-}
-
-function write_config_enabled(enabled) {
-	let value = enabled ? '1' : '0';
-
-	return system(sprintf(
-		"uci -q set %s.%s=settings >/dev/null 2>&1 && " +
-		"uci -q set %s.%s.enabled='%s' >/dev/null 2>&1 && " +
-		"uci -q commit %s >/dev/null 2>&1",
-		UCI_CONFIG, UCI_SECTION,
-		UCI_CONFIG, UCI_SECTION, value,
-		UCI_CONFIG
-	)) == 0;
 }
 
 function fetch_server_data_with_jq(hostname) {
@@ -146,14 +120,17 @@ function fetch_server_data_with_jq(hostname) {
 }
 
 function fetch_countries() {
-	if (!has_command(SERVICE_NAME)) {
+	if (!has_nordvpnlite()) {
 		return {
 			countries: null,
-			error: sprintf('%s command not found.', SERVICE_NAME)
+			error: sprintf('%s command not found.', NORDVPNLITE_BIN)
 		};
 	}
 
-	let output = read_command_output(sprintf('%s countries 2>/dev/null', SERVICE_NAME));
+	let output = read_command_output(sprintf(
+		'timeout %d %s countries 2>/dev/null',
+		COMMAND_TIMEOUT_SECONDS, NORDVPNLITE_BIN
+	));
 	let countries = [];
 
 	if (!output) {
@@ -194,14 +171,17 @@ function fetch_countries() {
 }
 
 function fetch_runtime_status() {
-	if (!has_command(SERVICE_NAME)) {
+	if (!has_nordvpnlite()) {
 		return {
 			status: null,
-			error: sprintf('%s command not found.', SERVICE_NAME)
+			error: sprintf('%s command not found.', NORDVPNLITE_BIN)
 		};
 	}
 
-	let output = read_command_output(sprintf('%s status 2>/dev/null', SERVICE_NAME));
+	let output = read_command_output(sprintf(
+		'timeout %d %s status 2>/dev/null',
+		COMMAND_TIMEOUT_SECONDS, NORDVPNLITE_BIN
+	));
 
 	if (!output) {
 		return {
@@ -240,34 +220,6 @@ return {
 			}
 		},
 
-		get_config_enabled: {
-			call: function() {
-				return { enabled: config_enabled() };
-			}
-		},
-
-		set_config_enabled: {
-			args: { enabled: true },
-			call: function(req) {
-				let enabled = true;
-
-				if (req && req.args)
-					enabled = (req.args.enabled == true || req.args.enabled == 1 || req.args.enabled == '1');
-
-				if (!write_config_enabled(enabled)) {
-					return {
-						success: false,
-						error: sprintf('Unable to write /etc/config/%s.', UCI_CONFIG)
-					};
-				}
-
-				return {
-					success: true,
-					enabled: enabled
-				};
-			}
-		},
-
 		set_config: {
 			args: { config: {} },
 			call: function(req) {
@@ -286,6 +238,55 @@ return {
 			}
 		},
 
+		login: {
+			args: { token: '' },
+			call: function(req) {
+				const token = req.args.token;
+				if (type(token) != 'string' || length(token) == 0)
+					return { success: false, error: 'Missing authentication token' };
+
+				// Pass the token through stdin so it is not visible in /proc/*/cmdline.
+				const cmd = sprintf(
+					'%s login --config-file %s --token "$(cat)"',
+					NORDVPNLITE_BIN, CONFIG_FILE
+				);
+				let proc = fs.popen(cmd, 'w');
+				if (proc == null) {
+					log.ERR('Failed to spawn login command: %J', fs.error());
+					return { success: false, error: fs.error() };
+				}
+
+				proc.write(token);
+				const rc = proc.close();
+				if (rc != 0) {
+					log.ERR('login command failed with code %d', rc);
+					return { success: false, error: sprintf('login command failed (code %d)', rc) };
+				}
+
+				return { success: true };
+			}
+		},
+
+		logout: {
+			call: function() {
+				const cmd = sprintf('%s logout --config-file %s', NORDVPNLITE_BIN, CONFIG_FILE);
+				let proc = fs.popen(cmd, 'r');
+				if (proc == null) {
+					log.ERR('Failed to spawn logout command: %J', fs.error());
+					return { success: false, error: fs.error() };
+				}
+
+				proc.read('all');
+				const rc = proc.close();
+				if (rc != 0) {
+					log.ERR('logout command failed with code %d', rc);
+					return { success: false, error: sprintf('logout command failed (code %d)', rc) };
+				}
+
+				return { success: true };
+			}
+		},
+
 		get_service_status: {
 			call: function() {
 				if (!has_service()) {
@@ -299,7 +300,6 @@ return {
 				return {
 					installed: true,
 					enabled: service_action('enabled') == 0,
-					config_enabled: config_enabled(),
 					running: service_action('running') == 0
 				};
 			}
@@ -419,6 +419,23 @@ return {
 
 		get_runtime_status: {
 			call: function() {
+				if (!has_service()) {
+					return {
+						success: false,
+						error: sprintf('Init script not found: %s', INIT_SCRIPT)
+					};
+				}
+
+				if (service_action('running') != 0) {
+					return {
+						success: true,
+						running: false,
+						telio_is_running: false,
+						ip_address: '',
+						exit_node: {}
+					};
+				}
+
 				let result = fetch_runtime_status();
 				let status = result ? result.status : null;
 				let error = result ? result.error : null;
@@ -432,6 +449,7 @@ return {
 
 				return {
 					success: true,
+					running: true,
 					telio_is_running: status.telio_is_running == true,
 					ip_address: status.ip_address || '',
 					exit_node: {

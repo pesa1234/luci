@@ -5,7 +5,6 @@
 			"ubus": {
 				"nordvpnlite": [
 					"get_config",
-					"get_config_enabled",
 					"get_service_status",
 					"get_server_data",
 					"get_countries",
@@ -17,7 +16,8 @@
 			"ubus": {
 				"nordvpnlite": [
 					"set_config",
-					"set_config_enabled",
+					"login",
+					"logout",
 					"set_service_action"
 				]
 			}
