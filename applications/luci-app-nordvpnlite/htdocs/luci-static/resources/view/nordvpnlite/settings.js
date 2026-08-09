@@ -15,6 +15,12 @@ var callSetConfig = rpc.declare({
     params: ['config']
 });
 
+var callSetConfigEnabled = rpc.declare({
+    object: 'nordvpnlite',
+    method: 'set_config_enabled',
+    params: ['enabled']
+});
+
 var callLogin = rpc.declare({
     object: 'nordvpnlite',
     method: 'login',
@@ -295,9 +301,11 @@ return view.extend({
             if (res.running === false) {
                 this.serviceStatus.running = false;
                 this.updateRuntimeStatusPanel(null);
-                this.setServiceStatusText(this.serviceStatus.enabled
-                    ? _('Not running')
-                    : _('Not running (autostart disabled)'));
+                this.setServiceStatusText(this.serviceStatus.config_enabled !== true
+                    ? _('Not running (configuration disabled)')
+                    : (this.serviceStatus.enabled
+                        ? _('Not running')
+                        : _('Not running (autostart disabled)')));
                 ui.addNotification(_('Status loaded'), E('p', _('NordVPN Lite is not running.')));
                 return;
             }
@@ -328,6 +336,7 @@ return view.extend({
                     rpcAvailable: false,
                     installed: false,
                     enabled: false,
+                    config_enabled: false,
                     running: false
                 };
             }),
@@ -342,6 +351,7 @@ return view.extend({
         var enableStyle = buttonStyle + ' margin-left:1rem;';
         var valueStyle = 'display:flex; align-items:center; min-height:2.3em;';
         var runtimeData = this.getRuntimeStatusDisplayData(this.runtimeStatus);
+        var configEnabled = status.config_enabled === true;
         var statusText;
         var canStart = false;
         var canRestart = false;
@@ -353,6 +363,10 @@ return view.extend({
             statusText = _('RPC backend unavailable');
         else if (!status.installed)
             statusText = _('Not installed or not found');
+        else if (!configEnabled && status.running)
+            statusText = _('Running (configuration disabled)');
+        else if (!configEnabled)
+            statusText = _('Not running (configuration disabled)');
         else if (status.running)
             statusText = _('Running');
         else if (status.enabled)
@@ -365,10 +379,10 @@ return view.extend({
             canDisable = status.enabled;
 
             if (status.running) {
-                canRestart = true;
+                canRestart = configEnabled;
                 canStop = true;
             } else {
-                canStart = true;
+                canStart = configEnabled;
             }
         }
 
@@ -688,14 +702,17 @@ return view.extend({
             rpcAvailable: false,
             installed: false,
             enabled: false,
+            config_enabled: false,
             running: false
         };
         var runtimeStatus = data[2] || null;
+        var configEnabled = serviceStatus.config_enabled === true;
         var view = this;
 
         this.config = config;
         this.serviceStatus = serviceStatus;
         this.runtimeStatus = runtimeStatus;
+        this.configEnabled = configEnabled;
         this.countryChoices = [];
         this.countryChoicesLoaded = false;
 
@@ -705,7 +722,9 @@ return view.extend({
                     ? ''
                     : String(config.authentication_token || '')
             },
-            config: this.getVpnFormData(this.config)
+            config: Object.assign(this.getVpnFormData(this.config), {
+                enabled: configEnabled ? '1' : '0'
+            })
         };
 
         this.serverDataHostname = form_data.config.server_hostname;
@@ -720,6 +739,11 @@ return view.extend({
         o.description = _('Leave empty to keep the currently stored token, or enter a new token to replace it.');
 
         var s = m.section(form.NamedSection, 'config', 'config', _('Settings'));
+
+        o = this.enabled_option = s.option(form.Flag, 'enabled', _('Enabled'));
+        o.default = '0';
+        o.rmempty = false;
+        o.description = _('NordVPN Lite starts only when this option is enabled.');
 
         o = this.vpn_mode_option = s.option(form.ListValue, 'vpn_mode', _('VPN Selection'));
         o.value('recommended', _('Recommended server'));
@@ -860,6 +884,7 @@ return view.extend({
         const fullServerHostname = buildServerHostname(serverHostname);
         const serverAddress = String(this.server_address_option.formvalue('config') || '').trim();
         const serverPublicKey = String(this.server_public_key_option.formvalue('config') || '').trim();
+        const enabled = this.enabled_option.formvalue('config') === '1';
         delete this.config.authentication_token;
         if (!this.config.auth_file_path)
             this.config.auth_file_path = defaultConfig.auth_file_path;
@@ -901,11 +926,21 @@ return view.extend({
         }
 
         try {
+            const enabledRes = await callSetConfigEnabled(enabled);
+            if (!enabledRes || enabledRes.success !== true) {
+                ui.addNotification(_('Save failed'), E('p',
+                    (enabledRes && enabledRes.error) ? String(enabledRes.error) : _('Could not write service enabled flag.')));
+                return false;
+            }
+
             const res = await callSetConfig(this.config);
             if (!res || res.success !== true) {
                 ui.addNotification(_('Save failed'), E('p', _('Could not write config file.')));
                 return false;
             }
+
+            this.configEnabled = enabled;
+            this.serviceStatus.config_enabled = enabled;
 
             if (token !== '') {
                 const authRes = await callLogin(token);

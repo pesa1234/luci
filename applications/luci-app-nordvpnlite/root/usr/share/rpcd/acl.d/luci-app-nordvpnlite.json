@@ -16,6 +16,7 @@
 			"ubus": {
 				"nordvpnlite": [
 					"set_config",
+					"set_config_enabled",
 					"login",
 					"logout",
 					"set_service_action"
