@@ -20,6 +20,7 @@ return view.extend({
 		o.value('1', _('On'));
 		o.optional = false;
 		o.default = uci.get('advanced', 'defaults', 'usb_2') || '0';
+		o.rmempty = false;
 		o.write = function(section_id, value) {
 			uci.set('advanced', section_id, 'usb_2', value);
 			fs.exec("/etc/init.d/advanced_setup", ["reload", "usb"])
@@ -37,6 +38,7 @@ return view.extend({
 		o.value('1', _('On'));
 		o.optional = false;
 		o.default = uci.get('advanced', 'defaults', 'usb_power') || '1';
+		o.rmempty = false;
 		o.write = function(section_id, value) {
 			uci.set('advanced', section_id, 'usb_power', value);
 			fs.exec("/etc/init.d/advanced_setup", ["reload", "usb"])

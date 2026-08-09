@@ -96,7 +96,6 @@ return view.extend({
 			o.value('wrr', _("wrr"));
 			o.value('sp', _("sp"));
 			o.depends('enable', '1');
-			o.datatype = 'uinteger';
 			o.default = uci.get('mtkhnat', 'global', 'scheduling');
 			o.write = function(section_id, value) {
 				uci.set('mtkhnat', 'global', 'scheduling',value);

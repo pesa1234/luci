@@ -27,11 +27,12 @@ return view.extend({
 		o.value('1', _("On - Standard (Wi-Fi only)"));
 		o.value('2', _("On - Advanced (WAN, bridge and Wi-Fi)"));
 		o.default = '0';
+		o.rmempty = false;
 		
 		o.cfgvalue = function(section_id) {
-		if (pktSteering === '1' || pktSteering === '2')
-			return '0';
-		  return uci.get('advanced', section_id, 'advanced_packet_steering_enable') || '0';
+			if (pktSteering === '1' || pktSteering === '2')
+				return '0';
+			return uci.get('advanced', section_id, 'advanced_packet_steering_enable');
 		};
 
 		if (pktSteering === '1' || pktSteering === '2') {

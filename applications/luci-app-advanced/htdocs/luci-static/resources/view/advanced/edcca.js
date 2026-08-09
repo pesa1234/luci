@@ -381,14 +381,14 @@ return view.extend({
 
 	handleSaveApply: function(ev, mode) {
 		return this.handleSave(ev).then(function() {
+			return ui.changes.apply(mode == '0');
+		}).then(function() {
 			if (!needsWifiRestart)
 				return;
 
 			return restartWifi().then(function() {
 				needsWifiRestart = false;
 			});
-		}).then(function() {
-			return ui.changes.apply(mode == '0');
 		});
 	},
 
