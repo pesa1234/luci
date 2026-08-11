@@ -5,6 +5,7 @@
 "require form";
 "require rpc";
 "require view";
+"require dom";
 "require pbr.status as pbr";
 /* global pbr */
 
@@ -13,27 +14,24 @@ var pkg = pbr.pkg;
 return view.extend({
 	load: function () {
 		return Promise.all([
-			L.resolveDefault(pbr.getInterfaces(pkg.Name), {}),
-			L.resolveDefault(pbr.getPlatformSupport(pkg.Name), {}),
+			L.resolveDefault(pbr.getInitStatus(pkg.Name), {}),
 			L.resolveDefault(L.uci.load(pkg.Name), {}),
 		]);
 	},
 
 	render: function (data) {
 		var status, m, s, o;
+		var statusData = (data[0] && data[0][pkg.Name]) || {};
 		var reply = {
-			interfaces: (data[0] &&
-				data[0][pkg.Name] &&
-				data[0][pkg.Name].interfaces) || ["wan"],
-			platform: (data[1] && data[1][pkg.Name]) || {
-				ipset_installed: null,
-				nft_installed: null,
-				adguardhome_installed: null,
-				dnsmasq_installed: null,
-				unbound_installed: null,
-				adguardhome_ipset_support: null,
-				dnsmasq_ipset_support: null,
-				dnsmasq_nftset_support: null,
+			interfaces: statusData.interfaces || ["wan"],
+			interface_labels: statusData.interface_labels || {},
+			protocols: statusData.protocols || [],
+			platform: statusData.platform || {
+				nft_installed: false,
+				adguardhome_installed: false,
+				dnsmasq_installed: false,
+				unbound_installed: false,
+				dnsmasq_nftset_support: false,
 			},
 		};
 
@@ -58,8 +56,6 @@ return view.extend({
 				"<br/><br/>"
 			)
 		);
-
-		s.tab("tab_webui", _("Web UI Configuration"));
 
 		o = s.taboption(
 			"tab_basic",
@@ -114,19 +110,24 @@ return view.extend({
 		);
 		o.value("none", _("Disabled"));
 		o.default = "none";
-		o.rmempty = false;
-		if (reply.platform.adguardhome_ipset_support) {
-			o.value("adguardhome.ipset", _("AdGuardHome ipset"));
-			o.default = "adguardhome.ipset";
-		}
-		if (reply.platform.dnsmasq_ipset_support) {
-			o.value("dnsmasq.ipset", _("Dnsmasq ipset"));
-			o.default = "dnsmasq.ipset";
-		}
 		if (reply.platform.dnsmasq_nftset_support) {
 			o.value("dnsmasq.nftset", _("Dnsmasq nft set"));
 			o.default = "dnsmasq.nftset";
+		} else if (
+			L.uci.get(pkg.Name, "config", "resolver_set") === "dnsmasq.nftset"
+		) {
+			// Support detection can fail transiently, for instance when dnsmasq
+			// is not installed or not yet running. Without the stored value in
+			// the choice list the select falls back to its first entry and
+			// saving would silently rewrite resolver_set to "none". The
+			// description above already states that support is missing.
+			o.value("dnsmasq.nftset", _("Dnsmasq nft set"));
 		}
+		// luci-base 974b5864e05e removes options whose value equals their
+		// default. pbr provisions resolver_set in /etc/config/pbr and in
+		// uci-defaults, so without this the stored dnsmasq.nftset would be
+		// deleted on the first Save and nft set handling silently disabled.
+		o.rmempty = false;
 
 		o = s.taboption(
 			"tab_basic",
@@ -191,10 +192,53 @@ return view.extend({
 		o.value("", _("No Change"));
 		reply.interfaces.forEach((element) => {
 			if (element.toLowerCase() !== "ignore") {
-				o.value(element);
+				o.value(element, reply.interface_labels[element] || element);
 			}
 		});
 		o.rmempty = true;
+
+		o = s.taboption(
+			"tab_advanced",
+			form.Value,
+			"uplink_interface",
+			_("Default Uplink Interface (IPv4)"),
+			_("Force the default IPv4 uplink interface used by the service. " +
+				"Select from the list of known interfaces or enter a custom interface name.")
+		);
+		if (Array.isArray(reply.interfaces)) {
+			reply.interfaces.forEach((element) => {
+				if (element.toLowerCase() !== "ignore") {
+					o.value(element, reply.interface_labels[element] || element);
+				}
+			});
+		}
+		o.datatype = "network";
+		o.default = "wan";
+		// Keeps the default visible in /etc/config/pbr. luci-base 974b5864e05e
+		// removes values equal to the default and made forcewrite unreachable
+		// in exactly that case, so rmempty is what forces the write now.
+		o.rmempty = false;
+
+		o = s.taboption(
+			"tab_advanced",
+			form.Value,
+			"uplink_interface6",
+			_("Default Uplink Interface (IPv6)"),
+			_("Force the default IPv6 uplink interface used by the service. " +
+				"Select from the list of known interfaces or enter a custom interface name.")
+		);
+		if (Array.isArray(reply.interfaces)) {
+			reply.interfaces.forEach((element) => {
+				if (element.toLowerCase() !== "ignore") {
+					o.value(element, reply.interface_labels[element] || element);
+				}
+			});
+		}
+		o.datatype = "network";
+		o.default = "wan6";
+		// See uplink_interface above.
+		o.rmempty = false;
+		o.depends("ipv6_enabled", "1");
 
 		o = s.taboption(
 			"tab_advanced",
@@ -242,34 +286,8 @@ return view.extend({
 		);
 		o.rmempty = true;
 		o.placeholder = "30000";
-		o.datatype = "uinteger";
+		o.datatype = "range(99,32765)";
 		o.default = "30000";
-
-		o = s.taboption(
-			"tab_webui",
-			form.ListValue,
-			"webui_show_ignore_target",
-			_("Add Ignore Target"),
-			_(
-				"Adds 'ignore' to the list of interfaces for policies. See the %sREADME%s for details."
-			).format(
-				'<a href="' + pkg.URL + '#ignore-target" target="_blank">',
-				"</a>"
-			)
-		);
-		o.value("0", _("Disabled"));
-		o.value("1", _("Enabled"));
-		o.default = "0";
-		o.optional = false;
-
-		o = s.taboption(
-			"tab_webui",
-			form.DynamicList,
-			"webui_supported_protocol",
-			_("Supported Protocols"),
-			_("Display these protocols in protocol column in Web UI.")
-		);
-		o.optional = false;
 
 		s = m.section(
 			form.GridSection,
@@ -320,21 +338,69 @@ return view.extend({
 		o.default = "";
 
 		o = s.option(form.ListValue, "proto", _("Protocol"));
-		var proto = L.toArray(
-			L.uci.get(pkg.Name, "config", "webui_supported_protocol")
-		);
-		if (!proto.length) {
-			proto = ["all", "tcp", "udp", "tcp udp", "icmp"];
-		}
-		proto.forEach((element) => {
-			if (element === "all") {
-				o.value("", _("all"));
-				o.default = "";
-			} else {
-				o.value(element.toLowerCase());
+		o.value("", _("all"));
+		o.default = "";
+		var popularProtos = ["tcp", "udp", "tcp udp", "icmp"];
+		var hasPopular = false;
+		popularProtos.forEach(function (p) {
+			if (p === "tcp udp") {
+				if (reply.protocols.indexOf("tcp") !== -1 && reply.protocols.indexOf("udp") !== -1) {
+					o.value(p);
+					hasPopular = true;
+				}
+			} else if (reply.protocols.indexOf(p) !== -1) {
+				o.value(p);
+				hasPopular = true;
+			}
+		});
+		var hasOther = false;
+		reply.protocols.forEach(function (p) {
+			if (popularProtos.indexOf(p) === -1) {
+				o.value(p);
+				hasOther = true;
 			}
 		});
 		o.rmempty = true;
+		if (hasPopular && hasOther) {
+			var _protoRenderWidget = o.renderWidget;
+			o.renderWidget = function () {
+				var node = _protoRenderWidget.apply(this, arguments);
+				var sel = node.querySelector ? node.querySelector("select") : null;
+				if (!sel && node.nodeName === "SELECT") sel = node;
+				if (sel) {
+					var lastOpt = null;
+					sel.querySelectorAll("option").forEach(function (opt) {
+						if (popularProtos.indexOf(opt.value) !== -1)
+							lastOpt = opt;
+					});
+					if (lastOpt && lastOpt.nextElementSibling) {
+						sel.insertBefore(
+							E("option", { "disabled": "", "style": "text-align:center" },
+								"── " + _("All Protocols") + " ──"),
+							lastOpt.nextSibling
+						);
+					}
+				}
+				var ul = node.querySelector ? node.querySelector("ul") : null;
+				if (ul) {
+					var lastLi = null;
+					ul.querySelectorAll("li[data-value]").forEach(function (li) {
+						if (popularProtos.indexOf(li.getAttribute("data-value")) !== -1)
+							lastLi = li;
+					});
+					if (lastLi && lastLi.nextElementSibling) {
+						lastLi.parentNode.insertBefore(
+							E("li", {
+								"unselectable": "",
+								"style": "text-align:center;opacity:0.6;font-size:90%"
+							}, "── " + _("All Protocols") + " ──"),
+							lastLi.nextSibling
+						);
+					}
+				}
+				return node;
+			};
+		}
 
 		o = s.option(form.ListValue, "chain", _("Chain"));
 		o.value("", "prerouting");
@@ -345,7 +411,7 @@ return view.extend({
 
 		o = s.option(form.ListValue, "interface", _("Interface"));
 		reply.interfaces.forEach((element) => {
-			o.value(element);
+			o.value(element, reply.interface_labels[element] || element);
 		});
 		o.datatype = "network";
 		o.rmempty = false;
@@ -386,7 +452,7 @@ return view.extend({
 		o.rmempty = false;
 		o.datatype = "list(or(cidr,host,network,ipaddr))";
 		reply.interfaces.forEach((element) => {
-			element === "ignore" || o.value(element);
+			element === "ignore" || o.value(element, reply.interface_labels[element] || element);
 		});
 
 		o = s.option(form.Value, "dest_dns_port", _("Remote DNS Port"));
@@ -444,6 +510,71 @@ return view.extend({
 		o.editable = true;
 		o.rmempty = false;
 
-		return Promise.all([status.render(), m.render()]);
+		return Promise.all([status.render(), m.render()]).then(function (nodes) {
+			var statusNode = nodes[0];
+
+			// Saving settings fires pbr's procd config.change trigger, which
+			// reloads the service asynchronously. LuCI reloads the page once the
+			// apply completes, so getInitStatus() often lands mid-reload and
+			// reports the service as stopped -- and nothing ever re-checked it,
+			// leaving a stale "Stopped" until the user refreshed by hand.
+			//
+			// Re-check only while the status looks like that transient state
+			// (enabled but not running), and stop as soon as it settles. A
+			// normally-running service therefore costs no extra RPC calls:
+			// getInitStatus() is expensive on the router, since every call
+			// re-runs full platform detection and dumps the nft table.
+			//
+			// This deliberately uses setTimeout rather than LuCI's poll module
+			// (same approach as pollServiceStatus() in pbr/status.js): a
+			// registered poll drives LuCI's global auto-refresh indicator, which
+			// would sit at "Paused" once we unregistered, as if the page had
+			// stalled.
+			if (statusData.enabled && !statusData.running) {
+				var attempts = 0;
+				var maxAttempts = 22; // give up after ~90s
+
+				// Check quickly at first, since a reload normally completes
+				// within a few seconds, then ease off so that a slow restart
+				// doesn't hammer an RPC this expensive -- and doesn't compete
+				// for CPU with the very reload we're waiting on.
+				var delayFor = function (done) {
+					if (done < 4) return 1500;
+					if (done < 8) return 3000;
+					return 5000;
+				};
+
+				// Re-render only once the state settles, so the service control
+				// buttons inside the status box aren't torn out from under the
+				// user on every tick.
+				var refreshStatus = function () {
+					return status.render().then(function (freshNode) {
+						dom.content(
+							statusNode,
+							Array.prototype.slice.call(freshNode.childNodes)
+						);
+					});
+				};
+
+				var checkStatus = function () {
+					attempts++;
+					L.resolveDefault(pbr.getInitStatus(pkg.Name), {})
+						.then(function (res) {
+							var reply = (res && res[pkg.Name]) || {};
+							if (reply.running || !reply.enabled || attempts >= maxAttempts)
+								return refreshStatus();
+							setTimeout(checkStatus, delayFor(attempts));
+						})
+						.catch(function () {
+							if (attempts < maxAttempts)
+								setTimeout(checkStatus, delayFor(attempts));
+						});
+				};
+
+				setTimeout(checkStatus, delayFor(0));
+			}
+
+			return nodes;
+		});
 	},
 });

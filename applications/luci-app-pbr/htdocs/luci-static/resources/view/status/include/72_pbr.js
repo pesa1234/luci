@@ -60,11 +60,8 @@ return baseclass.extend({
 
 			return table;
 		} catch (e) {
-			return E(
-				"div",
-				{ class: "alert-message warning" },
-				_("Unable to retrieve %s status").format("PBR"),
-			);
+			return E("div", { class: "alert-message warning" },
+				_("Unable to retrieve %s status").format("PBR"));
 		}
 	},
 });

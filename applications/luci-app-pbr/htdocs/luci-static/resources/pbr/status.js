@@ -11,14 +11,14 @@ var pkg = {
 		return "pbr";
 	},
 	get LuciCompat() {
-		return 27;
+		return 34;
 	},
 	get ReadmeCompat() {
-		return "1.2.2";
+		return "1.2.3";
 	},
 	get URL() {
 		return (
-			"https://docs.openwrt.melmac.ca/" +
+			"https://docs.mossdef.org/" +
 			pkg.Name +
 			"/" +
 			(pkg.ReadmeCompat ? pkg.ReadmeCompat + "/" : "")
@@ -26,7 +26,7 @@ var pkg = {
 	},
 	get DonateURL() {
 		return (
-			"https://docs.openwrt.melmac.ca/" +
+			"https://docs.mossdef.org/" +
 			pkg.Name +
 			"/" +
 			(pkg.ReadmeCompat ? pkg.ReadmeCompat + "/" : "") +
@@ -36,6 +36,15 @@ var pkg = {
 	isVersionMismatch: function (luci, pkg, rpcd) {
 		return luci !== pkg || pkg !== rpcd || luci !== rpcd;
 	},
+	// HTML-escape an untrusted scalar value with LuCI's %h format specifier so
+	// config-derived text reflected into status messages cannot inject markup
+	// when appended via innerHTML by E()/dom.create. Trusted array infos built
+	// in this file (e.g. anchor tags) are passed through unchanged.
+	escapeInfo: function (info) {
+		return Array.isArray(info)
+			? info
+			: info != null && info !== "" ? "%h".format(info) : info;
+	},
 	formatMessage: function (info, template) {
 		if (!template) return _("Unknown message") + "<br />";
 		return (
@@ -44,59 +53,41 @@ var pkg = {
 				: template.format(info || " ")) + "<br />"
 		);
 	},
-	buildGatewayText: function (gw, ipv6Enabled) {
+	buildGatewayElements: function (gw) {
 		const gateways = Array.isArray(gw) ? gw : Object.values(gw);
-		const lines = gateways.map((g) => {
+		const ipv6Enabled = L.uci.get(pkg.Name, "config", "ipv6_enabled") === "1";
+		const elements = [];
+		gateways.forEach(function (g) {
 			const iface = g.name;
-			if (!iface) return "";
-			const dev_ipv4 = g.device_ipv4;
-			const gw_ipv4 = g.gateway_ipv4;
-			const dev_ipv6 = g.device_ipv6;
-			const gw_ipv6 = g.gateway_ipv6;
-			const default_gw = g.default;
-			const parts = [iface];
-			if (dev_ipv4 && dev_ipv4 !== iface) parts.push(dev_ipv4);
-			if (gw_ipv4) parts.push(gw_ipv4);
-			if (ipv6Enabled && gw_ipv6) {
-				if (dev_ipv6 && dev_ipv6 !== iface) parts.push(dev_ipv6);
-				parts.push(gw_ipv6);
+			if (!iface) return;
+			if (elements.length) elements.push(E("br"));
+			// Prefer the labeled form (e.g. "mwan4:wan", "netifd:wan") sent by
+			// the principal app; fall back to the canonical iface name for
+			// older principal-app versions that don't emit `label`.
+			const display = g.label || iface;
+			const parts = [display];
+			if (g.device_ipv4 && g.device_ipv4 !== iface) parts.push(g.device_ipv4);
+			parts.push(g.gateway_ipv4 || "0.0.0.0");
+			if (ipv6Enabled) {
+				if (g.device_ipv6 && g.device_ipv6 !== iface) parts.push(g.device_ipv6);
+				parts.push(g.gateway_ipv6 || "::0");
 			}
-			let line = parts.join("/");
-			if (default_gw) line += " ✓";
-			return line;
+			var line = parts.join("/");
+			if (g.default) {
+				elements.push(line + " ");
+				elements.push(E("strong", {}, "✓"));
+			} else {
+				elements.push(line);
+			}
 		});
-		return lines.join("<br />");
+		return elements;
 	},
 };
-
-var getInitList = rpc.declare({
-	object: "luci." + pkg.Name,
-	method: "getInitList",
-	params: ["name"],
-});
 
 var getInitStatus = rpc.declare({
 	object: "luci." + pkg.Name,
 	method: "getInitStatus",
 	params: ["name"],
-});
-
-var getInterfaces = rpc.declare({
-	object: "luci." + pkg.Name,
-	method: "getInterfaces",
-	params: ["name"],
-});
-
-var getPlatformSupport = rpc.declare({
-	object: "luci." + pkg.Name,
-	method: "getPlatformSupport",
-	params: ["name"],
-});
-
-var getServiceInfo = rpc.declare({
-	object: "service",
-	method: "list",
-	params: ["name", "verbose"],
 });
 
 var _setInitAction = rpc.declare({
@@ -142,7 +133,7 @@ var RPC = {
 };
 
 // Poll service status until the expected running state is reached.
-// expectRunning: true for start/restart, false for stop.
+// expectRunning: true for start/restart/reload, false for stop.
 var pollServiceStatus = function (expectRunning, callback) {
 	var maxAttempts = 300; // Max 5 minutes of polling
 	var attempt = 0;
@@ -184,42 +175,39 @@ var pollServiceStatus = function (expectRunning, callback) {
 
 var status = baseclass.extend({
 	render: function () {
-		return Promise.all([
-			L.resolveDefault(getInitStatus(pkg.Name), {}),
-			L.resolveDefault(getServiceInfo(pkg.Name, true), {}),
-		]).then(function ([initStatus, ubusInfo]) {
-			var reply = {
-				status: initStatus?.[pkg.Name] || {
-					enabled: null,
-					running: null,
-					running_iptables: null,
-					running_nft: null,
-					running_nft_file: null,
-					version: null,
-					packageCompat: 0,
-					rpcdCompat: 0,
-				},
-				ubus: ubusInfo?.[pkg.Name]?.instances?.main?.data || {
-					packageCompat: 0,
-					gateways: [],
-					errors: [],
-					warnings: [],
-				},
+		return L.resolveDefault(getInitStatus(pkg.Name), {}).then(function (initStatus) {
+			var reply = initStatus?.[pkg.Name] || {};
+			reply = {
+				enabled: reply.enabled || false,
+				running: reply.running || false,
+				running_iptables: reply.running_iptables || false,
+				running_nft: reply.running_nft || false,
+				running_nft_file: reply.running_nft_file || false,
+				version: reply.version || null,
+				packageCompat: reply.packageCompat || 0,
+				rpcdCompat: reply.rpcdCompat || 0,
+				gateways: reply.gatewaysList || [],
+				errors: (reply.errors || []).map(function (e) {
+					return Object.assign({}, e, { info: pkg.escapeInfo(e.info) });
+				}),
+				warnings: (reply.warnings || []).map(function (e) {
+					return Object.assign({}, e, { info: pkg.escapeInfo(e.info) });
+				}),
 			};
 
 			if (
 				pkg.isVersionMismatch(
 					pkg.LuciCompat,
-					reply.status.packageCompat,
-					reply.status.rpcdCompat,
+					reply.packageCompat,
+					reply.rpcdCompat,
 				)
 			) {
-				reply.ubus.warnings.push({
+				reply.warnings.push({
 					code: "warningInternalVersionMismatch",
 					info: [
-						reply.ubus.packageCompat,
+						reply.packageCompat,
 						pkg.LuciCompat,
-						reply.status.rpcdCompat,
+						reply.rpcdCompat,
 						'<a href="' +
 							pkg.URL +
 							'#Warning:InternalVersionMismatch" target="_blank">',
@@ -232,24 +220,24 @@ var status = baseclass.extend({
 			var header = E("h2", {}, _("Policy Based Routing - Status"));
 			var statusTitle = E(
 				"label",
-				{ class: "cbi-value-title" },
+				{ class: "cbi-value-title", for: pkg.Name + "-status" },
 				_("Service Status"),
 			);
-			if (reply.status.version) {
-				text = _("Version %s").format(reply.status.version) + " - ";
-				if (reply.status.running) {
+			if (reply.version) {
+				text = _("Version %s").format(reply.version) + " - ";
+				if (reply.running) {
 					text += _("Running");
-					if (reply.status.running_iptables) {
+					if (reply.running_iptables) {
 						text += " (" + _("iptables mode") + ").";
-					} else if (reply.status.running_nft_file) {
+					} else if (reply.running_nft_file) {
 						text += " (" + _("fw4 nft file mode") + ").";
-					} else if (reply.status.running_nft) {
+					} else if (reply.running_nft) {
 						text += " (" + _("nft mode") + ").";
 					} else {
 						text += ".";
 					}
 				} else {
-					if (reply.status.enabled) {
+					if (reply.enabled) {
 						text += _("Stopped.");
 					} else {
 						text += _("Stopped (Disabled).");
@@ -258,7 +246,7 @@ var status = baseclass.extend({
 			} else {
 				text = _("Not installed or not found");
 			}
-			var statusText = E("div", {}, text);
+			var statusText = E("output", { id: pkg.Name + "-status" }, text);
 			var statusField = E("div", { class: "cbi-value-field" }, statusText);
 			var statusDiv = E("div", { class: "cbi-value" }, [
 				statusTitle,
@@ -266,13 +254,13 @@ var status = baseclass.extend({
 			]);
 
 			var gatewaysDiv = [];
-			if (reply.ubus.gateways) {
+			if (reply.gateways) {
 				var gatewaysTitle = E(
 					"label",
-					{ class: "cbi-value-title" },
+					{ class: "cbi-value-title", for: pkg.Name + "-gateways" },
 					_("Service Gateways"),
 				);
-				var description =
+				var gatewaysDescr = E("div", { class: "cbi-value-description" },
 					_(
 						"The %s indicates default gateway. See the %sREADME%s for details.",
 					).format(
@@ -284,17 +272,13 @@ var status = baseclass.extend({
 					) +
 					"<br />" +
 					"<br />" +
-					_("Please %sdonate%s to support development of this project.").format(
+					_(
+						"Please %sdonate%s to support development of this project.",
+					).format(
 						"<a href='" + pkg.DonateURL + "' target='_blank'>",
 						"</a>",
-					);
-				var gatewaysDescr = E(
-					"div",
-					{ class: "cbi-value-description" },
-					description,
-				);
-				text = pkg.buildGatewayText(reply.ubus.gateways, reply.status.ipv6_enabled);
-				var gatewaysText = E("div", {}, text);
+					));
+				var gatewaysText = E("output", { id: pkg.Name + "-gateways" }, pkg.buildGatewayElements(reply.gateways));
 				var gatewaysField = E("div", { class: "cbi-value-field" }, [
 					gatewaysText,
 					gatewaysDescr,
@@ -306,14 +290,14 @@ var status = baseclass.extend({
 			}
 
 			var warningsDiv = [];
-			if (reply.ubus.warnings && reply.ubus.warnings.length) {
+			if (reply.warnings && reply.warnings.length) {
 				var warningTable = {
 					warningInternalVersionMismatch: _(
 						"Internal version mismatch (package: %s, luci app: %s, luci rpcd: %s), you may need to update packages or reboot the device, please check the %sREADME%s.",
 					),
 					warningResolverNotSupported: _(
 						"Resolver set (%s) is not supported on this system.",
-					).format(L.uci.get(pkg.Name, "config", "resolver_set")),
+					).format(pkg.escapeInfo(L.uci.get(pkg.Name, "config", "resolver_set"))),
 					warningAGHVersionTooLow: _(
 						"Installed AdGuardHome (%s) doesn't support 'ipset_file' option.",
 					),
@@ -329,9 +313,6 @@ var status = baseclass.extend({
 					),
 					warningTorUnsetChainNft: _(
 						"Please unset 'chain' or set 'chain' to 'prerouting' for policy '%s'",
-					),
-					warningInterfaceRoutingUnknownGateway: _(
-						"Unknown Gateway for device '%s'",
 					),
 					warningInvalidOVPNConfig: _(
 						"Invalid OpenVPN config for %s interface",
@@ -369,14 +350,26 @@ var status = baseclass.extend({
 					warningUplinkDown: _(
 						"Uplink/WAN interface is still down, going back to boot mode",
 					),
+					warningDynamicRoutingMode: _(
+						"Running in dynamic routing tables mode. Consider installing netifd extensions or mwan4 for more efficient operation. See %sREADME%s.",
+					).format(
+						'<a href="' + pkg.URL + '#routing-tables-modes" target="_blank">',
+						"</a>",
+					),
+					warningInterfaceRoutingUnknownGateway4: _(
+						"Unknown IPv4 gateway for '%s'",
+					),
+					warningInterfaceRoutingUnknownGateway6: _(
+						"Unknown IPv6 gateway for '%s'",
+					),
 				};
 				var warningsTitle = E(
 					"label",
-					{ class: "cbi-value-title" },
+					{ class: "cbi-value-title", for: pkg.Name + "-warnings" },
 					_("Service Warnings"),
 				);
 				text = "";
-				reply.ubus.warnings.forEach((element) => {
+				reply.warnings.forEach((element) => {
 					if (element.code && warningTable[element.code]) {
 						text += pkg.formatMessage(element.info, warningTable[element.code]);
 					} else {
@@ -387,7 +380,7 @@ var status = baseclass.extend({
 					'<a href="' + pkg.URL + '#warning-messages-details" target="_blank">',
 					"</a>!<br />",
 				);
-				var warningsText = E("div", { class: "cbi-value-description" }, text);
+				var warningsText = E("output", { id: pkg.Name + "-warnings", class: "cbi-value-description" }, text);
 				var warningsField = E(
 					"div",
 					{ class: "cbi-value-field" },
@@ -400,7 +393,7 @@ var status = baseclass.extend({
 			}
 
 			var errorsDiv = [];
-			if (reply.ubus.errors && reply.ubus.errors.length) {
+			if (reply.errors && reply.errors.length) {
 				var errorTable = {
 					errorConfigValidation: _("Config (%s) validation failure").format(
 						"/etc/config/" + pkg.Name,
@@ -408,13 +401,13 @@ var status = baseclass.extend({
 					errorNoIptables: _("%s binary cannot be found").format("iptables"),
 					errorNoIpset: _(
 						"Resolver set support (%s) requires ipset, but ipset binary cannot be found",
-					).format(L.uci.get(pkg.Name, "config", "resolver_set")),
+					).format(pkg.escapeInfo(L.uci.get(pkg.Name, "config", "resolver_set"))),
 					errorNoNft: _(
 						"Resolver set support (%s) requires nftables, but nft binary cannot be found",
-					).format(L.uci.get(pkg.Name, "config", "resolver_set")),
+					).format(pkg.escapeInfo(L.uci.get(pkg.Name, "config", "resolver_set"))),
 					errorResolverNotSupported: _(
 						"Resolver set (%s) is not supported on this system",
-					).format(L.uci.get(pkg.Name, "config", "resolver_set")),
+					).format(pkg.escapeInfo(L.uci.get(pkg.Name, "config", "resolver_set"))),
 					errorServiceDisabled: _(
 						"The %s service is currently disabled",
 					).format(pkg.Name),
@@ -505,6 +498,9 @@ var status = baseclass.extend({
 					errorIncompatibleUserFile: _(
 						"Incompatible custom user file detected '%s'",
 					),
+					errorUserFileUnsafeNft: _(
+						"Unsafe nft command in custom user file '%s'",
+					),
 					errorDefaultFw4TableMissing: _("Default fw4 table '%s' is missing"),
 					errorDefaultFw4ChainMissing: _("Default fw4 chain '%s' is missing"),
 					errorRequiredBinaryMissing: _("Required binary '%s' is missing"),
@@ -536,11 +532,11 @@ var status = baseclass.extend({
 				};
 				var errorsTitle = E(
 					"label",
-					{ class: "cbi-value-title" },
+					{ class: "cbi-value-title", for: pkg.Name + "-errors" },
 					_("Service Errors"),
 				);
 				text = "";
-				reply.ubus.errors.forEach((element) => {
+				reply.errors.forEach((element) => {
 					if (element.code && errorTable[element.code]) {
 						text += pkg.formatMessage(element.info, errorTable[element.code]);
 					} else {
@@ -551,7 +547,7 @@ var status = baseclass.extend({
 					'<a href="' + pkg.URL + '#error-messages-details" target="_blank">',
 					"</a>!<br />",
 				);
-				var errorsText = E("div", { class: "cbi-value-description" }, text);
+				var errorsText = E("output", { id: pkg.Name + "-errors", class: "cbi-value-description" }, text);
 				var errorsField = E("div", { class: "cbi-value-field" }, errorsText);
 				errorsDiv = E("div", { class: "cbi-value" }, [
 					errorsTitle,
@@ -661,10 +657,10 @@ var status = baseclass.extend({
 				_("Disable"),
 			);
 
-			if (reply.status.enabled) {
+			if (reply.enabled) {
 				btn_enable.disabled = true;
 				btn_disable.disabled = false;
-				if (reply.status.running) {
+				if (reply.running) {
 					btn_start.disabled = true;
 					btn_action.disabled = false;
 					btn_stop.disabled = false;
@@ -683,10 +679,10 @@ var status = baseclass.extend({
 
 			var buttonsTitle = E(
 				"label",
-				{ class: "cbi-value-title" },
+				{ class: "cbi-value-title", for: pkg.Name + "-buttons" },
 				_("Service Control"),
 			);
-			var buttonsText = E("div", {}, [
+			var buttonsText = E("output", { id: pkg.Name + "-buttons" }, [
 				btn_start,
 				btn_gap,
 				btn_action,
@@ -698,21 +694,21 @@ var status = baseclass.extend({
 				btn_disable,
 			]);
 			var buttonsField = E("div", { class: "cbi-value-field" }, buttonsText);
-			var buttonsDiv = reply.status.version
+			var buttonsDiv = reply.version
 				? E("div", { class: "cbi-value" }, [buttonsTitle, buttonsField])
 				: "";
 
 			var donateTitle = E(
 				"label",
-				{ class: "cbi-value-title" },
+				{ class: "cbi-value-title", for: pkg.Name + "-donate" },
 				_("Donate to the Project"),
 			);
 			var donateText = E(
 				"div",
 				{ class: "cbi-value-field" },
 				E(
-					"div",
-					{ class: "cbi-value-description" },
+					"output",
+					{ id: pkg.Name + "-donate", class: "cbi-value-description" },
 					_("Please %sdonate%s to support development of this project.").format(
 						"<a href='" + pkg.DonateURL + "' target='_blank'>",
 						"</a>",
@@ -720,7 +716,7 @@ var status = baseclass.extend({
 				),
 			);
 
-			var donateDiv = reply.status.version
+			var donateDiv = reply.version
 				? E("div", { class: "cbi-value" }, [donateTitle, donateText])
 				: "";
 
@@ -762,6 +758,4 @@ return L.Class.extend({
 	status: status,
 	pkg: pkg,
 	getInitStatus: getInitStatus,
-	getInterfaces: getInterfaces,
-	getPlatformSupport: getPlatformSupport,
 });
