@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
-"PO-Revision-Date: 2026-08-26 18:53+0000\n"
+"PO-Revision-Date: 2026-08-31 06:44+0000\n"
 "Last-Translator: Hosted Weblate user 54392 "
 "<hamburger2048@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -181,7 +181,8 @@ msgstr "启用或禁用Tailscale服务。禁用后，服务将被停止，当前
 msgid ""
 "Enable this device as a Peer Relay server. Requires a public IP and an UDP "
 "port open on the router."
-msgstr "启用此设备作为 Peer 中继服务器。需要此路由器具备公网IP以及开放一个UDP端口。"
+msgstr ""
+"启用此设备作为 Peer 中继服务器。需要此路由器具备公网IP以及开放一个UDP端口。"
 
 #: applications/luci-app-tailscale-community/htdocs/luci-static/resources/view/tailscale.js:227
 msgid "Enabled"
@@ -251,7 +252,7 @@ msgstr "已应用防火墙配置。"
 
 #: applications/luci-app-tailscale-community/htdocs/luci-static/resources/view/tailscale.js:384
 msgid "General Settings"
-msgstr "常规设置"
+msgstr "通用设置"
 
 #: applications/luci-app-tailscale-community/htdocs/luci-static/resources/view/tailscale.js:262
 msgid "Hostname"
