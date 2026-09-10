@@ -8,7 +8,7 @@ LUCI_DESCRIPTION:=Provides a LuCI interface to configure NordVPN Lite.
 LUCI_DEPENDS:=+luci-base +nordvpnlite +curl +jq +ca-bundle
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.1.0
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 include ../../luci.mk
 

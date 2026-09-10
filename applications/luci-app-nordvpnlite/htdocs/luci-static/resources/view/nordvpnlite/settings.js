@@ -302,7 +302,7 @@ return view.extend({
                 this.serviceStatus.running = false;
                 this.updateRuntimeStatusPanel(null);
                 this.setServiceStatusText(this.serviceStatus.config_enabled !== true
-                    ? _('Not running (configuration disabled)')
+                    ? _('Not running (automatic start disabled)')
                     : _('Not running'));
                 ui.addNotification(_('Status loaded'), E('p', _('NordVPN Lite is not running.')));
                 return;
@@ -358,9 +358,9 @@ return view.extend({
         else if (!status.installed)
             statusText = _('Not installed or not found');
         else if (!configEnabled && status.running)
-            statusText = _('Running (configuration disabled)');
+            statusText = _('Running manually (automatic start disabled)');
         else if (!configEnabled)
-            statusText = _('Not running (configuration disabled)');
+            statusText = _('Not running (automatic start disabled)');
         else if (status.running)
             statusText = _('Running');
         else
@@ -368,10 +368,10 @@ return view.extend({
 
         if (status.installed) {
             if (status.running) {
-                canRestart = configEnabled;
+                canRestart = true;
                 canStop = true;
             } else {
-                canStart = configEnabled;
+                canStart = true;
             }
         }
 
@@ -553,6 +553,9 @@ return view.extend({
             if (action === 'stop')
                 return this.pollServiceStatus(false);
 
+            if (action === 'reload')
+                return this.pollServiceStatus(this.configEnabled === true);
+
             ui.hideModal();
             location.reload();
         }.bind(this)).catch(function (err) {
@@ -706,7 +709,7 @@ return view.extend({
         o = this.enabled_option = s.option(form.Flag, 'enabled', _('Enabled'));
         o.default = '0';
         o.rmempty = false;
-        o.description = _('NordVPN Lite starts only when this option is enabled.');
+        o.description = _('Enable automatic startup, including after reboot. When disabled, Start can still launch a manual session.');
 
         o = this.vpn_mode_option = s.option(form.ListValue, 'vpn_mode', _('VPN Selection'));
         o.value('recommended', _('Recommended server'));

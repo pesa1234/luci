@@ -19,6 +19,11 @@ function has_service() {
 }
 
 function service_action(action) {
+	if (action == 'start')
+		action = 'manual_start';
+	else if (action == 'restart')
+		action = 'manual_restart';
+
 	return system(sprintf('env -i %s %s >/dev/null 2>&1', INIT_SCRIPT, action));
 }
 
