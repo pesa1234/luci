@@ -548,6 +548,7 @@ return view.extend({
         var messages = {
             start: _('Starting NordVPN Lite service'),
             restart: _('Restarting NordVPN Lite service'),
+            reload: _('Applying NordVPN Lite configuration'),
             stop: _('Stopping NordVPN Lite service'),
             enable: _('Enabling NordVPN Lite autostart'),
             disable: _('Disabling NordVPN Lite autostart')
@@ -926,21 +927,11 @@ return view.extend({
         }
 
         try {
-            const enabledRes = await callSetConfigEnabled(enabled);
-            if (!enabledRes || enabledRes.success !== true) {
-                ui.addNotification(_('Save failed'), E('p',
-                    (enabledRes && enabledRes.error) ? String(enabledRes.error) : _('Could not write service enabled flag.')));
-                return false;
-            }
-
             const res = await callSetConfig(this.config);
             if (!res || res.success !== true) {
                 ui.addNotification(_('Save failed'), E('p', _('Could not write config file.')));
                 return false;
             }
-
-            this.configEnabled = enabled;
-            this.serviceStatus.config_enabled = enabled;
 
             if (token !== '') {
                 const authRes = await callLogin(token);
@@ -950,6 +941,18 @@ return view.extend({
                     return false;
                 }
             }
+
+            // Commit the enabled flag last. Its procd reload trigger must only
+            // run after the JSON configuration and credentials are ready.
+            const enabledRes = await callSetConfigEnabled(enabled);
+            if (!enabledRes || enabledRes.success !== true) {
+                ui.addNotification(_('Save failed'), E('p',
+                    (enabledRes && enabledRes.error) ? String(enabledRes.error) : _('Could not write service enabled flag.')));
+                return false;
+            }
+
+            this.configEnabled = enabled;
+            this.serviceStatus.config_enabled = enabled;
 
             if (showSuccessNotification !== false)
                 ui.addNotification(_('Saved'), E('p', _('Configuration updated.')));
@@ -964,7 +967,12 @@ return view.extend({
     handleSave: null,
 
     handleSaveApply: function () {
-        return this.saveConfig(true);
+        return this.saveConfig(false).then(function (saved) {
+            if (!saved)
+                return null;
+
+            return this.handleServiceAction('reload');
+        }.bind(this));
     },
 
     handleReset: null
