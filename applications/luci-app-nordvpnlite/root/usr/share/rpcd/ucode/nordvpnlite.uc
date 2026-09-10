@@ -7,7 +7,7 @@ const SERVICE_NAME = 'nordvpnlite';
 const UCI_CONFIG = 'nordvpnlite';
 const UCI_SECTION = 'settings';
 const SERVERS_API_URL = 'https://api.nordvpn.com/v1/servers?limit=20000';
-const VALID_ACTIONS = ['start', 'stop', 'reload'];
+const VALID_ACTIONS = ['reload'];
 const COMMAND_TIMEOUT_SECONDS = 30;
 const SERVER_LOOKUP_TIMEOUT = 45;
 let fs = require('fs');
@@ -19,9 +19,6 @@ function has_service() {
 }
 
 function service_action(action) {
-	if (action == 'start')
-		action = 'manual_start';
-
 	return system(sprintf('env -i %s %s >/dev/null 2>&1', INIT_SCRIPT, action));
 }
 

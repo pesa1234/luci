@@ -349,51 +349,19 @@ return view.extend({
         var runtimeData = this.getRuntimeStatusDisplayData(this.runtimeStatus);
         var configEnabled = status.config_enabled === true;
         var statusText;
-        var canStart = false;
-        var canStop = false;
 
         if (status.rpcAvailable === false)
             statusText = _('RPC backend unavailable');
         else if (!status.installed)
             statusText = _('Not installed or not found');
         else if (!configEnabled && status.running)
-            statusText = _('Running manually (automatic start disabled)');
+            statusText = _('Running (disabled setting not yet applied)');
         else if (!configEnabled)
             statusText = _('Not running (automatic start disabled)');
         else if (status.running)
             statusText = _('Running');
         else
             statusText = _('Not running');
-
-        if (status.installed) {
-            if (status.running) {
-                canStop = true;
-            } else {
-                canStart = true;
-            }
-        }
-
-        var btnStart = E('button', {
-            'class': 'btn cbi-button cbi-button-apply',
-            'type': 'button',
-            'style': buttonStyle,
-            'disabled': canStart ? null : true,
-            'click': function (ev) {
-                ev.preventDefault();
-                return this.handleServiceAction('start');
-            }.bind(this)
-        }, _('Start'));
-
-        var btnStop = E('button', {
-            'class': 'btn cbi-button cbi-button-reset',
-            'type': 'button',
-            'style': buttonStyle,
-            'disabled': canStop ? null : true,
-            'click': function (ev) {
-                ev.preventDefault();
-                return this.handleServiceAction('stop');
-            }.bind(this)
-        }, _('Stop'));
 
         var btnGetStatus = E('button', {
             'class': 'btn cbi-button cbi-button-apply',
@@ -410,13 +378,6 @@ return view.extend({
             E('div', { 'class': 'cbi-value' }, [
                 E('label', { 'class': 'cbi-value-title' }, _('Service Status')),
                 E('div', { 'class': 'cbi-value-field', 'style': valueStyle, 'id': 'nordvpnlite-service-status' }, statusText)
-            ]),
-            E('div', { 'class': 'cbi-value' }, [
-                E('label', { 'class': 'cbi-value-title' }, _('Service Control')),
-                E('div', { 'class': 'cbi-value-field' }, E('div', {}, [
-                    btnStart,
-                    btnStop
-                ]))
             ]),
             E('div', { 'class': 'cbi-value' }, [
                 E('label', { 'class': 'cbi-value-title' }, _('Runtime Status')),
@@ -495,54 +456,19 @@ return view.extend({
         window.setTimeout(poll, 1000);
     },
 
-    handleServiceAction: function (action) {
-        var messages = {
-            start: _('Starting NordVPN Lite service'),
-            reload: _('Applying NordVPN Lite configuration'),
-            stop: _('Stopping NordVPN Lite service')
-        };
+    applyServiceConfiguration: function () {
+        ui.showModal(null, [
+            E('p', { 'class': 'spinning' }, _('Applying NordVPN Lite configuration'))
+        ]);
 
-        var runAction = function () {
-            ui.showModal(null, [
-                E('p', { 'class': 'spinning' }, messages[action] || _('Updating NordVPN Lite service'))
-            ]);
-
-            return callSetServiceAction(action);
-        };
-        var actionPromise;
-
-        if (action === 'start') {
-            actionPromise = this.saveConfig(false).then(function (saved) {
-                if (!saved)
-                    return null;
-
-                return runAction();
-            });
-        } else {
-            actionPromise = runAction();
-        }
-
-        return actionPromise.then(function (res) {
-            if (res === null)
-                return;
-
+        return callSetServiceAction('reload').then(function (res) {
             if (!res || res.success !== true) {
                 ui.hideModal();
                 ui.addNotification(_('Action failed'), E('p', (res && res.error) ? String(res.error) : _('Could not control the service.')));
                 return;
             }
 
-            if (action === 'start')
-                return this.pollServiceStatus(true);
-
-            if (action === 'stop')
-                return this.pollServiceStatus(false);
-
-            if (action === 'reload')
-                return this.pollServiceStatus(this.configEnabled === true);
-
-            ui.hideModal();
-            location.reload();
+            return this.pollServiceStatus(this.configEnabled === true);
         }.bind(this)).catch(function (err) {
             ui.hideModal();
             ui.addNotification(_('Action failed'), E('p', err ? String(err) : _('Unknown error')));
@@ -694,7 +620,7 @@ return view.extend({
         o = this.enabled_option = s.option(form.Flag, 'enabled', _('Enabled'));
         o.default = '0';
         o.rmempty = false;
-        o.description = _('Enable automatic startup, including after reboot. When disabled, Start can still launch a manual session.');
+        o.description = _('Enable NordVPN Lite, including automatic startup after reboot. Save stores the setting; Save & Apply also starts or stops the service.');
 
         o = this.vpn_mode_option = s.option(form.ListValue, 'vpn_mode', _('VPN Selection'));
         o.value('recommended', _('Recommended server'));
@@ -914,14 +840,16 @@ return view.extend({
         }
     },
 
-    handleSave: null,
+    handleSave: function () {
+        return this.saveConfig(true);
+    },
 
     handleSaveApply: function () {
         return this.saveConfig(false).then(function (saved) {
             if (!saved)
                 return null;
 
-            return this.handleServiceAction('reload');
+            return this.applyServiceConfiguration();
         }.bind(this));
     },
 
