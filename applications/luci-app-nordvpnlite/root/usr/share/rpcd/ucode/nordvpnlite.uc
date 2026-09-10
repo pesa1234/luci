@@ -7,7 +7,7 @@ const SERVICE_NAME = 'nordvpnlite';
 const UCI_CONFIG = 'nordvpnlite';
 const UCI_SECTION = 'settings';
 const SERVERS_API_URL = 'https://api.nordvpn.com/v1/servers?limit=20000';
-const VALID_ACTIONS = ['start', 'stop', 'restart', 'reload', 'enable', 'disable'];
+const VALID_ACTIONS = ['start', 'stop', 'restart', 'reload'];
 const COMMAND_TIMEOUT_SECONDS = 30;
 const SERVER_LOOKUP_TIMEOUT = 45;
 let fs = require('fs');
@@ -338,14 +338,13 @@ return {
 				if (!has_service()) {
 					return {
 						installed: false,
-						enabled: false,
+						config_enabled: config_enabled(),
 						running: false
 					};
 				}
 
 				return {
 					installed: true,
-					enabled: service_action('enabled') == 0,
 					config_enabled: config_enabled(),
 					running: service_action('running') == 0
 				};

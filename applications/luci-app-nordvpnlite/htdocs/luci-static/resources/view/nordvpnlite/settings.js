@@ -303,9 +303,7 @@ return view.extend({
                 this.updateRuntimeStatusPanel(null);
                 this.setServiceStatusText(this.serviceStatus.config_enabled !== true
                     ? _('Not running (configuration disabled)')
-                    : (this.serviceStatus.enabled
-                        ? _('Not running')
-                        : _('Not running (autostart disabled)')));
+                    : _('Not running'));
                 ui.addNotification(_('Status loaded'), E('p', _('NordVPN Lite is not running.')));
                 return;
             }
@@ -335,7 +333,6 @@ return view.extend({
                 return {
                     rpcAvailable: false,
                     installed: false,
-                    enabled: false,
                     config_enabled: false,
                     running: false
                 };
@@ -348,7 +345,6 @@ return view.extend({
 
     renderServicePanel: function (status) {
         var buttonStyle = 'margin-right:0.5rem; margin-bottom:0.25rem;';
-        var enableStyle = buttonStyle + ' margin-left:1rem;';
         var valueStyle = 'display:flex; align-items:center; min-height:2.3em;';
         var runtimeData = this.getRuntimeStatusDisplayData(this.runtimeStatus);
         var configEnabled = status.config_enabled === true;
@@ -356,8 +352,6 @@ return view.extend({
         var canStart = false;
         var canRestart = false;
         var canStop = false;
-        var canEnable = false;
-        var canDisable = false;
 
         if (status.rpcAvailable === false)
             statusText = _('RPC backend unavailable');
@@ -369,15 +363,10 @@ return view.extend({
             statusText = _('Not running (configuration disabled)');
         else if (status.running)
             statusText = _('Running');
-        else if (status.enabled)
-            statusText = _('Not running');
         else
-            statusText = _('Not running (autostart disabled)');
+            statusText = _('Not running');
 
         if (status.installed) {
-            canEnable = !status.enabled;
-            canDisable = status.enabled;
-
             if (status.running) {
                 canRestart = configEnabled;
                 canStop = true;
@@ -419,28 +408,6 @@ return view.extend({
             }.bind(this)
         }, _('Stop'));
 
-        var btnEnable = E('button', {
-            'class': 'btn cbi-button cbi-button-apply',
-            'type': 'button',
-            'style': enableStyle,
-            'disabled': canEnable ? null : true,
-            'click': function (ev) {
-                ev.preventDefault();
-                return this.handleServiceAction('enable');
-            }.bind(this)
-        }, _('Enable autostart'));
-
-        var btnDisable = E('button', {
-            'class': 'btn cbi-button cbi-button-reset',
-            'type': 'button',
-            'style': buttonStyle,
-            'disabled': canDisable ? null : true,
-            'click': function (ev) {
-                ev.preventDefault();
-                return this.handleServiceAction('disable');
-            }.bind(this)
-        }, _('Disable autostart'));
-
         var btnGetStatus = E('button', {
             'class': 'btn cbi-button cbi-button-apply',
             'type': 'button',
@@ -462,9 +429,7 @@ return view.extend({
                 E('div', { 'class': 'cbi-value-field' }, E('div', {}, [
                     btnStart,
                     btnRestart,
-                    btnStop,
-                    btnEnable,
-                    btnDisable
+                    btnStop
                 ]))
             ]),
             E('div', { 'class': 'cbi-value' }, [
@@ -549,9 +514,7 @@ return view.extend({
             start: _('Starting NordVPN Lite service'),
             restart: _('Restarting NordVPN Lite service'),
             reload: _('Applying NordVPN Lite configuration'),
-            stop: _('Stopping NordVPN Lite service'),
-            enable: _('Enabling NordVPN Lite autostart'),
-            disable: _('Disabling NordVPN Lite autostart')
+            stop: _('Stopping NordVPN Lite service')
         };
 
         var runAction = function () {
@@ -702,7 +665,6 @@ return view.extend({
         var serviceStatus = data[1] || {
             rpcAvailable: false,
             installed: false,
-            enabled: false,
             config_enabled: false,
             running: false
         };
