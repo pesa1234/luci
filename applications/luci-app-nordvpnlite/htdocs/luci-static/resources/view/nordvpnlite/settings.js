@@ -350,7 +350,6 @@ return view.extend({
         var configEnabled = status.config_enabled === true;
         var statusText;
         var canStart = false;
-        var canRestart = false;
         var canStop = false;
 
         if (status.rpcAvailable === false)
@@ -368,7 +367,6 @@ return view.extend({
 
         if (status.installed) {
             if (status.running) {
-                canRestart = true;
                 canStop = true;
             } else {
                 canStart = true;
@@ -385,17 +383,6 @@ return view.extend({
                 return this.handleServiceAction('start');
             }.bind(this)
         }, _('Start'));
-
-        var btnRestart = E('button', {
-            'class': 'btn cbi-button cbi-button-apply',
-            'type': 'button',
-            'style': buttonStyle,
-            'disabled': canRestart ? null : true,
-            'click': function (ev) {
-                ev.preventDefault();
-                return this.handleServiceAction('restart');
-            }.bind(this)
-        }, _('Restart'));
 
         var btnStop = E('button', {
             'class': 'btn cbi-button cbi-button-reset',
@@ -428,7 +415,6 @@ return view.extend({
                 E('label', { 'class': 'cbi-value-title' }, _('Service Control')),
                 E('div', { 'class': 'cbi-value-field' }, E('div', {}, [
                     btnStart,
-                    btnRestart,
                     btnStop
                 ]))
             ]),
@@ -512,7 +498,6 @@ return view.extend({
     handleServiceAction: function (action) {
         var messages = {
             start: _('Starting NordVPN Lite service'),
-            restart: _('Restarting NordVPN Lite service'),
             reload: _('Applying NordVPN Lite configuration'),
             stop: _('Stopping NordVPN Lite service')
         };
@@ -526,7 +511,7 @@ return view.extend({
         };
         var actionPromise;
 
-        if (action === 'start' || action === 'restart') {
+        if (action === 'start') {
             actionPromise = this.saveConfig(false).then(function (saved) {
                 if (!saved)
                     return null;
@@ -547,7 +532,7 @@ return view.extend({
                 return;
             }
 
-            if (action === 'start' || action === 'restart')
+            if (action === 'start')
                 return this.pollServiceStatus(true);
 
             if (action === 'stop')
