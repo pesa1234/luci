@@ -45,4 +45,9 @@ if ! uci show advanced.@advanced_packet_steering[0] >/dev/null 2>&1; then
     uci commit advanced
 fi
 
+if ! uci -q get advanced.@advanced_packet_steering[0].advanced_packet_steering_enable >/dev/null 2>&1; then
+    uci set advanced.@advanced_packet_steering[0].advanced_packet_steering_enable='0'
+    uci commit advanced
+fi
+
 return 0

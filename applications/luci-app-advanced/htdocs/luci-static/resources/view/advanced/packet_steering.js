@@ -14,7 +14,7 @@ return view.extend({
 
 	render: function() {
 		let m = new form.Map('advanced');
-		let pktSteering = uci.get('network', 'globals', 'packet_steering') || '0';
+		let pktSteering = uci.get('network', 'globals', 'packet_steering') || '1';
 
 		let s = m.section(form.TypedSection, 'advanced_packet_steering', _('Packet Steering'),
 			_('Configures Receive Packet Steering (RPS) by assigning network interfaces to specific CPU cores. This can distribute incoming traffic more evenly across the system and improve overall responsiveness.'));
