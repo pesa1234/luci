@@ -1882,7 +1882,7 @@ return view.extend({
 		o.value('0', _('Disabled'));
 		o.value('1',_('Enabled'));
 		o.value('2',_('Enabled (all CPUs)'));
-		o.default = '0';
+		o.default = '1';
 		o.optional = true;
 
 		o = s.option(form.Value, 'steering_flows', _('Steering flows (<abbr title="Receive Packet Steering">RPS</abbr>)'),
