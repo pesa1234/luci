@@ -1035,8 +1035,26 @@ return view.extend({
 					o = ss.taboption('general', form.Flag, 'legacy_rates', _('Allow legacy 802.11b rates'), _('Legacy or badly behaving devices may require legacy 802.11b rates to interoperate. Airtime efficiency may be significantly reduced where these are used. It is recommended to not allow 802.11b rates where possible.'));
 					o.depends({'_freq': '2g', '!contains': true});
 
-					o = ss.taboption('general', form.Flag, 'zero_wait_dfs', _('Enable zero-wait DFS'), _('On supported 5 GHz radios, start the AP on channel 36 while channels 52–64 complete DFS CAC in the background, then switch to the selected channel. Requires a fixed 80 or 160 MHz channel.'));
+					o = ss.taboption('general', form.Flag, 'zero_wait_dfs', _('Enable zero-wait DFS'),
+						_('On supported MT7981/MT7986 radios, the AP starts on channel 36 while channels 52–64 complete the DFS CAC in the background (6 minutes in ETSI countries), then switches to the selected channel. The country code must be set.') + '<br />' +
+						_('Available at 80 MHz on channel 52, 56, 60 or 64 (channel 36 moves to 52 after the CAC) and at 160 MHz on any channel from 36 to 64.'));
 					o.depends({'_freq': '5g', '!contains': true});
+					// Match the channels wifi-scripts stages; hide and drop the flag otherwise.
+					o.checkDepends = function(section_id) {
+						const freq = this.map.lookupOption('_freq', section_id);
+						const value = freq?.[0].isActive(freq[1]) ? freq[0].formvalue(freq[1]) : null;
+						const staged = {
+							80: [ 36, 52, 56, 60, 64 ],
+							160: [ 36, 40, 44, 48, 52, 56, 60, 64 ]
+						};
+						const width = /^(?:VHT|HE|EHT)80$/.test(value?.[0]) ? 80 :
+							/^(?:VHT|HE)160$/.test(value?.[0]) ? 160 : 0;
+
+						if (!width || !staged[width].includes(+value[2]))
+							return false;
+
+						return form.Flag.prototype.checkDepends.call(this, section_id);
+					};
 
 					o = ss.taboption('general', CBIWifiTxPowerValue, 'txpower', _('Maximum transmit power'), _('Specifies the maximum transmit power the wireless radio may use. Depending on regulatory requirements and wireless usage, the actual transmit power may be reduced by the driver.'));
 					o.wifiNetwork = radioNet;
