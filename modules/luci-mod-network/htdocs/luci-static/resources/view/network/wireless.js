@@ -321,6 +321,15 @@ function eht_compat_default(section_id) {
 
 // Define a class CBIWifiFrequencyValue that extends form.Value
 var CBIWifiFrequencyValue = form.Value.extend({
+	// Width and channel combinations that wifi-scripts stages for zero-wait DFS
+	zeroWaitDfsChannels: {
+		VHT80: [ 36, 52, 56, 60, 64 ],
+		HE80: [ 36, 52, 56, 60, 64 ],
+		EHT80: [ 36, 52, 56, 60, 64 ],
+		VHT160: [ 36, 40, 44, 48, 52, 56, 60, 64 ],
+		HE160: [ 36, 40, 44, 48, 52, 56, 60, 64 ]
+	},
+
 	// Declare an RPC method to get the frequency list for a given device
 	callFrequencyList: rpc.declare({
 		object: 'iwinfo',
@@ -436,25 +445,55 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		}, this));
 	},
 
-	// Set values in the select element
-	setValues: function(sel, vals) {
+	// Set values in the select element, optionally limited by filter
+	setValues: function(sel, vals, filter) {
 		if (sel.vals)
-			sel.vals.selected = sel.selectedIndex;
+			sel.vals.selected = sel.value;
 
 		sel.options.length = 0;
 
 		for (let i = 0; vals && i < vals.length; i += 3)
-			if (vals[i+2]?.available)
+			if (vals[i+2]?.available && (!filter || filter(vals[i])))
 				sel.add(E('option', { value: vals[i] }, [ vals[i+1] ]));
 
-		if (Number.isInteger(vals?.selected)) sel.selectedIndex = vals.selected;
+		if (vals?.selected != null) sel.value = vals.selected;
+		if (sel.selectedIndex < 0 && sel.options.length) sel.selectedIndex = 0;
 
 		sel.parentNode.style.display = (sel.options.length <= 1) ? 'none' : '';
 		sel.vals = vals;
 	},
 
+	// Whether the selected mode and band can stage zero-wait DFS
+	hasZeroWaitDfs: function(elem) {
+		const mode = elem.querySelector('.mode');
+		const band = elem.querySelector('.band');
+		const htmodes = this.htmodes[mode.value] ?? [];
+
+		if (band.value != '5g')
+			return false;
+
+		for (let i = 0; i < htmodes.length; i += 3)
+			if (htmodes[i+2]?.available && this.zeroWaitDfsChannels[htmodes[i]])
+				return true;
+
+		return false;
+	},
+
+	// Whether zero-wait DFS is enabled; falls back to the saved value
+	// while the flag is not rendered yet
+	isZeroWaitDfs: function(elem) {
+		const section_id = this.section.section;
+		const flag = this.map.lookupOption('zero_wait_dfs', section_id);
+
+		if (!flag || !this.hasZeroWaitDfs(elem))
+			return false;
+
+		return flag[0].getUIElement(flag[1])
+			? flag[0].formvalue(flag[1]) == flag[0].enabled
+			: uci.get('wireless', section_id, 'zero_wait_dfs') == '1';
+	},
+
 	toggleWifiMode: function(elem) {
-		this.toggleWifiHTMode(elem);
 		this.toggleWifiBand(elem);
 	},
 
@@ -462,7 +501,8 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		const mode = elem.querySelector('.mode');
 		const bwdt = elem.querySelector('.htmode');
 
-		this.setValues(bwdt, this.htmodes[mode.value]);
+		this.setValues(bwdt, this.htmodes[mode.value],
+			this.isZeroWaitDfs(elem) ? v => this.zeroWaitDfsChannels[v] : null);
 	},
 
 	toggleWifiBand: function(elem) {
@@ -470,6 +510,7 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		const band = elem.querySelector('.band');
 
 		this.setValues(band, this.bands[mode.value]);
+		this.toggleWifiHTMode(elem);
 		this.toggleWifiChannel(elem);
 
 		this.map.checkDepends();
@@ -479,20 +520,24 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		const band = elem.querySelector('.band');
 		const chan = elem.querySelector('.channel');
 		const restricted_chan = elem.querySelector('.restricted_channel');
-		const channels = this.channels[band.value];
+		const channels = this.channels[band.value] ?? [];
+		let no_outdoor = false;
 
-		if (chan.selectedIndex < 0)
-			return;
+		for (let i = 0; i < channels.length; i += 3)
+			if (String(channels[i]) == chan.value)
+				no_outdoor = channels[i+2].no_outdoor;
 
-		const no_outdoor = channels[(chan.selectedIndex*3)+2].no_outdoor;
 		restricted_chan.style.display = no_outdoor ? '': 'none';
 	},
 
 	toggleWifiChannel: function(elem) {
 		const band = elem.querySelector('.band');
 		const chan = elem.querySelector('.channel');
+		const bwdt = elem.querySelector('.htmode');
+		const staged = this.isZeroWaitDfs(elem) ? (this.zeroWaitDfsChannels[bwdt.value] ?? []) : null;
 
-		this.setValues(chan, this.channels[band.value]);
+		this.setValues(chan, this.channels[band.value],
+			staged ? v => staged.includes(+v) : null);
 
 		this.map.checkDepends();
 		this.checkWifiChannelRestriction(elem);
@@ -540,7 +585,14 @@ var CBIWifiFrequencyValue = form.Value.extend({
 		this.toggleWifiBand(elem);
 
 		bwdt.value = htval;
+		if (bwdt.selectedIndex < 0 && bwdt.options.length)
+			bwdt.selectedIndex = 0;
+
+		this.toggleWifiChannel(elem);
+
 		chan.value = chval ?? (chan.options[0] ? chan.options[0].value : 'auto');
+		if (chan.selectedIndex < 0 && chan.options.length)
+			chan.selectedIndex = 0;
 
 		this.checkWifiChannelRestriction(elem);
 
@@ -586,7 +638,7 @@ var CBIWifiFrequencyValue = form.Value.extend({
 				E('select', {
 					'class': 'htmode',
 					'style': 'width:auto',
-					'change': L.bind(this.map.checkDepends, this.map),
+					'change': L.bind(this.toggleWifiChannel, this, elem),
 					'disabled': (this.disabled != null) ? this.disabled : this.map.readonly
 				})
 			]),
@@ -1036,24 +1088,26 @@ return view.extend({
 					o.depends({'_freq': '2g', '!contains': true});
 
 					o = ss.taboption('general', form.Flag, 'zero_wait_dfs', _('Enable zero-wait DFS'),
-						_('On supported MT7981/MT7986 radios, the AP starts on channel 36 while channels 52–64 complete the DFS CAC in the background (6 minutes in ETSI countries), then switches to the selected channel. The country code must be set.') + '<br />' +
-						_('Available at 80 MHz on channel 52, 56, 60 or 64 (channel 36 moves to 52 after the CAC) and at 160 MHz on any channel from 36 to 64.'));
+						_('On supported MT7981/MT7986 radios, the AP starts immediately on channel 36 while channels 52–64 complete the DFS CAC in the background (6 minutes in ETSI countries), then switches to the selected channel. The country code must be set.') + '<br />' +
+						_('When enabled, automatic channel selection is not available and the operating frequency only offers the combinations that can be staged: channel 36, 52, 56, 60 or 64 at 80 MHz (channel 36 moves to 52 after the CAC) and channels 36 to 64 at 160 MHz (the AP runs at 80 MHz on channel 36 until the CAC completes).'));
 					o.depends({'_freq': '5g', '!contains': true});
-					// Match the channels wifi-scripts stages; hide and drop the flag otherwise.
+					// Hide and drop the flag when the selected mode has no 80 or 160 MHz width.
 					o.checkDepends = function(section_id) {
 						const freq = this.map.lookupOption('_freq', section_id);
-						const value = freq?.[0].isActive(freq[1]) ? freq[0].formvalue(freq[1]) : null;
-						const staged = {
-							80: [ 36, 52, 56, 60, 64 ],
-							160: [ 36, 40, 44, 48, 52, 56, 60, 64 ]
-						};
-						const width = /^(?:VHT|HE|EHT)80$/.test(value?.[0]) ? 80 :
-							/^(?:VHT|HE)160$/.test(value?.[0]) ? 160 : 0;
+						const node = freq ? this.map.findElement('data-field', freq[0].cbid(freq[1])) : null;
 
-						if (!width || !staged[width].includes(+value[2]))
+						if (node && !freq[0].hasZeroWaitDfs(node))
 							return false;
 
 						return form.Flag.prototype.checkDepends.call(this, section_id);
+					};
+					// Limit the width and channel lists to the staged combinations.
+					o.onchange = function(ev, section_id) {
+						const freq = this.map.lookupOption('_freq', section_id);
+						const node = freq ? this.map.findElement('data-field', freq[0].cbid(freq[1])) : null;
+
+						if (node)
+							freq[0].toggleWifiBand(node);
 					};
 
 					o = ss.taboption('general', CBIWifiTxPowerValue, 'txpower', _('Maximum transmit power'), _('Specifies the maximum transmit power the wireless radio may use. Depending on regulatory requirements and wireless usage, the actual transmit power may be reduced by the driver.'));
