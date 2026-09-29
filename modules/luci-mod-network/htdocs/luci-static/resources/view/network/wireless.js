@@ -323,9 +323,9 @@ function eht_compat_default(section_id) {
 var CBIWifiFrequencyValue = form.Value.extend({
 	// Width and channel combinations that wifi-scripts stages for zero-wait DFS
 	zeroWaitDfsChannels: {
-		VHT80: [ 36, 52, 56, 60, 64 ],
-		HE80: [ 36, 52, 56, 60, 64 ],
-		EHT80: [ 36, 52, 56, 60, 64 ],
+		VHT80: [ 52, 56, 60, 64 ],
+		HE80: [ 52, 56, 60, 64 ],
+		EHT80: [ 52, 56, 60, 64 ],
 		VHT160: [ 36, 40, 44, 48, 52, 56, 60, 64 ],
 		HE160: [ 36, 40, 44, 48, 52, 56, 60, 64 ]
 	},
@@ -1089,7 +1089,7 @@ return view.extend({
 
 					o = ss.taboption('general', form.Flag, 'zero_wait_dfs', _('Enable zero-wait DFS'),
 						_('On supported MT7981/MT7986 radios, the AP starts immediately on channel 36 while channels 52–64 complete the DFS CAC in the background (6 minutes in ETSI countries), then switches to the selected channel. The country code must be set.') + '<br />' +
-						_('When enabled, automatic channel selection is not available and the operating frequency only offers the combinations that can be staged: channel 36, 52, 56, 60 or 64 at 80 MHz (channel 36 moves to 52 after the CAC) and channels 36 to 64 at 160 MHz (the AP runs at 80 MHz on channel 36 until the CAC completes).'));
+						_('When enabled, automatic channel selection is not available and the operating frequency only offers the combinations that can be staged: channel 52, 56, 60 or 64 at 80 MHz and channels 36 to 64 at 160 MHz (the AP runs at 80 MHz on channel 36 until the CAC completes).'));
 					o.depends({'_freq': '5g', '!contains': true});
 					// Hide and drop the flag when the selected mode has no 80 or 160 MHz width.
 					o.checkDepends = function(section_id) {
