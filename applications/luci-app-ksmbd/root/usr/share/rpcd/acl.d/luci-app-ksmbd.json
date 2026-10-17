@@ -4,6 +4,8 @@
 		"read": {
 			"file": {
 				"/etc/ksmbd/ksmbd.conf.template": [ "read" ],
+				"/var/run/config/ksmbd": [ "read" ],
+				"/tmp/run/config/ksmbd": [ "read" ],
 				"/usr/sbin/ksmbd.mountd": [ "exec" ],
 				"/sbin/modinfo": [ "exec" ]
 			},

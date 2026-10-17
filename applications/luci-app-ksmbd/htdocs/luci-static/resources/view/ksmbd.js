@@ -5,6 +5,54 @@
 'require uci';
 'require tools.widgets as widgets';
 
+// Shares added at runtime (ksmbd-autoshare, ksmbd-hotplug) are kept in
+// /var/run/config/ksmbd, which rpcd's uci does not see
+function parseRuntimeShares(data) {
+	var shares = [], s = null;
+
+	(data || '').split('\n').forEach(function(line) {
+		var m = line.match(/^\s*config\s+(\S+)/);
+
+		if (m) {
+			s = (m[1] == 'share') ? {} : null;
+			if (s)
+				shares.push(s);
+		}
+		else if (s && (m = line.match(/^\s*option\s+(\S+)\s+(?:'((?:[^']|'\\'')*)'|(\S+))\s*$/))) {
+			s[m[1]] = (m[2] != null) ? m[2].replace(/'\\''/g, "'") : m[3];
+		}
+	});
+
+	return shares;
+}
+
+function yesNo(value, dflt) {
+	return /^(1|yes|on|true|enabled)$/.test(value != null ? value : dflt) ? _('Yes') : _('No');
+}
+
+function renderRuntimeShares(shares) {
+	var table = E('table', { 'class': 'table cbi-section-table' }, [
+		E('tr', { 'class': 'tr table-titles' }, [
+			E('th', { 'class': 'th' }, _('Name')),
+			E('th', { 'class': 'th' }, _('Path')),
+			E('th', { 'class': 'th' }, _('Read-only')),
+			E('th', { 'class': 'th' }, _('Allow guests'))
+		])
+	]);
+
+	cbi_update_table(table, shares.map(function(s) {
+		// ksmbd.conf defaults: read only = yes, guest ok = no
+		return [ s.name, s.path, yesNo(s.read_only, 'yes'), yesNo(s.guest_ok, 'no') ];
+	}), _('No automatic shares'));
+
+	return E('div', { 'class': 'cbi-section cbi-tblsection' }, [
+		E('h3', _('Automatic shares')),
+		E('div', { 'class': 'cbi-section-descr' },
+			_('Shares added at runtime for removable devices, e.g. by ksmbd-autoshare. They are not stored in /etc/config/ksmbd and are removed when the device is unplugged.')),
+		table
+	]);
+}
+
 return view.extend({
 	load: function() {
 		return Promise.all([
@@ -12,6 +60,7 @@ return view.extend({
 			L.resolveDefault(fs.stat('/etc/config/fstab'), null),
 			L.resolveDefault(fs.exec('/usr/sbin/ksmbd.mountd', ['-V']), {}).then(function(res) { return L.toArray((res.stdout || '').match(/version : (\S+)/))[1] }),
 			L.resolveDefault(fs.exec('/sbin/modinfo', ['ksmbd']), {}).then(function(res) { return L.toArray((res.stdout || '').match(/vermagic:\t(\S+)/))[1] }),
+			L.resolveDefault(fs.read('/var/run/config/ksmbd'), null),
 		]);
 	},
 	render: function(stats) {
@@ -128,6 +177,12 @@ return view.extend({
 		o.placeholder = '0777';
 		o.rmempty = false;
 
-		return m.render();
+		return m.render().then(function(node) {
+			// Only when the file exists, i.e. a runtime share was added since boot
+			if (stats[4] != null)
+				node.appendChild(renderRuntimeShares(parseRuntimeShares(stats[4])));
+
+			return node;
+		});
 	}
 });
