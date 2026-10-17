@@ -9,11 +9,20 @@
 				"/usr/sbin/ksmbd.mountd": [ "exec" ],
 				"/sbin/modinfo": [ "exec" ]
 			},
+			"ubus": {
+				"luci.ksmbd": [ "list" ]
+			},
 			"uci": [ "ksmbd" ]
 		},
 		"write": {
 			"file": {
-				"/etc/ksmbd/ksmbd.conf.template": [ "write" ]
+				"/etc/ksmbd/ksmbd.conf.template": [ "write" ],
+				"/var/run/config/ksmbd": [ "write" ],
+				"/tmp/run/config/ksmbd": [ "write" ],
+				"/etc/init.d/ksmbd reload": [ "exec" ]
+			},
+			"ubus": {
+				"luci.ksmbd": [ "add", "passwd", "delete" ]
 			},
 			"uci": [ "ksmbd" ]
 		}

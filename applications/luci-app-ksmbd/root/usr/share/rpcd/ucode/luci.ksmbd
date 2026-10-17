@@ -1,0 +1,102 @@
+#!/usr/bin/ucode
+
+'use strict';
+
+import { pipe, popen, readfile } from 'fs';
+
+const adduser = '/usr/sbin/ksmbd.adduser';
+const pwddb = '/etc/ksmbd/ksmbdpwd.db';
+
+function shellquote(s) {
+	return "'" + replace(s, "'", "'\\''") + "'";
+}
+
+function valid(s) {
+	return type(s) == 'string' && length(s) > 0 && !match(s, /[\r\n]/);
+}
+
+// ksmbd.adduser checks the name itself and notifies ksmbd.mountd.
+// The password goes through a pipe, typed twice as at the prompt,
+// so it never shows up on the command line.
+function run(args, password) {
+	let input;
+
+	if (password != null) {
+		input = pipe();
+		input[1].write(password + '\n' + password + '\n');
+		input[1].close();
+	}
+
+	const fd = popen(adduser + ' ' + join(' ', map(args, shellquote)) +
+		(input ? ' <&' + input[0].fileno() : '') + ' 2>&1');
+	const output = fd.read('all');
+	const code = fd.close();
+
+	if (input)
+		input[0].close();
+
+	if (code == 0)
+		return { result: true };
+
+	// Prompts and messages all go to stdout, errors are tagged "ERROR:"
+	const errors = [];
+
+	for (let line in split(output || '', /[\r\n]/)) {
+		const m = match(line, /ERROR: (.*)$/);
+
+		if (m)
+			push(errors, m[1]);
+	}
+
+	return { result: false, error: length(errors) ? join('; ', errors) : 'ksmbd.adduser failed (' + code + ')' };
+}
+
+const methods = {
+	list: {
+		call: function() {
+			const users = [];
+
+			// Only the names, the database also holds the password hashes
+			for (let line in split(readfile(pwddb) || '', '\n')) {
+				const name = split(line, ':')[0];
+
+				if (length(name))
+					push(users, name);
+			}
+
+			return { users: sort(users) };
+		}
+	},
+
+	add: {
+		args: { name: 'name', password: 'password' },
+		call: function(request) {
+			if (!valid(request.args.name) || !valid(request.args.password))
+				return { result: false, error: 'Invalid user name or password' };
+
+			return run([ '-a', '--', request.args.name ], request.args.password);
+		}
+	},
+
+	passwd: {
+		args: { name: 'name', password: 'password' },
+		call: function(request) {
+			if (!valid(request.args.name) || !valid(request.args.password))
+				return { result: false, error: 'Invalid user name or password' };
+
+			return run([ '-u', '--', request.args.name ], request.args.password);
+		}
+	},
+
+	delete: {
+		args: { name: 'name' },
+		call: function(request) {
+			if (!valid(request.args.name))
+				return { result: false, error: 'Invalid user name' };
+
+			return run([ '-d', '--', request.args.name ]);
+		}
+	}
+};
+
+return { 'luci.ksmbd': methods };
