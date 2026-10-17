@@ -178,18 +178,26 @@ function editRuntimeShare(ctx, share) {
 		});
 	}
 
-	// Copy it to /etc/config/ksmbd, which wins over the runtime share
+	// Copy it to /etc/config/ksmbd, which wins over the runtime share.
+	// The share is added from the save callback, after the form has been
+	// parsed: parsing drops the options of sections it has not loaded yet.
 	function savePermanent() {
-		var values = Object.assign({}, share.opts, formValues()),
-		    sid = uci.add('ksmbd', 'share');
-
-		for (var opt in values)
-			if (values[opt] != null && values[opt] !== '')
-				uci.set('ksmbd', sid, opt, values[opt]);
+		var values = Object.assign({}, share.opts, formValues());
 
 		ui.hideModal();
 
-		return ctx.view.handleSaveApply(null, '0').then(ctx.refresh);
+		return ctx.map.save(function() {
+			var sid = uci.add('ksmbd', 'share');
+
+			for (var opt in values)
+				if (values[opt] != null && values[opt] !== '')
+					uci.set('ksmbd', sid, opt, values[opt]);
+		}, true).then(function() {
+			ctx.refresh();
+			ui.changes.apply(true);
+		}).catch(function(err) {
+			ui.addNotification(null, E('p', err.message), 'error');
+		});
 	}
 
 	return m.render().then(function(node) {
@@ -226,9 +234,9 @@ function updateRuntimeShares(ctx) {
 	}), _('No automatic shares'));
 }
 
-function renderRuntimeShares(view, data) {
+function renderRuntimeShares(map, data) {
 	var ctx = {
-		view: view,
+		map: map,
 		shares: parseRuntimeShares(data),
 		table: E('table', { 'class': 'table cbi-section-table' }, [
 			E('tr', { 'class': 'tr table-titles' }, [
@@ -510,17 +518,17 @@ return view.extend({
 		o.placeholder = '0777';
 		o.rmempty = false;
 
-		return m.render().then(L.bind(function(node) {
+		return m.render().then(function(node) {
 			var nodes = [ node ];
 
 			// Only when the file exists, i.e. a runtime share was added since boot
 			if (stats[4] != null)
-				nodes.push(renderRuntimeShares(this, stats[4]));
+				nodes.push(renderRuntimeShares(m, stats[4]));
 
 			nodes.push(renderUsers(stats[5].users));
 
 			// Kept outside the map node, which is rebuilt on save
 			return E('div', {}, nodes);
-		}, this));
+		});
 	}
 });
