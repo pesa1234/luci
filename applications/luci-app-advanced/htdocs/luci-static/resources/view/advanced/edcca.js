@@ -200,12 +200,18 @@ function restartWifi() {
 
 return view.extend({
 	render: function() {
-		let s, o;
+		// wedoffload means mt7915e is loaded: its connac2 firmware
+		// (MT7915, MT7916, MT7986, MT7981) has no BW160 threshold.
+		const hasBw160 = !L.hasSystemFeature('wedoffload');
+		let description, s, o;
 
 		map = new form.Map('advanced');
 
-		s = map.section(form.TypedSection, 'edcca', _('EDCCA'),
-			_('Energy Detect Clear Channel Assessment (EDCCA) controls how aggressively the radio considers the channel busy before transmitting. Select a preset to preview fixed values in read-only fields, or choose Custom to edit the values directly. Wi-Fi is restarted only after Save & Apply.'));
+		description = _('Energy Detect Clear Channel Assessment (EDCCA) controls how aggressively the radio considers the channel busy before transmitting. Select a preset to preview fixed values in read-only fields, or choose Custom to edit the values directly. Wi-Fi is restarted only after Save & Apply.');
+		if (!hasBw160)
+			description += ' ' + _('The BW160 threshold is not shown: the firmware of this device has thresholds for BW20, BW40 and BW80 only.');
+
+		s = map.section(form.TypedSection, 'edcca', _('EDCCA'), description);
 		s.anonymous = true;
 		s.addremove = false;
 
@@ -338,28 +344,31 @@ return view.extend({
 			return getPresetDisplayValue(section_id, 'thres_2');
 		};
 
-		o = s.option(form.Value, 'thres_3', _('EDCCA Threshold BW160'), _('Code default: -54 dBm. Range: -126 to 0 dBm.'));
-		o.value('-59', _('-59'));
-		o.value('-54', _('-54'));
-		o.value('-52', _('-52'));
-		o.value('-49', _('-49'));
-		o.datatype = 'integer';
-		o.retain = true;
-		addCustomDepends(o);
-		o.cfgvalue = function(section_id) {
-			return getUciValue(section_id, 'thres_3', defaultProfile.thres_3);
-		};
-		o.write = function(section_id, value) {
-			needsWifiRestart = true;
-			uci.set('advanced', section_id, 'thres_3', value);
-		};
+		// Presets still write thres_3, since hostapd takes four values.
+		if (hasBw160) {
+			o = s.option(form.Value, 'thres_3', _('EDCCA Threshold BW160'), _('Code default: -54 dBm. Range: -126 to 0 dBm.'));
+			o.value('-59', _('-59'));
+			o.value('-54', _('-54'));
+			o.value('-52', _('-52'));
+			o.value('-49', _('-49'));
+			o.datatype = 'integer';
+			o.retain = true;
+			addCustomDepends(o);
+			o.cfgvalue = function(section_id) {
+				return getUciValue(section_id, 'thres_3', defaultProfile.thres_3);
+			};
+			o.write = function(section_id, value) {
+				needsWifiRestart = true;
+				uci.set('advanced', section_id, 'thres_3', value);
+			};
 
-		o = s.option(form.Value, '_preset_thres_3', _('EDCCA Threshold BW160'), _('Preset value. Switch to Custom to edit.'));
-		o.readonly = true;
-		addPresetDepends(o);
-		o.cfgvalue = function(section_id) {
-			return getPresetDisplayValue(section_id, 'thres_3');
-		};
+			o = s.option(form.Value, '_preset_thres_3', _('EDCCA Threshold BW160'), _('Preset value. Switch to Custom to edit.'));
+			o.readonly = true;
+			addPresetDepends(o);
+			o.cfgvalue = function(section_id) {
+				return getPresetDisplayValue(section_id, 'thres_3');
+			};
+		}
 
 		return map.render().then(function(nodes) {
 			uci.sections('advanced', 'edcca', function(section) {
