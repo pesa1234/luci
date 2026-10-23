@@ -159,6 +159,41 @@ const UIElement = baseclass.extend(/** @lends LuCI.ui.AbstractElement.prototype 
 	},
 
 	/**
+	 * Mark the widget as invalid with the given message.
+	 *
+	 * Used for constraints that are only checked when the form is saved, e.g.
+	 * an empty required value. The marker is removed as soon as the user
+	 * edits the widget.
+	 *
+	 * @instance
+	 * @memberof LuCI.ui.AbstractElement
+	 * @param {string} message
+	 * The message shown as error tooltip.
+	 */
+	setInvalid(message) {
+		if (!this.node)
+			return;
+
+		// Themes only draw a border on the input itself, not on the widget container.
+		const field = this.node.querySelector('.add-item input, input:not([type="hidden"]), textarea, select') ?? this.node;
+		const events = [ 'widget-update', 'input' ];
+
+		const clear = () => {
+			field.classList.remove('cbi-input-invalid');
+			field.removeAttribute('data-tooltip');
+			field.removeAttribute('data-tooltip-style');
+			events.forEach(ev => this.node.removeEventListener(ev, clear));
+		};
+
+		clear();
+
+		field.classList.add('cbi-input-invalid');
+		field.setAttribute('data-tooltip', message);
+		field.setAttribute('data-tooltip-style', 'error');
+		events.forEach(ev => this.node.addEventListener(ev, clear));
+	},
+
+	/**
 	 * Returns the current validation error
 	 *
 	 * @instance
@@ -1059,7 +1094,7 @@ const UIDropdown = UIElement.extend(/** @lends LuCI.ui.Dropdown.prototype */ {
 	 * expression. Only applicable when `create` is `true`.
 	 */
 	__init__(value, choices, options) {
-		if (typeof(choices) != 'object')
+		if (!L.isObject(choices))
 			choices = {};
 
 		if (!Array.isArray(value))
@@ -1287,6 +1322,11 @@ const UIDropdown = UIElement.extend(/** @lends LuCI.ui.Dropdown.prototype */ {
 	openDropdown(sb) {
 		const ul = sb.querySelector('ul');
 		const li = ul.querySelectorAll('li');
+
+		/* nothing to select, e.g. no choices and no create input */
+		if (!li.length)
+			return;
+
 		const fl = findParent(sb, '.cbi-value-field');
 		const sel = ul.querySelector('[selected]');
 		const rect = sb.getBoundingClientRect();
