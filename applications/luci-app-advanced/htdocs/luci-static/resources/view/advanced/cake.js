@@ -5,16 +5,54 @@
 'require ui';
 'require uci';
 
+/* Kernel default of g_sync_time_ns in sch_cake. */
+var defaultSyncTime = '200000';
+
+/* Apply sync_time only once the change has been committed, so that
+ * advanced_setup reads the new value from uci instead of the old one.
+ */
+function reloadCakeAfterApply() {
+	var onApplied = function() {
+		document.removeEventListener('uci-applied', onApplied);
+
+		fs.exec('/etc/init.d/advanced_setup', [ 'reload', 'cake' ]).catch(function(err) {
+			ui.addNotification(null, E('p', err.message));
+		});
+	};
+
+	document.addEventListener('uci-applied', onApplied);
+}
+
 return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.load('advanced'),
-			L.resolveDefault(fs.trimmed('/sys/kernel/debug/cake_mq/sync_time_ns'), '')
+			L.resolveDefault(fs.trimmed('/sys/kernel/debug/cake_mq/sync_time_ns'), ''),
+			L.resolveDefault(uci.load('sqm'), null)
 		]);
 	},
 
 	render: function(data) {
-		var runtimeValue = data[1] || '800000';
+		var runtimeValue = data[1] || defaultSyncTime;
+		var mqInUse = uci.sections('sqm', 'queue').some(function(s) {
+			return s.use_mq == '1';
+		});
+
+		/* Both settings only affect cake_mq, which SQM uses only on queues
+		 * with use_mq enabled: without one there is nothing to configure.
+		 */
+		if (!mqInUse) {
+			this.handleSaveApply = null;
+			this.handleSave = null;
+			this.handleReset = null;
+
+			return E('div', { 'class': 'cbi-map' }, [
+				E('h2', _('CAKE Settings')),
+				E('div', { 'class': 'cbi-map-descr' },
+					_('These settings only apply to cake_mq, which SQM uses on queues with "use_mq" enabled. No SQM queue has it enabled, so there is nothing to configure here.'))
+			]);
+		}
+
 		var m = new form.Map('advanced');
 		var s = m.section(form.TypedSection, 'defaults', _('CAKE Settings'),
 			_('Configure global CAKE-related defaults. sync_time controls how often cake_mq refreshes its shared queue state, while the IFB queue policy controls how many TX queues sqm-scripts creates for ingress shaping when SQM uses multiqueue. For most setups, start with sync_time = 200000 ns and IFB queues = Half of cores.'));
@@ -26,10 +64,10 @@ return view.extend({
 		o = s.option(form.Value, 'cake_sync_time_ns', _('sync_time (ns)'),
 			_('Runtime value for /sys/kernel/debug/cake_mq/sync_time_ns. Lower values react faster to queue changes but cost more CPU time. 200000 ns is the recommended starting point with the optimized cake_mq patches; higher values such as 600000 or 800000 are mainly fallback or diagnostic settings. Use 0 only for short tests.'));
 		o.datatype = 'uinteger';
-		o.placeholder = '800000';
+		o.placeholder = defaultSyncTime;
 		o.rmempty = false;
 		o.cfgvalue = function(section_id) {
-			return uci.get('advanced', section_id, 'cake_sync_time_ns') || runtimeValue || '800000';
+			return uci.get('advanced', section_id, 'cake_sync_time_ns') || runtimeValue;
 		};
 		o.write = function(section_id, value) {
 			uci.set('advanced', section_id, 'cake_sync_time_ns', value);
@@ -54,8 +92,7 @@ return view.extend({
 
 	handleSaveApply: function(ev, mode) {
 		return this.handleSave(ev).then(function() {
-			return fs.exec('/etc/init.d/advanced_setup', [ 'reload', 'cake' ]);
-		}).then(function() {
+			reloadCakeAfterApply();
 			return ui.changes.apply(mode == '0');
 		});
 	}

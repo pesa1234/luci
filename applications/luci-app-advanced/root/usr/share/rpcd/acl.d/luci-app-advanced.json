@@ -14,7 +14,7 @@
 				"file": [ "read" ],
 				"luci": [ "getConntrackHelpers", "getWED" ]
 			},
-			"uci": [ "advanced", "mtkhnat" ]
+			"uci": [ "advanced", "mtkhnat", "sqm" ]
 		},
 		"write": {
 			"file": {
