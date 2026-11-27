@@ -207,6 +207,10 @@ function render_modal_status(node, radioNet) {
 
 function format_wifirate(rate) {
 	let s = `${rate.rate / 1000}\xa0${_('Mbit/s')}, ${rate.mhz}\xa0${_('MHz')}`;
+	const generation = network.formatWifiRateGeneration(rate);
+
+	if (generation)
+		s += ', ' + generation;
 
 	if (rate?.ht || rate?.vht) s += [
 		rate?.vht && `, VHT-MCS\xa0${rate?.mcs}`,
@@ -225,8 +229,7 @@ function format_wifirate(rate) {
 	if (rate?.eht) s += [
 		`, EHT-MCS\xa0${rate?.mcs}`,
 		rate?.nss    && `, EHT-NSS\xa0${rate?.nss}`,
-		rate?.eht_gi  && `, EHT-GI\xa0${rate?.eht_gi}`,
-		rate?.eht_dcm && `, EHT-DCM\xa0${rate?.eht_dcm}`
+		rate?.eht_gi && `, EHT-GI\xa0${rate?.eht_gi}`
 	].filter(Boolean).join('');
 
 	return s;
